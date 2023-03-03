@@ -1,0 +1,15 @@
+.box {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  justify-content: center;
+  padding: 2vh 2vw 2vh 2vw;
+}
+
+.box a {
+  align-self: center;
+  color: #000;
+  padding-bottom: .5rem;
+  text-align: center;
+}

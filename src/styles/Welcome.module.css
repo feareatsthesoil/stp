@@ -1,0 +1,42 @@
+.box {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 460px;
+  padding-top: 28vh;
+  text-align: center;
+  width: 50vw;
+}
+
+.box h1 {
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.box p {
+  line-height: 2em;
+  padding-bottom: 50px;
+}
+
+.box p:last-child {
+  line-height: 2em;
+  padding-bottom: 50px;
+  padding-top: 70px;
+}
+
+.box button {
+  align-self: center;
+  background-color: #000;
+  border: 1px solid black;
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 1em;
+  max-width: 460px;
+  padding: 10px;
+  width: 30vw;
+}
+
+.box a {
+  color: #000;
+  padding-top: 30px;
+}

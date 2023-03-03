@@ -1,0 +1,231 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+strong,
+b {
+  font-weight: bold;
+}
+
+em,
+i {
+  font-style: italic;
+}
+
+a img {
+  border: none;
+}
+
+/*********************************** END RESET ***********************************/
+
+:root {
+  box-sizing: border-box
+}
+
+/* @supports (font: -apple-system-body) and (-webkit-appearance: none) { img[loading="lazy"] { clip-path: inset(0.6px) } } */
+
+.Body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.Box {
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  padding: 2vh 2vw 4vh 2vw;
+  width: 40vw;
+  line-height: 20px;
+}
+
+.Box p {
+  padding: 20px 0 10px;
+}
+
+.Box h1 {
+  font-weight: bold;
+  padding-bottom: 1vh;
+  font-size: 1.2em;
+}
+
+.Box a {
+  color: #000;
+}
+
+.Input {
+  display: flex;
+  flex-direction: row;
+}
+
+.Text textarea {
+  margin-top: 10px;
+  border: 1px solid black;
+  background-color: #E8F1FD;
+  overflow: hidden;
+  height: 12px;
+  padding: 10px;
+  resize: none;
+  width: 20vw;
+  text-align: left;
+  justify-content: center;
+}
+
+.Button {
+  color: #fff;
+  background-color: black;
+  border: 1px solid black;
+  font-family:'Times New Roman', Times, serif;
+  font-size: .8em;
+  padding: 8px 15px;
+}
+
+.buttonBody {
+  padding: 10px;
+  /* float: right; */
+}
+
+/*********************************** NAV STYLES ***********************************/
+#MobileLogin {
+  display: none;
+}
+
+/*********************************** MEDIA QUERIES ***********************************/
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 570px) {
+  #MobileLogin {
+    display: list-item;
+  }
+}
+
+@media (max-height: 350px) and (max-width: 800px) {
+  .Box {
+    font-size: 1rem;
+  }
+}

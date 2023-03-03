@@ -1,0 +1,35 @@
+.box {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  padding: 10vh 2vw 4vh 2vw;
+  text-align: center;
+  width: 40vw;
+}
+
+.box a {
+  color: rgb(44, 82, 140);
+}
+
+.box a:visited {
+  color: rgb(44, 82, 140);
+}
+
+.address {
+  padding-top: 1vh;
+  text-align: center;
+}
+
+
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+  .box {
+    width: 60vw;
+  }
+}
+
+@media (max-height: 350px) and (max-width: 800px) {
+  .box {
+    font-size: .5rem;
+  }
+}

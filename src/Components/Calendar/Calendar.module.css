@@ -1,0 +1,123 @@
+.eventRow {
+  padding: 10px 50px;
+  text-align: left;
+}
+
+.eventRow a {
+  color: rgb(44, 82, 140);
+}
+
+.date {
+  font-size: 1.1rem;
+  text-align: left;
+  text-decoration: none;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  min-height: 90vh;
+  margin-bottom: 60px;
+  clear: both;
+}
+
+.eventBody {
+  display: flex;
+  flex-direction: column;
+  float: left;
+}
+
+.eventBody a:first-child {
+  padding-bottom: 10px;
+  font-size: .9em;
+}
+
+.eventBody h1 {
+  font-size: 1.2em;
+}
+
+.eventBody p {
+  padding-bottom: 10px;
+}
+
+.eventSocials {
+  color: #000;
+  filter: grayscale(100%);
+  padding-right: 5px;
+}
+
+.eventSocialsBody {
+  filter: grayscale(100%);
+  padding-top: 10px;
+  ;
+}
+
+.header {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 2vh;
+  padding-top: 0vh;
+  text-decoration: underline;
+}
+
+.headerBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.bio {
+  padding-bottom: 4vh;
+  text-align: left;
+  width: 50vw;
+  max-width: 700px;
+}
+
+.bio p {
+  padding-bottom: 20px;
+}
+
+.bio a {
+  color: rgb(44, 82, 140);
+}
+
+.bio a:visited {
+  color: rgb(44, 82, 140);
+}
+
+.box {
+  flex-grow: 1;
+  min-height: 2em;
+  overflow: auto;
+  padding: 2vh 2vw 2vh;
+}
+
+.eventHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.eventBody a {
+  font-weight: bold;
+
+}
+
+@media screen and (min-width: 0px) and (max-width: 570px) {
+  .bio {
+    width: 90vw;
+  }
+
+  .body {
+    margin-bottom: 80px;
+  }
+}
+
+@media (max-height: 350px) and (max-width: 800px) {
+  .eventRow {
+    font-size: .5rem;
+  }
+}
+
+.dateGroup {
+  margin-bottom: 10px;
+}
