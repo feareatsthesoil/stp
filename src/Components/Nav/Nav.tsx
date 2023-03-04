@@ -20,7 +20,7 @@ const NavBar = () => {
               <Link href="/directory">Directory</Link>
             </li>
             <li>
-              <Link href="/">Mailing List</Link>
+              <Link href="/mail">Mailing List</Link>
             </li>
             <li>
               <Link href="/">Support</Link>

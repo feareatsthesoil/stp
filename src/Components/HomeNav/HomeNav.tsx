@@ -21,7 +21,7 @@ const HomeNav = () => {
             <Link href="/directory">Directory</Link>
           </li>
           <li>
-            <Link href="/directory">Mailing List</Link>
+            <Link href="/mail">Mailing List</Link>
           </li>
           <li>
             <Link href="/">Memberships</Link>
@@ -36,7 +36,7 @@ const HomeNav = () => {
             <Link href="/contact">Contact Us</Link>
           </li>
           <li>
-            <Link href="/contact">Shop</Link>
+            <Link href="https://shop.stp.world" target="webapp-tab">Shop</Link>
           </li>
         </ul>
       </div>
