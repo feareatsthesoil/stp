@@ -10,7 +10,7 @@ export default function Document () {
         <meta property="og:image" content="/favicon.ico"/>
         <meta name="keywords" content="Keywords" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="icon" href="public/Images/favicon.ico"/>
+        <link rel="icon" href="/static/favicon.ico"/>
         <link
           href="/icons/favicon-16x16.png"
           rel="icon"
