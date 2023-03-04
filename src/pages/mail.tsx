@@ -1,7 +1,7 @@
 import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
-import Index from "../styles/Mail.module.css"
+import Index from "../styles/About.module.css"
 
 const Mail = () => {
   return (
