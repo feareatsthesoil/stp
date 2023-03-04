@@ -30,7 +30,7 @@ const HomeNav = () => {
             <Link href="/radio">Radio</Link>
           </li>
           <li>
-            <Link href="/" target="webapp-tab">Discord</Link>
+            <Link href="/discussion">Discussion</Link>
           </li>
           <li>
             <Link href="/contact">Contact Us</Link>

@@ -29,7 +29,7 @@ const NavBar = () => {
               <Link href="/radio">Radio</Link>
             </li>
             <li>
-              <Link href="/">Discussion</Link>
+              <Link href="/discussion">Discussion</Link>
             </li>
             <li>
               <Link href="/contact">Contact Us</Link>

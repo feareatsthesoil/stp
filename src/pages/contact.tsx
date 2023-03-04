@@ -8,10 +8,11 @@ import contact from "../styles/Contact.module.css"
 const contactUs = () => {
   return (
     <>
-      <div className="Body">
+      <div className={contact.Body}>
         <Header />
         <Address />
-        <div className={contact.box}>
+        <div className={contact.Box}>
+          <h1>Contact Us</h1>
           <p>
             If you would like to contact us, you can write us at the address
             shown above or email <Link href="mailto:info@stp.world">info@stp.world</Link>.

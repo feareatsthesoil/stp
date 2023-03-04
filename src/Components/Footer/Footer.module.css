@@ -3,7 +3,7 @@
   flex-direction: column;
   font-size: 1em;
   margin-top: auto;
-  padding-bottom: 1vh;
+  padding-bottom: 1em;
   padding-top: 2em;
   z-index: 201;
 }
@@ -16,7 +16,7 @@
   flex-direction: column;
   font-size: 1em;
   left: 0;
-  padding-bottom: 1vh;
+  padding-bottom: 1em;
   padding-top: .5em;
   position: fixed;
   width: 100vw;
@@ -76,6 +76,14 @@
   width: 100%;
 }
 
+.legalHome p{
+  padding-bottom: 2px;
+}
+
+.legal p{
+  padding-bottom: 2px;
+}
+
 .legalHome a {
   color: #fff;
 }
@@ -103,7 +111,7 @@
   list-style: none;
   opacity: 0.8;
   padding-left: 1em;
-  padding-top: 1.8vh;
+  padding-top: 1em;
   width: auto;
 }
 
