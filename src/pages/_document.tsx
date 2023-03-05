@@ -7,7 +7,8 @@ export default function Document () {
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="Portal for SERVING the PEOPLE" />
-        <meta property="og:image" content="/favicon.ico"/>
+        <meta property="og:image" content="/static/favicon.ico"/>
+        <link rel="shortcut icon" href="/static/favicon.ico" />
         <meta name="keywords" content="Keywords" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="icon" href="/static/favicon.ico"/>

@@ -58,3 +58,7 @@
   .buttonBody {
     padding: 10px 0 40px;
   }
+
+  .buttonBody:last-child {
+    padding: 10px 0 0;
+  }

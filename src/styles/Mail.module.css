@@ -1,0 +1,64 @@
+.box {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    max-width: 460px;
+    padding-top: 30vh;
+    text-align: center;
+    width: 50vw;
+}
+
+.box h1 {
+    font-weight: normal;
+    font-size: .8em;
+    padding-bottom: 10px;
+}
+
+.box p {
+    font-size: .8em;
+    padding-top: 10px;
+}
+
+.box button {
+    padding: 5px 0;
+    margin: 5px;
+}
+
+.bottomButton button {
+    align-self: center;
+    background-color: #000;
+    border: 1px solid black;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    max-width: 460px;
+    padding: 7px;
+    width: 70px;
+}
+
+.textarea {
+    text-align: left;
+    border: 1px solid black;
+    background-color: #E8F1FD;
+    height: 20px;
+    resize: none;
+    max-width: 300px;
+    width: 29vw;
+    line-height: 18px;
+    padding-left: 5px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.textarea::placeholder{
+    color: black;
+}
+
+.label {
+    align-self: center;
+    width: 30vw;
+}
+
+.label label{
+    float: left;
+    font-size: .8em;
+    padding: 20px 0 3px;
+}

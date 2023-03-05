@@ -34,8 +34,11 @@ const NavBar = () => {
             <li>
               <Link href="/contact">Contact Us</Link>
             </li>
+            <li>
+            <Link href="https://shop.stp.world" target="webapp-tab">Shop</Link>
+          </li>
             <li id="MobileLogin">
-              <Link href="/welcome">Login Portal</Link>
+              <Link href="/login">Login Portal</Link>
             </li>
           </ul>
         </div>

@@ -1,6 +1,4 @@
 import Link from "next/link"
-
-
 import calendar from "./Calendar.module.css"
 import _ from "lodash"
 import moment from "moment"
@@ -36,11 +34,12 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
               {list.map((row) => {
                 return (
                   <div key={row.id} className={calendar.eventRow}>
-                    <Link href={`/calendar/${row.id}`}>
+                    <Link className={calendar.mainEvent}href={`/calendar/${row.id}`}>
                       {" "}
-                      {row.name},{" "}
+                      <strong>{row.name}</strong><hr/>
                       <span className={calendar.timeColumn}>{row.start_time}</span>{" "}
-                      - {row.end_time} {row.location}</Link>
+                      - {row.end_time}<hr/> {row.location}</Link>
+                      <hr/><Link href="/">Share</Link>&nbsp;<Link href="/">Add to Calendar</Link>
                   </div>
                 )
               })}

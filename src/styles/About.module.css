@@ -39,13 +39,19 @@
     background-color: #E8F1FD;
     overflow: hidden;
     height: 12px;
-    padding: 10px;
+    padding: 10px 5px;
     resize: none;
     width: 20vw;
     text-align: left;
-    justify-content: center;
+    line-height: 12px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: .8em;
   }
   
+  .Text textarea::placeholder {
+    color: black;
+  }
+
   .Button {
     color: #fff;
     background-color: black;

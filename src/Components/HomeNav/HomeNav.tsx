@@ -9,7 +9,7 @@ const HomeNav = () => {
       <div className={nav.items}>
         <ul>
           <li id="MobileLogin">
-            <Link href="/welcome">Login Portal</Link>
+            <Link href="/login">Login Portal</Link>
           </li>
           <li>
             <Link href="/about">About</Link>

@@ -6,7 +6,7 @@ import radio from "../styles/Radio.module.css"
 const Radio = () => {
   return (
     <>
-      <div className="Body">
+      <div className={radio.body}>
         <Header />
         <div className={radio.box}>
           <h1>NOW PLAYING</h1>

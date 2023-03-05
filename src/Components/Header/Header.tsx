@@ -18,7 +18,7 @@ function Header () {
       <Head>
         <meta name="theme-color" content={`${isHome ? "#000" : "#fff"}`} />
       </Head>
-      <Link href="/welcome">Login Portal</Link>
+      <Link href="/login">Login Portal</Link>
       <Link href="/">
         <h1>SERVING the PEOPLE</h1>
       </Link>
