@@ -18,21 +18,23 @@ export default function CalendarEvent (params: {row: CalendarEventType}): JSX.El
   const row: CalendarEventType = params.row
   return (
     <div className={calendar.eventBody}>
-      <Link href="/calendar">Back</Link>
+      
+      <div className={calendar.box}>
+      <div className={calendar.back}><Link href="/calendar">Back</Link></div>
       <div className={calendar.eventHeader}><h1>{row.name}</h1></div>
       <div>
         <p>
-          <strong></strong> {row.type}
+          <strong>Type:</strong> {row.type}
         </p>
         <p>
-          <strong></strong> {row.start_date} {row.start_time} {" "}
-          {row.end_date} {row.end_time}
+          <strong>Time:</strong> {row.start_date} {row.start_time} {" "}
+         - {row.end_date} {row.end_time}
         </p>
         <p>
-          <strong></strong> {row.location}
+          <strong>Location:</strong> {row.location}
         </p>
         <p>
-          Contact: {row.email}
+          <strong>Contact:</strong> {row.email}
         </p>
         <Link href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" target="webapp-tab">Add to calendar</Link>
 
@@ -76,6 +78,7 @@ export default function CalendarEvent (params: {row: CalendarEventType}): JSX.El
           </EmailShareButton>
 
         </div>
+      </div>
       </div>
     </div>
   )
