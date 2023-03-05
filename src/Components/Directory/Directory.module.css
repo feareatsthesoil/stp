@@ -44,11 +44,11 @@
 }
 
 .header a {
-  color: rgb(44, 82, 140);
+  color: #0047FF;
 }
 
 .header a:visited {
-  color: rgb(44, 82, 140);
+  color: #0047FF;
 }
 
 .box {
@@ -60,11 +60,11 @@
 }
 
 .box a {
-  color: rgb(44, 82, 140);
+  color: #000;
 }
 
 .box a:visited {
-  color: rgb(44, 82, 140);
+  color: #000;
 }
 
 .box h1 {
@@ -120,7 +120,7 @@
   margin-right: 10px;
 }
 
-@media screen and (min-width: 0px) and (max-width: 570px) {
+@media screen and (min-width: 0px) and (max-width: 790px) {
   .body {
     margin-bottom: 80px;
   }
@@ -147,3 +147,6 @@
     width: 70vw;
   }
 }
+
+/* @media screen and (min-width: 0px) and (max-width: 790px) {
+  .body */

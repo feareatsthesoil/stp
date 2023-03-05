@@ -107,12 +107,17 @@
 
 }
 
+
+.dateGroup {
+  margin-bottom: 10px;
+}
+
 .mainEvent {
   text-decoration: none;
   color: #000;
 }
 
-@media screen and (min-width: 0px) and (max-width: 570px) {
+@media screen and (min-width: 0px) and (max-width: 790px) {
   .bio {
     width: 90vw;
   }
@@ -122,12 +127,18 @@
   }
 }
 
-@media (max-height: 350px) and (max-width: 800px) {
+/* @media screen and (min-width: 0px) and (max-width: px) {
+  .bio {
+    width: 90vw;
+  }
+
+  .body {
+    margin-bottom: 80px;
+  }
+} */
+
+/* @media (max-height: 350px) and (max-width: 800px) {
   .eventRow {
     font-size: .5rem;
   }
-}
-
-.dateGroup {
-  margin-bottom: 10px;
-}
+} */

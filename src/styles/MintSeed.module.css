@@ -45,6 +45,10 @@
   width: 62px;
 }
 
+.input::placeholder {
+  color: black;
+}
+
 .button {
   align-self: center;
   background-color: black;
