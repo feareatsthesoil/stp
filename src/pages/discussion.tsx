@@ -11,11 +11,8 @@ const Discussion = () => {
                 <div className={index.box}>
                     <h1>Discord</h1>
                     <p>
-                        Serving the People is a 501(c)(3) non-profit organization that assists artists
-                        and creators in making meaningful connections both online and in person.
-                        Established in 2017, STP has launched a number of initiatives and developed a
-                        platform for connecting creators with audiences, as well as finding opportunities
-                        for collaboration and support.
+                        The Serving the People Discord is where our community gathers to discuss and chat. 
+                        It features a diverse selection of channels, including art, film, video, tech, and more. 
                     </p>
                     <div className={index.buttonBody}>
                         <button className={index.button}>
