@@ -19,7 +19,7 @@ function Footer() {
     router.pathname === '/'
   )
     ? footer.homeNav
-    : footer.Nav
+    : footer.nav
 
   const footerLegal = (
     router.pathname === '/'

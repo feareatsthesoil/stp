@@ -4,16 +4,16 @@ import Header from "../Components/Header/Header"
 import HomeNav from "../Components/HomeNav/HomeNav"
 import Address from "../Components/Address/address"
 import Footer from "../Components/Footer/Footer"
-import Home from "../styles/Home.module.css"
+import index from "../styles/Home.module.css"
 import homePic from "../../public/Images/home.jpg"
 
-export default function Index () {
+export default function Home () {
   return (
     <>
-      <div className={Home.body}>
+      <div className={index.body}>
         <Image
           placeholder="empty"
-          className={Home.background}
+          className={index.background}
           src={homePic}
           alt="SERVING the PEOPLE"
           fill

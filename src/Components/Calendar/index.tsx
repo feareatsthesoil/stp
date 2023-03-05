@@ -12,12 +12,16 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
         <div className={calendar.headerBody}>
           <h1 className={calendar.header}>2023 Calendar</h1>
           <div className={calendar.bio}>
-            <p>To <Link href="/calendar/submit">submit</Link> to the calendar please <Link href="/about">log in</Link>.
+            <p>
+              To <Link href="/calendar/submit">submit</Link> to the calendar please <Link href="/about">log in</Link>.
               All submissions are subject to review. If you would like to receive updates
               you can sign up for our <Link href="/about"> newsletter</Link> or <Link
-                href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" target="webapp-tab">add calendar</Link>.
+                href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" target="webapp-tab">add calendar
+              </Link>.
             </p>
-            <p>By submitting to the calendar you are agreeing to our <Link href="/">Privacy Policy</Link></p>
+            <p>
+              By submitting to the calendar you are agreeing to our <Link href="/">Privacy Policy</Link>
+            </p>
           </div>
         </div>
         {Object.entries(dateList).map(([date, list]) => {
@@ -28,18 +32,20 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                 <Link legacyBehavior href={`#${date}`}>
                   <a>
                     <h2 id={date} className={calendar.date}>{moment(date).format("MMMM DD, YYYY")}</h2>
-                    </a>
+                  </a>
                 </Link>
               </div>
               {list.map((row) => {
                 return (
                   <div key={row.id} className={calendar.eventRow}>
-                    <Link className={calendar.mainEvent}href={`/calendar/${row.id}`}>
+                    <Link className={calendar.mainEvent} href={`/calendar/${row.id}`}>
                       {" "}
-                      <strong>{row.name}</strong><hr/>
-                      <span className={calendar.timeColumn}>{row.start_time}</span>{" "}
-                      - {row.end_time}<hr/> {row.location}</Link>
-                      <hr/><Link href="/">Share</Link>&nbsp;<Link href="/">Add to Calendar</Link>
+                      <strong>{row.name}</strong><hr />
+                      <span className={calendar.timeColumn}>
+                        {row.start_time}
+                      </span>{" "}
+                      - {row.end_time}<hr /> {row.location}</Link>
+                    <hr /><Link href="/">Share</Link>&nbsp;<Link href="/">Add to Calendar</Link>
                   </div>
                 )
               })}

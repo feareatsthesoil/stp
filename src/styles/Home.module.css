@@ -6,9 +6,9 @@
 }
 
 .background {
+  border: none;
   height: auto;
   min-height: 100vh;
   overflow: hidden;
   z-index: -20;
-  border: none;
 }

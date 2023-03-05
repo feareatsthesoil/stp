@@ -1,14 +1,14 @@
 import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
-import Index from "../styles/Discussion.module.css"
+import index from "../styles/Discussion.module.css"
 
 const Discussion = () => {
     return (
         <>
-            <div className={Index.Body}>
+            <div className={index.body}>
                 <Header />
-                <div className={Index.Box}>
+                <div className={index.box}>
                     <h1>Discord</h1>
                     <p>
                         Serving the People is a 501(c)(3) non-profit organization that assists artists
@@ -17,7 +17,11 @@ const Discussion = () => {
                         platform for connecting creators with audiences, as well as finding opportunities
                         for collaboration and support.
                     </p>
-                    <div className={Index.buttonBody}><button className={Index.Button}>Join the Conversation</button></div>
+                    <div className={index.buttonBody}>
+                        <button className={index.button}>
+                            Join the Conversation
+                        </button>
+                    </div>
                     <h1>Urbit</h1>
                     <p>
                         The STP community offers a variety of programming and events, including a weekly
@@ -31,7 +35,11 @@ const Discussion = () => {
                         essays and other writing on STP&apos;s blog and newsletter, which also feature updates
                         from the STP community.
                     </p>
-                    <div className={Index.buttonBody}><button className={Index.Button}>Learn More</button></div>
+                    <div className={index.buttonBody}>
+                        <button className={index.button}>
+                            Learn More
+                        </button>
+                    </div>
                 </div>
                 <Footer />
             </div>

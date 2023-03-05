@@ -1,9 +1,9 @@
 import React from "react"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 
 import address from "./Address.module.css"
 
-function Address () {
+function Address() {
   const router = useRouter()
   const isHome = router.pathname === "/"
 

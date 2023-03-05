@@ -1,7 +1,7 @@
-import {useRouter} from "next/router"
-import {useState, useEffect} from "react"
+import { useRouter } from "next/router"
+import { useState, useEffect } from "react"
 
-export default function Loading (): any {
+export default function Loading(): any {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 

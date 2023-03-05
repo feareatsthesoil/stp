@@ -6,16 +6,15 @@ import Header from "../../Components/Header/Header"
 
 import calendar from "../../Components/Calendar/Calendar.module.css"
 
-import {getCalendarData} from "../../libs/sheets"
-import {CalendarRow} from "../../types"
+import { getCalendarData } from "../../libs/sheets"
+import { CalendarRow } from "../../types"
 
-export default function IndexPage ({calendarData}: {calendarData: CalendarRow[]}) {
+export default function IndexPage({ calendarData }: { calendarData: CalendarRow[] }) {
 
   return (
     <>
       <div className={calendar.body}>
         <Header />
-
         <div className={calendar.box}>
           <Calendar data={calendarData} />
         </div>
@@ -25,7 +24,7 @@ export default function IndexPage ({calendarData}: {calendarData: CalendarRow[]}
   )
 }
 
-export async function getServerSideProps () {
+export async function getServerSideProps() {
   const calendarData = await getCalendarData()
 
   return {

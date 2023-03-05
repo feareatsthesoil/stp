@@ -1,55 +1,55 @@
-.Body {
+.body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.Box {
+.box {
   display: flex;
   flex-direction: column;
   font-size: 1em;
-  padding: 2vh 2vw 4vh 2vw;
-  width: 40vw;
   line-height: 20px;
   min-width: 250px;
+  padding: 2vh 2vw 4vh 2vw;
+  width: 40vw;
 }
 
-.Box p {
+.box p {
   padding: 20px 0 10px;
 }
 
-.Box h1 {
+.box h1 {
+  font-size: 1.2em;
   font-weight: bold;
   padding-bottom: 1vh;
-  font-size: 1.2em;
 }
 
-.Box a {
+.box a {
   color: #000;
 }
 
-.Input {
+.input {
   display: flex;
   flex-direction: row;
 }
 
-.Text textarea {
-  margin-top: 10px;
-  border: 1px solid black;
+.text textarea {
   background-color: #E8F1FD;
-  overflow: hidden;
+  border: 1px solid black;
   height: 12px;
+  justify-content: center;
+  margin-top: 10px;
+  overflow: hidden;
   padding: 10px;
   resize: none;
-  width: 20vw;
   text-align: left;
-  justify-content: center;
+  width: 20vw;
 }
 
-.Button {
-  color: #fff;
+.button {
   background-color: black;
   border: 1px solid black;
+  color: #fff;
   font-family:'Times New Roman', Times, serif;
   font-size: .8em;
   padding: 8px 15px;

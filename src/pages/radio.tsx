@@ -1,14 +1,14 @@
 import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
-import radio from "../styles/Radio.module.css"
+import index from "../styles/Radio.module.css"
 
 const Radio = () => {
   return (
     <>
-      <div className={radio.body}>
+      <div className={index.body}>
         <Header />
-        <div className={radio.box}>
+        <div className={index.box}>
           <h1>NOW PLAYING</h1>
         </div>
         <Footer />

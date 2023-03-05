@@ -8,15 +8,28 @@ const Welcome = () => {
 
   return (
     <>
-      <div className="Body">
+      <div className="body">
         <Header />
         <div className={index.box}>
-          <h1>Log in</h1>
-          <button>Continue with Google</button>
-          <button>Continue with Apple</button>
-          <button>Connect with Wallet</button>
-          <div className={index.label}><label htmlFor="textarea"> Email</label><hr/><textarea id="textarea" name="email" className={index.textarea} placeholder="info@stp.world"/></div>
-          <div className={index.bottomButton}><button id="email">Continue with email</button></div>
+          <h1>
+            Log in
+          </h1>
+          <button>
+            Continue with Google
+          </button>
+          <button>
+            Continue with Apple
+          </button>
+          <button>
+            Connect with Wallet
+          </button>
+          <div className={index.label}>
+            <label htmlFor="textarea"> Email</label><hr />
+            <textarea id="textarea" name="email" className={index.textarea} placeholder="info@stp.world" />
+          </div>
+          <div className={index.bottomButton}>
+            <button id="email">Continue with email</button>
+          </div>
           <Link href="/welcome">Forgot Password?</Link>
         </div>
         <Footer />

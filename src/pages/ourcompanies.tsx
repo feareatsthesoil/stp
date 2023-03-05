@@ -2,7 +2,7 @@ import React from "react"
 import Image from 'next/image'
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
-import ourCompanies from "../styles/OurCompanies.module.css"
+import index from "../styles/OurCompanies.module.css"
 import STPlogo from "../../public/Images/STP-logo.png"
 import Woolrichlogo from "../../public/Images/Woolrich-logo.png"
 import Studiologo from "../../public/Images/Studio-logo.png"
@@ -10,9 +10,9 @@ import Studiologo from "../../public/Images/Studio-logo.png"
 const OurCompanies = () => {
   return (
     <>
-      <div className="Body">
+      <div className="body">
         <Header />
-        <div className={ourCompanies.box}>
+        <div className={index.box}>
           <Image
             priority
             placeholder="blur"

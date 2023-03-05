@@ -1,10 +1,9 @@
-import {DirectoryRow} from "../../types"
+import { DirectoryRow } from "../../types"
 import Link from "next/link"
 import directory from "./Directory.module.css"
+import { groupBy } from 'lodash'
 
-import {groupBy} from 'lodash'
-
-export default function Directory ({data}: {data: DirectoryRow[]}) {
+export default function Directory({ data }: { data: DirectoryRow[] }) {
   const dataGrouped = groupBy(data, (row) => row.name.charAt(0))
 
   return <>

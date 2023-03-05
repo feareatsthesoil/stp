@@ -8,10 +8,10 @@ import contact from "../styles/Contact.module.css"
 const contactUs = () => {
   return (
     <>
-      <div className={contact.Body}>
+      <div className={contact.body}>
         <Header />
         <Address />
-        <div className={contact.Box}>
+        <div className={contact.box}>
           <h1>Contact Us</h1>
           <p>
             If you would like to contact us, you can write us at the address

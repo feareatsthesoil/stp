@@ -1,14 +1,14 @@
 import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
-import about from "../styles/About.module.css"
+import index from "../styles/About.module.css"
 
 const About = () => {
   return (
     <>
-      <div className={about.Body}>
+      <div className={index.Body}>
         <Header />
-        <div className={about.Box}>
+        <div className={index.Box}>
           <h1>About</h1>
           <p>
             Serving the People is a 501(c)(3) non-profit organization that assists artists
@@ -26,9 +26,13 @@ const About = () => {
           <p>
             <strong>Subscribe to our weekly newsletter for happenings and events</strong>
           </p>
-          <div className={about.Input}>
-            <div className={about.Text}><textarea name="email" placeholder="info@stp.world"/></div>
-            <div className={about.buttonBody}><button className={about.Button}>Subscribe</button></div>
+          <div className={index.Input}>
+            <div className={index.Text}>
+              <textarea name="email" placeholder="info@stp.world" />
+            </div>
+            <div className={index.buttonBody}>
+              <button className={index.Button}>Subscribe</button>
+            </div>
           </div>
         </div>
         <Footer />

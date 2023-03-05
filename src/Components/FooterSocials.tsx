@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import Image from 'next/image'
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 import twitterBlack from "../../public/Images/twitter-black.png"
 import openseaWhite from "../../public/Images/opensea-white.png"
 import twitterWhite from "../../public/Images/twitter-white.png"
@@ -17,7 +17,7 @@ const imageProps = {
   width: 20
 }
 
-function FooterSocials () {
+function FooterSocials() {
   const router = useRouter()
   const isHomepage = router.pathname === "/"
 
@@ -35,7 +35,7 @@ function FooterSocials () {
     alt: "Instagram"
   }, {
     href: "https://discord.gg/nhqyng5wQ9",
-    src: isHomepage ? discordWhite: discordBlack,
+    src: isHomepage ? discordWhite : discordBlack,
     alt: "Discord"
   }]
   return (

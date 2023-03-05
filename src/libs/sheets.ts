@@ -1,7 +1,7 @@
-import {google} from "googleapis"
-import {DirectoryRow, CalendarRow} from "../types"
+import { google } from "googleapis"
+import { DirectoryRow, CalendarRow } from "../types"
 
-export async function getCalendarData () {
+export async function getCalendarData() {
   try {
     const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
     const jwt = new google.auth.JWT(
@@ -11,7 +11,7 @@ export async function getCalendarData () {
       target
     )
 
-    const sheets = google.sheets({version: "v4", auth: jwt})
+    const sheets = google.sheets({ version: "v4", auth: jwt })
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
       range: "Calendar Output!A2:N",
@@ -43,7 +43,7 @@ export async function getCalendarData () {
   return []
 }
 
-export async function getDirectoryData (): Promise<DirectoryRow[]> {
+export async function getDirectoryData(): Promise<DirectoryRow[]> {
   try {
     const target = ["https://www.googleapis.com/auth/spreadsheets.readonly"]
     const jwt = new google.auth.JWT(
@@ -53,7 +53,7 @@ export async function getDirectoryData (): Promise<DirectoryRow[]> {
       target
     )
 
-    const sheets = google.sheets({version: "v4", auth: jwt})
+    const sheets = google.sheets({ version: "v4", auth: jwt })
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SPREADSHEET_ID,
       range: "Directory Output!A2:J",
@@ -84,7 +84,7 @@ export async function getDirectoryData (): Promise<DirectoryRow[]> {
   return []
 }
 
-export async function insertDirectoryData (row: DirectoryRow) {
+export async function insertDirectoryData(row: DirectoryRow) {
   try {
     const target = ["https://www.googleapis.com/auth/spreadsheets"]
     const jwt = new google.auth.JWT(
@@ -97,12 +97,12 @@ export async function insertDirectoryData (row: DirectoryRow) {
     const data = [new Date(), row.name, row.category, row.address, row.website, row.email, row.phone, row.description]
 
 
-    const spreadsheetApp = google.sheets({version: "v4", auth: jwt})
+    const spreadsheetApp = google.sheets({ version: "v4", auth: jwt })
     const spreadsheet = await spreadsheetApp.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
       valueInputOption: "USER_ENTERED",
       range: "Directory Input!A:H",
-      requestBody: {values: [data]}
+      requestBody: { values: [data] }
 
     })
 
@@ -113,7 +113,7 @@ export async function insertDirectoryData (row: DirectoryRow) {
 }
 
 
-export async function insertCalendarData (row: CalendarRow) {
+export async function insertCalendarData(row: CalendarRow) {
   try {
     const target = ["https://www.googleapis.com/auth/spreadsheets"]
     const jwt = new google.auth.JWT(
@@ -126,12 +126,12 @@ export async function insertCalendarData (row: CalendarRow) {
     const data = [new Date(), row.name, row.type, row.location, row.website, row.start_date, row.end_date, row.start_time, row.end_time, row.phone, row.email, row.description]
 
 
-    const spreadsheetApp = google.sheets({version: "v4", auth: jwt})
+    const spreadsheetApp = google.sheets({ version: "v4", auth: jwt })
     const spreadsheet = await spreadsheetApp.spreadsheets.values.append({
       spreadsheetId: process.env.SPREADSHEET_ID,
       valueInputOption: "USER_ENTERED",
       range: "Calendar Input!A:L",
-      requestBody: {values: [data]}
+      requestBody: { values: [data] }
 
     })
 

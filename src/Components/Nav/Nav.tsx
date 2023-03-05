@@ -1,6 +1,5 @@
 import React from "react"
 import Link from "next/link"
-
 import nav from "./Nav.module.css"
 
 const NavBar = () => {
@@ -35,8 +34,8 @@ const NavBar = () => {
               <Link href="/contact">Contact Us</Link>
             </li>
             <li>
-            <Link href="https://shop.stp.world" target="webapp-tab">Shop</Link>
-          </li>
+              <Link href="https://shop.stp.world" target="webapp-tab">Shop</Link>
+            </li>
             <li id="MobileLogin">
               <Link href="/login">Login Portal</Link>
             </li>

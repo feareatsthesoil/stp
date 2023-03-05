@@ -1,14 +1,12 @@
 import React from "react"
-import {useRouter} from "next/router"
-
+import { useRouter } from "next/router"
 import CalendarEvent from "../../Components/Calendar/CalendarEvent"
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
+import { getCalendarData } from "../../libs/sheets"
+import { CalendarRow } from "../../types"
 
-import {getCalendarData} from "../../libs/sheets"
-import {CalendarRow} from "../../types"
-
-export default function EventPage ({events}: {events: CalendarRow[]}) {
+export default function EventPage({ events }: { events: CalendarRow[] }) {
   const router = useRouter()
   const eventId = router.query.eventId as string
 
@@ -16,11 +14,11 @@ export default function EventPage ({events}: {events: CalendarRow[]}) {
 
   return (
     <>
-      <div className="Body">
+      <div className="body">
         <Header />
-        <div className="Box">
+        <div className="box">
           {event
-            ? <CalendarEvent row={{...event, index: parseInt(eventId) - 1}} />
+            ? <CalendarEvent row={{ ...event, index: parseInt(eventId) - 1 }} />
             : <p>Event not found</p>
           }
         </div>
@@ -30,7 +28,7 @@ export default function EventPage ({events}: {events: CalendarRow[]}) {
   )
 }
 
-export async function getServerSideProps () {
+export async function getServerSideProps() {
   const calendarData = await getCalendarData()
   const data = calendarData.slice(0, calendarData.length)
 
