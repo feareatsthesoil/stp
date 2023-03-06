@@ -2,12 +2,16 @@ import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import index from "../styles/About.module.css"
+import Nav from "../Components/VerticalNav/Nav"
 
 const About = () => {
   return (
     <>
       <div className={index.body}>
         <Header />
+        <Nav/>
+    <div className="subBody">
+      
         <div className={index.box}>
           <h1>About</h1>
           <p>
@@ -37,6 +41,7 @@ const About = () => {
               <button className={index.button}>Subscribe</button>
             </div>
           </div>
+        </div>
         </div>
         <Footer />
       </div>

@@ -2,6 +2,7 @@ import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import index from "../styles/Mail.module.css"
+import Nav from "../Components/VerticalNav/Nav"
 
 const Mail = () => {
 
@@ -9,6 +10,8 @@ const Mail = () => {
     <>
       <div className="body">
         <Header />
+        <Nav />
+      <div className="subBody">
         <div className={index.box}>
           <h1>Add email to mailing list</h1>
           <div className={index.label}>
@@ -25,6 +28,7 @@ const Mail = () => {
           <p>
             You may opt out of emails at any time
           </p>
+        </div>
         </div>
         <Footer />
       </div>

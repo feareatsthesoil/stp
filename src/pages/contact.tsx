@@ -10,11 +10,10 @@ const contactUs = () => {
   return (
     <>
       <div className={contact.body}>
-      <Header />
-          <Address />
-         
+        <Header />
+        <Address />
+        <Nav />
         <div className={contact.subBody}>
-        <Nav/>
           <div className={contact.box}>
             <h1>Contact Us</h1>
             <p>
@@ -23,7 +22,7 @@ const contactUs = () => {
               However, due to the limited number of personnel in our office, we may be unable to provide a timely response.
             </p>
           </div>
-  
+
         </div>
         <Footer />
       </div>

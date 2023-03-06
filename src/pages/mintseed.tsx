@@ -2,12 +2,15 @@ import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import index from "../styles/MintSeed.module.css"
-
+import Nav from "../Components/VerticalNav/Nav"
+       
 const mintSeed = () => {
   return (
     <>
       <div className={index.body}>
         <Header />
+        <Nav />
+      <div className="subBody">
         <div className={index.box}>
           <h1>
             Minting a Seed
@@ -38,6 +41,7 @@ const mintSeed = () => {
             Each Seed is 0.1 ethereum (ETH). Due to the fluctuations of ETH
             this amount in more traditional currencies can fluctuate.
           </p>
+        </div>
         </div>
         <Footer />
       </div>

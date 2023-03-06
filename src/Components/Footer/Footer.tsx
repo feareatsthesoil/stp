@@ -8,18 +8,18 @@ import { useRouter } from "next/router"
 function Footer() {
   const router = useRouter()
 
-  const className = (
-    router.pathname === '/calendar'
-    || router.pathname === '/directory'
-  )
-    ? footer.stickyBody
-    : footer.body
+  // const className = (
+  //   router.pathname === '/calendar'
+  //   || router.pathname === '/directory'
+  // )
+  //   ? footer.stickyBody
+  //   : footer.body
 
-  const footerNav = (
-    router.pathname === '/' || router.pathname === '/contact'
-  )
-    ? footer.homeNav
-    : footer.nav
+  // const footerNav = (
+  //   router.pathname === '/' || router.pathname === '/contact'
+  // )
+  //   ? footer.homeNav
+  //   : footer.nav
 
   const footerLegal = (
     router.pathname === '/'
@@ -29,8 +29,8 @@ function Footer() {
 
   return (
     <>
-      <div className={className}>
-        <div className={footerNav}><Nav /></div>
+      <div className={footer.body}>
+        {/* <div className={footerNav}><Nav /></div> */}
         <div className={footerLegal}>
           <Link href="/">Legal Disclaimer</Link>&nbsp;
           <hr />

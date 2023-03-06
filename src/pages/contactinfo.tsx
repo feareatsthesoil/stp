@@ -3,13 +3,16 @@ import ContactForm from "../Components/ContactInfo/ContactForm"
 import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
 import index from "src/styles/Form.module.css"
+import Nav from "../Components/VerticalNav/Nav"
 
 export default function DirectorySubmit() {
   return (
     <>
       <div className="body">
-        <div className="subBody">
+
           <Header />
+          <Nav />
+      <div className="subBody">
           <div className={index.box}>
             <h1>Contact Information</h1>
             <p>
@@ -17,8 +20,9 @@ export default function DirectorySubmit() {
             </p>
             <ContactForm />
           </div>
+          </div>
           <Footer />
-        </div>
+
       </div>
     </>
   )

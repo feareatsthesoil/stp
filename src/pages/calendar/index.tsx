@@ -8,6 +8,7 @@ import calendar from "../../Components/Calendar/Calendar.module.css"
 
 import { getCalendarData } from "../../libs/sheets"
 import { CalendarRow } from "../../types"
+import Nav from "../../Components/VerticalNav/Nav"
 
 export default function IndexPage({ calendarData }: { calendarData: CalendarRow[] }) {
 
@@ -15,8 +16,11 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
     <>
       <div className={calendar.body}>
         <Header />
+        <Nav />
+      <div className="subBody">
         <div className={calendar.box}>
           <Calendar data={calendarData} />
+        </div>
         </div>
         <Footer />
       </div>

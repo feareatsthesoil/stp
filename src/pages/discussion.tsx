@@ -2,12 +2,15 @@ import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import index from "../styles/Discussion.module.css"
+import Nav from "../Components/VerticalNav/Nav"
 
 const Discussion = () => {
     return (
         <>
             <div className={index.body}>
                 <Header />
+                <Nav />
+      <div className="subBody">
                 <div className={index.box}>
                     <h1>Discord</h1>
                     <p>
@@ -40,6 +43,7 @@ const Discussion = () => {
                             Learn More
                         </button>
                     </div>
+                </div>
                 </div>
                 <Footer />
             </div>

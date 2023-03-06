@@ -6,6 +6,7 @@ import Header from "../../Components/Header/Header"
 import {getDirectoryData} from "../../libs/sheets"
 import {DirectoryRow} from "../../types"
 import index from "../../Components/Directory/Directory.module.css"
+import Nav from "../../Components/VerticalNav/Nav"
 
 export default function DirectoryPage ({data: fullData}: {data: DirectoryRow[]}) {
   const [searchText, setSearchText] = useState("")
@@ -23,6 +24,8 @@ export default function DirectoryPage ({data: fullData}: {data: DirectoryRow[]})
     <>
       <div className={index.body}>
         <Header />
+        <Nav />
+      <div className="subBody">
         <div className={index.header}>
           <h1>Directory</h1>
           <p>
@@ -40,6 +43,7 @@ export default function DirectoryPage ({data: fullData}: {data: DirectoryRow[]})
         </form>
         <div className={index.box}>
           <Directory data={data} />
+        </div>
         </div>
         <Footer />
       </div>
