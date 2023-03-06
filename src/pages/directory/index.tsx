@@ -32,13 +32,14 @@ export default function DirectoryPage ({data: fullData}: {data: DirectoryRow[]})
             To <Link href="/directory/submit">submit</Link> to the directory please <Link href="/">log in</Link>.
             All submissions are subject to review. By submitting to the directory you are agreeing to our <Link href="/">Privacy Policy</Link>.
           </p>
-        </div>
-        <input 
+          <input 
           type="text" 
           value={searchText} 
           placeholder="Search" 
           onChange={(e) => setSearchText(e.target.value)} 
         />
+        </div>
+        
         <form >
         </form>
         <div className={index.box}>

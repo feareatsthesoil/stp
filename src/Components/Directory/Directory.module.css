@@ -7,15 +7,16 @@
 }
 
 .body input {
+  align-self: center;
+  position: relative;
+  width: 100vw;
   border: 1px solid black;
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
   margin: 2vh 2vw;
   max-width: 300px;
   padding: 5px;
-  position: absolute;
   top: 0;
-  width: 20vw;
 }
 
 .body input::placeholder {
@@ -23,6 +24,8 @@
 }
 
 .header {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   align-self: center;
   justify-content: center;
@@ -118,18 +121,6 @@
 
 .linksStack p {
   margin-right: 10px;
-}
-
-@media screen and (min-width: 0px) and (max-width: 790px) {
-  .body {
-    margin-bottom: 80px;
-  }
-
-  .body input {
-    align-self: center;
-    position: relative;
-    width: 100vw;
-  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 1150px) {
