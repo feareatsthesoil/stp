@@ -12,7 +12,12 @@ const Mail = () => {
         <div className={index.box}>
           <h1>Add email to mailing list</h1>
           <div className={index.label}>
-            <textarea id="textarea" name="email" className={index.textarea} placeholder="info@stp.world" />
+            <textarea
+              id="textarea"
+              name="email"
+              className={index.textarea}
+              placeholder="info@stp.world"
+            />
           </div>
           <div className={index.bottomButton}>
             <button id="email">Subscribe</button>

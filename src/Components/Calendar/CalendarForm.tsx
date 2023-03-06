@@ -33,7 +33,7 @@ export default function CalendarForm() {
           <div className={form.left}>
             <div className={form.row}>
               <label className={form.label}> Name of Happening*</label>
-              <input required name="name" onChange={handleChange} className={form.input} value={data['name']} type="text" /> 
+              <input required name="name" onChange={handleChange} className={form.input} value={data['name']} type="text" />
             </div>
             <div className={form.row}>
               <label> Location*</label>
@@ -77,7 +77,7 @@ export default function CalendarForm() {
         </div>
         <div className={form.bottom}>
           <div className={form.descCalendar}>
-            <label htmlFor="textarea"> 
+            <label htmlFor="textarea">
               Short Description &nbsp;
             </label>
             <textarea id="textarea" name="description" onChange={handleChange} className={form.textarea} value={data['description']} />

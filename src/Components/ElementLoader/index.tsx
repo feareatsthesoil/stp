@@ -1,6 +1,6 @@
 import index from "./ElementLoader.module.css"
 
-export default function ElementLoader () {
+export default function ElementLoader() {
 
   return (
     <div className={index.body}>

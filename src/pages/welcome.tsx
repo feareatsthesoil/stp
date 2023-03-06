@@ -106,8 +106,8 @@ const Welcome = () => {
             as well as workshops, mentorship, events, and strengthen the arts community as a whole.
           </p>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   )
 }

@@ -51,7 +51,8 @@
   border: 1px solid black;
   color: #fff;
   font-family: 'Times New Roman', Times, serif;
-  font-size: .8em;
+  font-size: 1em;
+  letter-spacing: -0.03em;
   padding: 8px 15px;
 }
 

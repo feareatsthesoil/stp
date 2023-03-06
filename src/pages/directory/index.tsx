@@ -30,7 +30,12 @@ export default function DirectoryPage ({data: fullData}: {data: DirectoryRow[]})
             All submissions are subject to review. By submitting to the directory you are agreeing to our <Link href="/">Privacy Policy</Link>.
           </p>
         </div>
-        <input type="text" value={searchText} placeholder="Search" onChange={(e) => setSearchText(e.target.value)} />
+        <input 
+          type="text" 
+          value={searchText} 
+          placeholder="Search" 
+          onChange={(e) => setSearchText(e.target.value)} 
+        />
         <form >
         </form>
         <div className={index.box}>

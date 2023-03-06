@@ -8,15 +8,17 @@ export default function DirectorySubmit() {
   return (
     <>
       <div className="body">
-        <Header />
-        <div className={index.box}>
-          <h1>Contact Information</h1>
-          <p>
-            By submitting you agree to our <Link href="/">privacy policy</Link>
-          </p>
-          <ContactForm />
+        <div className="subBody">
+          <Header />
+          <div className={index.box}>
+            <h1>Contact Information</h1>
+            <p>
+              By submitting you agree to our <Link href="/">privacy policy</Link>
+            </p>
+            <ContactForm />
+          </div>
+          <Footer />
         </div>
-        <Footer />
       </div>
     </>
   )

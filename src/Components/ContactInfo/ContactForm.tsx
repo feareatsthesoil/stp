@@ -55,7 +55,9 @@ export default function ContactForm() {
         </div>
         <div className={index.checkboxBody}>
           <input className={index.checkbox} type="checkbox" name="display" >
-            </input> <label htmlFor="display">Display in directory</label></div>
+          </input>
+          <label htmlFor="display">Display in directory</label>
+        </div>
       </form>
     </div>
   )

@@ -20,9 +20,14 @@ const mintSeed = () => {
           </p>
           <div className={index.inputBox}>
             <label>
-               0.1 Eth ~ $100 USD
+              0.1 Eth ~ $100 USD
             </label>
-            <input name="website" className={index.input} type="text" placeholder="1" />
+            <input
+              name="website"
+              className={index.input}
+              type="text"
+              placeholder="1"
+            />
           </div>
           <div className={index.buttonBody}>
             <button className={index.button}>

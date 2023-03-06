@@ -7,7 +7,7 @@ import Footer from "../Components/Footer/Footer"
 import index from "../styles/Home.module.css"
 import homePic from "../../public/Images/home.jpg"
 
-export default function Home () {
+export default function Home() {
   return (
     <>
       <div className={index.body}>
@@ -17,7 +17,7 @@ export default function Home () {
           src={homePic}
           alt="SERVING the PEOPLE"
           fill
-          style={{objectFit: "cover"}}
+          style={{ objectFit: "cover" }}
           quality={100}
         />
         <Header />

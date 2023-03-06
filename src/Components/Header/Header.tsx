@@ -2,9 +2,9 @@ import React from "react"
 import Head from "next/head"
 import Link from "next/link"
 import header from "./Header.module.css"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 
-function Header () {
+function Header() {
 
   const router = useRouter()
   let isHome = false

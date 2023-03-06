@@ -16,7 +16,7 @@ function Footer() {
     : footer.body
 
   const footerNav = (
-    router.pathname === '/'
+    router.pathname === '/' || router.pathname === '/contact'
   )
     ? footer.homeNav
     : footer.nav
