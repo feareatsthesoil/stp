@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   list-style: none;
-  width: 20vw;
+  width: auto;
   top: 0;
   position: fixed;
   padding: 50px 1vw 0 0;
