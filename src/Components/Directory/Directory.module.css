@@ -7,13 +7,13 @@
 }
 
 .body input {
-  align-self: center;
+  /* align-self: center; */
   position: relative;
-  width: 100vw;
+  width: 50vw;
   border: 1px solid black;
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
-  margin: 2vh 2vw;
+  margin: 2vh 0;
   max-width: 300px;
   padding: 5px;
   top: 0;
@@ -26,24 +26,28 @@
 .header {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-self: center;
+  padding: 0 2vw 2vh;
+  /* align-items: center; */
+  /* align-self: center; */
   justify-content: center;
-  text-align: center;
+  text-align: left;
+  /* text-align: center; */
   width: 50vw;
 }
 
 .header h1 {
-  align-self: center;
+  /* align-self: center; */
   font-size: 1.3em;
   font-weight: bold;
   padding-top: 1.5vh;
-  text-align: center;
+  text-decoration: underline;
+  
 }
 
 .header p {
   padding-top: 1vh;
-  text-align: center;
+  max-width: 600px;
+  /* text-align: center; */
 }
 
 .header a {
@@ -123,20 +127,17 @@
   margin-right: 10px;
 }
 
-@media screen and (min-width: 0px) and (max-width: 1150px) {
+@media screen and (min-width: 0px) and (max-width: 1500px) {
   .box {
     column-count: 2;
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 760px) {
+@media screen and (min-width: 0px) and (max-width: 950px) {
   .box {
     column-count: 1;
   }
 
-  .header {
-    width: 70vw;
-  }
 }
 
 /* @media screen and (min-width: 0px) and (max-width: 790px) {

@@ -152,7 +152,7 @@ a img {
 .subBody{
   /* display: flex; */
   /* flex-direction: row; */
-  width: 80vw;
+  width: 90vw;
   align-self: flex-end;
 }
 
@@ -171,4 +171,10 @@ a img {
   #MobileLogin {
     display: list-item;
   }
+}
+
+@media screen and (min-width: 0px) and (max-width: 1000px) {
+.subBody {
+  width: 80vw;
+}
 }

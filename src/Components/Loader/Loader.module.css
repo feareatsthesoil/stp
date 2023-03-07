@@ -53,27 +53,31 @@
   content: ' .';
 }
 
+.hideNav {
+  display: none;
+}
+
 @keyframes t {
 
   0%,
   20% {
-    color: rgb(255, 255, 255);
+    color: rgba(255, 255, 255, 1);
     text-shadow:
-      .25em 0 0 rgb(255, 255, 255),
-      .5em 0 0 rgb(255, 255, 255);
+      .25em 0 0 rgba(255, 255, 255, 1),
+      .5em 0 0 rgba(255, 255, 255, 1);
   }
 
   40% {
     color: white;
     text-shadow:
-      .25em 0 0 rgb(255, 255, 255),
-      .5em 0 0 rgb(255, 255, 255);
+      .25em 0 0 rgba(255, 255, 255, 1),
+      .5em 0 0 rgba(255, 255, 255, 1);
   }
 
   60% {
     text-shadow:
       .25em 0 0 white,
-      .5em 0 0 rgb(255, 255, 255);
+      .5em 0 0 rgba(255, 255, 255, 1);
   }
 
   80%,

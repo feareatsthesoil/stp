@@ -13,7 +13,7 @@ const contactUs = () => {
         <Header />
         <Address />
         <Nav />
-        <div className={contact.subBody}>
+        <div className="subBody">
           <div className={contact.box}>
             <h1>Contact Us</h1>
             <p>

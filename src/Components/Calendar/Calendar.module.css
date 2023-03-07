@@ -18,11 +18,15 @@
   text-decoration: none;
 }
 
+.dateGroup a:first-child{
+  /* text-decoration: none; */
+  text-decoration-color: #0047FF;
+}
+
 .body {
   clear: both;
   display: flex;
   flex-direction: column;
-  /* margin-bottom: 60px; */
   min-height: 90vh;
 }
 
@@ -58,7 +62,7 @@
 }
 
 .header {
-  font-size: 1.2rem;
+  font-size: 1.3em;
   font-weight: bold;
   padding-bottom: 2vh;
   padding-top: 0vh;
@@ -71,7 +75,7 @@
 }
 
 .bio {
-  max-width: 700px;
+  max-width: 600px;
   padding-bottom: 4vh;
   text-align: left;
   width: 50vw;
@@ -125,10 +129,4 @@
 .mainEvent {
   color: #000;
   text-decoration: none;
-}
-
-@media screen and (min-width: 0px) and (max-width: 790px) {
-  .bio {
-    width: 90vw;
-  }
 }
