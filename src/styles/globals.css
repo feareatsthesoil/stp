@@ -171,9 +171,15 @@ a img {
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 1000px) {
+@media screen and (min-width: 0px) and (max-width: 1330px) {
+  .subBody {
+    width: 85vw;
+  }
+  }
+
+@media screen and (min-width: 0px) and (max-width: 725px) {
 .subBody {
-  width: 80vw;
+  width: 70vw;
 }
 }
 

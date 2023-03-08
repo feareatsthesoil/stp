@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
   list-style: none;
-  width: 92.8px;
+  width: 10vw;
   top: 0;
   position: fixed;
   padding: 50px 1vw 0 0;
-  background-color: white;
-  line-height: 20px;  
+  /* background-color: grey; */
+  line-height: 13px;
   font-size: 1em;
-  letter-spacing: -0.03em;
+  /* letter-spacing: -0.03em; */
   /* background-color: #fff; */
   /* max-width: 99px; */
 }
@@ -30,6 +30,18 @@
   font-weight: bold;
 }
 
+@media screen and (min-width: 0px) and (max-width: 1330px) {
+  .items ul {
+    width: 15vw;
+  }
+  }
+
+  @media screen and (min-width: 0px) and (max-width: 725px) {
+    .items ul {
+      width: 30vw;
+    }
+    }
+
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .items {
     display: block;
@@ -40,12 +52,15 @@
     display: flex;
     /* flex-direction: row; */
     flex-flow: row wrap;
-    padding: 10px 0 30px;
+    padding: 20px 0 30px;
     height: 5vh;
     /* border: 1px solid black; */
     width: 100vw;
   }
   }
+
+
+  
   @media screen and (min-width: 0px) and (max-width: 350px) {
     .items ul {
       padding: 10px 0 70px;
@@ -57,3 +72,29 @@
         padding: 10px 0 100px;
       }
       }
+
+
+
+
+
+
+
+      /**/
+
+      /* @media screen and (min-width: 0px) and (max-width: 570px) {
+        #MobileLogin {
+          display: list-item;
+        }
+      }
+      
+      @media screen and (min-width: 0px) and (max-width: 1000px) {
+      .subBody {
+        width: 80vw;
+      }
+      }
+      
+      @media screen and (min-width: 0px) and (max-width: 450px) {
+        .subBody {
+          width: 100vw;
+        }
+        } */
