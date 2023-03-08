@@ -21,7 +21,7 @@ const HomeNav = () => {
             <Link href="/directory">Directory</Link>
           </li>
           <li>
-            <Link href="/mail">Mailing List</Link>
+            <Link href="/mail">Blog</Link>
           </li>
           <li>
             <Link href="/">Memberships</Link>

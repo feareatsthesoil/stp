@@ -25,13 +25,15 @@ export default function Loader() {
       )}
       <Header />
 
-       <div className={isHomepage ? index.hideNav : index.showNav}>
-         <Nav />
+      <div className={isHomepage ? index.hideNav : index.showNav}>
+        <Nav />
       </div>
       <div className={isHomepage ? index.show : "subBody"}>
-      <h1 className={`${isHome ? index.loadingHome : index.loading}`}>
-        Loading
-      </h1>
+        <div className={index.box}>
+          <h1 className={`${isHome ? index.loadingHome : index.loading}`}>
+            Loading
+          </h1>
+        </div>
       </div>
       <Footer />
     </div>

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 const about = "/about";
 const calendar = "/calendar";
 const directory = "/directory";
+const blog = "/mail";
 const mail = "/mail";
 const support = "/";
 const radio = "/radio";
@@ -51,10 +52,10 @@ const NavBar = () => {
             </li>
             <li>
               <Link 
-              href={mail}
-              className={currentRoute === mail ? index.active : index.a}
+              href={blog}
+              className={currentRoute === blog ? index.active : index.a}
               >
-                Mailing List
+                Blog
               </Link>
             </li>
             <li>
