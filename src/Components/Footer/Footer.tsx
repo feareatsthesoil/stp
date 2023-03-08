@@ -1,6 +1,6 @@
 import React from "react"
-import Link from "next/link"
-import Nav from "../Nav/Nav"
+// import Link from "next/link"
+// import Nav from "../Nav/Nav"
 import footer from "./Footer.module.css"
 import FooterSocials from "../FooterSocials"
 import { useRouter } from "next/router"
