@@ -150,8 +150,6 @@ a img {
 }
 
 .subBody{
-  /* display: flex; */
-  /* flex-direction: row; */
   width: 90vw;
   align-self: flex-end;
 }
@@ -178,3 +176,9 @@ a img {
   width: 80vw;
 }
 }
+
+@media screen and (min-width: 0px) and (max-width: 450px) {
+  .subBody {
+    width: 100vw;
+  }
+  }

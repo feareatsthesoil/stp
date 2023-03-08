@@ -1,43 +1,103 @@
 import React from "react"
 import Link from "next/link"
-import nav from "./Nav.module.css"
+import index from "./Nav.module.css"
+import { useRouter } from "next/router";
+
+const about = "/about";
+const calendar = "/calendar";
+const directory = "/directory";
+const mail = "/mail";
+const support = "/";
+const radio = "/radio";
+const discussion = "/discussion";
+const contact = "/contact";
+const shop = "https://shop.stp.world";
+const login = "/login";
+
 
 const NavBar = () => {
+
+  const router = useRouter();
+  const currentRoute = router.pathname;
 
   return (
     <div>
       <nav>
-        <div className={nav.items}>
+        <div className={index.items}>
           <ul>
             <li>
-              <Link href="/about">About</Link>
+              <Link
+                href={about}
+                className={currentRoute === about ? index.active : index.a}
+              >
+                About
+              </Link>
             </li>
             <li>
-              <Link href="/calendar">Calendar</Link>
+              <Link 
+              href={calendar}
+              className={currentRoute === calendar ? index.active : index.a}
+              >
+                Calendar
+              </Link>
             </li>
             <li>
-              <Link href="/directory">Directory</Link>
+              <Link 
+              href={directory}
+              className={currentRoute === directory ? index.active : index.a}
+              >
+                Directory
+              </Link>
             </li>
             <li>
-              <Link href="/mail">Mailing List</Link>
+              <Link 
+              href={mail}
+              className={currentRoute === mail ? index.active : index.a}
+              >
+                Mailing List
+              </Link>
             </li>
             <li>
-              <Link href="/">Support</Link>
+              <Link 
+              href={support}
+              className={currentRoute === support ? index.active : index.a}
+              >
+                Support
+              </Link>
             </li>
             <li>
-              <Link href="/radio">Radio</Link>
+              <Link 
+              href={radio}
+              className={currentRoute === radio ? index.active : index.a}
+              >
+                Radio
+              </Link>
             </li>
             <li>
-              <Link href="/discussion">Discussion</Link>
+              <Link 
+              href={discussion}
+              className={currentRoute === discussion ? index.active : index.a}
+              >
+                Discussion
+              </Link>
             </li>
             <li>
-              <Link href="/contact">Contact Us</Link>
+              <Link href={contact}
+              className={currentRoute === contact ? index.active : index.a}
+              >
+                Contact Us
+              </Link>
             </li>
             <li>
-              <Link href="https://shop.stp.world" target="webapp-tab">Shop</Link>
+              <Link href={shop} target="webapp-tab">Shop</Link>
             </li>
             <li id="MobileLogin">
-              <Link href="/login">Login Portal</Link>
+              <Link 
+              href={login}
+              className={currentRoute === login ? index.active : index.a}
+              >
+                Login Portal
+              </Link>
             </li>
           </ul>
         </div>

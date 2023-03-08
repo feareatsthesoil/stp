@@ -2,10 +2,16 @@
   display: flex;
   flex-direction: column;
   list-style: none;
-  width: auto;
+  width: 92.8px;
   top: 0;
   position: fixed;
   padding: 50px 1vw 0 0;
+  background-color: white;
+  line-height: 20px;  
+  font-size: 1em;
+  letter-spacing: -0.03em;
+  /* background-color: #fff; */
+  /* max-width: 99px; */
 }
 
 .items li {
@@ -19,3 +25,35 @@
 .items hr {
   display: none;
 }
+
+.active {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 0px) and (max-width: 450px) {
+  .items {
+    display: block;
+  }
+  .items ul {
+    justify-content: space-between;
+    position: relative;
+    display: flex;
+    /* flex-direction: row; */
+    flex-flow: row wrap;
+    padding: 10px 0 30px;
+    height: 5vh;
+    /* border: 1px solid black; */
+    width: 100vw;
+  }
+  }
+  @media screen and (min-width: 0px) and (max-width: 350px) {
+    .items ul {
+      padding: 10px 0 70px;
+    }
+    }
+
+    @media screen and (min-width: 0px) and (max-width: 270px) {
+      .items ul {
+        padding: 10px 0 100px;
+      }
+      }
