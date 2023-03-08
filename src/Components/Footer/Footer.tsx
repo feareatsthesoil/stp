@@ -31,7 +31,7 @@ function Footer() {
     <>
       <div className={footer.body}>
         {/* <div className={footerNav}><Nav /></div> */}
-        <div className={footerLegal}>
+        {/* <div className={footerLegal}>
           <Link href="/">Legal Disclaimer</Link>&nbsp;
           <hr />
           <div className={footer.break}>
@@ -40,7 +40,7 @@ function Footer() {
           <div className={footer.break}>
             <em>The STP Creative Inc.</em>
           </div>
-        </div>
+        </div> */}
         <div className={footer.socials}>
           <FooterSocials />
         </div>

@@ -1,0 +1,15 @@
+{
+  "items": {
+    "home": "/",
+    "calendar": "/calendar",
+    "directory": "/directory",
+    "blog": "/blog",
+    "mail": "/mail",
+    "support": "/support",
+    "radio": "/radio",
+    "discussion": "/discussion",
+    "contact": "/contact",
+    "shop": "https://shop.stp.world",
+    "login": "/login"
+  }
+}
