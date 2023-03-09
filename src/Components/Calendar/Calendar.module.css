@@ -100,8 +100,11 @@
   letter-spacing: -0.03em;
 }
 
-.box a {
+.box a:first-child {
   color: #000;
+}
+.box a {
+  color: #0047FF;
 }
 
 .back {

@@ -3,6 +3,18 @@ import calendar from "./Calendar.module.css"
 import _ from "lodash"
 import moment from "moment"
 import { CalendarRow } from "../../types"
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  RedditShareButton,
+  RedditIcon,
+  WhatsappShareButton,
+  WhatsappIcon,
+  TwitterShareButton,
+  TwitterIcon,
+  EmailShareButton,
+  EmailIcon
+} from 'next-share'
 
 export default function Calendar({ data }: { data: CalendarRow[] }) {
   const dateList = _.groupBy(data, (row) => row.start_date)
@@ -45,7 +57,46 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                         {row.start_time}
                       </span>{" "}
                       - {row.end_time}<hr /> {row.location}</Link>
-                    <hr /><Link href="/">Share</Link>&nbsp;<Link href="/">Add to Calendar</Link>
+                    <hr /><Link href="/">Add to Calendar</Link>
+                    <div className={calendar.eventSocialsBody}>
+
+            <TwitterShareButton
+              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+              <div className={calendar.eventSocials}>
+                <TwitterIcon size={25} round />
+              </div>
+            </TwitterShareButton>
+
+            <FacebookShareButton
+              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+              <div className={calendar.eventSocials}>
+
+                <FacebookIcon size={25} round />
+              </div>
+            </FacebookShareButton>
+
+            <RedditShareButton
+              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+              <div className={calendar.eventSocials}>
+                <RedditIcon size={25} round />
+              </div>
+            </RedditShareButton>
+
+            <WhatsappShareButton
+              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+              <div className={calendar.eventSocials}>
+                <WhatsappIcon size={25} round />
+              </div>
+            </WhatsappShareButton>
+
+            <EmailShareButton id={calendar.button}
+              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+              <div className={calendar.eventSocials}>
+                <EmailIcon size={25} round />
+              </div>
+            </EmailShareButton>
+
+          </div>
                   </div>
                 )
               })}
