@@ -4,7 +4,7 @@ import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import Address from "../Components/Address/address"
 import contact from "../styles/Contact.module.css"
-import Nav from "../Components/VerticalNav/Nav"
+import Nav from "../Components/Nav/Nav"
 
 const contactUs = () => {
   return (

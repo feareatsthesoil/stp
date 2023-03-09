@@ -4,6 +4,7 @@
   flex-direction: row-reverse;
   justify-content: center;
   padding-top: 2vh;
+  /* padding-top: 25px; */
   width: 100vw;
 }
 

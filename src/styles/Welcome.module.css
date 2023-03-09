@@ -13,6 +13,10 @@
   max-width: 500px;
 }
 
+.box:first-child {
+  padding-top: 2vh;
+}
+
 .box h1 {
   font-weight: bold;
   padding-bottom: 20px;

@@ -5,7 +5,7 @@ import Header from "../../Components/Header/Header"
 import calendar from "../../Components/Calendar/Calendar.module.css"
 import { getCalendarData } from "../../libs/sheets"
 import { CalendarRow } from "../../types"
-import Nav from "../../Components/VerticalNav/Nav"
+import Nav from "../../Components/Nav/Nav"
 
 export default function IndexPage({ calendarData }: { calendarData: CalendarRow[] }) {
 

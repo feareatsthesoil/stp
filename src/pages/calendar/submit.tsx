@@ -3,7 +3,7 @@ import CalendarForm from "../../Components/Calendar/CalendarForm"
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
 import form from "src/styles/Form.module.css"
-import Nav from "../../Components/VerticalNav/Nav"
+import Nav from "../../Components/Nav/Nav"
 
 export default function CalendarSubmit() {
   return (

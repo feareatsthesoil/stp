@@ -6,7 +6,7 @@ import index from "../styles/OurCompanies.module.css"
 import STPlogo from "../../public/Images/STP-logo.png"
 import Woolrichlogo from "../../public/Images/Woolrich-logo.png"
 import Studiologo from "../../public/Images/Studio-logo.png"
-import Nav from "../Components/VerticalNav/Nav"
+import Nav from "../Components/Nav/Nav"
 
 const OurCompanies = () => {
   return (

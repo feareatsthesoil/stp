@@ -30,6 +30,7 @@ export default function Directory({ data }: { data: DirectoryRow[] }) {
                 <div className={directory.title}>
                   <div className={directory.name}>
                     <div className={directory.linksStack}>
+                    <p><Link href="#">Twitter</Link></p>
                       <p><Link href="#">Instagram</Link></p>
                       <p><Link href="#">Website</Link></p>
                     </div>

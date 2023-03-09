@@ -2,7 +2,7 @@ import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import index from "../styles/Discussion.module.css"
-import Nav from "../Components/VerticalNav/Nav"
+import Nav from "../Components/Nav/Nav"
 
 const Discussion = () => {
     return (

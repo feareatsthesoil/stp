@@ -5,7 +5,7 @@ import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
 import { getCalendarData } from "../../libs/sheets"
 import { CalendarRow } from "../../types"
-import Nav from "../../Components/VerticalNav/Nav"
+import Nav from "../../Components/Nav/Nav"
 
 export default function EventPage({ events }: { events: CalendarRow[] }) {
   const router = useRouter()

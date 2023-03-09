@@ -6,7 +6,7 @@ import Header from "../../Components/Header/Header"
 import {getDirectoryData} from "../../libs/sheets"
 import {DirectoryRow} from "../../types"
 import index from "../../Components/Directory/Directory.module.css"
-import Nav from "../../Components/VerticalNav/Nav"
+import Nav from "../../Components/Nav/Nav"
 
 export default function DirectoryPage ({data: fullData}: {data: DirectoryRow[]}) {
   const [searchText, setSearchText] = useState("")

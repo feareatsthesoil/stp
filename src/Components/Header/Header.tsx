@@ -3,6 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import header from "./Header.module.css"
 import { useRouter } from "next/router"
+import nav from "../Nav/Nav.json";
 
 function Header() {
 
@@ -18,8 +19,8 @@ function Header() {
       <Head>
         <meta name="theme-color" content={`${isHome ? "#000" : "#fff"}`} />
       </Head>
-      <Link href="/login">Login Portal</Link>
-      <Link href="/">
+      <Link href={nav.items.login}>{nav.items.loginName}</Link>
+      <Link href={nav.items.home}>
         <h1>SERVING the PEOPLE</h1>
       </Link>
     </div>

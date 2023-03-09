@@ -3,7 +3,7 @@ import Link from "next/link"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import index from "../styles/Welcome.module.css"
-import Nav from "../Components/VerticalNav/Nav"
+import Nav from "../Components/Nav/Nav"
 
 
 const Welcome = () => {

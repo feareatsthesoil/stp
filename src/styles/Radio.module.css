@@ -12,6 +12,7 @@
   width: 75vw;
   justify-content: center;
   padding: 2vh 2vw 2vh 2vw;
+  letter-spacing: -0.03em;
 }
 
 .box h1 {

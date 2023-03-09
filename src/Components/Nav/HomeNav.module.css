@@ -1,10 +1,8 @@
 .items {
-  /* align-items: center; */
   display: flex;
   font-size: 1.2em;
   justify-content: center;
   padding: 10%;
-  /* max-height: 300px; */
 }
 
 .items ul{

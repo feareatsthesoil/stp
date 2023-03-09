@@ -19,7 +19,6 @@
 }
 
 .dateGroup a:first-child{
-  /* text-decoration: none; */
   text-decoration-color: #0047FF;
 }
 
@@ -64,9 +63,9 @@
 .header {
   font-size: 1.3em;
   font-weight: bold;
-  padding-bottom: 2vh;
-  padding-top: 0vh;
+  padding-bottom: 1vh;
   text-decoration: underline;
+  letter-spacing: -0.03em;
 }
 
 .headerBody {
@@ -76,7 +75,7 @@
 
 .bio {
   max-width: 600px;
-  padding-bottom: 4vh;
+  padding-bottom: 1vh;
   text-align: left;
   width: 50vw;
 }
@@ -98,6 +97,7 @@
   min-height: 2em;
   overflow: auto;
   padding: 2vh 2vw 2vh;
+  letter-spacing: -0.03em;
 }
 
 .box a {

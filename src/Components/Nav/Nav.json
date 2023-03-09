@@ -1,15 +1,41 @@
 {
   "items": {
     "home": "/",
+
+    "about": "/about",
+    "aboutName": "About",
+
     "calendar": "/calendar",
+    "calendarName": "Calendar",
+
     "directory": "/directory",
+    "directoryName": "Directory",
+
+    "membership": "/welcome",
+    "membershipName": "Membership",
+
     "blog": "/blog",
+    "blogName": "Blog",
+
     "mail": "/mail",
+    "mailName": "Mail",
+
     "support": "/support",
+    "supportName": "Support",
+
     "radio": "/radio",
+    "radioName": "Radio",
+
     "discussion": "/discussion",
+    "discussionName": "Discussion",
+
     "contact": "/contact",
+    "contactName": "Contact Us",
+
     "shop": "https://shop.stp.world",
-    "login": "/login"
+    "shopName": "Shop",
+
+    "login": "/login",
+    "loginName": "Login Portal"
   }
 }

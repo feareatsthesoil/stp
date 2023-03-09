@@ -3,7 +3,7 @@ import DirectoryForm from "../../Components/Directory/DirectoryForm"
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
 import index from "src/styles/Form.module.css"
-import Nav from "../../Components/VerticalNav/Nav"
+import Nav from "../../Components/Nav/Nav"
 
 export default function DirectorySubmit() {
 

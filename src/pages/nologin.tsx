@@ -1,7 +1,7 @@
 import React from "react"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
-import Nav from "../Components/VerticalNav/Nav"
+import Nav from "../Components/Nav/Nav"
 
 const noLogin = () => {
   return (
