@@ -57,46 +57,54 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                         {row.start_time}
                       </span>{" "}
                       - {row.end_time}<hr /> {row.location}</Link>
-                    <hr /><Link href="/">Add to Calendar</Link>
+                    <hr />
+                    <div className={calendar.addCalendar}>
+                      <Link 
+                        href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" 
+                        target="webapp-tab"
+                        >
+                          Add to calendar
+                        </Link>
+                    </div>
                     <div className={calendar.eventSocialsBody}>
 
-            <TwitterShareButton
-              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
-              <div className={calendar.eventSocials}>
-                <TwitterIcon size={25} round />
-              </div>
-            </TwitterShareButton>
+                      <TwitterShareButton
+                        url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+                        <div className={calendar.eventSocials}>
+                          <TwitterIcon size={25} round />
+                        </div>
+                      </TwitterShareButton>
 
-            <FacebookShareButton
-              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
-              <div className={calendar.eventSocials}>
+                      <FacebookShareButton
+                        url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+                        <div className={calendar.eventSocials}>
 
-                <FacebookIcon size={25} round />
-              </div>
-            </FacebookShareButton>
+                          <FacebookIcon size={25} round />
+                        </div>
+                      </FacebookShareButton>
 
-            <RedditShareButton
-              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
-              <div className={calendar.eventSocials}>
-                <RedditIcon size={25} round />
-              </div>
-            </RedditShareButton>
+                      <RedditShareButton
+                        url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+                        <div className={calendar.eventSocials}>
+                          <RedditIcon size={25} round />
+                        </div>
+                      </RedditShareButton>
 
-            <WhatsappShareButton
-              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
-              <div className={calendar.eventSocials}>
-                <WhatsappIcon size={25} round />
-              </div>
-            </WhatsappShareButton>
+                      <WhatsappShareButton
+                        url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+                        <div className={calendar.eventSocials}>
+                          <WhatsappIcon size={25} round />
+                        </div>
+                      </WhatsappShareButton>
 
-            <EmailShareButton id={calendar.button}
-              url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
-              <div className={calendar.eventSocials}>
-                <EmailIcon size={25} round />
-              </div>
-            </EmailShareButton>
+                      <EmailShareButton id={calendar.button}
+                        url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+                        <div className={calendar.eventSocials}>
+                          <EmailIcon size={25} round />
+                        </div>
+                      </EmailShareButton>
 
-          </div>
+                    </div>
                   </div>
                 )
               })}

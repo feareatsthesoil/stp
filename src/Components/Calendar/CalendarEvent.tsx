@@ -23,20 +23,25 @@ export default function CalendarEvent(params: { row: CalendarEventType }): JSX.E
         <div className={calendar.back}><Link href="/calendar">Back</Link></div>
         <div className={calendar.eventHeader}><h1>{row.name}</h1></div>
         <div>
-          <p>
-            <strong>Type:</strong> {row.type}
+        <p>
+            {row.location}
           </p>
           <p>
-            <strong>Time:</strong> {row.start_date} {row.start_time} {" "}
+             {row.start_date} <hr/>{row.start_time} {" "}
             - {row.end_date} {row.end_time}
           </p>
+
           <p>
-            <strong>Location:</strong> {row.location}
+            {row.description}<hr/>
+            Contact: {row.email}
           </p>
-          <p>
-            <strong>Contact:</strong> {row.email}
-          </p>
-          <Link href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" target="webapp-tab">Add to calendar</Link>
+                      <Link 
+                        href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" 
+                        target="webapp-tab"
+                        >
+                          Add to calendar
+                        </Link>
+ 
 
           <div className={calendar.eventSocialsBody}>
 

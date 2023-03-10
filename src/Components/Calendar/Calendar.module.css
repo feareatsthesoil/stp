@@ -100,10 +100,23 @@
   letter-spacing: -0.03em;
 }
 
-.box a:first-child {
+/* .box:first-child a {
+  color: #000;
+} */
+
+.box hr {
+  border: none;
+}
+
+.box p {
+  padding-bottom: 20px;
+}
+
+.box a {
   color: #000;
 }
-.box a {
+
+.addCalendar a{
   color: #0047FF;
 }
 
@@ -117,7 +130,7 @@
   flex-direction: row;
   font-weight: bold;
   justify-content: space-between;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
 }
 
 .eventBody a {
