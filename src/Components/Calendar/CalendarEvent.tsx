@@ -27,14 +27,17 @@ export default function CalendarEvent(params: { row: CalendarEventType }): JSX.E
             {row.location}
           </p>
           <p>
-             {row.start_date} <hr/>{row.start_time} {" "}
-            - {row.end_date} {row.end_time}
+          
+          {row.start_time} {" "} - {row.end_date} {row.end_time}
           </p>
 
           <p>
-            {row.description}<hr/>
+            {row.description}
+          </p>
+          <p>
             Contact: {row.email}
           </p>
+          
                       <Link 
                         href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" 
                         target="webapp-tab"
