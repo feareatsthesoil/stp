@@ -56,7 +56,7 @@
 }
 
 .eventSocialsBody {
-  filter: grayscale(100%);
+  /* filter: grayscale(100%); */
   padding-top: 10px;
 }
 
@@ -118,6 +118,8 @@
 
 .addCalendar a{
   color: #0047FF;
+  font-size: 1em;
+  padding-bottom: 20px;
 }
 
 .back {

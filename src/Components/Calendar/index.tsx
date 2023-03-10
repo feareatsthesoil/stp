@@ -58,6 +58,8 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                       </span>{" "}
                       - {row.end_time}<hr /> {row.location}</Link>
                     <hr />
+                    {row.description}
+                    <hr />
                     <div className={calendar.addCalendar}>
                       <Link 
                         href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" 

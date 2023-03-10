@@ -33,11 +33,10 @@ export default function CalendarEvent(params: { row: CalendarEventType }): JSX.E
 
           <p>
             {row.description}
-          </p>
-          <p>
+            <hr/>
             Contact: {row.email}
           </p>
-          
+          <div className={calendar.addCalendar}>
                       <Link 
                         href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" 
                         target="webapp-tab"
@@ -45,7 +44,7 @@ export default function CalendarEvent(params: { row: CalendarEventType }): JSX.E
                           Add to calendar
                         </Link>
  
-
+                        </div>
           <div className={calendar.eventSocialsBody}>
 
             <TwitterShareButton
