@@ -6,9 +6,12 @@
     "aboutName": "About",
 
     "calendar": "/calendar",
+    "calendarEvent": "/calendar/[eventId]",
+    "calendarSubmit": "/calendar/submit",
     "calendarName": "Calendar",
 
     "directory": "/directory",
+    "directorySubmit": "/directory/submit",
     "directoryName": "Directory",
 
     "membership": "/welcome",

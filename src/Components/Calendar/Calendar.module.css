@@ -145,6 +145,10 @@
   margin-bottom: 10px;
 }
 
+.bottom {
+  padding-bottom: 20px;
+}
+
 .mainEvent {
   color: #000;
   text-decoration: none;

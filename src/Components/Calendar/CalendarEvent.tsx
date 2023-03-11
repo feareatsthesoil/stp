@@ -1,6 +1,7 @@
 import Link from "next/link"
 import { CalendarEventType } from "../../types/index"
 import calendar from "./Calendar.module.css"
+import { useRouter } from "next/router";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -16,35 +17,34 @@ import {
 
 export default function CalendarEvent(params: { row: CalendarEventType }): JSX.Element {
   const row: CalendarEventType = params.row
+
   return (
     <div className={calendar.eventBody}>
 
       <div className={calendar.box}>
-        <div className={calendar.back}><Link href="/calendar">Back</Link></div>
         <div className={calendar.eventHeader}><h1>{row.name}</h1></div>
         <div>
-        <p>
+          <p>
             {row.location}
           </p>
           <p>
-          
-          {row.start_time} {" "} - {row.end_date} {row.end_time}
+            {row.start_time} {" "} - {row.end_date} {row.end_time}
           </p>
 
-          <p>
+          <div className={calendar.bottom}>
             {row.description}
-            <hr/>
+            <hr />
             Contact: {row.email}
-          </p>
+          </div>
           <div className={calendar.addCalendar}>
-                      <Link 
-                        href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" 
-                        target="webapp-tab"
-                        >
-                          Add to calendar
-                        </Link>
- 
-                        </div>
+            <Link
+              href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"
+              target="webapp-tab"
+            >
+              Add to calendar
+            </Link>
+
+          </div>
           <div className={calendar.eventSocialsBody}>
 
             <TwitterShareButton

@@ -49,6 +49,10 @@
   text-decoration: none;
 }
 
+.active {
+  font-weight: bold;
+}
+
 @media screen and (min-width: 0px) and (max-width: 570px) {
   .bodyHome a:first-child {
     display: none;

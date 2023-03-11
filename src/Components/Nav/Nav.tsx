@@ -8,6 +8,27 @@ const NavBar = () => {
 
   const router = useRouter();
   const currentRoute = router.pathname;
+  let isCalendar = false;
+
+  if (currentRoute === nav.items.calendar){
+    isCalendar = true;
+  } else if (currentRoute === nav.items.calendarEvent){
+    isCalendar = true;
+  } else if (currentRoute === nav.items.calendarSubmit){
+    isCalendar = true;
+  }else {
+    isCalendar = false;
+  }
+
+  let isDirectory = false;
+
+  if (currentRoute === nav.items.directory){
+    isDirectory = true;
+  } else if (currentRoute === nav.items.directorySubmit){
+    isDirectory = true;
+  } else {
+    isDirectory = false;
+  }
 
   return (
     <div>
@@ -25,7 +46,7 @@ const NavBar = () => {
             <li>
               <Link 
               href={nav.items.calendar}
-              className={currentRoute === nav.items.calendar ? index.active : index.a}
+              className={isCalendar ? index.active : index.a}
               >
                 {nav.items.calendarName}
               </Link>
@@ -33,7 +54,7 @@ const NavBar = () => {
             <li>
               <Link 
               href={nav.items.directory}
-              className={currentRoute === nav.items.directory ? index.active : index.a}
+              className={isDirectory ? index.active : index.a}
               >
                 {nav.items.directoryName}
               </Link>
