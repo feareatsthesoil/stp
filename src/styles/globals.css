@@ -149,9 +149,9 @@ a img {
   min-height: 100vh;
 }
 
-.subBody{
-  width: 90vw;
+.subBody {
   align-self: flex-end;
+  width: 90vw;
 }
 
 #MobileLogin {
@@ -175,16 +175,16 @@ a img {
   .subBody {
     width: 85vw;
   }
-  }
+}
 
 @media screen and (min-width: 0px) and (max-width: 725px) {
-.subBody {
-  width: 70vw;
-}
+  .subBody {
+    width: 70vw;
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .subBody {
     width: 100vw;
   }
-  }
+}

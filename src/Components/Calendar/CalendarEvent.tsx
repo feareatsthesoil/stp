@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { CalendarEventType } from "../../types/index"
 import calendar from "./Calendar.module.css"
-import { useRouter } from "next/router";
+import moment from "moment"
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -20,7 +20,6 @@ export default function CalendarEvent(params: { row: CalendarEventType }): JSX.E
 
   return (
     <div className={calendar.eventBody}>
-
       <div className={calendar.box}>
         <div className={calendar.eventHeader}><h1>{row.name}</h1></div>
         <div>
@@ -28,22 +27,29 @@ export default function CalendarEvent(params: { row: CalendarEventType }): JSX.E
             {row.location}
           </p>
           <p>
+            {moment(row.start_date, "MM/DD/YYYY").format("MMMM DD, YYYY")}
+            <div className={calendar.spacer}></div>
             {row.start_time} {" "} - {row.end_date} {row.end_time}
           </p>
-
           <div className={calendar.bottom}>
             {row.description}
-            <hr />
+            <div className={calendar.spacer}></div>
             Contact: {row.email}
           </div>
-          <div className={calendar.addCalendar}>
+          <div className={calendar.add}>
             <Link
               href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"
               target="webapp-tab"
             >
               Add to calendar
             </Link>
-
+            <div className={calendar.spacer}></div>
+            <a target="webapp-tab" href={`http://google.com/maps/search/${row.location}`}>Open in maps</a>
+            <div className={calendar.spacer}></div>
+            <div className={calendar.spacer}></div>
+          </div>
+          <div className={calendar.map}>
+            <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${row.location}&zoom=14&size=400x400&key=AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g&markers=${row.location}`} />
           </div>
           <div className={calendar.eventSocialsBody}>
 
@@ -89,3 +95,4 @@ export default function CalendarEvent(params: { row: CalendarEventType }): JSX.E
     </div>
   )
 }
+

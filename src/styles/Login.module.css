@@ -1,122 +1,122 @@
 .body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 .box {
-    align-self: center;
-    display: flex;
-    flex-direction: column;
-    /* max-width: 460px; */
-    padding-top: 20vh;
-    text-align: center;
-    width: 80vw;
-    /* border: 1px solid black; */
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  padding-top: 20vh;
+  text-align: center;
+  width: 80vw;
 }
+
 .box h1 {
-    font-weight: bold;
-    padding-bottom: 20px;
-    font-size: 1.5em;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-bottom: 20px;
 }
 
 .box a {
-    color: #000;
-    padding-top: 10px;
-    font-size: .8em;
+  color: #000;
+  font-size: .9em;
+  padding-top: 10px;
 }
 
 .box button {
-    align-self: center;
-    background-color: white;
-    border: 1px solid black;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: .8em;
-    margin: 5px;
-    padding: 5px 0;
-    width: 233px;
+  align-self: center;
+  background-color: white;
+  border: 1px solid black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: .9em;
+  margin: 5px;
+  padding: 5px 0;
+  width: 233px;
 }
 
 .emailButton {
-    align-self: center;
+  align-self: center;
 }
 
 .emailButton button {
-    align-self: center;
-    background-color: #000;
-    border: 1px solid black;
-    color: white;
-    font-family: 'Times New Roman', Times, serif;
-    width: 233px;
-    padding: 7px;
+  align-self: center;
+  background-color: #000;
+  border: 1px solid black;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  padding: 7px;
+  width: 233px;
 }
 
 .input {
-    align-self: center;
-    width: 233px;
-    max-width: 233px;
-    display: flex;
-    flex-direction: column;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  max-width: 233px;
+  width: 233px;
 }
 
 .input p {
-    text-align: left;
-    padding-bottom: 2px;
-    font-size: .8em;
+  font-size: .9em;
+  padding-bottom: 2px;
+  text-align: left;
 }
 
 .input label {
-    font-size: .8em;
-    margin: 20px 0 -10px;
-    align-self: flex-start;
+  align-self: flex-start;
+  font-size: .9em;
+  margin: 20px 0 -10px;
 }
 
 .input hr {
-    border: none;
+  border: none;
 }
 
 .textarea {
-    background-color: #E8F1FD;
-    border: 1px solid black;
-    font-family: 'Times New Roman', Times, serif;
-    height: 20px;
-    line-height: 18px;
-    resize: none;
-    text-align: left;
-    width: 228px;
-    align-self: center;
+  align-self: center;
+  background-color: #E8F1FD;
+  border: 1px solid black;
+  font-family: 'Times New Roman', Times, serif;
+  height: 20px;
+  line-height: 19px;
+  resize: none;
+  text-align: left;
+  width: 228px;
 }
 
 .textarea::placeholder {
-    color: black;
+  color: black;
 }
-@media (max-width: 480px) and (orientation: portrait){
-    .textarea {
+
+@media (max-width: 480px) and (orientation: portrait) {
+  .textarea {
     width: 220px;
-      }
   }
+}
 
-  @media (max-height: 400px) and (orientation: landscape){
-    .textarea {
+@media (max-height: 400px) and (orientation: landscape) {
+  .textarea {
     width: 220px;
-      }
   }
+}
 
 
-  @media screen and (min-width: 0px) and (max-width: 1330px) {
-    .box {
-      width: 70vw;
-    }
-    }
-  
-  @media screen and (min-width: 0px) and (max-width: 725px) {
+@media screen and (min-width: 0px) and (max-width: 1330px) {
+  .box {
+    width: 70vw;
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 725px) {
   .box {
     width: 40vw;
   }
+}
+
+@media screen and (min-width: 0px) and (max-width: 450px) {
+  .box {
+    width: 100vw;
   }
-  
-  @media screen and (min-width: 0px) and (max-width: 450px) {
-    .box {
-      width: 100vw;
-    }
-    }
+}

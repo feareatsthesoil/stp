@@ -1,5 +1,4 @@
 import { useState } from "react"
-
 import form from "src/styles/Form.module.css"
 import axios from 'axios'
 import ElementLoader from "../ElementLoader"
@@ -26,10 +25,10 @@ export default function CalendarForm() {
   }
 
   return (
-    <div className={form.directoryForm}>
+    <div className={form.body}>
       <form onSubmit={handleSubmit}>
         {loading && <ElementLoader />}
-        <div className={form.mainDesc}>
+        <div className={form.bio}>
           <div className={form.left}>
             <div className={form.row}>
               <label className={form.label}> Name of Happening*</label>

@@ -9,10 +9,10 @@
   display: flex;
   flex-direction: column;
   height: 70vh;
-  width: 75vw;
   justify-content: center;
-  padding: 2vh 2vw 2vh 2vw;
   letter-spacing: -0.03em;
+  padding: 2vh 2vw 2vh 2vw;
+  width: 77vw;
 }
 
 .box h1 {
@@ -22,18 +22,18 @@
 
 @media screen and (min-width: 0px) and (max-width: 1330px) {
   .box {
-    width: 65vw;
+    width: 67vw;
   }
-  }
+}
 
 @media screen and (min-width: 0px) and (max-width: 725px) {
-.box {
-  width: 35vw;
-}
+  .box {
+    width: 37vw;
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .box {
     width: 100vw;
   }
-  }
+}

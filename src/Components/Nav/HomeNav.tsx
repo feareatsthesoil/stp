@@ -1,7 +1,7 @@
 import React from "react"
 import Link from "next/link"
 import index from "./HomeNav.module.css"
-import nav from "../Nav/Nav.json";
+import nav from "../Nav/Nav.json"
 
 const HomeNav = () => {
 

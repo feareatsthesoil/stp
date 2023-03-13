@@ -21,8 +21,6 @@ export default function Loading(): any {
   })
 
   return (
-    loading && (<div className='spinner-wrapper'>
-      <div className="spinner"></div></div>
-    )
+    loading
   )
 }

@@ -16,7 +16,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   Router.events.on("routeChangeError", () => {
     setLoading(false)
   })
-  
   return (
     <>
       <Head>

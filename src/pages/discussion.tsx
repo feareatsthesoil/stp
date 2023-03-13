@@ -14,11 +14,7 @@ const Discussion = () => {
                 <div className={index.box}>
                     <h1>Discord</h1>
                     <p>
-                        Serving the People is a 501(c)(3) non-profit organization that assists artists
-                        and creators in making meaningful connections both online and in person.
-                        Established in 2017, STP has launched a number of initiatives and developed a
-                        platform for connecting creators with audiences, as well as finding opportunities
-                        for collaboration and support.
+                    The Serving the People Discord is where our community gathers to discuss and chat. It features a diverse selection of channels, including art, film, video, tech, and more.
                     </p>
                     <div className={index.buttonBody}>
                         <button className={index.button}>
@@ -27,16 +23,10 @@ const Discussion = () => {
                     </div>
                     <h1>Urbit</h1>
                     <p>
-                        The STP community offers a variety of programming and events, including a weekly
-                        in person meeting led by artists in the community. Members can also enjoy weekly
-                        essays and other writing on STP&apos;s blog and newsletter, which also feature updates
-                        from the STP community.
+                    Urbit is a new OS and peer-to-peer network that is designed to be simple, built to last forever, and 100% owned by its users. Urbit's Landscape, a collection of native apps for communicating and collaborating on the network, presents the possibility of a new way forward.
                     </p>
                     <p>
-                        The STP community offers a variety of programming and events, including a weekly
-                        in person meeting led by artists in the community. Members can also enjoy weekly
-                        essays and other writing on STP&apos;s blog and newsletter, which also feature updates
-                        from the STP community.
+                    Serving the People has partnered with the Tlon Corporation to offer free hosting (usually $20/month) to members of Serving the People. Join us and a cohort of communities making the move to Urbit's Landscape.
                     </p>
                     <div className={index.buttonBody}>
                         <button className={index.button}>

@@ -39,6 +39,7 @@
     "shopName": "Shop",
 
     "login": "/login",
-    "loginName": "Login Portal"
+    "loginName": "Login Portal",
+    "loginSubmit": "/contactinfo"
   }
 }

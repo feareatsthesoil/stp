@@ -1,70 +1,69 @@
 .body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .box {
-    display: flex;
-    flex-direction: column;
-    font-size: 1em;
-    line-height: 20px;
-    min-width: 250px;
-    padding: 2vh 2vw 4vh 2vw;
-    width: 40vw;
-    letter-spacing: -0.03em;
-  }
-  
-  .box p {
-    padding: 20px 0 10px;
-  }
-  
-  .box h1 {
-    font-size: 1.3em;
-    font-weight: bold;
-    padding-bottom: 1vh;
-  }
-  
-  .box a {
-    color: #000;
-  }
-  
-  .input {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .text textarea {
-    background-color: #E8F1FD;
-    border: 1px solid black;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: .8em;
-    height: 10px;
-    line-height: 10px;
-    margin-top: 10px;
-    max-width: 250px;
-    min-width: 100px;
-    overflow: hidden;
-    padding: 10px 5px;
-    resize: none;
-    text-align: left;
-    width: 20vw;
-  }
-  
-  .text textarea::placeholder {
-    color: black;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
-  .button {
-    background-color: black;
-    border: 1px solid black;
-    color: #fff;
-    font-family:'Times New Roman', Times, serif;
-    font-size: .8em;
-    padding: 7px 10px;
-    width: auto;
-  }
-  
-  .buttonBody {
-    padding: 10px;
-  }
+.box {
+  display: flex;
+  flex-direction: column;
+  font-size: 1em;
+  letter-spacing: -0.03em;
+  line-height: 20px;
+  min-width: 250px;
+  padding: 2vh 2vw 4vh 2vw;
+  width: 40vw;
+}
+
+.box p {
+  padding: 1vh 0 10px;
+}
+
+.box h1 {
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.box a {
+  color: #000;
+}
+
+.input {
+  display: flex;
+  flex-direction: row;
+}
+
+.text textarea {
+  background-color: #E8F1FD;
+  border: 1px solid black;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: .8em;
+  height: 10px;
+  line-height: 10px;
+  margin-top: 10px;
+  max-width: 250px;
+  min-width: 100px;
+  overflow: hidden;
+  padding: 10px 5px;
+  resize: none;
+  text-align: left;
+  width: 20vw;
+}
+
+.text textarea::placeholder {
+  color: black;
+}
+
+.button {
+  background-color: black;
+  border: 1px solid black;
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: .8em;
+  padding: 7px 10px;
+  width: auto;
+}
+
+.buttonBody {
+  padding: 10px;
+}

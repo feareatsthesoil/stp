@@ -3,8 +3,7 @@ import Head from "next/head"
 import Link from "next/link"
 import header from "./Header.module.css"
 import { useRouter } from "next/router"
-import nav from "../Nav/Nav.json";
-
+import nav from "../Nav/Nav.json"
 
 function Header() {
 
@@ -17,14 +16,27 @@ function Header() {
     isHome = true
   }
 
+  let isLogin = false;
+
+  if (currentRoute === nav.items.login) {
+    isLogin = true;
+  } else if (currentRoute === nav.items.loginSubmit) {
+    isLogin = true;
+  } else {
+    isLogin = false;
+  }
+
   return (
     <div className={`${isHome ? header.bodyHome : header.body}`}>
       <Head>
         <meta name="theme-color" content={`${isHome ? "#000" : "#fff"}`} />
       </Head>
-      <Link 
-      className={currentRoute === nav.items.login ? header.active : header.a}
-      href={nav.items.login}>{nav.items.loginName}</Link>
+      <Link
+        className={isLogin ? header.active : header.a}
+        href={nav.items.login}
+      >
+        {nav.items.loginName}
+      </Link>
       <Link href={nav.items.home}>
         <h1>SERVING the PEOPLE</h1>
       </Link>

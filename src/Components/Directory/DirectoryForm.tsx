@@ -24,10 +24,10 @@ export default function DirectoryForm() {
     return false
   }
   return (
-    <div className={form.directoryForm}>
+    <div className={form.body}>
       <form onSubmit={handleSubmit}>
         {loading && <ElementLoader />}
-        <div className={form.mainDesc}>
+        <div className={form.bio}>
           <div className={form.left}>
             <div className={form.row}>
               <label className={form.label}> Name/Business*</label>

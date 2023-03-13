@@ -1,13 +1,15 @@
 import React from "react"
 import Link from "next/link"
 import index from "./Nav.module.css"
-import { useRouter } from "next/router";
-import nav from "../Nav/Nav.json";
+import { useRouter } from "next/router"
+import nav from "../Nav/Nav.json"
+
 
 const NavBar = () => {
 
   const router = useRouter();
   const currentRoute = router.pathname;
+  
   let isCalendar = false;
 
   if (currentRoute === nav.items.calendar){
@@ -30,10 +32,20 @@ const NavBar = () => {
     isDirectory = false;
   }
 
+  let isLogin = false;
+  
+  if (currentRoute === nav.items.login){
+    isLogin = true;
+  } else if (currentRoute === nav.items.loginSubmit){
+    isLogin = true;
+  } else {
+    isLogin = false;
+  }
+
   return (
-    <div>
+    <div className={index.items}>
       <nav>
-        <div className={index.items}>
+        <div>
           <ul>
             <li>
               <Link
@@ -102,7 +114,7 @@ const NavBar = () => {
             <li id="MobileLogin">
               <Link 
               href={nav.items.login}
-              className={currentRoute === nav.items.login ? index.active : index.a}
+              className={isLogin ? index.active : index.a}
               >
                 {nav.items.loginName}
               </Link>

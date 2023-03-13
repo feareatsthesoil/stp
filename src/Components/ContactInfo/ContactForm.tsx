@@ -1,10 +1,10 @@
-import index from "src/styles/Form.module.css"
+import index from "src/styles/ContactForm.module.css"
 
 export default function ContactForm() {
   return (
-    <div className={index.directoryForm}>
+    <div className={index.body}>
       <form>
-        <div className={index.mainDesc}>
+        <div className={index.bio}>
           <div className={index.left}>
             <div className={index.row}>
               <label className={index.label}> Name*</label>
@@ -43,7 +43,7 @@ export default function ContactForm() {
           </div>
         </div>
         <div className={index.bottom}>
-          <div className={index.contactDesc}>
+          <div className={index.desc}>
             <label htmlFor="textarea">
               Short Description &nbsp;
             </label>
@@ -51,12 +51,12 @@ export default function ContactForm() {
           </div>
         </div>
         <div className={index.bottomButton}>
+          <div className={index.checkBoxBody}>
+            <input className={index.checkBox} type="checkbox" name="display" >
+            </input>
+            <label htmlFor="display">Display in directory</label>
+          </div>
           <button className={index.button}>Save</button>
-        </div>
-        <div className={index.checkboxBody}>
-          <input className={index.checkbox} type="checkbox" name="display" >
-          </input>
-          <label htmlFor="display">Display in directory</label>
         </div>
       </form>
     </div>

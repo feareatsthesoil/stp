@@ -1,9 +1,3 @@
-.background {
-  height: auto;
-  overflow: hidden;
-  z-index: -20;
-}
-
 .body {
   background-color: white;
   background-image: none;
@@ -12,10 +6,6 @@
   min-height: 200vh;
   position: fixed;
   z-index: 200;
-}
-
-.box{
-  width: 80vw;
 }
 
 .body h1 {
@@ -37,14 +27,14 @@
   text-align: center;
 }
 
-.loadingHome {
-  color: #fff;
-  padding-top: 40vh;
+.background {
+  height: auto;
+  overflow: hidden;
+  z-index: -20;
 }
 
-.loadingHome:after {
-  animation: t 2s steps(5, end) infinite;
-  content: ' .';
+.box {
+  width: 80vw;
 }
 
 .loading {
@@ -54,6 +44,16 @@
 
 .loading:after {
   animation: dots 2s steps(5, end) infinite;
+  content: ' .';
+}
+
+.loadingHome {
+  color: #fff;
+  padding-top: 40vh;
+}
+
+.loadingHome:after {
+  animation: t 2s steps(5, end) infinite;
   content: ' .';
 }
 
@@ -128,16 +128,16 @@
   .box {
     width: 70vw;
   }
-  }
+}
 
 @media screen and (min-width: 0px) and (max-width: 725px) {
-.box {
-  width: 40vw;
-}
+  .box {
+    width: 40vw;
+  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .box {
     width: 100vw;
   }
-  }
+}

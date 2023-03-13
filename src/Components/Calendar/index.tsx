@@ -21,14 +21,17 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
   return (
     <>
       <div className={calendar.body}>
-        <div className={calendar.headerBody}>
-          <h1 className={calendar.header}>2023 Calendar</h1>
+        <div className={calendar.header}>
+          <h1>2023 Calendar</h1>
           <div className={calendar.bio}>
             <p>
               To <Link href="/calendar/submit">submit</Link> to the calendar please <Link href="/about">log in</Link>.
               All submissions are subject to review. If you would like to receive updates
               you can sign up for our <Link href="/about"> newsletter</Link> or <Link
-                href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" target="webapp-tab">add calendar
+                href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"
+                target="webapp-tab"
+              >
+                add calendar
               </Link>.
             </p>
             <p>
@@ -36,14 +39,18 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
             </p>
           </div>
         </div>
-        {Object.entries(dateList).map(([date, list]) => {
-          // console.log(calendar.dateGroup)
+        {Object.entries(dateList).filter(([date])=>{return moment(date, "MM/DD/YYYY").diff(moment())> 0}).map(([date, list]) => {
           return (
             <div key={date} className={calendar.dateGroup}>
               <div key={date}>
                 <Link legacyBehavior href={`#${date}`}>
                   <a>
-                    <h2 id={date} className={calendar.date}>{moment(date).format("MMMM DD, YYYY")}</h2>
+                    <h2
+                      id={date}
+                      className={calendar.date}
+                    >
+                      {moment(date, "MM/DD/YYYY").format("MMMM DD, YYYY")}
+                    </h2>
                   </a>
                 </Link>
               </div>
@@ -52,21 +59,26 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                   <div key={row.id} className={calendar.eventRow}>
                     <Link className={calendar.mainEvent} href={`/calendar/${row.id}`}>
                       {" "}
-                      <strong>{row.name}</strong><hr />
+                      <strong>{row.name}</strong>
+                      <div className={calendar.eventInfo}>
+                      <div className={calendar.spacer}></div>
                       <span className={calendar.timeColumn}>
                         {row.start_time}
-                      </span>{" "}
-                      - {row.end_time}<hr /> {row.location}</Link>
-                    <hr />
+                      
+                      {" "}- {row.end_time}</span><div className={calendar.spacer}></div> {row.location}
+                      <div className={calendar.spacer}></div>
+                      
                     {row.description}
-                    <hr />
-                    <div className={calendar.addCalendar}>
-                      <Link 
-                        href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv" 
+                    <div className={calendar.spacer}></div>
+                    </div>
+                    </Link>
+                    <div className={calendar.add}>
+                      <Link
+                        href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"
                         target="webapp-tab"
-                        >
-                          Add to calendar
-                        </Link>
+                      >
+                        Add to calendar
+                      </Link>
                     </div>
                     <div className={calendar.eventSocialsBody}>
 
@@ -111,7 +123,6 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                 )
               })}
             </div>
-
           )
         })}
       </div>

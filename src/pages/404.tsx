@@ -11,10 +11,10 @@ export default function Custom404() {
       <div className="body">
         <Header />
         <Nav />
-      <div className="subBody">
-        <div className={index.box}>
-          <h1>404 - Page Not Found</h1>
-        </div>
+        <div className="subBody">
+          <div className={index.box}>
+            <h1>404 - Page Not Found</h1>
+          </div>
         </div>
         <Footer />
       </div>

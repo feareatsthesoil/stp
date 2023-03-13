@@ -3,19 +3,18 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
 }
 
 .body input {
-  position: relative;
-  width: 50vw;
   border: 1px solid black;
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
   margin: 2vh 0;
   max-width: 300px;
   padding: 5px;
+  position: relative;
   top: 0;
+  width: 50vw;
 }
 
 .body input::placeholder {
@@ -25,11 +24,11 @@
 .header {
   display: flex;
   flex-direction: column;
-  padding: 0 2vw 0vh;
   justify-content: center;
+  letter-spacing: -0.03em;
+  padding: 0 2vw 0vh;
   text-align: left;
   width: 50vw;
-  letter-spacing: -0.03em;
 }
 
 .header h1 {
@@ -37,13 +36,12 @@
   font-weight: bold;
   padding-top: 2vh;
   text-decoration: underline;
-  
+
 }
 
 .header p {
-  padding-top: 1vh;
   max-width: 600px;
-  /* text-align: center; */
+  padding-top: 1vh;
 }
 
 .header a {
@@ -57,10 +55,10 @@
 .box {
   align-content: center;
   column-count: 3;
+  letter-spacing: -0.03em;
   padding: 0 0 1vh 0;
   text-align: center;
   width: 98.5%;
-  letter-spacing: -0.03em;
 }
 
 .box a {
@@ -84,7 +82,7 @@
 }
 
 .box p {
-  font-size: .8em;
+  font-size: .9em;
 }
 
 .contact {
@@ -101,32 +99,31 @@
   padding: 3px 0;
 }
 
-.border {
-  border-bottom: 10px dotted black;
-  border-image-repeat: round;
-  border-image-slice: 33% 33%;
-  border-image-source: url('../../../public/Images/dots.svg');
-  border-image-width: 3.4px 0 0 0;
-  border-image-outset: 0;
-  margin-top: 14px;
-  flex: 1;
+.linksStack {
+  direction: row;
+  display: flex;  
 }
 
-.spacer {
-  flex: 1;
+.linksStack a{
+  text-decoration: none;
+}
+
+.linksStack p {
+  margin-right: 10px;
 }
 
 .email {
   padding: 3px;
 }
 
-.linksStack {
-  direction: row;
-  display: flex;
+.border {
+  border-bottom: 2px dotted black;
+  flex: 1;
+  margin: 0px 0px 6px 3px;
 }
 
-.linksStack p {
-  margin-right: 10px;
+.spacer {
+  flex: 1;
 }
 
 @media screen and (min-width: 0px) and (max-width: 1300px) {
@@ -139,8 +136,4 @@
   .box {
     column-count: 1;
   }
-
 }
-
-/* @media screen and (min-width: 0px) and (max-width: 790px) {
-  .body */

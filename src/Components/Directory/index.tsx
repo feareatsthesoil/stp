@@ -18,10 +18,9 @@ export default function Directory({ data }: { data: DirectoryRow[] }) {
                 {index === 0 && alphabet !== "A" && <h1>{alphabet}</h1>}
                 <div className={directory.title}>
                   <div className={directory.name}>
-                    {row.name} - {row.category}
+                    <strong>{row.name}</strong> - {row.category}
                   </div>
                   <div className={directory.border}>
-
                   </div>
                   <div className={directory.email}>
                     {row.email}
@@ -36,7 +35,6 @@ export default function Directory({ data }: { data: DirectoryRow[] }) {
                     </div>
                   </div>
                   <div className={directory.spacer}>
-
                   </div>
                   <div className={directory.email}>
                     {row.phone}
