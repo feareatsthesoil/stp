@@ -1,0 +1,88 @@
+.subBody {
+    align-self: flex-end;
+    width: 90vw;
+}
+
+.box {
+    align-items: center;
+    border: 1px solid black;
+    display: flex;
+    flex-flow: column wrap;
+    height: 80vh;
+    justify-content: center;
+    padding: 2vh 2vw 4vh 2vw;
+    text-align: center;
+    width: 75vw;
+}
+
+.box a {
+    color: #0047FF;
+}
+
+.box a:visited {
+    color: #0047FF;
+}
+
+.box h1 {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.box p {
+    font-size: .9em;
+    padding: 0 0 50px 0;
+}
+
+.body {
+    display: flex;
+    flex-direction: column;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+}
+
+.row{
+    /* border: 1px solid black; */
+    height: 40px;
+    padding: 10px 0 0 0;
+}
+
+.input {
+    float: right; 
+    border: 1px solid black;
+    padding: 10px;  
+    width: 250px;
+}
+
+.row label{
+    float: left;
+    text-align: right;
+    font-size: .9em;
+    margin: 12px 10px 0px 60px;
+}
+
+.bottom{
+    /* border: 1px solid black; */
+    /* display: flex; */
+}
+
+.desc{
+    padding: 10px 0 0 0;
+}
+
+.desc label{
+    font-size: .9em;
+    margin: 0px 0 0px 11px;
+}
+
+.textarea{
+    resize: none;
+    border: 1px solid black;
+    height: 90px;
+    width: 676px;
+    margin: 0 0 0 10px;
+    padding: 10px;
+}
+

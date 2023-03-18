@@ -31,7 +31,7 @@ export default function CalendarForm() {
         <div className={form.bio}>
           <div className={form.left}>
             <div className={form.row}>
-              <label className={form.label}> Name of Happening*</label>
+              <label> Name of Happening*</label>
               <input required name="name" onChange={handleChange} className={form.input} value={data['name']} type="text" />
             </div>
             <div className={form.row}>

@@ -45,7 +45,6 @@
   color: #fff;
   font-family: 'Times New Roman', Times, serif;
   font-size: .8em;
-  margin-top: -20px;
   padding: 7px 10px;
   width: auto;
 }
@@ -58,7 +57,7 @@
   border-bottom: 2px dotted black;
   border-image-repeat: round;
   flex: 1;
-  margin: 10px 0 -10px;
+  margin: 10px 0 -30px;
   max-width: 500px;
   width: 50vw;
 }

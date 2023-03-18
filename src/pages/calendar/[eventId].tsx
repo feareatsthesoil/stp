@@ -5,12 +5,22 @@ import CalendarEvent from "../../Components/Calendar/CalendarEvent"
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
 import Nav from "../../Components/Nav/Nav"
-import React from "react"
+import React, { useEffect, useState } from "react"
+import axios from "axios"
 
-export default function EventPage({ events }: { events: CalendarRow[] }) {
+export default function EventPage() {
   const router = useRouter()
+  const [events, setEvents] = useState<CalendarRow[]>([])
   const eventId = router.query.eventId as string
   const event = events.find((row) => row.id == eventId)
+  useEffect(()=>{
+    async function getData (){
+      const {data} = await (axios.get<CalendarRow[]>("/api/calendar"))
+      setEvents(data)
+    }
+    getData()
+  
+  }, [])
 
   return (
     <>

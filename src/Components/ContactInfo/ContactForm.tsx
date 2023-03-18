@@ -4,10 +4,10 @@ export default function ContactForm() {
   return (
     <div className={index.body}>
       <form>
-        <div className={index.bio}>
+        <div className={index.bio} >
           <div className={index.left}>
             <div className={index.row}>
-              <label className={index.label}> Name*</label>
+              <label> Name*</label>
               <input required name="name" className={index.input} type="text" />
             </div>
             <div className={index.row}>
@@ -42,23 +42,23 @@ export default function ContactForm() {
             </div>
           </div>
         </div>
-        <div className={index.bottom}>
-          <div className={index.desc}>
+        {/* <div className={index.bottom}> */}
+          <div className={index.descCalendar}>
             <label htmlFor="textarea">
               Short Description &nbsp;
             </label>
             <textarea id="textarea" name="description" className={index.textarea} />
           </div>
-        </div>
-        <div className={index.bottomButton}>
-          <div className={index.checkBoxBody}>
-            <input className={index.checkBox} type="checkbox" name="display" >
-            </input>
-            <label htmlFor="display">Display in directory</label>
+          <div className={index.bottomButton}>
+            <div>
+              <input className={index.checkBox} type="checkbox" name="display" >
+              </input>
+              <label htmlFor="display">Display in directory</label>
+            </div>
+            <button className={index.button}>Save</button>
           </div>
-          <button className={index.button}>Save</button>
-        </div>
-      </form>
-    </div>
+        {/* </div> */}
+      </form >
+    </div >
   )
 }

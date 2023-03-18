@@ -38,6 +38,7 @@
 
 .box p {
   font-size: .8em;
+  min-width: 250px;
 }
 
 .bio {
@@ -51,6 +52,7 @@
   display: flex;
   margin-left: -1px;
   margin-top: -10px;
+  float: right;
 }
 
 .desc label {
@@ -94,9 +96,10 @@
 }
 
 .bottomButton {
-  align-self: center;
+  align-content: center;
+  /* border: 1px solid black; */
   float: right;
-  padding: 10px 0 0 0;
+  /* padding: 10px 0 0 0; */
   text-decoration: none;
 }
 
@@ -121,7 +124,7 @@
 }
 
 .row{
-  min-width: 230px;
+  min-width: 290px;
 }
 
 .row label {
@@ -141,7 +144,7 @@
   width: 40vw;
 }
 
-@media screen and (min-width: 0px) and (max-width: 1170px) {
+@media screen and (min-width: 0px) and (max-width: 1290px) {
   .bio {
     flex-direction: column;
   }
@@ -181,11 +184,13 @@
     margin: -12px 23px;
 
   }
-}
-
-@media screen and (min-width: 0px) and (max-width: 543px) {
-  .body {
-    width: 60vw;
+  .desc{
+    margin-left: auto;
+    margin-right: 10px;
+  }
+  .descCalendar{
+    margin-left: auto;
+    margin-right: 10px;
   }
 }
 
@@ -197,7 +202,8 @@
 
 @media screen and (min-width: 0px) and (max-width: 725px) {
   .box {
-    width: 50vw;
+    margin-left: -4vw;
+    width: 35vw;
   }
 }
 
