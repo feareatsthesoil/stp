@@ -21,24 +21,7 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
   return (
     <>
       <div className={calendar.body}>
-        <div className={calendar.header}>
-          <h1>2023 Calendar</h1>
-          <div className={calendar.bio}>
-            <p>
-              To <Link href="/calendar/submit">submit</Link> to the calendar please <Link href="/about">log in</Link>.
-              All submissions are subject to review. If you would like to receive updates
-              you can sign up for our <Link href="/about"> newsletter</Link> or <Link
-                href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"
-                target="webapp-tab"
-              >
-                add calendar
-              </Link>.
-            </p>
-            <p>
-              By submitting to the calendar you are agreeing to our <Link href="/">Privacy Policy</Link>
-            </p>
-          </div>
-        </div>
+        
         {Object.entries(dateList).filter(([date])=>{return moment(date, "MM/DD/YYYY").diff(moment())> 0}).map(([date, list]) => {
           return (
             <div key={date} className={calendar.dateGroup}>

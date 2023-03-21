@@ -31,7 +31,7 @@ const Welcome = () => {
             <div className={index.emailButton}>
               <button id="email">Continue with email</button>
             </div>
-            <Link href="/contactinfo">Forgot Password?</Link>
+            <Link href="/contactForm">Forgot Password?</Link>
           </div>
           </div>
         <Footer />

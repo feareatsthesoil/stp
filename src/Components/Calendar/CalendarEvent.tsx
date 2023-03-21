@@ -59,8 +59,8 @@ export  function CalendarEventComponent(params: { row: CalendarEventType }): JSX
               </Wrapper>
           </div>
           <div className={calendar.eventSocialsBody}> */}
-          <Wrapper apiKey="AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g">
-            <Map address={row.location}/>
+          <Wrapper apiKey="AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g" >
+            <Map address={row.location} />
 
             
           </Wrapper>

@@ -2,11 +2,11 @@ import React from "react"
 import Link from "next/link"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
-import index from "../styles/Welcome.module.css"
+import index from "../styles/Membership.module.css"
 import Nav from "../Components/Nav/Nav"
 
 
-const Welcome = () => {
+const Membership = () => {
   return (
     <>
       <div className={index.body}>
@@ -117,4 +117,4 @@ const Welcome = () => {
   )
 }
 
-export default Welcome
+export default Membership

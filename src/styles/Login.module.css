@@ -36,6 +36,21 @@
   width: 233px;
 }
 
+.box button:hover {
+  background-color: #dadada;
+  border: 1px solid #000000b7;
+}
+
+.box button:last-child:hover {
+  background-color: #000000b7;
+  border: 1px solid #000000b7;
+}
+
+.box button:active {
+  transform: translateY(4px);
+  transition: 60ms transform ease-in-out;
+}
+
 .emailButton {
   align-self: center;
 }

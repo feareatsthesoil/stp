@@ -5,6 +5,10 @@
   min-height: 90vh;
 }
 
+.img {
+  max-width: none;
+}
+
 .box {
   flex-grow: 1;
   letter-spacing: -0.03em;
@@ -52,10 +56,15 @@
 .date {
   color: #000;
   text-align: left;
+  text-decoration: none;
 }
 
 .dateGroup {
   margin-bottom: 10px;
+}
+
+.dateGroup a{
+  color: #000;
 }
 
 .add a {

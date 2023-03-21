@@ -8,10 +8,11 @@ export default function Map({address}: {address: string}){
                 const geocoder = new window.google.maps.Geocoder()
                 const response = await geocoder.geocode({address})
                 const result = response.results[0]
-                console.log({result})
+                
                 if(result){
                     const [lat, lng] = [result.geometry.location.lat(), result.geometry.location.lng()]
-                    const map =new window.google.maps.Map(ref.current,{center:  {lat,lng}, zoom: 8})
+                    const map =new window.google.maps.Map(ref.current,{center:  {lat,lng}, zoomControl: true,fullscreenControl: true,scaleControl: true, zoom: 10,})
+                    
                     new window.google.maps.Marker({map, icon:"/icons/location-pin.png",  position: {lat,lng}})
                 }
        

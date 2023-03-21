@@ -1,8 +1,8 @@
 import Link from "next/link"
-import ContactForm from "../Components/ContactInfo/ContactForm"
+import ContactForm from "../Components/ContactForm/ContactForm"
 import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
-import index from "src/styles/Test.module.css"
+import index from "src/styles/ContactForm.module.css"
 import Nav from "../Components/Nav/Nav"
 
 export default function DirectorySubmit() {

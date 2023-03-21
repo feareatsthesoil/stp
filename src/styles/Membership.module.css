@@ -44,9 +44,19 @@
   border: 1px solid black;
   color: #fff;
   font-family: 'Times New Roman', Times, serif;
-  font-size: .8em;
+  font-size: .9em;
   padding: 7px 10px;
   width: auto;
+}
+
+.box button:hover {
+  background-color: #000000b7;
+  border: 1px solid #000000b7;
+}
+
+.box button:active {
+  transform: translateY(4px);
+  transition: 60ms transform ease-in-out;
 }
 
 .box a {

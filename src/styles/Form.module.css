@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  /* justify-content: center; */
 }
 
 .body label {
@@ -10,21 +11,23 @@
 }
 
 .box {
-  align-items: center;
-  align-self: center;
+  /* align-items: center; */
+  /* align-self: center; */
+  justify-content: center;
   display: flex;
   flex-flow: column wrap;
-  padding: 2vh 2vw 4vh 2vw;
+  padding: 2vh 2vw 0vh 2vw;
   text-align: center;
   width: 75vw;
+  height: 80vh;
 }
 
 .box a {
-  color: #0047FF;
+  color: #000;
 }
 
 .box a:visited {
-  color: #0047FF;
+  color: #000;
 }
 
 .box h1 {

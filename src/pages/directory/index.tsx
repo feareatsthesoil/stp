@@ -29,8 +29,8 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
           <div className={index.header}>
             <h1>Directory</h1>
             <p>
-              To <Link href="/directory/submit">submit</Link> to the directory please <Link href="/">log in</Link>.
-              All submissions are subject to review. By submitting to the directory you are agreeing to our <Link href="/">Privacy Policy</Link>.
+              To <Link href="/directory/submit">submit</Link> to the directory please <Link href="/login">log in</Link>.
+              All submissions are subject to review. By submitting to the directory you are agreeing to our <Link href="#">Privacy Policy</Link>.
             </p>
             <input
               type="text"

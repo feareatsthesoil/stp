@@ -14,7 +14,7 @@
     "directorySubmit": "/directory/submit",
     "directoryName": "Directory",
 
-    "membership": "/welcome",
+    "membership": "/membership",
     "membershipName": "Membership",
 
     "blog": "/blog",
@@ -40,6 +40,6 @@
 
     "login": "/login",
     "loginName": "Login Portal",
-    "loginSubmit": "/contactinfo"
+    "loginSubmit": "/contactForm"
   }
 }

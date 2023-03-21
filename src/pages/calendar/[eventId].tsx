@@ -7,20 +7,22 @@ import Header from "../../Components/Header/Header"
 import Nav from "../../Components/Nav/Nav"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
+import ElementLoader from "../../Components/ElementLoader"
 
 export default function EventPage() {
   const router = useRouter()
-  const [events, setEvents] = useState<CalendarRow[]>([])
+  const [events, setEvents] = useState<CalendarRow[]>()
   const eventId = router.query.eventId as string
-  const event = events.find((row) => row.id == eventId)
-  useEffect(()=>{
-    async function getData (){
-      const {data} = await (axios.get<CalendarRow[]>("/api/calendar"))
+  const event = events?.find((row) => row.id == eventId)
+  useEffect(() => {
+    async function getData() {
+      const { data } = await (axios.get<CalendarRow[]>("/api/calendar"))
       setEvents(data)
     }
     getData()
-  
+
   }, [])
+
 
   return (
     <>
@@ -29,10 +31,14 @@ export default function EventPage() {
         <Nav />
         <div className="subBody">
           <div className="box">
-            {event
-              ? <CalendarEvent row={{ ...event, index: parseInt(eventId) - 1 }} />
-              : <p>Event not found</p>
-            }
+            {!events && <><ElementLoader /></>}
+            {events && <>
+              {event
+                ? <CalendarEvent row={{ ...event, index: parseInt(eventId) - 1 }} />
+                : <p>Event not found</p>
+              }
+            </>}
+
           </div>
         </div>
         <Footer />

@@ -46,20 +46,30 @@
   width: 20vw;
 }
 
-.button {
-  background-color: black;
-  border: 1px solid black;
-  color: #fff;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: 1em;
-  letter-spacing: -0.03em;
-  padding: 8px 15px;
-}
-
 .buttonBody {
   padding: 10px 0 40px;
 }
 
 .buttonBody:last-child {
   padding: 10px 0 0;
+}
+
+.button {
+  background-color: black;
+  border: 1px solid black;
+  color: #fff;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: .9em;
+  letter-spacing: -0.03em;
+  padding: 8px 15px;
+}
+
+.button:hover {
+  background-color: #000000b7;
+  border: 1px solid #000000b7;
+}
+
+.button:active {
+  transform: translateY(4px);
+  transition: 60ms transform ease-in-out;
 }

@@ -1,5 +1,7 @@
 import index from "src/styles/ContactForm.module.css"
 
+const max = 300;
+
 export default function ContactForm() {
   return (
     <div className={index.body}>
@@ -42,22 +44,24 @@ export default function ContactForm() {
             </div>
           </div>
         </div>
-        {/* <div className={index.bottom}> */}
-          <div className={index.descCalendar}>
-            <label htmlFor="textarea">
-              Short Description &nbsp;
-            </label>
-            <textarea id="textarea" name="description" className={index.textarea} />
+        <div className={index.bottom}>
+          <div className={index.row}>
+            <div className={index.descCalendar}>
+              <label htmlFor="textarea">
+                Short Description &nbsp;
+              </label>
+              <textarea placeholder="0/300"name="description" id="textarea" maxLength={max} className={index.textarea} />
+            </div>
           </div>
           <div className={index.bottomButton}>
-            <div>
+            <div className={index.checkBoxBody}>
               <input className={index.checkBox} type="checkbox" name="display" >
               </input>
               <label htmlFor="display">Display in directory</label>
             </div>
             <button className={index.button}>Save</button>
           </div>
-        {/* </div> */}
+        </div>
       </form >
     </div >
   )
