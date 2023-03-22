@@ -8,6 +8,14 @@
   z-index: 201;
 }
 
+.bodyHome{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+  bottom: 10px
+}
+
 .socials {
   align-self: flex-end;
   margin-left: auto;

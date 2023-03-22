@@ -111,6 +111,11 @@
   border: 0;
 }
 
+.map{
+  width: 500px;
+  height: 500px;
+}
+
 .eventSocialsBody {
   padding-top: 10px;
 }
@@ -133,14 +138,14 @@
   max-width: 200px;
 }
 
-.map img {
-  height: 30vh;
-  min-height: 300px;
-  min-width: 300px;
-}
-
-
 .mainEvent strong {
   color: #0047FF;
   text-decoration: underline;
+}
+
+@media screen and (min-width: 0px) and (max-width: 725px) {
+  .map{
+    width: 250px;
+    height: 250px;
+  }
 }

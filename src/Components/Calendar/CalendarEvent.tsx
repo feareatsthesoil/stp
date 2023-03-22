@@ -18,7 +18,7 @@ import {
 } from 'next-share'
 import { Wrapper } from "@googlemaps/react-wrapper"
 
-export  function CalendarEventComponent(params: { row: CalendarEventType }): JSX.Element {
+export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.Element {
   const row: CalendarEventType = params.row
 
   return (
@@ -52,19 +52,12 @@ export  function CalendarEventComponent(params: { row: CalendarEventType }): JSX
             <div className={calendar.spacer}></div>
           </div>
           <div className={calendar.map}>
-            {/* <img src={`https://maps.googleapis.com/maps/api/staticmap?center=${row.location}&zoom=14&size=400x400&key=AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g&markers=${row.location}`} /> */}
-            {/* <div style={{height: "1000px", width:1000}}>
-              <Wrapper apiKey="">
-                <GoogleMapReact
-              </Wrapper>
+
+            <Wrapper apiKey="AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g" >
+              <Map address={row.location} />
+            </Wrapper>
           </div>
-          <div className={calendar.eventSocialsBody}> */}
-          <Wrapper apiKey="AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g" >
-            <Map address={row.location} />
-
-            
-          </Wrapper>
-
+          <div className={calendar.eventSocialsBody}>
             <TwitterShareButton
               url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
               <div className={calendar.eventSocials}>
@@ -102,9 +95,10 @@ export  function CalendarEventComponent(params: { row: CalendarEventType }): JSX
             </EmailShareButton>
 
           </div>
+
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
