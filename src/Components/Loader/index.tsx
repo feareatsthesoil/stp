@@ -1,3 +1,4 @@
+
 import index from "./Loader.module.css"
 import Header from "../Header/Header"
 import Footer from "../Footer/Footer"
@@ -20,6 +21,7 @@ export default function Loader() {
         <Image
           className={index.background}
           src={homePic}
+          placeholder="blur"
           alt="SERVING the PEOPLE"
           fill
           style={{ objectFit: "cover" }}
