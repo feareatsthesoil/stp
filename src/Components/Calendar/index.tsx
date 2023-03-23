@@ -16,6 +16,12 @@ import {
   EmailIcon
 } from 'next-share'
 
+// ('#link1').on('click', function(ev: any) {
+//   // options for opening new windows:  
+//   //   https://w3schools.com/jsref/met_win_open.asp
+//   window.open(this.href,"my_window", "width=400, height=400");
+// });
+
 export default function Calendar({ data }: { data: CalendarRow[] }) {
   const dateList = _.groupBy(data, (row) => row.start_date)
   return (
@@ -57,8 +63,9 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                     </Link>
                     <div className={calendar.add}>
                       <Link
-                        href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"
-                        target="webapp-tab"
+                        href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fstp-next-app-main.vercel.app%2Fcalendar%2F${row.id}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
                       >
                         Add to calendar
                       </Link>
@@ -66,7 +73,7 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                     <div className={calendar.eventSocialsBody}>
 
                       <TwitterShareButton
-                        url={`https://stp-next-app-main.vercel.app/calendar/${row.id}`} >
+                        url={`https://stp0.vercel.app/calendar/${row.id}`} >
                         <div className={calendar.eventSocials}>
                           <TwitterIcon size={25} round />
                         </div>

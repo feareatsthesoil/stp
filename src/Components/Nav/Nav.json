@@ -40,6 +40,6 @@
 
     "login": "/login",
     "loginName": "Login Portal",
-    "loginSubmit": "/contactForm"
+    "loginSubmit": "/contactInfo"
   }
 }

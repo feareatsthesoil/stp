@@ -8,12 +8,15 @@ import Nav from "../../Components/Nav/Nav"
 
 export default function Loader() {
   const router = useRouter()
-  const isHomepage = router.pathname === "/"
   let isHome = false
 
+  if (router.pathname === "/") {
+    isHome = true
+  }
+
   return (
-    <div className={isHomepage ? index.bodyHome : index.body}>
-      {isHomepage && (
+    <div className={isHome ? index.bodyHome : index.body}>
+      {isHome && (
         <Image
           className={index.background}
           src={homePic}
@@ -24,12 +27,8 @@ export default function Loader() {
         />
       )}
       <Header />
-
-      <div className={isHomepage ? index.hideNav : index.showNav}>
-        <Nav />
-      </div>
-      <div className={isHomepage ? index.show : "subBody"}>
-        <div className={isHomepage ? index.a : index.box}>
+      <div className={isHome ? index.show : "subBody"}>
+        <div className={isHome ? index.show : index.box}>
           <h1 className={`${isHome ? index.loadingHome : index.loading}`}>
             Loading
           </h1>

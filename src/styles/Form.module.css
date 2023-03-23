@@ -15,7 +15,7 @@
   /* align-self: center; */
   justify-content: center;
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
   padding: 2vh 2vw 2vh 2vw;
   text-align: center;
   width: 75vw;

@@ -4,6 +4,8 @@ import Footer from "../Components/Footer/Footer"
 import Link from "next/link"
 import index from "../styles/Login.module.css"
 import Nav from "../Components/Nav/Nav"
+import Index from "../Components/Nav/Nav.json"
+
 
 const Welcome = () => {
 
@@ -31,7 +33,7 @@ const Welcome = () => {
             <div className={index.emailButton}>
               <button id="email">Continue with email</button>
             </div>
-            <Link href="/contactForm">Forgot Password?</Link>
+            <Link href={Index.items.loginSubmit}>Forgot Password?</Link>
           </div>
           </div>
         <Footer />
