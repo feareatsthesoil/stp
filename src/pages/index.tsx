@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <div className={index.body}>
         <Image
-          placeholder="empty"
+          placeholder="blur"
           className={index.background}
           src={homePic}
           alt="SERVING the PEOPLE"

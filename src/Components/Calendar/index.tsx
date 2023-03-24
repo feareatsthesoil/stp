@@ -16,12 +16,6 @@ import {
   EmailIcon
 } from 'next-share'
 
-// ('#link1').on('click', function(ev: any) {
-//   // options for opening new windows:  
-//   //   https://w3schools.com/jsref/met_win_open.asp
-//   window.open(this.href,"my_window", "width=400, height=400");
-// });
-
 export default function Calendar({ data }: { data: CalendarRow[] }) {
   const dateList = _.groupBy(data, (row) => row.start_date)
   return (
@@ -64,8 +58,7 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                     <div className={calendar.add}>
                       <Link
                         href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Fstp-next-app-main.vercel.app%2Fcalendar%2F${row.id}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                       target="_blank" rel="noreferrer"
                       >
                         Add to calendar
                       </Link>

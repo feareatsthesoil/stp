@@ -7,7 +7,7 @@ import Nav from "../Components/Nav/Nav"
 const About = () => {
   return (
     <>
-      <div className={index.body}>
+      <div className="body">
         <Header />
         <Nav/>
     <div className="subBody">

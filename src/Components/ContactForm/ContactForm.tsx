@@ -1,8 +1,9 @@
+import React from "react";
+import { SetStateAction, useState } from "react";
 import index from "src/styles/ContactForm.module.css"
 
-const max = 300;
-
 export default function ContactForm() {
+  const [count, setCount] = React.useState(0);
   return (
     <div className={index.body}>
       <form>
@@ -50,9 +51,10 @@ export default function ContactForm() {
               <label htmlFor="textarea">
                 Short Description &nbsp;
               </label>
-              <textarea placeholder="0/300"name="description" id="textarea" maxLength={max} className={index.textarea} />
+              <textarea name="description" id="textarea" maxLength={300} onChange={e => setCount(e.target.value.length)} className={index.textarea} />
             </div>
           </div>
+          <p>{count}/300</p>
           <div className={index.bottomButton}>
             <div className={index.checkBoxBody}>
               <input className={index.checkBox} type="checkbox" name="display" >

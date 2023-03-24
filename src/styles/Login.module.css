@@ -5,6 +5,16 @@
 }
 
 .box {
+  display: flex;
+  flex-direction: column;
+  /* border: 1px solid black; */
+  /* width: 100%; */
+  margin-right: 10vw;
+  height: 80vh;
+  justify-content: center;
+  align-items: center;
+}
+/* .box {
   align-self: center;
   display: flex;
   flex-direction: column;
@@ -49,7 +59,7 @@
 .box button:active {
   transform: translateY(4px);
   transition: 60ms transform ease-in-out;
-}
+} */
 
 .emailButton {
   align-self: center;
@@ -117,7 +127,7 @@
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 1330px) {
+/* @media screen and (min-width: 0px) and (max-width: 1330px) {
   .box {
     width: 70vw;
   }
@@ -133,4 +143,4 @@
   .box {
     width: 100vw;
   }
-}
+} */

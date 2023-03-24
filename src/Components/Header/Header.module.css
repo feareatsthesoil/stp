@@ -32,6 +32,18 @@
   width: 100vw;
 }
 
+.bodyHome button {
+  float: right;
+  position: absolute;
+  right: 2vw;
+}
+
+.body button {
+  float: right;
+  position: absolute;
+  right: 2vw;
+}
+
 .bodyHome a:first-child {
   color: #fff;
   padding-right: 2vw;

@@ -4,6 +4,7 @@ import { AppProps } from 'next/app'
 import Router from 'next/router'
 import { useState } from 'react'
 import Loader from '../Components/Loader'
+import { ClerkProvider } from "@clerk/nextjs"
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false)
@@ -18,6 +19,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   })
   return (
     <>
+
+    <ClerkProvider {...pageProps}>
       <Head>
         <meta
           name="viewport"
@@ -27,6 +30,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {loading && <Loader />}
       <Component {...pageProps} />
+      </ClerkProvider>
     </>
   )
 }

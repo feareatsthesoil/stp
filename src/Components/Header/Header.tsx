@@ -4,6 +4,7 @@ import Link from "next/link"
 import header from "./Header.module.css"
 import { useRouter } from "next/router"
 import nav from "../Nav/Nav.json"
+import { SignInButton, UserButton, useUser } from "@clerk/nextjs"
 
 function Header() {
 
@@ -25,18 +26,22 @@ function Header() {
   } else {
     isLogin = false;
   }
+  const {isLoaded, isSignedIn, user}= useUser()
+
 
   return (
     <div className={`${isHome ? header.bodyHome : header.body}`}>
       <Head>
         <meta name="theme-color" content={`${isHome ? "#000" : "#fff"}`} />
       </Head>
-      <Link
+   
+      {isSignedIn ? <UserButton/>:    <Link
         className={isLogin ? header.active : header.a}
         href={nav.items.login}
       >
         {nav.items.loginName}
-      </Link>
+      </Link> }
+   
       <Link href={nav.items.home}>
         <h1>SERVING the PEOPLE</h1>
       </Link>

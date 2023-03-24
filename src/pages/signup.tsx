@@ -5,7 +5,7 @@ import Link from "next/link"
 import index from "../styles/Login.module.css"
 import Nav from "../Components/Nav/Nav"
 import Index from "../Components/Nav/Nav.json"
-import { SignIn } from "@clerk/nextjs"
+import { SignIn, SignUp } from "@clerk/nextjs"
 
 
 const Welcome = () => {
@@ -16,9 +16,9 @@ const Welcome = () => {
         <Header />
         <Nav />
       <div className="subBody">
-          
+          <SignUp/>
           <div className={index.box}>
-          <SignIn/>
+          
 
             {/* <h1> Log in</h1>
             <button> Continue with Google</button>

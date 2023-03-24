@@ -67,6 +67,12 @@
   justify-content: space-between;
 }
 
+.bottom p {
+  align-self: flex-end;
+  padding: 0;
+  margin: -30px 5px 20px;
+}
+
 .button {
   align-self: center;
   background-color: #000;
@@ -166,6 +172,10 @@
     align-self: flex-end;
     flex-direction: column;
     margin-top: -10px;
+  }
+
+  .bottom p {
+    margin: -15px 5px 20px;
   }
 
   .button {
