@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "clean": "rm -rf .next/"
+    "clean": "rm -rf .next/",
+    "migrate": "prisma migrate deploy"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.11.13",
