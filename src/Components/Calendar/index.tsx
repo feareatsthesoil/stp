@@ -54,7 +54,7 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
             {moment(row.ends_at).format("hh:mm A")}
             </>}
            
-            </div></span><div className={calendar.spacer}></div> {row.address}
+            </div></span><div className={calendar.spacer}></div> {row.location}
                         <div className={calendar.spacer}></div>
 
                         {row.description}

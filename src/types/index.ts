@@ -36,7 +36,7 @@ export interface CalendarRow {
   timestamp: string
   name: string
   type: string
-  location: string
+  address: string
   website: string
 
   
