@@ -1,8 +1,11 @@
+import { PrismaClient } from "@prisma/client"
+import { getPrismaClient } from "@prisma/client/runtime"
 import { NextApiRequest, NextApiResponse } from "next"
 import { getCalendarData, insertCalendarData } from "../../../libs/sheets"
 
 export default async function calendarSubmit(req: NextApiRequest, res: NextApiResponse) {
-    const calendarData = await getCalendarData()
-    const data = calendarData.slice(0, calendarData.length)
-  return res.status(200).json(data)
+  const client = new PrismaClient()
+  const calendarData =  await client.events.findMany()
+   
+  return res.status(200).json(calendarData)
 }

@@ -27,12 +27,22 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
         <div className={calendar.eventHeader}><h1>{row.name}</h1></div>
         <div>
           <p>
-            {row.location}
+            {row.address}
           </p>
           <p>
-            {moment(row.start_date, "MM/DD/YYYY").format("MMMM DD, YYYY")}
-            <div className={calendar.spacer}></div>
-            {row.start_time} {" "} - {row.end_date} {row.end_time}
+            <div>{moment(row.starts_at).format("MMMM DD, YYYY")}
+            &nbsp;
+            {moment(row.starts_at).format("hh:mm A")}
+            {row.ends_at && row.ends_at !==""&&<> 
+            &nbsp;to &nbsp;
+              {moment(row.ends_at).format("MMMM DD, YYYY")}
+            &nbsp;
+            {moment(row.ends_at).format("hh:mm A")}
+            </>}
+           
+            </div>
+
+          
           </p>
           <div className={calendar.bottom}>
             {row.description}
@@ -54,7 +64,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
           <div className={calendar.map}>
 
             <Wrapper apiKey="AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g" >
-              <Map address={row.location} />
+              <Map address={row.address} />
             </Wrapper>
           </div>
           <div className={calendar.eventSocialsBody}>

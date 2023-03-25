@@ -17,12 +17,12 @@ import {
 } from 'next-share'
 
 export default function Calendar({ data }: { data: CalendarRow[] }) {
-  const dateList = _.groupBy(data, (row) => row.start_date)
+  const dateList = _.groupBy(data, (row) => moment(row.starts_at).format("YYYY-MM-DD"))
   return (
     <>
       <div className={calendar.body}>
 
-        {Object.entries(dateList).filter(([date]) => { return moment(date, "MM/DD/YYYY").diff(moment()) > 0 }).map(([date, list]) => {
+        {Object.entries(dateList).filter(([date]) => { return moment(date).diff(moment()) > 0 }).map(([date, list]) => {
           return (
             <div key={date} className={calendar.dateGroup}>
               <div key={date}>
@@ -31,7 +31,7 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                     id={date}
                     className={calendar.date}
                   >
-                    {moment(date, "MM/DD/YYYY").format("MMMM DD, YYYY")}
+                    {moment(date).format("MMMM DD, YYYY")}
                   </h2>
                 </Link>
               </div>
@@ -44,9 +44,17 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                       <div className={calendar.eventInfo}>
                         <div className={calendar.spacer}></div>
                         <span className={calendar.timeColumn}>
-                          {row.start_time}
-
-                          {" "}- {row.end_time}</span><div className={calendar.spacer}></div> {row.location}
+                        <div>{moment(row.starts_at).format("MMMM DD, YYYY")}
+            &nbsp;
+            {moment(row.starts_at).format("hh:mm A")}
+            {row.ends_at && row.ends_at !==""&&<> 
+            &nbsp; - &nbsp;
+              {moment(row.ends_at).format("MMMM DD, YYYY")}
+            &nbsp;
+            {moment(row.ends_at).format("hh:mm A")}
+            </>}
+           
+            </div></span><div className={calendar.spacer}></div> {row.address}
                         <div className={calendar.spacer}></div>
 
                         {row.description}

@@ -7,6 +7,7 @@ import { getDirectoryData } from "../../libs/sheets"
 import { DirectoryRow } from "../../types"
 import index from "../../Components/Directory/Directory.module.css"
 import Nav from "../../Components/Nav/Nav"
+import axios from "axios"
 
 export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[] }) {
   const [searchText, setSearchText] = useState("")
@@ -53,8 +54,8 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
 }
 
 export async function getServerSideProps() {
-  const data = await getDirectoryData()
-
+ // const data = await getDirectoryData()
+  const {data} = await axios.get(`${process.env.BACKEND_URL}/api/directory`)
   return {
     props: {
       data,

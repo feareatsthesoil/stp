@@ -5,7 +5,7 @@ import ElementLoader from "../ElementLoader"
 import Header from "../../Components/Header/Header"
         
 
-const initialState = { name: "", type: "", location: "", website: "", start_date: "", end_date: "", start_time: "", end_time: "", phone: "", email: "", description: "" }
+const initialState = { name: "", type: "", address: "", website: "", starts_at: "", ends_at: "", phone: "", email: "", description: "" }
 
 export default function CalendarForm() {
   const [loading, setLoading] = useState(false)
@@ -18,11 +18,19 @@ export default function CalendarForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true)
     e.preventDefault()
+    try{
     const response = await axios.post("/api/calendar/submit", data)
-    setLoading(false)
+   
     alert("Submitted")
 
-    setData({ ...initialState })
+  }
+  catch{
+    alert("Error happened while submitting form")
+  }
+  finally{
+    setLoading(false)
+  }
+   // setData({ ...initialState })
     return false
   }
 
@@ -40,16 +48,16 @@ export default function CalendarForm() {
             </div>
             <div className={form.row}>
               <label> Location*</label>
-              <input required name="location" onChange={handleChange} className={form.input} value={data['location']} type="text" />
+              <input required name="address" onChange={handleChange} className={form.input} value={data['address']} type="text" />
             </div>
             <div className={form.row}>
               <label> Date*</label>
-              <input required name="start_date" onChange={handleChange} className={form.input} value={data['start_date']} type="text" />
+              <input  type="datetime-local" required name="starts_at" onChange={handleChange} className={form.input} value={data['starts_at']}  />
             </div>
-            <div className={form.row}>
+            {/* <div className={form.row}>
               <label> Time*</label>
               <input required name="start_time" onChange={handleChange} className={form.input} value={data['start_time']} type="text" />
-            </div>
+            </div> */}
             <div className={form.row}>
               <label> Telephone</label>
               <input name="phone" onChange={handleChange} className={form.input} value={data['phone']} type="text" />
@@ -66,12 +74,12 @@ export default function CalendarForm() {
             </div>
             <div className={form.row}>
               <label> End Date</label>
-              <input name="end_date" onChange={handleChange} className={form.input} value={data['end_date']} type="text" />
+              <input name="ends_at" onChange={handleChange} className={form.input} value={data['ends_at']} type="datetime-local" />
             </div>
-            <div className={form.row}>
+            {/* <div className={form.row}>
               <label> End Time</label>
               <input name="end_time" onChange={handleChange} className={form.input} value={data['end_time']} type="text" />
-            </div>
+            </div> */}
             <div className={form.row}>
               <label> Email*</label>
               <input required name="email" onChange={handleChange} className={form.input} value={data['email']} type="text" />

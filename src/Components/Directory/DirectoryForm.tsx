@@ -20,7 +20,7 @@ export default function DirectoryForm() {
     setLoading(false)
     alert("Submitted")
 
-    setData({ ...initialState })
+   // setData({ ...initialState })
     return false
   }
   return (

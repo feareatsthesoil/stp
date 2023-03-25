@@ -23,10 +23,10 @@ model Events {
   address String
   website String
   starts_at DateTime
-  ends_at DateTime
+  ends_at DateTime?
   phone String
   email String
-  description String
+  description String?
   approved Boolean @default(false)
   userId String?
   createdAt DateTime @default(now())
@@ -44,7 +44,7 @@ model Contacts{
   website String
   email String
   phone String
-  description String
+  description String?
   approved Boolean @default(false)
   userId String?
   createdAt DateTime @default(now())

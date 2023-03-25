@@ -1,16 +1,16 @@
+
 export type CalendarEventType = {
   id: string
   index: number
   name: string
   type: string
-  start_date: string
-  start_time: string
-  end_date: string
-  end_time: string
+  starts_at: string
+  ends_at: string
+  
   email: string
-  location: string
+  address: string
   description?: string
-  approved?: string
+  approved?: boolean
 }
 
 export type CalendarEventsType = CalendarEventType[]
@@ -28,6 +28,7 @@ export interface DirectoryRow {
   website: string
   phone: string
   description: string
+  approved: boolean
 }
 
 export interface CalendarRow {
@@ -37,11 +38,13 @@ export interface CalendarRow {
   type: string
   location: string
   website: string
-  start_date: string
-  end_date: string
-  start_time: string
-  end_time: string
+
+  
+  starts_at: string
+  ends_at: string
   phone: string
   email: string
   description: string
 }
+
+

@@ -8,6 +8,7 @@ import { CalendarRow } from "../../types"
 import Nav from "../../Components/Nav/Nav"
 import styled from "styled-components";
 import Link from "next/link"
+import axios from "axios"
 
 
 
@@ -52,11 +53,12 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
 }
 
 export async function getServerSideProps() {
-  const calendarData = await getCalendarData()
+  const {data} = await axios.get(`${process.env.BACKEND_URL}/api/calendar`)
 
+  console.log({data})
   return {
     props: {
-      calendarData,
+      calendarData: data,
     },
   }
 }
