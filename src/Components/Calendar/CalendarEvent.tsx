@@ -57,7 +57,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
               Add to calendar
             </Link>
             <div className={calendar.spacer}></div>
-            <a target="webapp-tab" href={`http://google.com/maps/search/${row.location}`}>Open in maps</a>
+            <a target="webapp-tab" href={`http://google.com/maps/search/${row.address}`}>Open in maps</a>
             <div className={calendar.spacer}></div>
             <div className={calendar.spacer}></div>
           </div>
