@@ -1,5 +1,5 @@
 import { CalendarRow } from "../../types"
-import { getCalendarData } from "../../libs/sheets"
+
 import { useRouter } from "next/router"
 import CalendarEvent from "../../Components/Calendar/CalendarEvent"
 import Footer from "../../Components/Footer/Footer"
@@ -46,12 +46,11 @@ export default function EventPage() {
 }
 
 export async function getServerSideProps() {
-  const calendarData = await getCalendarData()
-  const data = calendarData.slice(0, calendarData.length)
+ 
 
   return {
     props: {
-      events: data,
+      events: [],
     },
   }
 }

@@ -1,7 +1,5 @@
 import { PrismaClient } from "@prisma/client"
 import { NextApiRequest, NextApiResponse } from "next"
-import { insertCalendarData } from "../../../libs/sheets"
-import { CalendarEventType } from "../../../types"
 
 export default async function calendarSubmit(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req

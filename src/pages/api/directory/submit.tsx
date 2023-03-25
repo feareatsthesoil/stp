@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client"
 import { NextApiRequest, NextApiResponse } from "next"
-import { insertDirectoryData } from "../../../libs/sheets"
+
 
 export default async function directorySubmit(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req

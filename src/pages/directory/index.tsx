@@ -3,7 +3,7 @@ import Link from "next/link"
 import Directory from "../../Components/Directory"
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
-import { getDirectoryData } from "../../libs/sheets"
+
 import { DirectoryRow } from "../../types"
 import index from "../../Components/Directory/Directory.module.css"
 import Nav from "../../Components/Nav/Nav"
