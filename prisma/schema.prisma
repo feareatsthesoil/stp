@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  shadowDatabaseUrl= env("SHADOW_DATABASE_URL")
+}
+model Users {
+  id Int @id @default(autoincrement())
+  email String @unique
+  name String?
+
+}
+model Events {
+  id Int @id @default(autoincrement())
+  name String
+  type String
+  address String
+  website String
+  starts_at DateTime
+  ends_at DateTime
+  phone String
+  email String
+  description String
+  approved Boolean @default(false)
+  userId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+
+
+}
+model Contacts{
+  id Int @id @default(autoincrement())
+  name String
+  category String
+  address String
+  website String
+  email String
+  phone String
+  description String
+  approved Boolean @default(false)
+  userId String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+
+}
