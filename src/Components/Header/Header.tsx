@@ -26,7 +26,7 @@ function Header() {
   } else {
     isLogin = false;
   }
-  const {isLoaded, isSignedIn, user}= useUser()
+  const { isLoaded, isSignedIn, user } = useUser()
 
 
   return (
@@ -34,14 +34,14 @@ function Header() {
       <Head>
         <meta name="theme-color" content={`${isHome ? "#000" : "#fff"}`} />
       </Head>
-   
-      {isSignedIn ? <UserButton/>:    <Link
+
+      {isSignedIn ? <UserButton /> : <Link
         className={isLogin ? header.active : header.a}
         href={nav.items.login}
       >
         {nav.items.loginName}
-      </Link> }
-   
+      </Link>}
+
       <Link href={nav.items.home}>
         <h1>SERVING the PEOPLE</h1>
       </Link>

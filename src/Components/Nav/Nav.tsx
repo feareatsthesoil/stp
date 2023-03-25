@@ -3,10 +3,10 @@ import Link from "next/link"
 import index from "./Nav.module.css"
 import { useRouter } from "next/router"
 import nav from "../Nav/Nav.json"
-
+import {useUser} from "@clerk/nextjs"
 
 const NavBar = () => {
-
+  const isSignedIn = useUser()
   const router = useRouter();
   const currentRoute = router.pathname;
   
@@ -41,6 +41,9 @@ const NavBar = () => {
   } else {
     isLogin = false;
   }
+
+  let login = "MobileLogin";
+  isSignedIn.isSignedIn ? login="hide" : login="MobileLogin"
 
   return (
     <div className={index.items}>
@@ -111,7 +114,7 @@ const NavBar = () => {
                 {nav.items.shopName}
                 </Link>
             </li>
-            <li id="MobileLogin">
+            <li id={login}>
               <Link 
               href={nav.items.login}
               className={isLogin ? index.active : index.a}

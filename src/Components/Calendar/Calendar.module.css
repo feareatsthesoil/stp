@@ -112,17 +112,24 @@
 }
 
 .map{
-  width: 500px;
-  height: 500px;
+  height: 40vw;
+  max-height: 500px;
+  max-width: 500px;
+  min-height: 270px;
+  min-width: 270px;
+  width: 40vw;
 }
 
 .eventSocialsBody {
   padding-top: 10px;
 }
 
-.eventSocials {
-  filter: saturate(0%);
-  padding-right: 5px;
+.mail svg{
+  margin-bottom: -2px;
+}
+
+.whatsapp svg {
+  padding-left: 3px;
 }
 
 .mainEvent {
@@ -141,11 +148,4 @@
 .mainEvent strong {
   color: #0047FF;
   text-decoration: underline;
-}
-
-@media screen and (min-width: 0px) and (max-width: 725px) {
-  .map{
-    width: 250px;
-    height: 250px;
-  }
 }

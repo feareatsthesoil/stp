@@ -7,7 +7,6 @@ import Header from "../../Components/Header/Header"
 import Nav from "../../Components/Nav/Nav"
 import React, { useEffect, useState } from "react"
 import axios from "axios"
-import ElementLoader from "../../Components/ElementLoader"
 
 export default function EventPage() {
   const router = useRouter()
@@ -30,8 +29,7 @@ export default function EventPage() {
         <Header />
         <Nav />
         <div className="subBody">
-          <div className="box">
-            {!events && <><ElementLoader /></>}
+          {/* <div className="box"> */}
             {events && <>
               {event
                 ? <CalendarEvent row={{ ...event, index: parseInt(eventId) - 1 }} />
@@ -39,7 +37,7 @@ export default function EventPage() {
               }
             </>}
 
-          </div>
+          {/* </div> */}
         </div>
         <Footer />
       </div>

@@ -169,6 +169,10 @@ a img {
   display: none;
 }
 
+#hide{
+  display: none;
+}
+
 /* MEDIA QUERIES */
 @media (prefers-reduced-motion: no-preference) {
   :root {

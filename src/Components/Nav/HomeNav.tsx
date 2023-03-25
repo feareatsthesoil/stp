@@ -2,15 +2,20 @@ import React from "react"
 import Link from "next/link"
 import index from "./HomeNav.module.css"
 import nav from "../Nav/Nav.json"
+import {useUser} from "@clerk/nextjs"
+
 
 const HomeNav = () => {
+  const isSignedIn = useUser()
+  let login = "MobileLogin";
+  isSignedIn.isSignedIn ? login="hide" : login="MobileLogin"
 
   return (
     <>
     <div>
       <div className={index.items}>
         <ul>
-          <li id="MobileLogin">
+          <li id={login}>
             <Link href={nav.items.login}>{nav.items.loginName}</Link>
           </li>
           <li>

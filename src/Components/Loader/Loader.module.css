@@ -3,7 +3,10 @@
   background-image: none;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 10000vh;
+  overflow: hidden;
+  /* height: 100%; */
+  max-height: 100%;
   text-align: center;
 }
 
