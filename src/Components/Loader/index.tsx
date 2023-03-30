@@ -28,9 +28,8 @@ export default function Loader() {
           quality={75}
         />
       )}
-      <Header />
-      <div className={isHome ? index.show : "subBody"}>
-        <div className={isHome ? index.show : index.box}>
+      <div className={isHome ? index.fullWidth : "subBody"}>
+        <div className={isHome ? index.fullWidth : index.box}>
           <h1 className={`${isHome ? index.loadingHome : index.loading}`}>
             Loading
           </h1>

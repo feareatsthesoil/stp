@@ -14,9 +14,11 @@ const Membership = () => {
         <Nav />
         <div className="subBody">
           <div className={index.box}>
+
             <h1>
               Welcome!
             </h1>
+            
             <p>
               Serving the People is a 501(c)(3) non-profit organization that
               assists artists and creators in making meaningful connections both

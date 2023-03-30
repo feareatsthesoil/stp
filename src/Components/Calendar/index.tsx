@@ -5,15 +5,10 @@ import moment from "moment"
 import { CalendarRow } from "../../types"
 import {
   FacebookShareButton,
-  FacebookIcon,
   RedditShareButton,
-  RedditIcon,
   WhatsappShareButton,
-  WhatsappIcon,
   TwitterShareButton,
-  TwitterIcon,
   EmailShareButton,
-  EmailIcon
 } from 'next-share'
 
 export default function Calendar({ data }: { data: CalendarRow[] }) {

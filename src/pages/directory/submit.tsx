@@ -33,7 +33,7 @@ export default function DirectorySubmit() {
         <div className={index.box}>
           <h1>Directory Submission</h1>
           <p>By submitting you agree to our <Link href="/">privacy policy</Link></p>
-          <DirectoryForm />
+          <DirectoryForm profile={false}/>
         </div>
         </div>
         <Footer />

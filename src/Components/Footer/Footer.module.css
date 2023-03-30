@@ -12,7 +12,7 @@
   flex-direction: column;
   position: fixed;
   width: 100%;
-  bottom: 10px
+  bottom: 1em;
 }
 
 .socials {
@@ -24,21 +24,15 @@
 .socials ul {
   display: flex;
   flex-direction: row;
-  height: 100%;
   list-style: none;
-  width: 15%;
 }
 
-.socials img {
-  list-style: none;
-  opacity: 0.8;
-  padding-left: 1em;
-  padding-top: 1em;
-  width: auto;
+.socials li {
+  margin-left: -5px;
 }
 
-.socials img {
-  height: 1em;
+.socials li:last-child {
+  padding-left: 14px;
 }
 
 .break {

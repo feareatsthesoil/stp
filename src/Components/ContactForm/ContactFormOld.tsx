@@ -1,5 +1,4 @@
 import React from "react";
-import { SetStateAction, useState } from "react";
 import index from "src/styles/ContactForm.module.css"
 
 export default function ContactForm() {

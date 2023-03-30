@@ -1,9 +1,10 @@
 import Link from "next/link"
-import ContactForm from "../Components/ContactForm/ContactForm"
+import ContactForm from "../Components/ContactForm/ContactFormOld"
 import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
 import index from "src/styles/ContactForm.module.css"
 import Nav from "../Components/Nav/Nav"
+import DirectoryForm from "../Components/Directory/DirectoryForm"
 
 export default function DirectorySubmit() {
   return (
@@ -18,7 +19,7 @@ export default function DirectorySubmit() {
             <p>
               By submitting you agree to our <Link href="/">privacy policy</Link>
             </p>
-            <ContactForm />
+            <DirectoryForm profile={true} />
           </div>
           </div>
           <Footer />

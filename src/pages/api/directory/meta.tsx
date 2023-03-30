@@ -4,12 +4,12 @@ import { NextApiRequest, NextApiResponse } from "next"
 
 
 async function directorySubmit(req: any, res: NextApiResponse) {
-  const { body } = req
+  
   const {userId} = req.auth
-  console.log({body})
+  
   const client = new PrismaClient();
-  await client.contacts.create({data: {...body, display: body.profile ? body.display: true, userId}})
+  const contactInfo = await client.contacts.findFirst({where: {userId:userId ?? "NON EXISTENT USER", profile: true}})
   //await insertDirectoryData(body)
-  return res.status(200).json({ message: "inserted succesfully" })
+  return res.status(200).json({contactInfo,  message: "queried succesfully", user: userId })
 }
 export default withAuth(directorySubmit)

@@ -14,6 +14,7 @@ const About = () => {
 
           <div className={index.box}>
             <h1>About</h1>
+            
             <p>
               Serving the People is a 501(c)(3) non-profit organization that assists artists
               and creators in making meaningful connections both online and in person.

@@ -1,13 +1,17 @@
 import Head from 'next/head'
 import '../styles/globals.css'
 import { AppProps } from 'next/app'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import { useState } from 'react'
 import Loader from '../Components/Loader'
 import { ClerkProvider } from "@clerk/nextjs"
-
+import {useEffect} from 'react'
+import axios from 'axios'
+import { LocalizationProvider } from '@mui/x-date-pickers'
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false)
+  const router= useRouter()
   Router.events.on("routeChangeStart", () => {
     setLoading(true)
   })
@@ -17,9 +21,27 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   Router.events.on("routeChangeError", () => {
     setLoading(false)
   })
+
+  useEffect(()=>{
+    if(router.asPath=="/contactInfo"){
+      return 
+    }
+    axios.get("/api/directory/meta").then(({data})=>{
+      console.log(data.contactInfo)
+      if(data.user){
+        if(!data.contactInfo){
+          console.log("Push ehere")
+          router.push("/contactInfo")
+        }
+      }
+    }).catch(()=>{
+      
+    })
+  }, [router.asPath])
+  // return <Loader/>
   return (
     <>
-
+  <LocalizationProvider dateAdapter={AdapterDayjs}>
     <ClerkProvider {...pageProps}>
       <Head>
         <meta
@@ -31,6 +53,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       {loading && <Loader />}
       <Component {...pageProps} />
       </ClerkProvider>
+      </LocalizationProvider>
     </>
   )
 }

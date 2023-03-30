@@ -143,6 +143,11 @@ a img {
   box-sizing: border-box
 }
 
+.MuiOutlinedInput-root {
+  border-color: black;
+  border-radius: 1px;
+}
+
 .body {
   display: flex;
   flex-direction: column;
@@ -202,4 +207,10 @@ a img {
   .subBody {
     width: 100vw;
   }
+}
+
+
+.bolder{
+  /* background-color: red !important; */
+  color: green
 }

@@ -3,20 +3,29 @@ import form from "src/styles/Form.module.css"
 import axios from 'axios'
 import ElementLoader from "../ElementLoader"
 
-const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "" }
+const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "", display: true }
 
-export default function DirectoryForm() {
+export default function DirectoryForm({profile=false}: {profile: boolean}) {
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({ ...initialState })
-  const handleChange = ((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const changeData = ((fieldName: string, value: any)=>{
     setData((currentData) => {
-      return { ...currentData, [e.target.name]: e.target.value }
+      return { ...currentData, [fieldName]: value }
     })
+
+
+
+  })
+  const handleChange = ((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    changeData(e.target.name, e.target.value)
   })
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true)
     e.preventDefault()
-    const response = await axios.post("/api/directory/submit", data)
+    const dataToSubmit = {
+      ...data, profile
+    }
+    const response = await axios.post("/api/directory/submit", dataToSubmit)
     setLoading(false)
     alert("Submitted")
 
@@ -64,7 +73,12 @@ export default function DirectoryForm() {
             </label>
             <textarea id="textarea" name="description" onChange={handleChange} className={form.textarea} value={data['description']} />
           </div>
+          
         </div>
+        {profile && <div>
+            <input type="checkbox" checked={data.display} onClick={()=>changeData("display", !data.display)}/>
+            Display in Direcotry
+          </div>}
         <div className={form.bottomButton}>
           <button className={form.button}>Submit</button>
         </div>

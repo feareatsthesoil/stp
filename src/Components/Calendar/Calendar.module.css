@@ -149,3 +149,7 @@
   color: #0047FF;
   text-decoration: underline;
 }
+
+.MuiInputBase-root {
+  border-radius: 0;
+}

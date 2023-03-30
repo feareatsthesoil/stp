@@ -1,13 +1,80 @@
 import { useState } from "react"
+import React from "react"
 import form from "src/styles/Form.module.css"
 import axios from 'axios'
 import ElementLoader from "../ElementLoader"
 import Header from "../../Components/Header/Header"
-        
+import Grid from '@mui/material/Unstable_Grid2';
+import { Box, Button, MenuItem, TextField } from "@mui/material"
+import { withStyles } from "@mui/styles"
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { DateTimePicker } from "@mui/x-date-pickers"
+
 
 const initialState = { name: "", type: "", address: "", website: "", starts_at: "", ends_at: "", phone: "", email: "", description: "" }
 
-export default function CalendarForm() {
+
+
+const CssTextField = withStyles({
+  root: {
+   
+    '& .MuiOutlinedInput-root': {
+      '& fieldset': {
+        borderColor: 'black',
+      },
+      '&:hover fieldset': {
+        borderWidth: '2px',
+      },
+    },
+  },
+})(TextField);
+
+const CssDateTimePicker = withStyles({
+  root: {
+    borderColor: 'black',
+    background: "red",
+    height: 1000,
+    '& .MuiFormControl-root': {
+      
+        borderColor: 'black',
+        backgroundC0: "yellow",
+      
+    
+        borderWidth: '2px',
+    
+    },
+  },
+})(DateTimePicker);
+
+const type = [
+  {
+    value: "In-person meeting"
+  },
+  {
+    value: "Remote meeting"
+  },
+  {
+    value: "Exhibit"
+  },
+  {
+    value: "Pop up event"
+  }
+]
+
+const theme = createTheme({
+  palette: {
+
+    secondary: {
+      main: '#000',
+    },
+  },
+});
+
+export default function CalendarForm(props: { token: string }) {
+  const [count, setCount] = React.useState(0);
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({ ...initialState })
   const handleChange = ((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -18,86 +85,70 @@ export default function CalendarForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true)
     e.preventDefault()
-    try{
-    const response = await axios.post("/api/calendar/submit", data)
-   
-    alert("Submitted")
+    try {
+      const response = await axios.post("/api/calendar/submit", data, { headers: { "Authorization": `Bearer ${props.token}` } })
 
-  }
-  catch{
-    alert("Error happened while submitting form")
-  }
-  finally{
-    setLoading(false)
-  }
-   // setData({ ...initialState })
+      alert("Submitted")
+
+    }
+    catch {
+      alert("Error happened while submitting form")
+    }
+    finally {
+      setLoading(false)
+    }
+    // setData({ ...initialState })
     return false
   }
 
   return (
-    
-    <div className={form.body}>
-
-      <form onSubmit={handleSubmit}>
-        {loading && <ElementLoader />}
-        <div className={form.bio}>
-          <div className={form.left}>
-            <div className={form.row}>
-              <label> Name of Happening*</label>
-              <input required name="name" onChange={handleChange} className={form.input} value={data['name']} type="text" />
-            </div>
-            <div className={form.row}>
-              <label> Location*</label>
-              <input required name="address" onChange={handleChange} className={form.input} value={data['address']} type="text" />
-            </div>
-            <div className={form.row}>
-              <label> Date*</label>
-              <input  type="datetime-local" required name="starts_at" onChange={handleChange} className={form.input} value={data['starts_at']}  />
-            </div>
-            {/* <div className={form.row}>
-              <label> Time*</label>
-              <input required name="start_time" onChange={handleChange} className={form.input} value={data['start_time']} type="text" />
-            </div> */}
-            <div className={form.row}>
-              <label> Telephone</label>
-              <input name="phone" onChange={handleChange} className={form.input} value={data['phone']} type="text" />
-            </div>
-          </div>
-          <div className={form.right}>
-            <div className={form.row}>
-              <label> Type of Happening*</label>
-              <input required name="type" onChange={handleChange} className={form.input} value={data['type']} type="text" />
-            </div>
-            <div className={form.row}>
-              <label> Website</label>
-              <input name="website" onChange={handleChange} className={form.input} value={data['website']} type="text" />
-            </div>
-            <div className={form.row}>
-              <label> End Date</label>
-              <input name="ends_at" onChange={handleChange} className={form.input} value={data['ends_at']} type="datetime-local" />
-            </div>
-            {/* <div className={form.row}>
-              <label> End Time</label>
-              <input name="end_time" onChange={handleChange} className={form.input} value={data['end_time']} type="text" />
-            </div> */}
-            <div className={form.row}>
-              <label> Email*</label>
-              <input required name="email" onChange={handleChange} className={form.input} value={data['email']} type="text" />
-            </div>
-          </div>
-        </div>
-        <div className={form.bottom}>
-          <div className={form.descCalendar}>
-            <label htmlFor="textarea">
-              Short Description &nbsp;
-            </label>
-            <textarea id="textarea" name="description" onChange={handleChange} className={form.textarea} value={data['description']} />
-          </div>
-        </div>
-        <div className={form.bottomButton}>
-          <button disabled={loading} className={form.button}>Submit</button>
-        </div>
-      </form>
+    <div className={form.test}>
+      <ThemeProvider theme={theme}>
+        <hr style={{ border: 0 }} />
+        <Grid container spacing={2} sx={{ maxWidth: 'sm' }}  >
+          <Grid xs={12} sm={6} >
+            <CssTextField color="secondary" fullWidth label="Name of Happening*" />
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField color="secondary" fullWidth label="Type of Happening*" select>
+              {type.map((option) => (
+                <MenuItem className="bolder" key={option.value} value={option.value}>
+                  {option.value}
+                </MenuItem>
+              ))}
+            </CssTextField>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField color="secondary" fullWidth label="Location*"></CssTextField>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField fullWidth label="Website" color="secondary"></CssTextField>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            
+              <CssDateTimePicker sx={{"& label.Mui-focused": {color: "black"}, "& fieldset": {border: "1px solid black!important", color:"black"}, "& .Mui-focused fieldset": {border: "2px solid black !important"}}} className={form.datePicker} label="Start Date/Time*" />
+          
+          </Grid>
+          <Grid xs={12} sm={6}>
+          
+              <CssDateTimePicker sx={{"& fieldset": {border: "1px solid black!important",}, "&:hover fieldset": {border: "2px solid black !important"}}}className={form.datePicker} label="End Date/Time" />
+       
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField fullWidth label="Telephone" color="secondary"></CssTextField>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField color="secondary" fullWidth label="Email*"></CssTextField>
+          </Grid>
+          <Grid xs={12}>
+            <CssTextField multiline id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" className={form.description} fullWidth label="Short Description" onChange={e => setCount(e.target.value.length)}  rows={4} inputProps={{ maxLength: 300, style: { color: 'black'} }}/>
+          </Grid>
+          <Grid xs={12}>
+          <p>{count}/300</p>
+          <button className={form.button}>Save</button>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     </div>
   )
 }

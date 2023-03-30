@@ -6,15 +6,10 @@ import moment from "moment"
 import Map from "./Map"
 import {
   FacebookShareButton,
-  FacebookIcon,
   RedditShareButton,
-  RedditIcon,
   WhatsappShareButton,
-  WhatsappIcon,
   TwitterShareButton,
-  TwitterIcon,
   EmailShareButton,
-  EmailIcon
 } from 'next-share'
 import { Wrapper } from "@googlemaps/react-wrapper"
 
@@ -31,18 +26,18 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
           </p>
           <p>
             <div>{moment(row.starts_at).format("MMMM DD, YYYY")}
-            &nbsp;
-            {moment(row.starts_at).format("hh:mm A")}
-            {row.ends_at && row.ends_at !==""&&<> 
-            &nbsp;to &nbsp;
-              {moment(row.ends_at).format("MMMM DD, YYYY")}
-            &nbsp;
-            {moment(row.ends_at).format("hh:mm A")}
-            </>}
-           
+              &nbsp;
+              {moment(row.starts_at).format("hh:mm A")}
+              {row.ends_at && row.ends_at !== "" && <>
+                &nbsp;to &nbsp;
+                {moment(row.ends_at).format("MMMM DD, YYYY")}
+                &nbsp;
+                {moment(row.ends_at).format("hh:mm A")}
+              </>}
+
             </div>
 
-          
+
           </p>
           <div className={calendar.bottom}>
             {row.description}
@@ -98,7 +93,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
                 </svg>
               </div>
             </WhatsappShareButton>
-            
+
             <EmailShareButton id={calendar.button}
               url={`https://stp0.vercel.app/calendar/${row.id}`} >
               <div className={calendar.mail}>

@@ -4,11 +4,29 @@ import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
 import form from "src/styles/Form.module.css"
 import Nav from "../../Components/Nav/Nav"
-import { SignIn, useUser } from "@clerk/nextjs"
+import { SignIn, useAuth, useUser } from "@clerk/nextjs"
+import { useEffect, useState } from "react"
+import Grid from '@mui/material/Unstable_Grid2';
 
 export default function CalendarSubmit() {
 
-  const { isSignedIn } = useUser();
+  const { isSignedIn, isLoaded } = useUser();
+
+  const [token, setToken] = useState<null | string>(null)
+  const { getToken } = useAuth()
+
+  useEffect(() => {
+    async function setTheToken() {
+      setToken(await getToken())
+    }
+    setTheToken()
+
+  }, [isSignedIn])
+  useEffect(() => {
+    // console.log({token})
+  }, [token])
+  if(!isLoaded)
+  return <></>
   if (!isSignedIn)
     return (
       //Make component for below
@@ -29,13 +47,17 @@ export default function CalendarSubmit() {
         <Header />
         <Nav />
         <div className="subBody">
+          <div className={form.body}>
           <div className={form.box}>
             <h1>Calendar Submission</h1>
             <h2>All submissions will be included in our weekly newsletter.</h2>
             <p>
               By submitting you agree to our <Link href="/">privacy policy</Link>
             </p>
-            <CalendarForm />
+            
+          </div>
+
+          <CalendarForm token={token} />
           </div>
         </div>
         <Footer />

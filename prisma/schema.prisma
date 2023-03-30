@@ -46,6 +46,10 @@ model Contacts{
   phone String
   description String?
   approved Boolean @default(false)
+
+  profile Boolean @default(false)
+  display  Boolean @default(true)
+
   userId String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
