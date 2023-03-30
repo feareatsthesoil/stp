@@ -20,8 +20,8 @@ export default function DirectorySubmit() {
               <p>
                 By submitting you agree to our <Link href="/">privacy policy</Link>
               </p>
-              </div>
-              <DirectoryForm profile={true} />
+            </div>
+            <DirectoryForm profile={true} />
           </div>
         </div>
         <Footer />

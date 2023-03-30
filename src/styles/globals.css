@@ -206,7 +206,7 @@ a img {
   font-family: 'Times New Roman', Times, serif;
 }
 
-.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected.Mui-selected{
+.menuitem.Mui-selected.Mui-selected{
   background-color: white;
   text-decoration: underline;
   font-weight: bold;

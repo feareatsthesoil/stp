@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import form from "src/styles/Form.module.css"
 import axios from "axios"
 import Grid from "@mui/material/Unstable_Grid2";
@@ -50,10 +50,17 @@ export default function CalendarForm(props: { token: string }) {
   const [count, setCount] = React.useState(0);
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({ ...initialState })
-  const handleChange = ((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const changeData = (name: string, value: string)=>{
     setData((currentData) => {
-      return { ...currentData, [e.target.name]: e.target.value }
+      return { ...currentData, [name]: value }
     })
+  }
+  useEffect(()=>{
+    console.log("data", data)
+  }, [data])
+  const handleChange = ((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+   changeData(e.target.name, e.target.value)
+  
   })
   const handleSubmit = async (e: React.FormEvent) => {
     setLoading(true)
@@ -77,25 +84,27 @@ export default function CalendarForm(props: { token: string }) {
       <ThemeProvider theme={theme}>
         <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
           <Grid xs={12} sm={6} >
-            <CssTextField label="Name of Happening" required fullWidth color="secondary" onChange={handleChange}/>
+            <CssTextField name="name" label="Name of Happening" required fullWidth color="secondary" onChange={handleChange} value={data.name}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField label="Type of Happening"  required select fullWidth color="secondary" onChange={handleChange}>
+            <CssTextField name="type"  label="Type of Happening"  required select fullWidth color="secondary" onChange={handleChange} value={data.type}>
               {type.map((option) => (
-                <MenuItem className="bolder" key={option.value} value={option.value}>
+                <MenuItem className="bolder menuitem"  key={option.value} value={option.value}>
                   {option.value}
                 </MenuItem>
               ))}
             </CssTextField>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField label="Location"  required fullWidth color="secondary" onChange={handleChange}/>
+            <CssTextField label="Location" name="address" value={data.address} required fullWidth color="secondary" onChange={handleChange}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField label="Website"  fullWidth color="secondary" onChange={handleChange}/>
+            <CssTextField label="Website" name="website" value={data.website} fullWidth color="secondary" onChange={handleChange}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <DateTimePicker label="Start Date/Time*" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, "& .Mui-focused fieldset": { border: "2px solid black !important" } }} />
+            <DateTimePicker label="Start Date/Time*" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, "& .Mui-focused fieldset": { border: "2px solid black !important" } }} onChange={((value: string|null)=>{
+              return changeData("starts_at",value?? "")
+            })} />
           </Grid>
           <Grid xs={12} sm={6}>
             <DateTimePicker label="End Date/Time" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, "& .Mui-focused fieldset": { border: "2px solid black !important" } }} />
