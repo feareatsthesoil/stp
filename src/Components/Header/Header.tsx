@@ -35,7 +35,7 @@ function Header() {
         <meta name="theme-color" content={`${isHome ? "#000" : "#fff"}`} />
       </Head>
 
-      {isSignedIn ? <UserButton /> : <Link
+      {isSignedIn ? <UserButton  /> : <Link
         className={isLogin ? header.active : header.a}
         href={nav.items.login}
       >

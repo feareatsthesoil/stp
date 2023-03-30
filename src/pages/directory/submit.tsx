@@ -28,13 +28,15 @@ export default function DirectorySubmit() {
       <div className="body">
         <Header />
         <Nav />
-      <div className="subBody">
+        <div className="subBody">
+          <div className={index.body}>
+            <div className={index.box}>
+              <h1>Directory Submission</h1>
+              <p>By submitting you agree to our <Link href="/">privacy policy</Link></p>
 
-        <div className={index.box}>
-          <h1>Directory Submission</h1>
-          <p>By submitting you agree to our <Link href="/">privacy policy</Link></p>
-          <DirectoryForm profile={false}/>
-        </div>
+            </div>
+            <DirectoryForm profile={false} />
+          </div>
         </div>
         <Footer />
       </div>

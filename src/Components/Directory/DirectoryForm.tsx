@@ -1,11 +1,55 @@
 import { useState } from "react"
 import form from "src/styles/Form.module.css"
 import axios from 'axios'
-import ElementLoader from "../ElementLoader"
+import Grid from "@mui/material/Unstable_Grid2";
+import { MenuItem, TextField } from "@mui/material"
+import { withStyles } from "@mui/styles"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import React from "react";
 
 const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "", display: true }
 
+const type = [
+  {
+    value: "Photographer"
+  },
+  {
+    value: "Painter"
+  },
+  {
+    value: "Writer"
+  },
+  {
+    value: "Producer"
+  },
+  {
+    value: "Coder"
+  },
+]
+
+const CssTextField = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "black",
+      },
+      "&:hover fieldset": {
+        borderWidth: "2px",
+      },
+    },
+  },
+})(TextField);
+
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: "#000",
+    },
+  },
+});
+
 export default function DirectoryForm({profile=false}: {profile: boolean}) {
+  const [count, setCount] = React.useState(0);
   const [loading, setLoading] = useState(false)
   const [data, setData] = useState({ ...initialState })
   const changeData = ((fieldName: string, value: any)=>{
@@ -33,56 +77,42 @@ export default function DirectoryForm({profile=false}: {profile: boolean}) {
     return false
   }
   return (
-    <div className={form.body}>
-      <form onSubmit={handleSubmit}>
-        {loading && <ElementLoader />}
-        <div className={form.bio}>
-          <div className={form.left}>
-            <div className={form.row}>
-              <label className={form.label}> Name/Business*</label>
-              <input required name="name" onChange={handleChange} className={form.input} value={data['name']} type="text" />
-            </div>
-            <div className={form.row}>
-              <label> Address</label>
-              <input name="address" onChange={handleChange} className={form.input} value={data['address']} type="text" />
-            </div>
-            <div className={form.row}>
-              <label> Email</label>
-              <input name="email" onChange={handleChange} className={form.input} value={data['email']} type="text" />
-            </div>
-          </div>
-          <div className={form.right}>
-            <div className={form.row}>
-              <label> Category*</label>
-              <input required name="category" onChange={handleChange} className={form.input} value={data['category']} type="text" /
-              ></div>
-            <div className={form.row}>
-              <label> Website*</label>
-              <input required name="website" onChange={handleChange} className={form.input} value={data['website']} type="text" />
-            </div>
-            <div className={form.row}>
-              <label> Phone Number</label>
-              <input name="phone" onChange={handleChange} className={form.input} value={data['phone']} type="text" />
-            </div>
-          </div>
-        </div>
-        <div className={form.bottom}>
-          <div className={form.desc}>
-            <label htmlFor="textarea">
-              Short Description &nbsp;
-            </label>
-            <textarea id="textarea" name="description" onChange={handleChange} className={form.textarea} value={data['description']} />
-          </div>
-          
-        </div>
-        {profile && <div>
-            <input type="checkbox" checked={data.display} onClick={()=>changeData("display", !data.display)}/>
-            Display in Direcotry
-          </div>}
-        <div className={form.bottomButton}>
-          <button className={form.button}>Submit</button>
-        </div>
-      </form>
+    <div className={form.test}>
+      <ThemeProvider theme={theme}>
+        <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
+          <Grid xs={12} sm={6} >
+            <CssTextField label="Name/Business" required fullWidth color="secondary" onChange={handleChange}/>
+          </Grid>
+          <Grid xs={12} sm={6}>
+          <CssTextField label="Category"  required select fullWidth color="secondary" onChange={handleChange}>
+              {type.map((option) => (
+                <MenuItem className="bolder" key={option.value} value={option.value}>
+                  {option.value}
+                </MenuItem>
+              ))}
+            </CssTextField>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField label="Location" fullWidth color="secondary" onChange={handleChange}/>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField label="Website" fullWidth color="secondary" onChange={handleChange}/>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField label="Telephone" fullWidth color="secondary"></CssTextField>
+          </Grid>
+          <Grid xs={12} sm={6}>
+            <CssTextField label="Email" required fullWidth color="secondary"></CssTextField>
+          </Grid>
+          <Grid xs={12}>
+            <CssTextField label="Short Description"  multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4} inputProps={{ maxLength: 300, style: { color: "black" } }} onChange={e => setCount(e.target.value.length)} />
+          </Grid>
+          <Grid xs={12}>
+            <p>{count}/300</p>
+            <button className={form.button}>Save</button>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     </div>
   )
 }

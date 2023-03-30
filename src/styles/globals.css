@@ -143,11 +143,6 @@ a img {
   box-sizing: border-box
 }
 
-.MuiOutlinedInput-root {
-  border-color: black;
-  border-radius: 1px;
-}
-
 .body {
   display: flex;
   flex-direction: column;
@@ -162,8 +157,6 @@ a img {
 .box {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid black; */
-  /* width: 100%; */
   margin-right: 10vw;
   height: 80vh;
   justify-content: center;
@@ -176,6 +169,69 @@ a img {
 
 #hide{
   display: none;
+}
+
+/* MUI Styles */
+
+.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+  background-color: #000!important;
+}
+
+.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+  background-color: #000!important;
+}
+
+.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root:hover{
+  background-color: rgba(0, 0, 0, 0.207)!important;
+}
+
+.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root:hover {
+  background-color: rgba(0, 0, 0, 0.207)!important;
+}
+
+.MuiPickersDay-root {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel{
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+.MuiOutlinedInput-root {
+  border-color: black;
+  border-radius: 1px;
+}
+
+.MuiPaper-root li{
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected.Mui-selected{
+  background-color: white;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.MuiPickersCalendarHeader-label {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.MuiPickersYear-root button {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root:hover{
+  font-weight: bold;
+  background-color: white!important;
+  color: #000!important;
+}
+
+.MuiList-root li:hover{
+  background-color: #fff;
+}
+
+.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected.Mui-focusVisible {
+  background-color: black;
 }
 
 /* MEDIA QUERIES */
@@ -207,10 +263,4 @@ a img {
   .subBody {
     width: 100vw;
   }
-}
-
-
-.bolder{
-  /* background-color: red !important; */
-  color: green
 }

@@ -1,53 +1,14 @@
-import { useState } from "react"
 import React from "react"
 import form from "src/styles/Form.module.css"
-import axios from 'axios'
-import ElementLoader from "../ElementLoader"
-import Header from "../../Components/Header/Header"
-import Grid from '@mui/material/Unstable_Grid2';
-import { Box, Button, MenuItem, TextField } from "@mui/material"
+import axios from "axios"
+import Grid from "@mui/material/Unstable_Grid2";
+import { MenuItem, TextField } from "@mui/material"
 import { withStyles } from "@mui/styles"
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { DateTimePicker } from "@mui/x-date-pickers"
-
+import { useState } from "react"
 
 const initialState = { name: "", type: "", address: "", website: "", starts_at: "", ends_at: "", phone: "", email: "", description: "" }
-
-
-
-const CssTextField = withStyles({
-  root: {
-   
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'black',
-      },
-      '&:hover fieldset': {
-        borderWidth: '2px',
-      },
-    },
-  },
-})(TextField);
-
-const CssDateTimePicker = withStyles({
-  root: {
-    borderColor: 'black',
-    background: "red",
-    height: 1000,
-    '& .MuiFormControl-root': {
-      
-        borderColor: 'black',
-        backgroundC0: "yellow",
-      
-    
-        borderWidth: '2px',
-    
-    },
-  },
-})(DateTimePicker);
 
 const type = [
   {
@@ -64,11 +25,23 @@ const type = [
   }
 ]
 
+const CssTextField = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "black",
+      },
+      "&:hover fieldset": {
+        borderWidth: "2px",
+      },
+    },
+  },
+})(TextField);
+
 const theme = createTheme({
   palette: {
-
     secondary: {
-      main: '#000',
+      main: "#000",
     },
   },
 });
@@ -87,9 +60,7 @@ export default function CalendarForm(props: { token: string }) {
     e.preventDefault()
     try {
       const response = await axios.post("/api/calendar/submit", data, { headers: { "Authorization": `Bearer ${props.token}` } })
-
       alert("Submitted")
-
     }
     catch {
       alert("Error happened while submitting form")
@@ -104,13 +75,12 @@ export default function CalendarForm(props: { token: string }) {
   return (
     <div className={form.test}>
       <ThemeProvider theme={theme}>
-        <hr style={{ border: 0 }} />
-        <Grid container spacing={2} sx={{ maxWidth: 'sm' }}  >
+        <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
           <Grid xs={12} sm={6} >
-            <CssTextField color="secondary" fullWidth label="Name of Happening*" />
+            <CssTextField label="Name of Happening" required fullWidth color="secondary" onChange={handleChange}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField color="secondary" fullWidth label="Type of Happening*" select>
+            <CssTextField label="Type of Happening"  required select fullWidth color="secondary" onChange={handleChange}>
               {type.map((option) => (
                 <MenuItem className="bolder" key={option.value} value={option.value}>
                   {option.value}
@@ -119,33 +89,29 @@ export default function CalendarForm(props: { token: string }) {
             </CssTextField>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField color="secondary" fullWidth label="Location*"></CssTextField>
+            <CssTextField label="Location"  required fullWidth color="secondary" onChange={handleChange}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField fullWidth label="Website" color="secondary"></CssTextField>
+            <CssTextField label="Website"  fullWidth color="secondary" onChange={handleChange}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            
-              <CssDateTimePicker sx={{"& label.Mui-focused": {color: "black"}, "& fieldset": {border: "1px solid black!important", color:"black"}, "& .Mui-focused fieldset": {border: "2px solid black !important"}}} className={form.datePicker} label="Start Date/Time*" />
-          
+            <DateTimePicker label="Start Date/Time*" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, "& .Mui-focused fieldset": { border: "2px solid black !important" } }} />
           </Grid>
           <Grid xs={12} sm={6}>
-          
-              <CssDateTimePicker sx={{"& fieldset": {border: "1px solid black!important",}, "&:hover fieldset": {border: "2px solid black !important"}}}className={form.datePicker} label="End Date/Time" />
-       
+            <DateTimePicker label="End Date/Time" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, "& .Mui-focused fieldset": { border: "2px solid black !important" } }} />
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField fullWidth label="Telephone" color="secondary"></CssTextField>
+            <CssTextField label="Telephone"  fullWidth color="secondary"></CssTextField>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField color="secondary" fullWidth label="Email*"></CssTextField>
+            <CssTextField label="Email"  required fullWidth color="secondary"></CssTextField>
           </Grid>
           <Grid xs={12}>
-            <CssTextField multiline id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" className={form.description} fullWidth label="Short Description" onChange={e => setCount(e.target.value.length)}  rows={4} inputProps={{ maxLength: 300, style: { color: 'black'} }}/>
+            <CssTextField label="Short Description"  multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4} inputProps={{ maxLength: 300, style: { color: "black" } }} onChange={e => setCount(e.target.value.length)} />
           </Grid>
           <Grid xs={12}>
-          <p>{count}/300</p>
-          <button className={form.button}>Save</button>
+            <p>{count}/300</p>
+            <button className={form.button}>Save</button>
           </Grid>
         </Grid>
       </ThemeProvider>
