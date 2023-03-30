@@ -138,9 +138,9 @@
     width: 40vw;
   }
 }
-
+*/
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .box {
     width: 100vw;
   }
-} */
+} 
