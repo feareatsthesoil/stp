@@ -6,7 +6,7 @@ import form from "src/styles/Form.module.css"
 import Nav from "../../Components/Nav/Nav"
 import { SignIn, useAuth, useUser } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
-import Grid from '@mui/material/Unstable_Grid2';
+import { Unstable_Grid2 as Grid } from "@mui/material"
 import { useRouter } from "next/router"
 
 export default function CalendarSubmit() {

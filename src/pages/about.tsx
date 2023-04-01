@@ -4,10 +4,9 @@ import Footer from "../Components/Footer/Footer"
 import index from "../styles/About.module.css"
 import Nav from "../Components/Nav/Nav"
 import { useFormik } from 'formik'
-import Grid from "@mui/material/Unstable_Grid2/Grid2"
 import * as Yup from 'yup'
 import axios from "axios"
-import { TextField } from "@mui/material"
+import { TextField, Unstable_Grid2 as Grid} from "@mui/material"
 import { withStyles } from "@mui/styles"
 
 const initialState = { email: "" }
