@@ -59,7 +59,7 @@ export default function CalendarSubmit() {
 
             </div>
 
-            <CalendarForm token={token!} />
+            <CalendarForm />
           </div>
         </div>
         <Footer />

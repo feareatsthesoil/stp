@@ -10,6 +10,7 @@ import { useState } from "react"
 import ElementLoader from "../ElementLoader"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import { useAuth } from "@clerk/nextjs";
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
 
 const type = [
@@ -51,7 +52,7 @@ const theme = createTheme({
 export default function CalendarForm({ profile = false }: { profile: boolean }) {
 
   const [loading, setLoading] = useState(false)
-
+  const { getToken } = useAuth()
   const formik = useFormik({
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required").max(20, "Must be maximum 20 characters").min(2),
