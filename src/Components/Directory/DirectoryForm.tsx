@@ -8,6 +8,7 @@ import React from "react";
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import ElementLoader from "../ElementLoader";
+import { useRouter } from "next/router"
 const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "", display: true }
 
 const type = [
@@ -51,6 +52,7 @@ const theme = createTheme({
 
 export default function DirectoryForm({ profile = false }: { profile: boolean }) {
 
+  const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const formik = useFormik({
@@ -70,6 +72,8 @@ export default function DirectoryForm({ profile = false }: { profile: boolean })
       const response = await axios.post("/api/directory/submit", dataToSubmit)
       helpers.setSubmitting(false)
       helpers.resetForm()
+      if(profile)
+      router.push("/")
     }
   })
 
