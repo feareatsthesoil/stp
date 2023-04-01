@@ -172,45 +172,45 @@ a img {
 }
 
 /* MUI Styles */
-
+/* 
 .css-7oawqu-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
   background-color: #000!important;
-}
+} */
 
-.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
+/* .css-1qs309j-MuiButtonBase-root-MuiPickersDay-root.Mui-selected{
   background-color: #000!important;
-}
+} */
 
-.css-1qs309j-MuiButtonBase-root-MuiPickersDay-root:hover{
+/* .css-1qs309j-MuiButtonBase-root-MuiPickersDay-root:hover{
   background-color: rgba(0, 0, 0, 0.207)!important;
-}
+} */
 
-.css-7oawqu-MuiButtonBase-root-MuiPickersDay-root:hover {
+/* .css-7oawqu-MuiButtonBase-root-MuiPickersDay-root:hover {
   background-color: rgba(0, 0, 0, 0.207)!important;
-}
+} */
 
-.MuiPickersDay-root {
+/* .MuiPickersDay-root {
   font-family: 'Times New Roman', Times, serif !important;
-}
+} */
 
-.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel{
+/* .css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel{
   font-family: 'Times New Roman', Times, serif !important;
-}
+} */
 
-.MuiOutlinedInput-root {
+/* .MuiOutlinedInput-root {
   border-color: black;
   border-radius: 1px;
-}
-
+} */
+/* 
 .MuiPaper-root li{
   font-family: 'Times New Roman', Times, serif;
-}
+} */
 
-.menuitem.Mui-selected.Mui-selected{
+/* .menuitem.Mui-selected.Mui-selected{
   background-color: white;
   text-decoration: underline;
   font-weight: bold;
-}
+} */
 
 .MuiPickersCalendarHeader-label {
   font-family: 'Times New Roman', Times, serif;
@@ -220,18 +220,47 @@ a img {
   font-family: 'Times New Roman', Times, serif;
 }
 
-.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root:hover{
+.MuiTypography-root-MuiDayCalendar-weekDayLabel{
+  font-family: 'Times New Roman', Times, serif;
+}
+
+/* .MuiPickersDay-today.Mui-selected {
+  background-color: red;
+} */
+
+/* MUI Select */
+
+/* .MuiList-root li.MuiOutlinedInput-inpt{
+  color: red;
+} */
+
+.MuiList-root li{
+  font-family: 'Times New Roman', Times, serif;
+  background-color: #fff;
+}
+
+.MuiList-root li.Mui-focusVisible {
+  background-color: #fff;
+}
+
+.MuiList-root li.Mui-selected:hover {
+  background-color: #fff;
+  font-size: large;
+}
+
+.MuiTouchRipple-root {
+  color: #ffffff00;
+}
+
+.MuiList-root li.Mui-selected {
+  background-color: #fff!important;
   font-weight: bold;
-  background-color: white!important;
-  color: #000!important;
+  text-decoration: underline;
 }
 
 .MuiList-root li:hover{
   background-color: #fff;
-}
-
-.css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root.Mui-selected.Mui-focusVisible {
-  background-color: black;
+  font-weight: bold;
 }
 
 /* MEDIA QUERIES */

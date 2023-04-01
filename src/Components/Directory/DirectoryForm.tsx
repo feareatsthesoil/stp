@@ -2,11 +2,13 @@ import { useState } from "react"
 import form from "src/styles/Form.module.css"
 import axios from 'axios'
 import Grid from "@mui/material/Unstable_Grid2";
-import { MenuItem, TextField } from "@mui/material"
+import { Checkbox, MenuItem, TextField } from "@mui/material"
 import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import React from "react";
-
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+import ElementLoader from "../ElementLoader";
 const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "", display: true }
 
 const type = [
@@ -48,71 +50,97 @@ const theme = createTheme({
   },
 });
 
-export default function DirectoryForm({profile=false}: {profile: boolean}) {
-  const [count, setCount] = React.useState(0);
+export default function DirectoryForm({ profile = false }: { profile: boolean }) {
+
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState({ ...initialState })
-  const changeData = ((fieldName: string, value: any)=>{
-    setData((currentData) => {
-      return { ...currentData, [fieldName]: value }
-    })
+
+  const formik = useFormik({
+    validationSchema: Yup.object({
+      name: Yup.string().required("Name is required").max(20, "Must be maximum 20 characters").min(2),
+      email: Yup.string().required().email(),
+      address: Yup.string().min(2),
+      category: Yup.string().required(),
+      // website: Yup.string
+    }),
+    initialValues: { ...initialState, display: !profile }, onSubmit: async (values, helpers) => {
 
 
-
-  })
-  const handleChange = ((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    changeData(e.target.name, e.target.value)
-  })
-  const handleSubmit = async (e: React.FormEvent) => {
-    setLoading(true)
-    e.preventDefault()
-    const dataToSubmit = {
-      ...data, profile
+      const dataToSubmit = {
+        ...values, profile
+      }
+      const response = await axios.post("/api/directory/submit", dataToSubmit)
+      helpers.setSubmitting(false)
+      helpers.resetForm()
     }
-    const response = await axios.post("/api/directory/submit", dataToSubmit)
-    setLoading(false)
-    alert("Submitted")
+  })
 
-   // setData({ ...initialState })
-    return false
-  }
   return (
     <div className={form.test}>
-      <ThemeProvider theme={theme}>
-        <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
-          <Grid xs={12} sm={6} >
-            <CssTextField label="Name/Business" required fullWidth color="secondary" onChange={handleChange}/>
+      <form onSubmit={formik.handleSubmit}>
+        {formik.isSubmitting && <ElementLoader />}
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
+            <Grid xs={12} sm={6} >
+              <CssTextField name="name" label="Name/Business" fullWidth color="secondary" value={formik.values.name} onChange={formik.handleChange}
+                error={!!formik.errors.name}
+                helperText={formik.errors.name}
+              />
+
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <CssTextField label="Category" name="category" select fullWidth color="secondary" value={formik.values.category} onChange={formik.handleChange}
+                error={!!formik.errors.category}
+                helperText={formik.errors.category}
+              >
+                {type.map((option) => (
+                  <MenuItem className="bolder" key={option.value} value={option.value}>
+                    {option.value}
+                  </MenuItem>
+                ))}
+              </CssTextField>
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <CssTextField value={formik.values.address} name="address" label="Location" fullWidth color="secondary" onChange={formik.handleChange}
+                error={!!formik.errors.address}
+                helperText={formik.errors.address}
+
+              />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <CssTextField value={formik.values.website} name="website" label="Website" fullWidth color="secondary" onChange={formik.handleChange}
+                error={!!formik.errors.website}
+                helperText={formik.errors.website}
+
+              />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <CssTextField value={formik.values.phone} name="phone"
+                error={!!formik.errors.phone}
+                helperText={formik.errors.phone}
+                label="Telephone" fullWidth color="secondary" onChange={formik.handleChange} />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <CssTextField value={formik.values.email}
+                helperText={formik.errors.email}
+                error={!!formik.errors.email}
+                name="email" label="Email" fullWidth color="secondary" onChange={formik.handleChange} />
+            </Grid>
+            <Grid xs={12}>
+              <CssTextField value={formik.values.description}
+
+                helperText={formik.errors.description}
+
+                name="description" label="Short Description" multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4} inputProps={{ maxLength: 300, style: { color: "black" } }} onChange={formik.handleChange} />
+            </Grid>
+            {profile && <> <Checkbox name="display" onChange={formik.handleChange} checked={formik.values.display} /> Display in directory
+            </>}
+            <Grid xs={12}>
+              <p>{formik.values.description.length}/300</p>
+              <button type={"submit"} className={form.button}>Save</button>
+            </Grid>
           </Grid>
-          <Grid xs={12} sm={6}>
-          <CssTextField label="Category"  required select fullWidth color="secondary" onChange={handleChange}>
-              {type.map((option) => (
-                <MenuItem className="bolder" key={option.value} value={option.value}>
-                  {option.value}
-                </MenuItem>
-              ))}
-            </CssTextField>
-          </Grid>
-          <Grid xs={12} sm={6}>
-            <CssTextField label="Location" fullWidth color="secondary" onChange={handleChange}/>
-          </Grid>
-          <Grid xs={12} sm={6}>
-            <CssTextField label="Website" fullWidth color="secondary" onChange={handleChange}/>
-          </Grid>
-          <Grid xs={12} sm={6}>
-            <CssTextField label="Telephone" fullWidth color="secondary"></CssTextField>
-          </Grid>
-          <Grid xs={12} sm={6}>
-            <CssTextField label="Email" required fullWidth color="secondary"></CssTextField>
-          </Grid>
-          <Grid xs={12}>
-            <CssTextField label="Short Description"  multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4} inputProps={{ maxLength: 300, style: { color: "black" } }} onChange={e => setCount(e.target.value.length)} />
-          </Grid>
-          <Grid xs={12}>
-            <p>{count}/300</p>
-            <button className={form.button}>Save</button>
-          </Grid>
-        </Grid>
-      </ThemeProvider>
+        </ThemeProvider>
+      </form>
     </div>
   )
 }

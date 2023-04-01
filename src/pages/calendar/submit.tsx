@@ -7,6 +7,7 @@ import Nav from "../../Components/Nav/Nav"
 import { SignIn, useAuth, useUser } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
 import Grid from '@mui/material/Unstable_Grid2';
+import { useRouter } from "next/router"
 
 export default function CalendarSubmit() {
 
@@ -15,6 +16,7 @@ export default function CalendarSubmit() {
   const [token, setToken] = useState<null | string>(null)
   const { getToken } = useAuth()
 
+  const router = useRouter()
   useEffect(() => {
     async function setTheToken() {
       setToken(await getToken())
@@ -36,7 +38,7 @@ export default function CalendarSubmit() {
         <div className="subBody">
 
           <div className="box">
-            <SignIn />
+            <SignIn routing="virtual" afterSignInUrl={router.asPath}/>
           </div>
         </div>
       </div>

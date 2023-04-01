@@ -5,10 +5,12 @@ import Grid from "@mui/material/Unstable_Grid2";
 import { MenuItem, TextField } from "@mui/material"
 import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { DateTimePicker } from "@mui/x-date-pickers"
+import { DateTimeField } from "@mui/x-date-pickers"
 import { useState } from "react"
-
-const initialState = { name: "", type: "", address: "", website: "", starts_at: "", ends_at: "", phone: "", email: "", description: "" }
+import ElementLoader from "../ElementLoader"
+import { useFormik } from 'formik'
+import * as Yup from 'yup'
+const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
 
 const type = [
   {
@@ -46,84 +48,112 @@ const theme = createTheme({
   },
 });
 
-export default function CalendarForm(props: { token: string }) {
-  const [count, setCount] = React.useState(0);
+export default function CalendarForm({ profile = false }: { profile: boolean }) {
+
   const [loading, setLoading] = useState(false)
-  const [data, setData] = useState({ ...initialState })
-  const changeData = (name: string, value: string)=>{
-    setData((currentData) => {
-      return { ...currentData, [name]: value }
-    })
-  }
-  useEffect(()=>{
-    console.log("data", data)
-  }, [data])
-  const handleChange = ((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-   changeData(e.target.name, e.target.value)
-  
+
+  const formik = useFormik({
+    validationSchema: Yup.object({
+      name: Yup.string().required("Name is required").max(20, "Must be maximum 20 characters").min(2),
+      email: Yup.string().required().email(),
+      address: Yup.string().min(2),
+      starts_at: Yup.date().required().typeError("Invalid date").min(new Date(), "must be greater than today"),
+      ends_at: Yup.date().notRequired().typeError("Invalid date").min(Yup.ref("starts_at"), "must be greater than start date")
+      
+      // website: Yup.string
+    }),
+    initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
+
+
+      const dataToSubmit = {
+        ...values
+      }
+      const response = await axios.post("/api/calendar/submit", dataToSubmit)
+      helpers.setSubmitting(false)
+      helpers.resetForm()
+    }
   })
-  const handleSubmit = async (e: React.FormEvent) => {
-    setLoading(true)
-    e.preventDefault()
-    try {
-      const response = await axios.post("/api/calendar/submit", data, { headers: { "Authorization": `Bearer ${props.token}` } })
-      alert("Submitted")
-    }
-    catch {
-      alert("Error happened while submitting form")
-    }
-    finally {
-      setLoading(false)
-    }
-    // setData({ ...initialState })
-    return false
-  }
 
   return (
     <div className={form.test}>
+            
+      {loading && <ElementLoader/>}
+      <form onSubmit={formik.handleSubmit}>
+        {Object.values(formik.errors).map((error)=><>{error}</>)} Errors 
       <ThemeProvider theme={theme}>
         <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
           <Grid xs={12} sm={6} >
-            <CssTextField name="name" label="Name of Happening" required fullWidth color="secondary" onChange={handleChange} value={data.name}/>
+            <CssTextField name="name" label="Name of Happening" required fullWidth color="secondary"value={formik.values.name} onChange={formik.handleChange}
+                error={!!formik.errors.name}
+                helperText={formik.errors.name}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField name="type"  label="Type of Happening"  required select fullWidth color="secondary" onChange={handleChange} value={data.type}>
+            <CssTextField name="type"  label="Type of Happening"  required select fullWidth color="secondary" value={formik.values.type} onChange={formik.handleChange}
+                error={!!formik.errors.type}
+                helperText={formik.errors.type}>
               {type.map((option) => (
-                <MenuItem className="bolder menuitem"  key={option.value} value={option.value}>
+                <MenuItem className="menuitem"  key={option.value} value={option.value}>
                   {option.value}
                 </MenuItem>
               ))}
             </CssTextField>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField label="Location" name="address" value={data.address} required fullWidth color="secondary" onChange={handleChange}/>
+            <CssTextField label="Location" name="address" required fullWidth color="secondary" value={formik.values.address} onChange={formik.handleChange}
+                error={!!formik.errors.address}
+                helperText={formik.errors.address}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField label="Website" name="website" value={data.website} fullWidth color="secondary" onChange={handleChange}/>
+            <CssTextField label="Website" name="website"  fullWidth color="secondary" value={formik.values.website} onChange={formik.handleChange}
+                error={!!formik.errors.website}
+                helperText={formik.errors.website}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <DateTimePicker label="Start Date/Time*" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, "& .Mui-focused fieldset": { border: "2px solid black !important" } }} onChange={((value: string|null)=>{
-              return changeData("starts_at",value?? "")
-            })} />
+            <DateTimeField label="Start Date/Time*" 
+            
+            className={form.datePicker} 
+            sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, 
+            "&:hover fieldset": { border: "2px solid black!important", color: "black" },
+            "& .Mui-focused fieldset": { border: "2px solid black !important" }}} 
+                helperText={formik.errors.starts_at}
+                disablePast
+                color={!!formik.errors.starts_at ? "error": "primary"}
+            value={formik.values.starts_at} 
+            onChange={(value)=>formik.setFieldValue("starts_at", value)}
+              
+                 />
           </Grid>
           <Grid xs={12} sm={6}>
-            <DateTimePicker label="End Date/Time" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, "& .Mui-focused fieldset": { border: "2px solid black !important" } }} />
+            <DateTimeField  label="End Date/Time*" className={form.datePicker} sx={{ "& label.Mui-focused": { color: "black" }, "& fieldset": { border: "1px solid black!important", color: "black" }, 
+            "&:hover fieldset": { border: "2px solid black!important", color: "black" },
+            "& .Mui-focused fieldset": { border: "2px solid black !important" }}}  
+            value={formik.values.ends_at}
+            onChange={(value)=>formik.setFieldValue("ends_at", value)}
+            />
+            {formik.errors.ends_at}
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField label="Telephone"  fullWidth color="secondary"></CssTextField>
+            <CssTextField label="Telephone"  fullWidth color="secondary"   name="phone"value={formik.values.phone} onChange={formik.handleChange}
+                error={!!formik.errors.phone}
+                helperText={formik.errors.phone}/>
           </Grid>
           <Grid xs={12} sm={6}>
-            <CssTextField label="Email"  required fullWidth color="secondary"></CssTextField>
+            <CssTextField label="Email"  required fullWidth color="secondary" name="email" value={formik.values.email} onChange={formik.handleChange}
+                error={!!formik.errors.email}
+                helperText={formik.errors.email}/>
           </Grid>
           <Grid xs={12}>
-            <CssTextField label="Short Description"  multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4} inputProps={{ maxLength: 300, style: { color: "black" } }} onChange={e => setCount(e.target.value.length)} />
+            <CssTextField label="Short Description" name="description"  multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4}  inputProps={{ maxLength: 300, style: { color: "black" } }} value={formik.values.description} onChange={formik.handleChange}
+                error={!!formik.errors.description}
+                helperText={formik.errors.description} />
           </Grid>
           <Grid xs={12}>
-            <p>{count}/300</p>
-            <button className={form.button}>Save</button>
+            <p>{formik.values.description.length}/300</p>
+            <button type={"submit"} className={form.button}>Save</button>
           </Grid>
         </Grid>
       </ThemeProvider>
+      </form>
     </div>
   )
 }
