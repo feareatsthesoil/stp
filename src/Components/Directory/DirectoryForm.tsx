@@ -9,6 +9,7 @@ import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import ElementLoader from "../ElementLoader";
 import { useRouter } from "next/router"
+import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "", display: true }
 
 const type = [
@@ -103,11 +104,13 @@ export default function DirectoryForm({ profile = false }: { profile: boolean })
               </CssTextField>
             </Grid>
             <Grid xs={12} sm={6}>
-              <CssTextField value={formik.values.address} name="address" label="Location" fullWidth color="secondary" onChange={formik.handleChange}
+              {/* <CssTextField value={formik.values.address} name="address" label="Location" fullWidth color="secondary" onChange={formik.handleChange}
                 error={!!formik.errors.address}
                 helperText={formik.errors.address}
 
-              />
+              /> */}
+
+              <GooglePlacesAutoComplete value={formik.values.address}onChange={(val)=>formik.setFieldValue("address", val)} />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField value={formik.values.website} name="website" label="Website" fullWidth color="secondary" onChange={formik.handleChange}

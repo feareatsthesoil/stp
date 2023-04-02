@@ -58,7 +58,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
           </div>
           <div className={calendar.map}>
 
-            <Wrapper apiKey="AIzaSyADQiUQ0oZvputuDNyiCdeLYcx06Gsa-3g" >
+            <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!} >
               <Map address={row.address} />
             </Wrapper>
           </div>
