@@ -16,28 +16,8 @@ const Welcome = () => {
         <Header />
         <Nav />
       <div className="subBody">
-          
-          <div className={index.box}>
+          <div className="box sans">
           <SignIn/>
-
-            {/* <h1> Log in</h1>
-            <button> Continue with Google</button>
-            <button> Continue with Apple</button>
-            <button> Connect with Wallet</button>
-            <div className={index.input}>
-              <p>Email</p>
-    
-              <textarea
-                id="textarea"
-                name="email"
-                className={index.textarea}
-                placeholder="info@stp.world"
-              />
-            </div>
-            <div className={index.emailButton}>
-              <button id="email">Continue with email</button>
-            </div>
-            <Link href={Index.items.loginSubmit}>Forgot Password?</Link> */}
           </div>
           </div>
         <Footer />

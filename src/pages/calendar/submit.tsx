@@ -37,7 +37,7 @@ export default function CalendarSubmit() {
         <Nav />
         <div className="subBody">
 
-          <div className="box">
+          <div className="box sans">
             <SignIn routing="virtual" afterSignInUrl={router.asPath}/>
           </div>
         </div>

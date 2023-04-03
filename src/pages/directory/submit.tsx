@@ -18,7 +18,7 @@ export default function DirectorySubmit() {
         <Nav />
         <div className="subBody">
 
-          <div className="box">
+          <div className="box sans">
             <SignIn afterSignInUrl={router.asPath} />
           </div>
         </div>

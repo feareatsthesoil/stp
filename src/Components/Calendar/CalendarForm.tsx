@@ -1,15 +1,15 @@
 import React, { useEffect } from "react"
 import form from "src/styles/Form.module.css"
 import axios from "axios"
-
-import { MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
+import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { DateTimeField } from "@mui/x-date-pickers"
+import { DateTimeField, DateTimePicker } from "@mui/x-date-pickers"
 import { useState } from "react"
 import ElementLoader from "../ElementLoader"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+// import "yup-phone";
 import { useAuth } from "@clerk/nextjs";
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
@@ -52,16 +52,17 @@ const theme = createTheme({
 });
 
 export default function CalendarForm({ profile = false }: { profile: boolean }) {
-
+  let isMax = false;
   const [loading, setLoading] = useState(false)
   const { getToken } = useAuth()
   const formik = useFormik({
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required").max(20, "Name must be at most 20 characters").min(2, "Name must be at least 2 characters"),
-      email: Yup.string().required("Email is required").email("Email must be a valid email"),
+      name: Yup.string().required("Name is required").max(20, "Must be at most 20 characters").min(2, "Must be at least 2 characters"),
+      email: Yup.string().required("Email is required").email("Must be a valid email"),
+      // phone: Yup.string().phone("Must be a valid phone number"),
       address: Yup.string().min(2),
-      starts_at: Yup.date().required().typeError("Invalid date").min(new Date(), "must be greater than today"),
-      ends_at: Yup.date().notRequired().typeError("Invalid date").min(Yup.ref("starts_at"), "must be greater than start date")
+      starts_at: Yup.date().required("Required").typeError("Must be a valid date").min(new Date(), "Must be after current date/time").transform((_, val)=>val===null ? undefined: new Date(val)),
+      ends_at: Yup.date().typeError("Must be a valid date").min(new Date(), "Must be after current date/time").transform((_, val)=>val===null ? undefined: new Date(val)),
     }),
     initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
 
@@ -71,9 +72,12 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
       }
       const response = await axios.post("/api/calendar/submit", dataToSubmit)
       helpers.setSubmitting(false)
-      helpers.resetForm()
+      //helpers.resetForm()
     }
   })
+
+  console.log(formik.values)
+  formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
     <div className={form.test}>
@@ -116,7 +120,7 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
             </Grid>
             <Grid xs={12} sm={6}>
               <GooglePlacesAutoComplete
-                
+
                 onChange={(value) => formik.setFieldValue("address", value)} value={formik.values.address} />
             </Grid>
             <Grid xs={12} sm={6}>
@@ -131,40 +135,49 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
                 helperText={formik.errors.website} />
             </Grid>
             <Grid xs={12} sm={6}>
-              <DateTimeField
-              required
+              <DateTimePicker
+                // required
                 label="Start Date/Time"
                 disablePast
                 className={form.datePicker}
                 sx={{
                   "& label.Mui-focused": { color: "black" },
-                  "& fieldset": { border: "1px solid black!important", 
-                  color: "black" },
-                  "&:hover fieldset": { border: "2px solid black!important", color: "black" },
-                  "& .Mui-focused fieldset": { border: "2px solid black !important"},
-                  "& .Mure-required p": {color: "#d32f2f!important"},
-                  "& .Mui-required fieldset": { border: "2px solid red !important"}
+                  "& fieldset": {
+                    border: "1px solid black",
+                    color: "black"
+                  },
+                  "&:hover fieldset": { border: "2px solid black", color: "black" },
+                  "& .Mui-focused fieldset": { border: "2px solid black !important" },
+                  "& .MuiInputBase-colorError fieldset ": { borderColor: "#d32f2f!important" },
+                  ".MuiFormLabel-colorError": { color: "#d32f2!important" }
                 }}
-                helperText={formik.errors.starts_at}
-                color={!!formik.errors.starts_at ? "error" : "primary"}
+
+                // color={!!formik.errors.starts_at ? "error" : "primary"}
                 value={formik.values.starts_at}
                 onChange={(value) => formik.setFieldValue("starts_at", value)}
               />
+              <FormHelperText error={!!formik.errors.starts_at}>{formik.errors.starts_at}</FormHelperText>
             </Grid>
             <Grid xs={12} sm={6}>
-              <DateTimeField
+              <DateTimePicker
                 label="End Date/Time"
+                disablePast
                 className={form.datePicker}
                 sx={{
                   "& label.Mui-focused": { color: "black" },
-                  "& fieldset": { border: "1px solid black!important", color: "black" },
-                  "&:hover fieldset": { border: "2px solid black!important", color: "black" },
-                  "& .Mui-focused fieldset": { border: "2px solid black !important" }
+                  "& fieldset": {
+                    border: "1px solid black",
+                    color: "black"
+                  },
+                  "&:hover fieldset": { border: "2px solid black", color: "black" },
+                  "& .Mui-focused fieldset": { border: "2px solid black !important" },
+                  "& .MuiInputBase-colorError fieldset ": { borderColor: "#d32f2f!important" },
+                  ".MuiFormLabel-colorError": { color: "#d32f2f!important" }
                 }}
                 value={formik.values.ends_at}
                 onChange={(value) => formik.setFieldValue("ends_at", value)}
               />
-              {formik.errors.ends_at}
+               <FormHelperText error={!!formik.errors.ends_at}>{formik.errors.ends_at}</FormHelperText>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -205,7 +218,9 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
                 helperText={formik.errors.description} />
             </Grid>
             <Grid xs={12}>
-              <p>{formik.values.description.length}/300</p>
+              <p className={isMax ? form.max : form.notMax}>
+                {formik.values.description.length}/300
+              </p>
               <button
                 type={"submit"}
                 className={form.button}>

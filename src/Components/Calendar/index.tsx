@@ -39,15 +39,11 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                       <div className={calendar.eventInfo}>
                         <div className={calendar.spacer}></div>
                         <span className={calendar.timeColumn}>
-                          <div>{moment(row.starts_at).format("MMMM DD, YYYY")}
-                            &nbsp;
-                            {moment(row.starts_at).format("hh:mm A")}
-                            {row.ends_at && row.ends_at !== "" && <>
-                              &nbsp; - &nbsp;
-                              {moment(row.ends_at).format("MMMM DD, YYYY")}
-                              &nbsp;
-                              {moment(row.ends_at).format("hh:mm A")}
-                            </>}
+                          <div>{moment(row.starts_at).format("MMMM DD, YYYY hh:mm A")}
+                          {row.ends_at ? <> - {moment(row.ends_at).format("MMMM DD, YYYY hh:mm A")} </> : ""}
+                          
+                            
+                            
 
                           </div></span><div className={calendar.spacer}></div> {row.address}
                         <div className={calendar.spacer}></div>
@@ -60,7 +56,7 @@ export default function Calendar({ data }: { data: CalendarRow[] }) {
                     <div className={calendar.add}>
 
                       <Link
-                        href={google({ title: row.name, description: row.description, start: row.starts_at, })}
+                        href={google({ title: row.name, description: row.description, start: row.starts_at, end: row.ends_at ?? row.starts_at })}
                         target="_blank" rel="noreferrer"
                       >
                         Add to calendar

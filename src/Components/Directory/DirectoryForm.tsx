@@ -53,13 +53,14 @@ const theme = createTheme({
 
 export default function DirectoryForm({ profile = false }: { profile: boolean }) {
 
+  let isMax = false;
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const formik = useFormik({
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required").max(20, "Must be maximum 20 characters").min(2),
-      email: Yup.string().required().email(),
+      name: Yup.string().required("Name is required").max(20, "Must be at most 20 characters").min(2, "Must be at least 2 characters"),
+      email: Yup.string().required("Email is required").email("Must be a valid email"),
       address: Yup.string().min(2),
       category: Yup.string().required(),
       // website: Yup.string
@@ -77,6 +78,8 @@ export default function DirectoryForm({ profile = false }: { profile: boolean })
       router.push("/")
     }
   })
+
+  formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
     <div className={form.test}>
@@ -141,8 +144,14 @@ export default function DirectoryForm({ profile = false }: { profile: boolean })
             {profile && <> <Checkbox name="display" onChange={formik.handleChange} checked={formik.values.display} /> Display in directory
             </>}
             <Grid xs={12}>
-              <p>{formik.values.description.length}/300</p>
-              <button type={"submit"} className={form.button}>Save</button>
+              <p className={isMax ? form.max : form.notMax}>
+                {formik.values.description.length}/300
+              </p>
+              <button
+                type={"submit"}
+                className={form.button}>
+                Save
+              </button>
             </Grid>
           </Grid>
         </ThemeProvider>

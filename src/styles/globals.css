@@ -154,6 +154,10 @@ a img {
   width: 90vw;
 }
 
+.sans {
+  font-family: sans-serif;
+}
+
 .box {
   display: flex;
   flex-direction: column;
@@ -183,6 +187,12 @@ a img {
 
 .MuiTypography-root-MuiDayCalendar-weekDayLabel{
   font-family: 'Times New Roman', Times, serif;
+}
+
+/* MuiDateTimeField */
+
+p.Mui-required {
+  color: #d32f2f;
 }
 
 /* MuiList */

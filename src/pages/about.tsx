@@ -6,7 +6,7 @@ import Nav from "../Components/Nav/Nav"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from "axios"
-import { TextField, Unstable_Grid2 as Grid} from "@mui/material"
+import { TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
 
 const initialState = { email: "" }
@@ -68,20 +68,23 @@ const About = () => {
               <strong>Subscribe to our weekly newsletter for happenings and events</strong>
             </p>
             <form onSubmit={formik.handleSubmit}>
-            <div className={index.input}>
-              <Grid container spacing={2}>
-                <CssTextField></CssTextField>
-                <div className={index.text}>
-                  <textarea
-                    name="email"
-                    placeholder="info@stp.world"
-                  />
-                </div>
-                <div className={index.buttonBody}>
-                  <button className={index.button}>Subscribe</button>
-                </div>
-              
-              </Grid>
+              <div className={index.input}>
+                <Grid container spacing={2} sx={{ maxWidth: "sm" }}>
+                  <Grid xs={6}>
+                    <CssTextField
+                      sx={{
+                        "& fieldset": {borderRadius: "0", padding: "0px", paddingTop: "40px"},
+                        "& input": {padding: "10px", margin: "0", height: "10px"},
+                        
+                      }}
+                    />
+                  </Grid>
+                  <Grid xs={6}>
+                    <div className={index.buttonBody}>
+                      <button className={index.button}>Subscribe</button>
+                    </div>
+                  </Grid>
+                </Grid>
               </div>
             </form>
           </div>
