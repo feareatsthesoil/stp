@@ -31,7 +31,7 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
                   To <Link href="/calendar/submit">submit</Link> to the calendar please <Link href="/login">log in</Link>.
                   All submissions are subject to review. If you would like to receive updates
                   you can sign up for our <Link href="#"> newsletter</Link> or <Link
-                    href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"
+                    href="https://calendar.google.com/calendar/u/1?cid=Y19mZDdkZGU5ZGY3MzBmM2Q5OTE5NjM1YmI0MzRiNDM4MTAxOGViZDg2MDY4NGUxN2ViMGU2NzAxMWY5OWIyNWYxQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
                     target="webapp-tab"
                   >
                     add calendar

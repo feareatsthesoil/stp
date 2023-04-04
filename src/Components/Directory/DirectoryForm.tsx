@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import form from "src/styles/Form.module.css"
 import axios from 'axios'
 import { Checkbox, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
@@ -10,6 +10,9 @@ import * as Yup from 'yup'
 import ElementLoader from "../ElementLoader";
 import { useRouter } from "next/router"
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
+import { DirectoryRow } from "../../types"
+import { UserContext } from "../UserContext"
+
 const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "", display: true }
 
 const type = [
@@ -51,9 +54,11 @@ const theme = createTheme({
   },
 });
 
-export default function DirectoryForm({ profile = false }: { profile: boolean }) {
+export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow}) {
 
+  const {refresh} = useContext(UserContext)
   let isMax = false;
+ 
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
@@ -65,17 +70,21 @@ export default function DirectoryForm({ profile = false }: { profile: boolean })
       category: Yup.string().required(),
       // website: Yup.string
     }),
-    initialValues: { ...initialState, display: !profile }, onSubmit: async (values, helpers) => {
+    initialValues: { ...initialState, display: !profile, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
 
 
       const dataToSubmit = {
         ...values, profile
       }
-      const response = await axios.post("/api/directory/submit", dataToSubmit)
+      const response = data?.id ? await axios.put(`/api/directory/${data.id}`, dataToSubmit) : await axios.post("/api/directory/submit", dataToSubmit)
+      
+      await refresh()
       helpers.setSubmitting(false)
-      helpers.resetForm()
-      if(profile)
-      router.push("/")
+      if(!data) helpers.resetForm()
+      if(profile && !data)
+        router.push("/")
+      
+        
     }
   })
 

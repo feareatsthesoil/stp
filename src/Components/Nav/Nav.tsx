@@ -1,9 +1,10 @@
-import React from "react"
+import React, { useContext } from "react"
 import Link from "next/link"
 import index from "./Nav.module.css"
 import { useRouter } from "next/router"
 import nav from "../Nav/Nav.json"
 import {useUser} from "@clerk/nextjs"
+import { UserContext } from "../UserContext"
 
 const NavBar = () => {
   const isSignedIn = useUser()
@@ -45,6 +46,7 @@ const NavBar = () => {
   let login = "MobileLogin";
   isSignedIn.isSignedIn ? login="hide" : login="MobileLogin"
 
+  const {loggedIn} = useContext(UserContext)
   return (
     <div className={index.items}>
       <nav>
@@ -114,6 +116,13 @@ const NavBar = () => {
                 {nav.items.shopName}
                 </Link>
             </li>
+            {loggedIn && <li>
+              <Link 
+              href={"/contactInfo"}
+              >
+               Contact Info
+                </Link>
+            </li>}
             <li id={login}>
               <Link 
               href={nav.items.login}

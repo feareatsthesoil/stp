@@ -9,6 +9,7 @@ import {useEffect} from 'react'
 import axios from 'axios'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { UserProvider } from '../Components/UserContext'
 export default function MyApp({ Component, pageProps }: AppProps) {
   const [loading, setLoading] = useState(false)
   const router= useRouter()
@@ -41,19 +42,21 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   // return <Loader/>
   return (
     <>
-  <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <ClerkProvider {...pageProps}>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-        />
-        <title>STP</title>
-      </Head>
-      {loading && <Loader />}
-      <Component {...pageProps} />
-      </ClerkProvider>
-      </LocalizationProvider>
+      <LocalizationProvider dateAdapter={AdapterDayjs}>
+        <ClerkProvider {...pageProps}>
+          <UserProvider>
+            <Head>
+              <meta
+                name="viewport"
+                content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+              />
+              <title>STP</title>
+            </Head>
+            {loading && <Loader />}
+            <Component {...pageProps} />
+          </UserProvider>
+        </ClerkProvider>
+  </LocalizationProvider>
     </>
   )
 }

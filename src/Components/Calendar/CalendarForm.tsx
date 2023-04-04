@@ -7,9 +7,8 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { DateTimeField, DateTimePicker } from "@mui/x-date-pickers"
 import { useState } from "react"
 import ElementLoader from "../ElementLoader"
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
-// import "yup-phone";
+import { useFormik } from "formik"
+import * as Yup from "yup"
 import { useAuth } from "@clerk/nextjs";
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
@@ -51,18 +50,46 @@ const theme = createTheme({
   },
 });
 
+const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+
 export default function CalendarForm({ profile = false }: { profile: boolean }) {
   let isMax = false;
   const [loading, setLoading] = useState(false)
   const { getToken } = useAuth()
   const formik = useFormik({
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required").max(20, "Must be at most 20 characters").min(2, "Must be at least 2 characters"),
-      email: Yup.string().required("Email is required").email("Must be a valid email"),
-      // phone: Yup.string().phone("Must be a valid phone number"),
-      address: Yup.string().min(2),
-      starts_at: Yup.date().required("Required").typeError("Must be a valid date").min(new Date(), "Must be after current date/time").transform((_, val)=>val===null ? undefined: new Date(val)),
-      ends_at: Yup.date().typeError("Must be a valid date").min(new Date(), "Must be after current date/time").transform((_, val)=>val===null ? undefined: new Date(val)),
+      name:
+        Yup.string()
+          .required("Name is required")
+          .max(20, "Must be at most 20 characters")
+          .min(2, "Must be at least 2 characters"),
+
+      address:
+        Yup.string()
+          .min(2),
+
+      starts_at:
+        Yup.date()
+          .required("Start Date/Time is required")
+          .typeError("Must be a valid date")
+          .min(new Date(), "Must be after current date/time")
+          .transform((_, val) => val === null ? undefined : new Date(val)),
+
+      ends_at:
+        Yup.date()
+          .typeError("Must be a valid date")
+          .min(new Date(), "Must be after current date/time")
+          .transform((_, val) => val === null ? undefined : new Date(val)),
+
+      phone:
+        Yup.string()
+          .matches(rePhoneNumber, "Must be a valid phone number"),
+
+      email:
+        Yup.string()
+          .required("Email is required")
+          .email("Must be a valid email"),
+
     }),
     initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
 
@@ -72,7 +99,7 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
       }
       const response = await axios.post("/api/calendar/submit", dataToSubmit)
       helpers.setSubmitting(false)
-      //helpers.resetForm()
+      helpers.resetForm()
     }
   })
 
@@ -81,10 +108,8 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
 
   return (
     <div className={form.test}>
-
       {loading && <ElementLoader />}
       <form onSubmit={formik.handleSubmit}>
-
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
             <Grid xs={12} sm={6} >
@@ -120,7 +145,6 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
             </Grid>
             <Grid xs={12} sm={6}>
               <GooglePlacesAutoComplete
-
                 onChange={(value) => formik.setFieldValue("address", value)} value={formik.values.address} />
             </Grid>
             <Grid xs={12} sm={6}>
@@ -136,7 +160,6 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
             </Grid>
             <Grid xs={12} sm={6}>
               <DateTimePicker
-                // required
                 label="Start Date/Time"
                 disablePast
                 className={form.datePicker}
@@ -149,14 +172,19 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
                   "&:hover fieldset": { border: "2px solid black", color: "black" },
                   "& .Mui-focused fieldset": { border: "2px solid black !important" },
                   "& .MuiInputBase-colorError fieldset ": { borderColor: "#d32f2f!important" },
-                  ".MuiFormLabel-colorError": { color: "#d32f2!important" }
+                  "& .MuiInputBase-colorError.Mui-focused fieldset": {borderColor: "#d32f2f!important"},
+                  ".MuiFormLabel-colorError.Mui-focused": { color: "#d32f2!important" }
                 }}
-
-                // color={!!formik.errors.starts_at ? "error" : "primary"}
                 value={formik.values.starts_at}
                 onChange={(value) => formik.setFieldValue("starts_at", value)}
               />
-              <FormHelperText error={!!formik.errors.starts_at}>{formik.errors.starts_at}</FormHelperText>
+              <div >
+                <FormHelperText
+                  className="helperText"
+                  error={!!formik.errors.starts_at}>
+                  {formik.errors.starts_at}
+                </FormHelperText>
+              </div>
             </Grid>
             <Grid xs={12} sm={6}>
               <DateTimePicker
@@ -177,14 +205,20 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
                 value={formik.values.ends_at}
                 onChange={(value) => formik.setFieldValue("ends_at", value)}
               />
-               <FormHelperText error={!!formik.errors.ends_at}>{formik.errors.ends_at}</FormHelperText>
+              <FormHelperText
+                className="helperText"
+                error={!!formik.errors.ends_at}>
+                {formik.errors.ends_at}
+              </FormHelperText>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
                 name="phone"
                 label="Telephone"
                 fullWidth
-                color="secondary" value={formik.values.phone} onChange={formik.handleChange}
+                color="secondary" 
+                value={formik.values.phone} 
+                onChange={formik.handleChange}
                 error={!!formik.errors.phone}
                 helperText={formik.errors.phone} />
             </Grid>

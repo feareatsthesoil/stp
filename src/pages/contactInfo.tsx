@@ -5,8 +5,13 @@ import Header from "../Components/Header/Header"
 import index from "src/styles/Form.module.css"
 import Nav from "../Components/Nav/Nav"
 import DirectoryForm from "../Components/Directory/DirectoryForm"
+import { UserContext } from "../Components/UserContext"
+import { useContext } from "react"
 
-export default function DirectorySubmit() {
+export default function ContactInfo() {
+  const {profile, initialized} = useContext(UserContext)
+  if(!initialized)
+    return null
   return (
     <>
       <div className="body">
@@ -21,7 +26,7 @@ export default function DirectorySubmit() {
                 By submitting you agree to our <Link href="/">privacy policy</Link>
               </p>
             </div>
-            <DirectoryForm profile={true} />
+            <DirectoryForm profile={true} data ={profile} />
           </div>
         </div>
         <Footer />

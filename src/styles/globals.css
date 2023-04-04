@@ -175,6 +175,14 @@ a img {
   display: none;
 }
 
+.MuiFormHelperText-root.Mui-error p{
+  /* margin: 3px 14px 0 0!important; */
+  margin-left: 14px!important;
+}
+
+.helperText{
+  margin-left: 14px!important;
+}
 /* MuiCalendar */
 
 .MuiPickersCalendarHeader-label {
@@ -191,8 +199,12 @@ a img {
 
 /* MuiDateTimeField */
 
-p.Mui-required {
+/* p.Mui-required {
   color: #d32f2f;
+} */
+
+.Form-datePicker p{
+  padding-left: 10px!important;
 }
 
 /* MuiList */

@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client"
 import { NextApiRequest, NextApiResponse } from "next"
 
 
-async function directorySubmit(req: any, res: NextApiResponse) {
+async function meta(req: any, res: NextApiResponse) {
   
   const {userId} = req.auth
   
@@ -12,4 +12,4 @@ async function directorySubmit(req: any, res: NextApiResponse) {
   //await insertDirectoryData(body)
   return res.status(200).json({contactInfo,  message: "queried succesfully", user: userId })
 }
-export default withAuth(directorySubmit)
+export default withAuth(meta)

@@ -73,7 +73,7 @@ const About = () => {
                   <Grid xs={6}>
                     <CssTextField
                       sx={{
-                        "& fieldset": {borderRadius: "0", padding: "0px", paddingTop: "40px"},
+                        "& fieldset": {borderRadius: "0", padding: "0px",},
                         "& input": {padding: "10px", margin: "0", height: "10px"},
                         
                       }}
