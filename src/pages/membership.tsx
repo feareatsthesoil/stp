@@ -1,12 +1,16 @@
-import React from "react"
+import React, { useContext } from "react"
 import Link from "next/link"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import index from "../styles/Membership.module.css"
 import Nav from "../Components/Nav/Nav"
+import { UserContext } from "../Components/UserContext"
+import { Badge, Chip } from "@mui/material"
+import JoinButton from "../Components/Membership/JoinButton"
 
 
 const Membership = () => {
+  const {initialized,purchase} = useContext(UserContext)
   return (
     <>
       <div className={index.body}>
@@ -41,9 +45,8 @@ const Membership = () => {
               <h1>
                 Individual Member: $75
               </h1>
-              <button>
-                Join Now
-              </button>
+             { initialized &&<>{!purchase?.id && <JoinButton/>}
+              {purchase?.id && <Chip color="success" label="Joined"/>}</>}
             </div>
             <p>Benefits</p>
             <ul>

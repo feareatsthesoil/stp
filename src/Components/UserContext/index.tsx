@@ -3,10 +3,11 @@ import axios from "axios";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 import { DirectoryRow } from "../../types";
-export const UserContext = createContext<{profile? : DirectoryRow, userId?: string, loggedIn?: boolean, initialized: boolean, refresh : ()=>any}>({initialized: false, refresh: ()=>{}})
+export const UserContext = createContext<{profile? : DirectoryRow, userId?: string, loggedIn?: boolean, initialized: boolean, refresh : ()=>any, purchase?: {id: number, expiryDate: string}}>({initialized: false, refresh: ()=>{}})
 
 export const UserProvider = (props: {children: ReactNode})=>{
     const [profile, setProfile] = useState<DirectoryRow>()
+    const [purchase,setPurchase] = useState<{id: number, expiryDate: string}>()
     const [userId, setUserId] = useState<string>()
     const [loggedIn, setLoggedIn] = useState<boolean>()
     const [initialized, setInitialized] = useState(false)
@@ -18,6 +19,7 @@ export const UserProvider = (props: {children: ReactNode})=>{
        
             setUserId(data.user)
             setProfile(data.contactInfo)
+            setPurchase(data.purchase)
             setLoggedIn(!!data.user)
      
         
@@ -25,6 +27,7 @@ export const UserProvider = (props: {children: ReactNode})=>{
         setUserId(undefined)
         setProfile(undefined)
         setLoggedIn(false)
+        setPurchase(undefined)
         
       }).then(()=>{
         setInitialized(true)
@@ -34,6 +37,7 @@ export const UserProvider = (props: {children: ReactNode})=>{
         setLoggedIn(false)
         setUserId(undefined)
         setProfile(undefined)
+        setPurchase(undefined)
        loadData()
        
     }, [auth.isSignedIn])
@@ -43,7 +47,7 @@ export const UserProvider = (props: {children: ReactNode})=>{
     const refresh = ()=>{
        return  loadData()
     }
-    return <UserContext.Provider value={{initialized, profile, userId, loggedIn, refresh}}>
+    return <UserContext.Provider value={{initialized, profile, userId, purchase, loggedIn, refresh}}>
         {props.children}
     </UserContext.Provider>
 }
