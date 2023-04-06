@@ -28,7 +28,6 @@ const type = [
   }
 ]
 
-
 const CssTextField = withStyles({
   root: {
     "& .MuiOutlinedInput-root": {

@@ -19,9 +19,9 @@ function Header() {
 
   let isLogin = false;
 
-  if (currentRoute === nav.items.login) {
+  if (currentRoute === "/login") {
     isLogin = true;
-  } else if (currentRoute === nav.items.loginSubmit) {
+  } else if (currentRoute === "/comt") {
     isLogin = true;
   } else {
     isLogin = false;
@@ -37,12 +37,12 @@ function Header() {
 
       {isSignedIn ? <UserButton  /> : <Link
         className={isLogin ? header.active : header.a}
-        href={nav.items.login}
+        href={"login"}
       >
-        {nav.items.loginName}
+        Login
       </Link>}
 
-      <Link href={nav.items.home}>
+      <Link href={"/"}>
         <h1>SERVING the PEOPLE</h1>
       </Link>
     </div>

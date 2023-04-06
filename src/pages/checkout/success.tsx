@@ -37,7 +37,7 @@ export default function CheckoutSuccess(){
     <div className="subBody">
      {verifying && <h2>Verifying your payment</h2>}
     {verified && <>
-    Thank you for your donation. 
+    Thank you for subscribing. 
     </>}
 
     </div>

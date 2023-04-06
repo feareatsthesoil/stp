@@ -13,11 +13,11 @@ const NavBar = () => {
   
   let isCalendar = false;
 
-  if (currentRoute === nav.items.calendar){
+  if (currentRoute === "/calendar"){
     isCalendar = true;
-  } else if (currentRoute === nav.items.calendarEvent){
+  } else if (currentRoute === "/calendar/[eventId]"){
     isCalendar = true;
-  } else if (currentRoute === nav.items.calendarSubmit){
+  } else if (currentRoute === "/calendar/submit"){
     isCalendar = true;
   }else {
     isCalendar = false;
@@ -25,9 +25,9 @@ const NavBar = () => {
 
   let isDirectory = false;
 
-  if (currentRoute === nav.items.directory){
+  if (currentRoute === "/directory"){
     isDirectory = true;
-  } else if (currentRoute === nav.items.directorySubmit){
+  } else if (currentRoute === "/directory/submit"){
     isDirectory = true;
   } else {
     isDirectory = false;
@@ -35,9 +35,9 @@ const NavBar = () => {
 
   let isLogin = false;
   
-  if (currentRoute === nav.items.login){
+  if (currentRoute === "/login"){
     isLogin = true;
-  } else if (currentRoute === nav.items.loginSubmit){
+  } else if (currentRoute === "/contactInfo"){
     isLogin = true;
   } else {
     isLogin = false;
@@ -52,7 +52,21 @@ const NavBar = () => {
       <nav>
         <div>
           <ul>
-            <li>
+            
+            {nav.items.map(({href, name}) => {
+              
+              return (
+                <li key={name}>
+                  <Link
+                  href={href}
+                  className={currentRoute.startsWith (href) && (href!=="/") ? index.active : index.a}
+                  >
+                    {name}
+                  </Link>
+                </li>
+              )
+            })}
+            {/* <li>
               <Link
                 href={nav.items.about}
                 className={currentRoute === nav.items.about ? index.active : index.a}
@@ -119,6 +133,7 @@ const NavBar = () => {
             {loggedIn && <li>
               <Link 
               href={"/contactInfo"}
+              className={currentRoute === "/contactInfo" ? index.active : index.a}
               >
                Contact Info
                 </Link>
@@ -130,7 +145,7 @@ const NavBar = () => {
               >
                 {nav.items.loginName}
               </Link>
-            </li>
+            </li> */}
           </ul>
         </div>
       </nav>

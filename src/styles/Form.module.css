@@ -326,3 +326,16 @@
   transform: translateY(4px);
   transition: 60ms transform ease-in-out;
 }
+
+.checkBox{
+  float: left;
+  appearance: none;
+  border: 1px solid black;
+  font: inherit;
+  height: 1em;
+  margin: 0 5px 0 116px;
+  transform: translateY(-0.1em);
+  width: 1em;
+  display: grid;
+  place-content: center;
+}

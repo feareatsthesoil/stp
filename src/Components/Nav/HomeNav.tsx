@@ -5,7 +5,7 @@ import nav from "../Nav/Nav.json"
 import {useUser} from "@clerk/nextjs"
 
 
-const HomeNav = () => {
+function HomeNav() {
   const isSignedIn = useUser()
   let login = "MobileLogin";
   isSignedIn.isSignedIn ? login="hide" : login="MobileLogin"
@@ -15,7 +15,18 @@ const HomeNav = () => {
     <div>
       <div className={index.items}>
         <ul>
-          <li id={login}>
+          {nav.items.map(({ href, name }) => {
+              return (
+                <li key={name}>
+                  <Link
+                    href={href}
+                    >
+                      {name}
+                  </Link>
+                </li>
+              )
+          })}
+          {/* <li id={login}>
             <Link href={nav.items.login}>{nav.items.loginName}</Link>
           </li>
           <li>
@@ -44,7 +55,7 @@ const HomeNav = () => {
           </li>
           <li>
             <Link href={nav.items.shop} target="webapp-tab">{nav.items.shopName}</Link>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

@@ -28,7 +28,7 @@ const About = () => {
 
   const formik = useFormik({
     validationSchema: Yup.object({
-      email: Yup.string().required().email(),
+      email: Yup.string().required("Required").email(),
     }),
     initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
 
@@ -47,10 +47,8 @@ const About = () => {
         <Header />
         <Nav />
         <div className="subBody">
-
           <div className={index.box}>
             <h1>About</h1>
-
             <p>
               Serving the People is a 501(c)(3) non-profit organization that assists artists
               and creators in making meaningful connections both online and in person.
@@ -69,14 +67,25 @@ const About = () => {
             </p>
             <form onSubmit={formik.handleSubmit}>
               <div className={index.input}>
-                <Grid container spacing={2} sx={{ maxWidth: "sm" }}>
+                <Grid container spacing={2} sx={{ maxWidth: "sm",  }}>
                   <Grid xs={6}>
                     <CssTextField
                       sx={{
-                        "& fieldset": {borderRadius: "0", padding: "0px",},
-                        "& input": {padding: "10px", margin: "0", height: "10px"},
-                        
+                        "& fieldset": {
+                          borderRadius: "0",
+                          padding: "0px",
+                          alignSelf: "center",
+                        },
+                        "& input": {
+                          fontFamily: "Times New Roman",
+                          padding: "11px",
+                          height: "10px"
+                        },
                       }}
+                      value={formik.values.email}
+                      onChange={formik.handleChange}
+                      error={!!formik.errors.email}
+                      helperText={formik.errors.email}
                     />
                   </Grid>
                   <Grid xs={6}>

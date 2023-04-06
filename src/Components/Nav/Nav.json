@@ -1,46 +1,44 @@
 {
-  "items": {
-    "home": "/",
+  "items": [{
+    "href": "/",
+    "name": "Home"
+  }, {
+    "href": "/about",
+    "name": "About"
+  }, {
+    "href": "/calendar",
+    "name": "Calendar"
+  }, {
 
-    "about": "/about",
-    "aboutName": "About",
-
-    "calendar": "/calendar",
-    "calendarEvent": "/calendar/[eventId]",
-    "calendarSubmit": "/calendar/submit",
-    "calendarName": "Calendar",
-
-    "directory": "/directory",
-    "directorySubmit": "/directory/submit",
-    "directoryName": "Directory",
-
-    "membership": "/membership",
-    "membershipName": "Membership",
-
-    "blog": "/blog",
-    "blogName": "Blog",
-
-    "mail": "/mail",
-    "mailName": "Mail",
-
-    "support": "/support",
-    "supportName": "Support",
-
-    "radio": "/radio",
-    "radioName": "Radio",
-
-    "discussion": "/discussion",
-    "discussionName": "Discussion",
-
-    "contact": "/contact",
-    "contactName": "Contact Us",
-
-    "shop": "https://shop.stp.world",
-    "shopName": "Shop",
-
-    "login": "/login",
-    "loginName": "Login Portal",
-    "loginSubmit": "/contactInfo"
+    "href": "/directory",
+    "name": "Directory"
+  }, {
+    "href": "/membership",
+    "name": "Membership"
+  }, {
+    "href": "/blog",
+    "name": "Blog"
+  }, {
+    "href": "/mail",
+    "name": "Mail"
+  }, {
+    "href": "/support",
+    "name": "Support"
+  }, {
+    "href": "/radio",
+    "name": "Radio"
+  }, {
+    "href": "/discussion",
+    "name": "Discussion"
+  }, {
+    "href": "/contact",
+    "name": "Contact Us"
+  }, {
+    "href": "https://shop.stp.world",
+    "name": "Shop"
+  }, {
+    "href": "/login",
+    "name": "Login Portal"
   }
+  ]
 }
-

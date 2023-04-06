@@ -45,7 +45,7 @@ const CssTextField = withStyles({
     },
   },
 })(TextField);
-
+ 
 const theme = createTheme({
   palette: {
     secondary: {
@@ -53,6 +53,8 @@ const theme = createTheme({
     },
   },
 });
+
+const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
 export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow}) {
 
@@ -150,7 +152,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
 
                 name="description" label="Short Description" multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4} inputProps={{ maxLength: 300, style: { color: "black" } }} onChange={formik.handleChange} />
             </Grid>
-            {profile && <> <Checkbox name="display" onChange={formik.handleChange} checked={formik.values.display} /> Display in directory
+            {profile && <> <Checkbox name="display" sx={{}} onChange={formik.handleChange} checked={formik.values.display} /> Display in directory
             </>}
             <Grid xs={12}>
               <p className={isMax ? form.max : form.notMax}>
