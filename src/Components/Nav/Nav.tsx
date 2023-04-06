@@ -66,6 +66,14 @@ const NavBar = () => {
                 </li>
               )
             })}
+            <li id={login}>
+              <Link
+                href={"/login"}
+                className={currentRoute.startsWith("/login") ? index.active : index.a}
+              >
+                Login Portal
+              </Link>
+            </li> 
             {/* <li>
               <Link
                 href={nav.items.about}

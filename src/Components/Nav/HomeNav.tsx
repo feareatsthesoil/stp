@@ -15,6 +15,9 @@ function HomeNav() {
     <div>
       <div className={index.items}>
         <ul>
+        <li id={login}>
+            <Link href="/login">Login Portal</Link>
+          </li>
           {nav.items.map(({ href, name }) => {
               return (
                 <li key={name}>

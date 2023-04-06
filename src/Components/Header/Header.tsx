@@ -34,14 +34,12 @@ function Header() {
       <Head>
         <meta name="theme-color" content={`${isHome ? "#000" : "#fff"}`} />
       </Head>
-
       {isSignedIn ? <UserButton  /> : <Link
         className={isLogin ? header.active : header.a}
         href={"login"}
       >
-        Login
+        Login Portal
       </Link>}
-
       <Link href={"/"}>
         <h1>SERVING the PEOPLE</h1>
       </Link>

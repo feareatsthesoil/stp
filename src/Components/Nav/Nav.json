@@ -1,8 +1,5 @@
 {
   "items": [{
-    "href": "/",
-    "name": "Home"
-  }, {
     "href": "/about",
     "name": "About"
   }, {
@@ -16,15 +13,6 @@
     "href": "/membership",
     "name": "Membership"
   }, {
-    "href": "/blog",
-    "name": "Blog"
-  }, {
-    "href": "/mail",
-    "name": "Mail"
-  }, {
-    "href": "/support",
-    "name": "Support"
-  }, {
     "href": "/radio",
     "name": "Radio"
   }, {
@@ -36,9 +24,6 @@
   }, {
     "href": "https://shop.stp.world",
     "name": "Shop"
-  }, {
-    "href": "/login",
-    "name": "Login Portal"
   }
   ]
 }
