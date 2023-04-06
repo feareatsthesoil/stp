@@ -11,34 +11,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { UserProvider } from '../Components/UserContext'
 export default function MyApp({ Component, pageProps }: AppProps) {
-  const [loading, setLoading] = useState(false)
-  const router= useRouter()
-  Router.events.on("routeChangeStart", () => {
-    setLoading(true)
-  })
-  Router.events.on("routeChangeComplete", () => {
-    setLoading(false)
-  })
-  Router.events.on("routeChangeError", () => {
-    setLoading(false)
-  })
-
-  useEffect(()=>{
-    if(router.asPath=="/contactInfo"){
-      return 
-    }
-    axios.get("/api/directory/meta").then(({data})=>{
-      console.log(data.contactInfo)
-      if(data.user){
-        if(!data.contactInfo){
-          console.log("Push ehere")
-          router.push("/contactInfo")
-        }
-      }
-    }).catch(()=>{
-      
-    })
-  }, [router.asPath])
+ 
   // return <Loader/>
   return (
     <>
@@ -52,7 +25,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               />
               <title>STP</title>
             </Head>
-            {loading && <Loader />}
+          
             <Component {...pageProps} />
           </UserProvider>
         </ClerkProvider>

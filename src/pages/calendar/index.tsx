@@ -9,6 +9,7 @@ import Nav from "../../Components/Nav/Nav"
 import styled from "styled-components";
 import Link from "next/link"
 import axios from "axios"
+import DefaultLayout from "../../Components/Layouts/DefaultLayout"
 
 
 
@@ -18,11 +19,9 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
 
 
   return (
-    <>
+    <DefaultLayout>
       <div className={calendar.body}>
-        <Header />
-        <Nav />
-        <div className="subBody">
+        
           <div className={calendar.box}>
             <div className={calendar.header}>
               <h1 id="top">2023 Calendar</h1>
@@ -45,10 +44,8 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
             <Calendar data={calendarData} />
           </div>
         </div>
-        <Nav />
-        <Footer />
-      </div>
-    </>
+       
+    </DefaultLayout>
   )
 }
 

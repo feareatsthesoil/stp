@@ -8,43 +8,13 @@ import { SignIn, useAuth, useUser } from "@clerk/nextjs"
 import { useEffect, useState } from "react"
 import { Unstable_Grid2 as Grid } from "@mui/material"
 import { useRouter } from "next/router"
+import AuthLayout from "../../Components/Layouts/AuthLayout"
 
 export default function CalendarSubmit() {
 
-  const { isSignedIn, isLoaded } = useUser();
-
-  const [token, setToken] = useState<null | string>(null)
-  const { getToken } = useAuth()
-
-  const router = useRouter()
-  useEffect(() => {
-    async function setTheToken() {
-      setToken(await getToken())
-    }
-    setTheToken()
-
-  }, [isSignedIn])
-  useEffect(() => {
-    // console.log({token})
-  }, [token])
-  if (!isLoaded)
-    return <></>
-  if (!isSignedIn)
-    return (
-      //Make component for below
-      <div className="body">
-        <Header />
-        <Nav />
-        <div className="subBody">
-
-          <div className="box sans">
-            <SignIn routing="virtual" afterSignInUrl={router.asPath}/>
-          </div>
-        </div>
-      </div>
-    )
+ 
   return (
-    <>
+    <AuthLayout>
       <div className="body">
         <Header />
         <Nav />
@@ -64,6 +34,6 @@ export default function CalendarSubmit() {
         </div>
         <Footer />
       </div>
-    </>
+    </AuthLayout>
   )
 }

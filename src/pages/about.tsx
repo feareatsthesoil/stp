@@ -8,6 +8,7 @@ import * as Yup from 'yup'
 import axios from "axios"
 import { TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
+import DefaultLayout from "../Components/Layouts/DefaultLayout"
 
 const initialState = { email: "" }
 
@@ -42,11 +43,8 @@ const About = () => {
   })
 
   return (
-    <>
-      <div className="body">
-        <Header />
-        <Nav />
-        <div className="subBody">
+    <DefaultLayout>
+
           <div className={index.box}>
             <h1>About</h1>
             <p>
@@ -97,10 +95,9 @@ const About = () => {
               </div>
             </form>
           </div>
-        </div>
-        <Footer />
-      </div>
-    </>
+
+        
+    </DefaultLayout>
   )
 }
 
