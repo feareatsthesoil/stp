@@ -5,23 +5,19 @@ import CalendarEvent from "../../Components/Calendar/CalendarEvent"
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
 import Nav from "../../Components/Nav/Nav"
-import React, { useEffect, useState } from "react"
-import axios from "axios"
+import React from "react"
+
+import { useEvent } from "../../redux/hooks"
 
 export default function EventPage() {
   const router = useRouter()
-  const [events, setEvents] = useState<CalendarRow[]>()
+  
+  
   const eventId = router.query.eventId as string
-  const event = events?.find((row) => row.id == eventId)
-  useEffect(() => {
-    async function getData() {
-      const { data } = await (axios.get<CalendarRow[]>("/api/calendar"))
-      setEvents(data)
-    }
-    getData()
 
-  }, [])
-
+  const event = useEvent(eventId)
+  
+ 
 
   return (
     <>
@@ -30,7 +26,7 @@ export default function EventPage() {
         <Nav />
         <div className="subBody">
           {/* <div className="box"> */}
-            {events && <>
+            {event && <>
               {event
                 ? <CalendarEvent row={{ ...event, index: parseInt(eventId) - 1 }} />
                 : <p>Event not found</p>

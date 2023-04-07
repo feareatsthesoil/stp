@@ -10,11 +10,14 @@ import axios from 'axios'
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { UserProvider } from '../Components/UserContext'
+import { Provider } from 'react-redux'
+import { store } from '../redux/store'
 export default function MyApp({ Component, pageProps }: AppProps) {
  
   // return <Loader/>
   return (
     <>
+    <Provider store={store}>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <ClerkProvider {...pageProps}>
           <UserProvider>
@@ -30,6 +33,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           </UserProvider>
         </ClerkProvider>
   </LocalizationProvider>
+  </Provider>
     </>
   )
 }

@@ -11,7 +11,14 @@ import {
   EmailShareButton,
 } from 'next-share'
 import { google } from 'calendar-link'
-export default function Calendar({ data }: { data: CalendarRow[] }) {
+import { useDispatch, useSelector } from "react-redux"
+import { eventsSelector, loadedEvents } from "../../redux/slices/calendar"
+import { useSelect } from "@mui/base"
+import { useEvents } from "../../redux/hooks"
+export default function Calendar() {
+  
+  
+  const data = useEvents()
   const dateList = _.groupBy(data, (row) => moment(row.starts_at).format("YYYY-MM-DD"))
   return (
     <>

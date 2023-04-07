@@ -8,9 +8,9 @@ import { google} from "googleapis"
 export default withAuth(async (req: any, res: NextApiResponse)=> {
   const { body } = req
 
-  console.log("Auth,", req.auth)
+
   const client = new PrismaClient()
-  await client.events.create({data: {...body, starts_at: new Date(body.starts_at), ends_at: body.ends_at ==='' ?undefined: new Date(body.ends_at),userId: req.auth.userId } })
+  await client.events.create({data: {...body, starts_at: new Date(body.starts_at), ends_at: body.ends_at ==='' ?undefined: new Date(body.ends_at),userId: req.auth.userId, approved: true } })
   const target = ["https://www.googleapis.com/auth/calendar"]
       const jwt = new google.auth.JWT(
         process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
