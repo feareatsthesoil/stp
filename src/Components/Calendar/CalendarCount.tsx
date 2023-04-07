@@ -5,7 +5,7 @@ import { eventsSelector } from "../../redux/slices/calendar";
 
 export default function CalendarCount(){
  
-    const count= useEvents().length
+    const count= useEvents(false).length
 
     return <Chip color="primary"  label={count} />
 }

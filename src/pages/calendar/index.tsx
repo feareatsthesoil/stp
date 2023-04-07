@@ -23,7 +23,6 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
   return (
     <DefaultLayout>
       <div className={calendar.body}>
-        
           <div className={calendar.box}>
             <div className={calendar.header}>
               <h1 id="top">2023 Calendar</h1>
@@ -46,7 +45,6 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
             <Calendar />
           </div>
         </div>
-       
     </DefaultLayout>
   )
 }

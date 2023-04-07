@@ -12,27 +12,19 @@ import AuthLayout from "../../Components/Layouts/AuthLayout"
 
 export default function CalendarSubmit() {
 
- 
+
   return (
     <AuthLayout>
-      <div className="body">
-        <Header />
-        <Nav />
-        <div className="subBody">
-          <div className={form.body}>
-            <div className={form.box}>
-              <h1>Calendar Submission</h1>
-              <h2>All submissions will be included in our weekly newsletter.</h2>
-              <p>
-                By submitting you agree to our <Link href="/">privacy policy</Link>
-              </p>
+      <div className={form.body}>
+        <div className={form.box}>
+          <h1>Calendar Submission</h1>
+          <h2>All submissions will be included in our weekly newsletter.</h2>
+          <p>
+            By submitting you agree to our <Link href="/">privacy policy</Link>
+          </p>
 
-            </div>
-
-            <CalendarForm profile={false}/>
-          </div>
         </div>
-        <Footer />
+        <CalendarForm profile={false} />
       </div>
     </AuthLayout>
   )

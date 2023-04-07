@@ -9,34 +9,15 @@ import { UserContext } from "../Components/UserContext"
 import { useContext } from "react"
 import { useRouter } from "next/router"
 import { SignIn, useUser } from "@clerk/nextjs"
+import AuthLayout from "../Components/Layouts/AuthLayout"
 
 export default function ContactInfo() {
   const {profile, initialized} = useContext(UserContext)
   const router= useRouter()
   const { isSignedIn } = useUser();
-  if(!initialized)
-    return null
-   
-    if (!isSignedIn)
-      return (
-        <div className="body">
-          <Header />
-          <Nav />
-          <div className="subBody">
-  
-            <div className="box sans">
-              <SignIn afterSignInUrl={router.asPath} />
-            </div>
-          </div>
-        </div>
-      )
+ 
   return (
-    <>
-      <div className="body">
-
-        <Header />
-        <Nav />
-        <div className="subBody">
+    <AuthLayout>
           <div className={index.body}>
             <div className={index.box}>
               <h1>Contact Information</h1>
@@ -46,9 +27,7 @@ export default function ContactInfo() {
             </div>
             <DirectoryForm profile={true} data ={profile} />
           </div>
-        </div>
-        <Footer />
-      </div>
-    </>
+      
+    </AuthLayout>
   )
 }

@@ -3,7 +3,6 @@ import Link from "next/link"
 import Directory from "../../Components/Directory"
 import Footer from "../../Components/Footer/Footer"
 import Header from "../../Components/Header/Header"
-
 import { DirectoryRow } from "../../types"
 import index from "../../Components/Directory/Directory.module.css"
 import Nav from "../../Components/Nav/Nav"
@@ -11,14 +10,11 @@ import axios from "axios"
 
 export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[] }) {
   const [searchText, setSearchText] = useState("")
-
   const data = searchText === "" ? fullData : fullData.filter((row) => {
     return row.name.toLowerCase().match(new RegExp(searchText.toLowerCase())) ||
-
       row.email.toLowerCase().match(new RegExp(searchText.toLowerCase())) ||
       row.category.toLowerCase().match(new RegExp(searchText.toLowerCase())) ||
       row.phone.toLowerCase().match(new RegExp(searchText.toLowerCase()))
-
   })
 
   return (

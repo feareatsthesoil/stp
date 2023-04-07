@@ -7,7 +7,7 @@ import {
   FacebookShareButton,
   RedditShareButton,
   WhatsappShareButton,
-  TwitterShareButton,
+TwitterShareButton,
   EmailShareButton,
 } from 'next-share'
 import { google } from 'calendar-link'

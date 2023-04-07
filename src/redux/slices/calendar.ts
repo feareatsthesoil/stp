@@ -20,8 +20,6 @@ export const calendarSlice = createSlice({
     initialState,
     reducers: {
         loadedEvents: (state, action: PayloadAction<CalendarRow[]>)=>{
-
-            
             state.list = action.payload.map((event)=>event.id+"")
             action.payload.map((event)=>{
                 state.store[event.id+""] = event
@@ -43,7 +41,7 @@ const storeSelector = (state:RootState)=>state.calendar.store
 
 export const eventsByIdSelector = (id:string) => (state:RootState)=>state.calendar.store[id]
 
-export const loadEvents = ():AppThunk => async (dispatch)=>{
+export const loadEvents = (): AppThunk => async (dispatch)=>{
     const {data} = await axios.get(`/api/calendar`)
     dispatch(loadedEvents(data))
 }

@@ -3,14 +3,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { eventsByIdSelector, eventsSelector, loadEvents } from "./slices/calendar"
 import { AppDispatch } from "./store"
 
-export const useEvents = ()=>{
+export const useEvents = (refresh=true)=>{
     const dispatch :AppDispatch = useDispatch()
  
     useEffect(()=>{
-     
+      let interval:any
       dispatch(loadEvents())
-      const interval = setInterval(()=> dispatch(loadEvents()), 3000)
+        if(refresh)
+       interval = setInterval(()=> dispatch(loadEvents()), 3000)
       return ()=>{
+        if(refresh)
         clearInterval(interval)
       }
   

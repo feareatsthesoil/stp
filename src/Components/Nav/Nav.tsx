@@ -65,7 +65,7 @@ const NavBar = () => {
                    
 
                     {name}
-                    {name=="Calendar" && <CalendarCount/>}
+                    {/* {name=="Calendar" && <CalendarCount/>} */}
                   </Link>
                 </li>
               )
