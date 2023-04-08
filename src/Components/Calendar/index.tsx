@@ -2,28 +2,22 @@ import Link from "next/link"
 import calendar from "./Calendar.module.css"
 import _ from "lodash"
 import moment from "moment"
-import { CalendarRow } from "../../types"
 import {
   FacebookShareButton,
   RedditShareButton,
   WhatsappShareButton,
-TwitterShareButton,
+  TwitterShareButton,
   EmailShareButton,
 } from 'next-share'
 import { google } from 'calendar-link'
-import { useDispatch, useSelector } from "react-redux"
-import { eventsSelector, loadedEvents } from "../../redux/slices/calendar"
-import { useSelect } from "@mui/base"
 import { useEvents } from "../../redux/hooks"
 export default function Calendar() {
-  
-  
+
   const data = useEvents()
   const dateList = _.groupBy(data, (row) => moment(row.starts_at).format("YYYY-MM-DD"))
   return (
     <>
       <div className={calendar.body}>
-
         {Object.entries(dateList).filter(([date]) => { return moment(date).diff(moment()) > 0 }).map(([date, list]) => {
           return (
             <div key={date} className={calendar.dateGroup}>
@@ -47,11 +41,7 @@ export default function Calendar() {
                         <div className={calendar.spacer}></div>
                         <span className={calendar.timeColumn}>
                           <div>{moment(row.starts_at).format("MMMM DD, YYYY hh:mm A")}
-                          {row.ends_at ? <> - {moment(row.ends_at).format("MMMM DD, YYYY hh:mm A")} </> : ""}
-                          
-                            
-                            
-
+                            {row.ends_at ? <> - {moment(row.ends_at).format("MMMM DD, YYYY hh:mm A")} </> : ""}
                           </div></span><div className={calendar.spacer}></div> {row.address}
                         <div className={calendar.spacer}></div>
 

@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { CalendarEventType } from "../../types/index"
 import calendar from "./Calendar.module.css"
-import GoogleMapReact from 'google-map-react'
 import moment from "moment"
 import Map from "./Map"
 import {
@@ -36,8 +35,6 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
               </>}
 
             </div>
-
-
           </p>
           <div className={calendar.bottom}>
             {row.description}

@@ -1,12 +1,9 @@
 import { PrismaClient } from "@prisma/client"
-import { getPrismaClient } from "@prisma/client/runtime"
-import { NextApiRequest, NextApiResponse } from "next"
-import {withAuth} from "@clerk/nextjs/api"
+import { NextApiResponse } from "next"
 
-export default ( async(req: any, res: NextApiResponse)=>{
- 
+export default (async (req: any, res: NextApiResponse) => {
   const client = new PrismaClient()
-  const calendarData =  await client.events.findMany({orderBy: {starts_at: "asc"}})
-   
+  const calendarData = await client.events.findMany({ orderBy: { starts_at: "asc" } })
+
   return res.status(200).json(calendarData)
 })

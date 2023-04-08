@@ -63,7 +63,7 @@
   margin-bottom: 10px;
 }
 
-.dateGroup a{
+.dateGroup a {
   color: #000;
 }
 
@@ -111,7 +111,7 @@
   border: 0;
 }
 
-.map{
+.map {
   height: 40vw;
   max-height: 500px;
   max-width: 500px;
@@ -124,7 +124,7 @@
   padding-top: 10px;
 }
 
-.mail svg{
+.mail svg {
   margin-bottom: -2px;
 }
 

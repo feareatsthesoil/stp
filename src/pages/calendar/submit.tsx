@@ -1,18 +1,9 @@
 import Link from "next/link"
 import CalendarForm from "../../Components/Calendar/CalendarForm"
-import Footer from "../../Components/Footer/Footer"
-import Header from "../../Components/Header/Header"
 import form from "src/styles/Form.module.css"
-import Nav from "../../Components/Nav/Nav"
-import { SignIn, useAuth, useUser } from "@clerk/nextjs"
-import { useEffect, useState } from "react"
-import { Unstable_Grid2 as Grid } from "@mui/material"
-import { useRouter } from "next/router"
 import AuthLayout from "../../Components/Layouts/AuthLayout"
 
 export default function CalendarSubmit() {
-
-
   return (
     <AuthLayout>
       <div className={form.body}>
@@ -22,7 +13,6 @@ export default function CalendarSubmit() {
           <p>
             By submitting you agree to our <Link href="/">privacy policy</Link>
           </p>
-
         </div>
         <CalendarForm profile={false} />
       </div>

@@ -5,7 +5,6 @@ import Footer from "../Components/Footer/Footer"
 import index from "../styles/Submit.module.css"
 import Nav from "../Components/Nav/Nav"
 
-
 const Submit = () => {
   return (
     <div className="body">

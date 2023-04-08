@@ -1,6 +1,6 @@
 import { withAuth } from "@clerk/nextjs/api";
 import { PrismaClient } from "@prisma/client"
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiResponse } from "next"
 
 
 async function directorySubmit(req: any, res: NextApiResponse) {
@@ -16,7 +16,6 @@ async function directorySubmit(req: any, res: NextApiResponse) {
     return res.status(403).json({message: "You are not authorized to edit this"})
 
   await client.contacts.update({ where:{id: contact.id}, data: {...body, display: body.profile ? body.display: true}})
-  //await insertDirectoryData(body)
   return res.status(200).json({ message: "inserted succesfully" })
 }
 export default withAuth(directorySubmit)

@@ -1,8 +1,6 @@
-import { createClerkClient } from "@clerk/clerk-sdk-node"
-
-import { Clerk, withAuth } from "@clerk/nextjs/api"
+import { withAuth } from "@clerk/nextjs/api"
 import { PrismaClient } from "@prisma/client"
-import { NextApiRequest, NextApiResponse } from "next"
+import { NextApiResponse } from "next"
 
 export default withAuth(async (req: any, res: NextApiResponse)=> {
   const { body } = req

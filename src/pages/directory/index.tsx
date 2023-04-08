@@ -50,8 +50,7 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
 }
 
 export async function getServerSideProps() {
- // const data = await getDirectoryData()
-  const {data} = await axios.get(`${process.env.BACKEND_URL}/api/directory`)
+  const { data } = await axios.get(`${process.env.BACKEND_URL}/api/directory`)
   return {
     props: {
       data,

@@ -1,23 +1,14 @@
 import React from "react"
-import Header from "../Components/Header/Header"
-import Footer from "../Components/Footer/Footer"
 import index from "../styles/Radio.module.css"
-import Nav from "../Components/Nav/Nav"
+import DefaultLayout from "../Components/Layouts/DefaultLayout"
 
 const Radio = () => {
   return (
-    <>
-      <div className={index.body}>
-        <Header />
-        <Nav />
-      <div className="subBody">
-        <div className={index.box}>
-          <h1>NOW PLAYING</h1>
-        </div>
-        </div>
-        <Footer />
+    <DefaultLayout>
+      <div className={index.box}>
+        <h1>NOW PLAYING</h1>
       </div>
-    </>
+    </DefaultLayout>
   )
 }
 
