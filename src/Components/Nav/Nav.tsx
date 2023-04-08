@@ -5,7 +5,6 @@ import { useRouter } from "next/router"
 import nav from "../Nav/Nav.json"
 import {useUser} from "@clerk/nextjs"
 import { UserContext } from "../UserContext"
-import CalendarCount from "../Calendar/CalendarCount"
 
 const NavBar = () => {
   const isSignedIn = useUser()
@@ -65,7 +64,6 @@ const NavBar = () => {
                    
 
                     {name}
-                    {/* {name=="Calendar" && <CalendarCount/>} */}
                   </Link>
                 </li>
               )
