@@ -54,15 +54,12 @@ const NavBar = () => {
           <ul>
             
             {nav.items.map(({href, name}) => {
-              
               return (
                 <li key={name}>
                   <Link
                   href={href}
                   className={currentRoute.startsWith (href) && (href!=="/") ? index.active : index.a}
                   >
-                   
-
                     {name}
                   </Link>
                 </li>

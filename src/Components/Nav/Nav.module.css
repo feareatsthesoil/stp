@@ -7,23 +7,11 @@
   padding: calc(4vh + 47px) 1vw 0 0;
   position: fixed;
   top: 0;
-  width: 10vw;
-}
-
-.items ul {
-  display: flex;
-  flex-direction: column;
-  font-size: 1em;
-  line-height: 13px;
-  list-style: none;
-  padding: calc(4vh + 47px) 1vw 0 0;
-  position: fixed;
-  top: 0;
-  width: 10vw;
+  width: 130px;
 }
 
 .items li {
-  padding: 0 2vw 1em 2vw;
+  padding: 0 0 1em 2vw;
 }
 
 .items a {
@@ -32,18 +20,6 @@
 
 .active {
   font-weight: bold;
-}
-
-@media screen and (min-width: 0px) and (max-width: 1330px) {
-  .items ul {
-    width: 15vw;
-  }
-}
-
-@media screen and (min-width: 0px) and (max-width: 725px) {
-  .items ul {
-    width: 30vw;
-  }
 }
 
 @media screen and (min-width: 0px) and (max-width: 450px) {
@@ -72,4 +48,4 @@
   .items ul {
     padding: 10px 0 100px;
   }
-}
+} 

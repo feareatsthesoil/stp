@@ -151,7 +151,7 @@ a img {
 
 .subBody {
   align-self: flex-end;
-  width: 90vw;
+  width: calc(100vw - 130px);
 }
 
 .sans {
@@ -250,7 +250,7 @@ a img {
     display: list-item;
   }
 }
-
+/* 
 @media screen and (min-width: 0px) and (max-width: 1330px) {
   .subBody {
     width: 85vw;
@@ -262,7 +262,7 @@ a img {
     width: 70vw;
   }
 }
-
+*/
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .subBody {
     width: 100vw;
@@ -270,4 +270,4 @@ a img {
   .box {
     width: 100vw;
   }
-}
+} 

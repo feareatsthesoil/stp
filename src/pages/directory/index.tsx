@@ -7,6 +7,7 @@ import { DirectoryRow } from "../../types"
 import index from "../../Components/Directory/Directory.module.css"
 import Nav from "../../Components/Nav/Nav"
 import axios from "axios"
+import DefaultLayout from "../../Components/Layouts/DefaultLayout"
 
 export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[] }) {
   const [searchText, setSearchText] = useState("")
@@ -18,11 +19,7 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
   })
 
   return (
-    <>
-      <div className={index.body}>
-        <Header />
-        <Nav />
-        <div className="subBody">
+    <DefaultLayout>
           <div className={index.header}>
             <h1>Directory</h1>
             <p>
@@ -30,22 +27,17 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
               All submissions are subject to review. By submitting to the directory you are agreeing to our <Link href="#">Privacy Policy</Link>.
             </p>
             <input
+            className={index.input}
               type="text"
               value={searchText}
               placeholder="Search"
               onChange={(e) => setSearchText(e.target.value)}
             />
           </div>
-          <form >
-          </form>
           <div className={index.box}>
             <Directory data={data} />
           </div>
-        </div>
-        <Nav />
-        <Footer />
-      </div>
-    </>
+    </DefaultLayout>
   )
 }
 

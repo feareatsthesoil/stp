@@ -1,11 +1,4 @@
-.body {
-  clear: both;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.body input {
+.input {
   border: 1px solid black;
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
@@ -17,7 +10,7 @@
   width: 50vw;
 }
 
-.body input::placeholder {
+.input::placeholder {
   color: #000;
 }
 
@@ -58,7 +51,9 @@
   letter-spacing: -0.03em;
   padding: 0 0 1vh 0;
   text-align: center;
-  width: 98.5%;
+  /* width: 98.5%; */
+  width: 100%;
+  /* border: 1px solid black; */
 }
 
 .box a {
