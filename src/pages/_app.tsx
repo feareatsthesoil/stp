@@ -7,8 +7,10 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import { UserProvider } from '../Components/UserContext'
 import { Provider } from 'react-redux'
 import { store } from '../redux/store'
+import Loader from '../Components/Loader'
 export default function MyApp({ Component, pageProps }: AppProps) {
 
+  // return <Loader/>
   return (
     <>
       <Provider store={store}>

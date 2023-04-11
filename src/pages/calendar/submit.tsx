@@ -2,8 +2,13 @@ import Link from "next/link"
 import CalendarForm from "../../Components/Calendar/CalendarForm"
 import form from "src/styles/Form.module.css"
 import AuthLayout from "../../Components/Layouts/AuthLayout"
+import { useContext } from "react"
+import { UserContext } from "../../Components/UserContext"
+import { Box } from "@mui/system"
+import { Alert, AlertTitle } from "@mui/material"
 
 export default function CalendarSubmit() {
+  const userData = useContext(UserContext)
   return (
     <AuthLayout>
       <div className={form.body}>
@@ -14,7 +19,17 @@ export default function CalendarSubmit() {
             By submitting you agree to our <Link href="/">privacy policy</Link>
           </p>
         </div>
-        <CalendarForm profile={false} />
+
+        {userData.isMember &&  <CalendarForm profile={false} />}
+        {!userData.isMember &&  < Box>
+          <Alert color="warning">
+            <AlertTitle>You must be a member to submit events</AlertTitle>
+            
+          </Alert>
+          To become a member, you can sign up for our membership here:
+          <Link href="/membership">Membership</Link>
+        </Box>}
+       
       </div>
     </AuthLayout>
   )

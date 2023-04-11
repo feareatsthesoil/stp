@@ -2,12 +2,14 @@ import React, { useContext } from "react"
 import Link from "next/link"
 import index from "../styles/Membership.module.css"
 import { UserContext } from "../Components/UserContext"
-import { Chip } from "@mui/material"
+import { Badge, Button, Chip } from "@mui/material"
 import JoinButton from "../Components/Membership/JoinButton"
 import DefaultLayout from "../Components/Layouts/DefaultLayout"
-
+import { useUser } from "@clerk/nextjs"
+import moment from "moment"
 const Membership = () => {
-  const { initialized, purchase } = useContext(UserContext)
+  const { initialized, purchase, isEdu } = useContext(UserContext)
+  const {isLoaded, isSignedIn} = useUser()
   return (
     <DefaultLayout>
       <div className={index.box}>
@@ -36,8 +38,14 @@ const Membership = () => {
           <h1>
             Individual Member: $75
           </h1>
-          {initialized && <>{!purchase?.id && <JoinButton />}
-            {purchase?.id && <Chip color="success" label="Joined" />}</>}
+          {!isEdu && initialized && <>{!purchase?.id && <JoinButton />}
+            {purchase?.id && <>
+            <div>
+            <Chip color="success" label="Joined" />
+            <br/>
+            <>Expires:{moment(purchase.expiryDate).format("DD MMMM, YYYY")}</>
+            </div>
+            </>}</>}
         </div>
         <p>Benefits</p>
         <ul>
@@ -81,9 +89,10 @@ const Membership = () => {
           <h1>
             Student membership: Free
           </h1>
-          <button>
+          {isLoaded  && !isSignedIn &&<button>
             Log in
-          </button>
+          </button>}
+          { isEdu &&<Chip color="success" label="Student" />}
         </div>
         <p>
           Students with a <strong>.edu</strong> email may enjoy all the benefits of the Individual Membership
@@ -96,9 +105,9 @@ const Membership = () => {
           <h1>
             Make a tax-deductible donation today.
           </h1>
-          <button>
+          <Button target="_blank" variant="contained" href="https://donate.stripe.com/test_dR6cNJdBy2vY7kY6oo">
             Donate
-          </button>
+          </Button>
         </div>
         <p>
           With your support, Serving the People can continue to offer a wide range of resources

@@ -147,6 +147,13 @@ a img {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  justify-content: center;
+  /* border: 1px solid black; */
+}
+
+.body > div {
+  justify-content: center;
+  /* border: 1px solid black; */
 }
 
 .subBody {
@@ -163,7 +170,8 @@ a img {
   flex-direction: column;
   margin-right: 10vw;
   height: 80vh;
-  justify-content: center;
+  /* border: 1px solid black; */
+  /* justify-cozntent: center; */
   align-items: center;
 }
 
@@ -250,19 +258,7 @@ a img {
     display: list-item;
   }
 }
-/* 
-@media screen and (min-width: 0px) and (max-width: 1330px) {
-  .subBody {
-    width: 85vw;
-  }
-}
 
-@media screen and (min-width: 0px) and (max-width: 725px) {
-  .subBody {
-    width: 70vw;
-  }
-}
-*/
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .subBody {
     width: 100vw;

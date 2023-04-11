@@ -1,4 +1,4 @@
-import { withAuth } from "@clerk/nextjs/api";
+import { withAuth, clerkClient } from "@clerk/nextjs/api";
 import { PrismaClient } from "@prisma/client"
 import { NextApiResponse } from "next"
 
@@ -11,6 +11,11 @@ async function meta(req: any, res: NextApiResponse) {
   const client = new PrismaClient();
   const contactInfo = await client.contacts.findFirst({where: {userId:userId ?? "Non existent user", profile: true}})
   const purchase = await client.purchases.findFirst({where: {userId: userId, expiryDate: {gte: new Date()} }})
-  return res.status(200).json({contactInfo, purchase,  message: "Queried succesfully", user: userId })
+  const user = await clerkClient.users.getUser(userId)
+
+  const isEdu = user.emailAddresses.some(record=>record.emailAddress.endsWith(".edu"))
+
+  
+  return res.status(200).json({contactInfo, purchase, message: "Queried succesfully", user: userId, isEdu, isMember:  purchase || isEdu })
 }
 export default withAuth(meta)

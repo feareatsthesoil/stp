@@ -46,7 +46,7 @@ export default function AuthLayout (props: {children: ReactNode}){
         <NavBar />
         {loading && <Loader />}
         <div className="subBody">
-            {props.children}
+           {!loading && props.children}
         </div>
         <Footer/>
     </div>

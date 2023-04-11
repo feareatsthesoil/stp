@@ -12,8 +12,8 @@ export default function DefaultLayout (props: {children: ReactNode}){
         <NavBar />
         
         <div className="subBody">
-        {loading && <Loader />}
-            {props.children}
+    {loading && <Loader />}
+           {!loading && props.children}
         </div>
         <Footer/>
     </div>

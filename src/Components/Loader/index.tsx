@@ -17,25 +17,15 @@ export default function Loader() {
 
   return (
     <div className={isHome ? index.bodyHome : index.body}>
-      {isHome && (
-        <Image
-          className={index.background}
-          src={homePic}
-          placeholder="blur"
-          alt="SERVING the PEOPLE"
-          fill
-          style={{ objectFit: "cover" }}
-          quality={75}
-        />
-      )}
       <div className={isHome ? index.fullWidth : "subBody"}>
-        <div className={isHome ? index.fullWidth : index.box}>
-          <h1 className={`${isHome ? index.loadingHome : index.loading}`}>
-            Loading
-          </h1>
-        </div>
+        {/* <div className={isHome ? index.fullWidth : index.dotpulse}> */}
+        {/* <div className={`${isHome ? index.loadingHome : index.loaderBody}`}> */}
+        <h2 className={isHome ? index.loadingHome : index.loading}>Loading</h2>
+        {/* <div className={index.dots}></div> */}
+        {/* </div> */}
+        {/* </div> */}
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   )
 }

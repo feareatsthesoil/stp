@@ -3,31 +3,32 @@ import axios from "axios";
 import { createContext, ReactNode, useEffect, useState } from "react";
 
 import { DirectoryRow } from "../../types";
-export const UserContext = createContext<{profile? : DirectoryRow, userId?: string, loggedIn?: boolean, initialized: boolean, refresh : ()=>any, purchase?: {id: number, expiryDate: string}}>({initialized: false, refresh: ()=>{}})
+
+interface UserMetadata {profile? : DirectoryRow, userId?: string, loggedIn?: boolean, initialized: boolean, refresh : ()=>any, purchase?: {id: number, expiryDate: string}, isEdu?: boolean, isMember?: boolean}
+
+export const UserContext = createContext<UserMetadata>({initialized: false, refresh: ()=>{}, isEdu: false, isMember: false})
 
 export const UserProvider = (props: {children: ReactNode})=>{
-    const [profile, setProfile] = useState<DirectoryRow>()
-    const [purchase,setPurchase] = useState<{id: number, expiryDate: string}>()
-    const [userId, setUserId] = useState<string>()
+
+
     const [loggedIn, setLoggedIn] = useState<boolean>()
     const [initialized, setInitialized] = useState(false)
+
+    const [metadata, setMetadata] = useState<UserMetadata |{}>()
     const auth = useAuth()
 
     const loadData = ()=> axios.get("/api/directory/meta").then(({data})=>{
-        console.log(data.contactInfo)
+   
         
        
-            setUserId(data.user)
-            setProfile(data.contactInfo)
-            setPurchase(data.purchase)
+            setMetadata(data)
             setLoggedIn(!!data.user)
      
         
       }).catch(()=>{
-        setUserId(undefined)
-        setProfile(undefined)
+        setMetadata({})
         setLoggedIn(false)
-        setPurchase(undefined)
+        
         
       }).then(()=>{
         setInitialized(true)
@@ -35,10 +36,8 @@ export const UserProvider = (props: {children: ReactNode})=>{
     useEffect(()=>{
         setInitialized(false)
         setLoggedIn(false)
-        setUserId(undefined)
-        setProfile(undefined)
-        setPurchase(undefined)
-       loadData()
+        setMetadata({})
+        loadData()
        
     }, [auth.isSignedIn])
     useEffect(()=>{
@@ -47,7 +46,7 @@ export const UserProvider = (props: {children: ReactNode})=>{
     const refresh = ()=>{
        return  loadData()
     }
-    return <UserContext.Provider value={{initialized, profile, userId, purchase, loggedIn, refresh}}>
+    return <UserContext.Provider value={{...metadata, initialized, loggedIn, refresh}}>
         {props.children}
     </UserContext.Provider>
 }

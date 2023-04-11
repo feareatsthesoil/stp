@@ -7,7 +7,7 @@ import {useUser} from "@clerk/nextjs"
 import { UserContext } from "../UserContext"
 
 const NavBar = () => {
-  const isSignedIn = useUser()
+  const user = useUser()
   const router = useRouter();
   const currentRoute = router.pathname;
   
@@ -44,8 +44,9 @@ const NavBar = () => {
   }
 
   let login = "MobileLogin";
-  isSignedIn.isSignedIn ? login="hide" : login="MobileLogin"
+  user.isSignedIn ? login="hide" : login="MobileLogin"
 
+  const navItems = nav.items.filter(item=>(!item.authorized || user.isSignedIn ))
   const {loggedIn} = useContext(UserContext)
   return (
     <div className={index.items}>
@@ -53,18 +54,26 @@ const NavBar = () => {
         <div>
           <ul>
             
-            {nav.items.map(({href, name}) => {
+            {navItems.map(({href, name}) => {
               return (
                 <li key={name}>
                   <Link
                   href={href}
-                  className={currentRoute.startsWith (href) && (href!=="/") ? index.active : index.a}
+                  className={currentRoute.startsWith (href) && (href!=="/"||"/contact") ? index.active : index.a}
                   >
                     {name}
                   </Link>
                 </li>
               )
             })}
+            <li id={login}>
+              <Link
+                href={"/login"}
+                className={currentRoute.startsWith("/login") ? index.active : index.a}
+              >
+                Login Portal
+              </Link>
+            </li> 
             <li id={login}>
               <Link
                 href={"/login"}
