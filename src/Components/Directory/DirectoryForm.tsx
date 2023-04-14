@@ -45,7 +45,7 @@ const CssTextField = withStyles({
     },
   },
 })(TextField);
- 
+
 const theme = createTheme({
   palette: {
     secondary: {
@@ -56,21 +56,35 @@ const theme = createTheme({
 
 const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
-export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow}) {
+export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow }) {
 
-  const {refresh} = useContext(UserContext)
+  const { refresh } = useContext(UserContext)
   let isMax = false;
- 
+
   const router = useRouter()
   const [loading, setLoading] = useState(false)
 
   const formik = useFormik({
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required").max(20, "Must be at most 20 characters").min(2, "Must be at least 2 characters"),
-      email: Yup.string().required("Email is required").email("Must be a valid email"),
-      address: Yup.string().min(2),
-      category: Yup.string().required(),
-      // website: Yup.string
+      name:
+        Yup.string()
+          .required("Name is required")
+          .max(20, "Must be at most 20 characters")
+          .min(2, "Must be at least 2 characters"),
+
+      email:
+        Yup.string()
+          .required("Email is required")
+          .email("Must be a valid email"),
+
+      address:
+        Yup.string(),
+          // .min(2),
+
+      category:
+        Yup.string()
+          .required("Category is required"),
+
     }),
     initialValues: { ...initialState, display: !profile, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
 
@@ -79,14 +93,12 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
         ...values, profile
       }
       const response = data?.id ? await axios.put(`/api/directory/${data.id}`, dataToSubmit) : await axios.post("/api/directory/submit", dataToSubmit)
-      
+
       await refresh()
       helpers.setSubmitting(false)
-      if(!data) helpers.resetForm()
-      if(profile && !data)
+      if (!data) helpers.resetForm()
+      if (profile && !data)
         router.push("/")
-      
-        
     }
   })
 
@@ -99,60 +111,108 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
             <Grid xs={12} sm={6} >
-              <CssTextField name="name" label="Name/Business" fullWidth color="secondary" value={formik.values.name} onChange={formik.handleChange}
+              <CssTextField
+                name="name"
+                label="Name/Business"
+                fullWidth
+                color="secondary"
+                value={formik.values.name}
+                onChange={formik.handleChange}
                 error={!!formik.errors.name}
                 helperText={formik.errors.name}
               />
-
             </Grid>
             <Grid xs={12} sm={6}>
-              <CssTextField label="Category" name="category" select fullWidth color="secondary" value={formik.values.category} onChange={formik.handleChange}
+              <CssTextField
+                name="category"
+                label="Category"
+                select fullWidth
+                color="secondary"
+                value={formik.values.category}
+                onChange={formik.handleChange}
                 error={!!formik.errors.category}
                 helperText={formik.errors.category}
               >
                 {type.map((option) => (
-                  <MenuItem className="bolder" key={option.value} value={option.value}>
+                  <MenuItem
+                    className="bolder"
+                    key={option.value}
+                    value={option.value}>
                     {option.value}
                   </MenuItem>
                 ))}
               </CssTextField>
             </Grid>
             <Grid xs={12} sm={6}>
-              {/* <CssTextField value={formik.values.address} name="address" label="Location" fullWidth color="secondary" onChange={formik.handleChange}
-                error={!!formik.errors.address}
-                helperText={formik.errors.address}
-
-              /> */}
-
-              <GooglePlacesAutoComplete value={formik.values.address}onChange={(val)=>formik.setFieldValue("address", val)} />
+              <GooglePlacesAutoComplete
+                value={formik.values.address}
+                onChange={(val) => formik.setFieldValue("address", val)} />
             </Grid>
             <Grid xs={12} sm={6}>
-              <CssTextField value={formik.values.website} name="website" label="Website" fullWidth color="secondary" onChange={formik.handleChange}
+              <CssTextField
+                name="website"
+                label="Website"
+                fullWidth
+                color="secondary"
+                value={formik.values.website}
+                onChange={formik.handleChange}
                 error={!!formik.errors.website}
                 helperText={formik.errors.website}
-
               />
             </Grid>
             <Grid xs={12} sm={6}>
-              <CssTextField value={formik.values.phone} name="phone"
+              <CssTextField
+                name="phone"
+                label="Telephone"
+                fullWidth
+                color="secondary"
+                value={formik.values.phone}
+                onChange={formik.handleChange}
                 error={!!formik.errors.phone}
                 helperText={formik.errors.phone}
-                label="Telephone" fullWidth color="secondary" onChange={formik.handleChange} />
+              />
             </Grid>
             <Grid xs={12} sm={6}>
-              <CssTextField value={formik.values.email}
+              <CssTextField
+                name="email"
+                label="Email"
+                fullWidth
+                color="secondary"
+                value={formik.values.email}
+                onChange={formik.handleChange}
                 helperText={formik.errors.email}
-                error={!!formik.errors.email}
-                name="email" label="Email" fullWidth color="secondary" onChange={formik.handleChange} />
+                error={!!formik.errors.email} />
             </Grid>
             <Grid xs={12}>
-              <CssTextField value={formik.values.description}
-
+              <CssTextField
+                name="description"
+                label="Short Description"
+                multiline fullWidth
+                color="secondary"
+                rows={4}
+                inputProps={{
+                  maxLength: 300,
+                  style: { color: "black" }
+                }}
+                value={formik.values.description}
+                onChange={formik.handleChange}
                 helperText={formik.errors.description}
-
-                name="description" label="Short Description" multiline fullWidth className={form.description} id="mui-theme-provider-outlined-input" variant="outlined" color="secondary" rows={4} inputProps={{ maxLength: 300, style: { color: "black" } }} onChange={formik.handleChange} />
+                 />
             </Grid>
-            {profile && <> <Checkbox name="display" sx={{}} onChange={formik.handleChange} checked={formik.values.display} /> Display in directory
+            {profile && <>
+              <Checkbox 
+              name="display" 
+              sx={{
+                padding: "0px 5px 0 5px",
+                margin: "-4px 0 0 0",
+                color: "black",
+                '&.Mui-checked': {
+                  color: "black",
+                },
+              }} 
+              onChange={formik.handleChange} 
+              checked={formik.values.display} />
+              <label htmlFor="display">Display in directory</label>
             </>}
             <Grid xs={12}>
               <p className={isMax ? form.max : form.notMax}>

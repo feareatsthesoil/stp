@@ -51,10 +51,11 @@ const theme = createTheme({
 
 const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
-export default function CalendarForm({ profile = false }: { profile: boolean }) {
+export default function CalendarForm({}: { profile: boolean }) {
   let isMax = false;
   const [loading, setLoading] = useState(false)
   const { getToken } = useAuth()
+
   const formik = useFormik({
     validationSchema: Yup.object({
       name:
@@ -171,7 +172,7 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
                   "&:hover fieldset": { border: "2px solid black", color: "black" },
                   "& .Mui-focused fieldset": { border: "2px solid black !important" },
                   "& .MuiInputBase-colorError fieldset ": { borderColor: "#d32f2f!important" },
-                  "& .MuiInputBase-colorError.Mui-focused fieldset": {borderColor: "#d32f2f!important"},
+                  "& .MuiInputBase-colorError.Mui-focused fieldset": { borderColor: "#d32f2f!important" },
                   ".MuiFormLabel-colorError.Mui-focused": { color: "#d32f2!important" }
                 }}
                 value={formik.values.starts_at}
@@ -215,8 +216,8 @@ export default function CalendarForm({ profile = false }: { profile: boolean }) 
                 name="phone"
                 label="Telephone"
                 fullWidth
-                color="secondary" 
-                value={formik.values.phone} 
+                color="secondary"
+                value={formik.values.phone}
                 onChange={formik.handleChange}
                 error={!!formik.errors.phone}
                 helperText={formik.errors.phone} />

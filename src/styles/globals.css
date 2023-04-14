@@ -1,84 +1,4 @@
-html,
-body,
-div,
-span,
-applet,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-a,
-abbr,
-acronym,
-address,
-big,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-s,
-samp,
-small,
-strike,
-strong,
-sub,
-sup,
-tt,s 
-var,
-b,
-u,
-i,
-center,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-ruby,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, s var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption,tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -87,17 +7,7 @@ video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+article, aside, details, figcaption, figure, footer, header,hgroup, menu, nav, section {
   display: block;
 }
 
@@ -105,15 +15,11 @@ body {
   line-height: 1;
 }
 
-blockquote,
-q {
+blockquote, q {
   quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:before, blockquote:after, q:before, q:after {
   content: '';
   content: none;
 }
@@ -123,13 +29,11 @@ table {
   border-spacing: 0;
 }
 
-strong,
-b {
+strong, b {
   font-weight: bold;
 }
 
-em,
-i {
+em, i {
   font-style: italic;
 }
 
@@ -138,61 +42,55 @@ a img {
 }
 
 /* END RESET */
+/* 
+.cl-internal {
+  font-family: Helvetica !important;
+} */
+
+/* .cl-modalBackdrop{
+  font-family: Helvetica;
+}
+
+.cl-userButton-popover{
+  font-family: Helvetica;
+} */
 
 :root {
   box-sizing: border-box
 }
 
-.body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  justify-content: center;
-  /* border: 1px solid black; */
-}
 
-.body > div {
-  justify-content: center;
-  /* border: 1px solid black; */
-}
+/* #MobileLogin {
+  display: none;
+} */
 
-.subBody {
-  align-self: flex-end;
-  width: calc(100vw - 130px);
-}
-
-.sans {
-  font-family: sans-serif;
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-  margin-right: 10vw;
-  height: 80vh;
-  /* border: 1px solid black; */
-  /* justify-cozntent: center; */
-  align-items: center;
-}
-
-#MobileLogin {
+#hide {
   display: none;
 }
 
-#hide{
-  display: none;
+.MuiFormHelperText-root.Mui-error p {
+  margin-left: 14px !important;
 }
 
-.MuiFormHelperText-root.Mui-error p{
-  /* margin: 3px 14px 0 0!important; */
-  margin-left: 14px!important;
+.helperText {
+  margin-left: 14px !important;
 }
 
-.helperText{
-  margin-left: 14px!important;
-}
+/* .MuiButtonBase-root input{
+  float: left;
+  appearance: none;
+  border: 1px solid black;
+  font: inherit;
+  height: 1em;
+  margin: 0 5px 0 116px;
+  transform: translateY(-0.1em);
+  width: 1em;
+  display: grid;
+  place-content: center;
+} */
+
 /* MuiCalendar */
-
+/* 
 .MuiPickersCalendarHeader-label {
   font-family: 'Times New Roman', Times, serif;
 }
@@ -201,23 +99,23 @@ a img {
   font-family: 'Times New Roman', Times, serif;
 }
 
-.MuiTypography-root-MuiDayCalendar-weekDayLabel{
+.MuiTypography-root-MuiDayCalendar-weekDayLabel {
   font-family: 'Times New Roman', Times, serif;
-}
+} */
 
 /* MuiDateTimeField */
 
 /* p.Mui-required {
   color: #d32f2f;
 } */
-
-.Form-datePicker p{
-  padding-left: 10px!important;
-}
+/* 
+.Form-datePicker p {
+  padding-left: 10px !important;
+} */
 
 /* MuiList */
 
-.MuiList-root li{
+.MuiList-root li {
   font-family: 'Times New Roman', Times, serif;
   background-color: #fff;
 }
@@ -236,12 +134,12 @@ a img {
 }
 
 .MuiList-root li.Mui-selected {
-  background-color: #fff!important;
+  background-color: #fff !important;
   font-weight: bold;
   text-decoration: underline;
 }
 
-.MuiList-root li:hover{
+.MuiList-root li:hover {
   background-color: #fff;
   font-weight: bold;
 }
@@ -263,7 +161,8 @@ a img {
   .subBody {
     width: 100vw;
   }
+
   .box {
     width: 100vw;
   }
-} 
+}

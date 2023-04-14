@@ -2,21 +2,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
-  /* justify-content: center; */
+  padding-top: calc(20vh - 60px);
+  justify-content: center;
   margin-right: 130px;
-  /* border: 1px solid black; */
-  /* height: calc(90vh - 20px); */
-  /* padding-top: 20vh; */
-}
-
-.testBody{
-  /* height: 100%; */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* border: 1px solid black; */
-  height: 90vh;
 }
 
 .box {
@@ -172,6 +160,13 @@
   color: #d32f2f;
 }
 
+
+@media screen and (min-width: 0px) and (max-width: 450px) {
+  .body{
+    margin: 2vw;
+  }
+}
+
 /* @media screen and (min-width: 0px) and (max-width: 1290px) {
   .bio {
     flex-direction: column;
@@ -274,6 +269,8 @@
 
 .test {}
 
+
+
 .test div {
 
   /* margin: 6px 0px 0px 0px; */
@@ -317,12 +314,12 @@
   width: 100%;
 }
 
-.description input {
+/* .description input {
   height: 100px;
   justify-content: flex-start;
   margin-top: -50px;
-  /* text-align: center; */
-}
+
+} */
 
 .test p {
   float: left;
@@ -356,7 +353,7 @@
   transition: 60ms transform ease-in-out;
 }
 
-.checkBox{
+.test.PrivateSwitchBase-input{
   float: left;
   appearance: none;
   border: 1px solid black;

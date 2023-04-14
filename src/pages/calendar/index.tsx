@@ -11,10 +11,8 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
   return (
     <DefaultLayout>
       <div className={calendar.body}>
-        <div className={calendar.box}>
-          <div className={calendar.header}>
+            <div className={calendar.box}>
             <h1 id="top">2023 Calendar</h1>
-            <div className={calendar.bio}>
               <p>
                 To <Link href="/calendar/submit">submit</Link> to the calendar please <Link href="/login">log in</Link>.
                 All submissions are subject to review. If you would like to receive updates
@@ -29,9 +27,7 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
                 By submitting to the calendar you are agreeing to our <Link href="#">Privacy Policy</Link>
               </p>
             </div>
-          </div>
           <Calendar />
-        </div>
       </div>
     </DefaultLayout>
   )

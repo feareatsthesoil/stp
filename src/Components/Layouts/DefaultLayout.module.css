@@ -17,6 +17,7 @@
     align-items: center;
     font-family: Arial, Helvetica, sans-serif;
     justify-content: center;
+    width: calc(50vw - 140px);
     /* border: 1px solid black; */
   }
 

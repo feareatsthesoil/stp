@@ -1,26 +1,20 @@
 .body {
+  color: #000;
   align-items: center;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   justify-content: center;
   padding: 2vh 0 20px;
   width: 100vw;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.body a:first-child {
+.body a{
   color: #000;
-  padding-right: 2vw;
-  position: absolute;
-  right: 0;
-  text-decoration: none;
 }
 
-.body a:last-child {
+.body a:visited{
   color: #000;
-  font-family: Helvetica;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
 }
 
 .bodyHome {
@@ -32,54 +26,36 @@
   width: 100vw;
 }
 
-.bodyHome button {
-  float: right;
-  position: absolute;
-  right: 2vw;
-}
-
-.body button {
-  float: right;
-  position: absolute;
-  right: 2vw;
-}
-
-.bodyHome a:first-child {
+.bodyHome a{
   color: #fff;
-  padding-right: 2vw;
-  position: absolute;
-  right: 0;
-  text-decoration: none;
 }
 
-.bodyHome a:last-child {
+.bodyHome a:visited{
   color: #fff;
+}
+
+.logo a{
   font-family: Helvetica;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
 }
 
+.login{
+  position: absolute;
+  right: 2vw;
+}
+
 .active {
   font-weight: bold;
 }
 
+/* .cl-internal{
+  font-family: Helvetica!important;
+} */
+
 @media screen and (min-width: 0px) and (max-width: 570px) {
-  .bodyHome a:first-child {
+  .login {
     display: none;
-  }
-
-  .body a:first-child {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 0px) and (max-width: 335px) {
-  .bodyHome {
-    justify-content: space-between;
-  }
-
-  .body {
-    justify-content: space-between;
   }
 }

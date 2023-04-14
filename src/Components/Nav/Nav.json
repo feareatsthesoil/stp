@@ -25,7 +25,7 @@
     "href": "https://shop.stp.world",
     "name": "Shop"
   }, {
-    "href": "/contactInfo",
+    "href": "/info",
     "name": "Contact Info",
     "authorized": true
   }

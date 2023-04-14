@@ -27,7 +27,7 @@ model Events {
   phone String
   email String
   description String?
-  approved Boolean @default(false)
+  approved Boolean @default(true)
   userId String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -45,7 +45,7 @@ model Contacts{
   email String
   phone String
   description String?
-  approved Boolean @default(false)
+  approved Boolean @default(true)
 
   profile Boolean @default(false)
   display  Boolean @default(true)

@@ -2,7 +2,12 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  width: 100vw;
+  /* width: 100vw; */
+}
+
+.subBody{
+  align-self: flex-end;
+  width: calc(100vw - 130px);
 }
 
 .box {
@@ -25,3 +30,9 @@
 .box a {
   color: #000;
 }
+
+@media screen and (min-width: 0px) and (max-width: 450px) {
+  .subBody {
+    width: 100vw;
+  }
+} 

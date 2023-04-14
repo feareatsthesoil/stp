@@ -1,9 +1,11 @@
 import {Action, configureStore, ThunkAction} from '@reduxjs/toolkit';
 import app from "./slices/app"
 import calendar from "./slices/calendar"
+import directory from "./slices/directory"
 export const store = configureStore({reducer:{
     app,
-    calendar
+    calendar,
+    directory,
 }});
 
 export type RootState = ReturnType<typeof store.getState>

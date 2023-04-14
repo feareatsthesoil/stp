@@ -2,12 +2,16 @@
   border: 1px solid black;
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
-  margin: 2vh 0;
-  max-width: 300px;
-  padding: 5px;
-  position: relative;
+  margin: 2vh 100% 2vh 2vw;
+  /* max-width: 300px; */
+  padding: 5px ;
+  position:sticky;
+  /* position: relative; */
   top: 0;
-  width: 50vw;
+  /* width: 100vw; */
+  width: 240px;
+  float: left;
+
 }
 
 .input::placeholder {
@@ -21,7 +25,8 @@
   letter-spacing: -0.03em;
   padding: 0 2vw 0vh;
   text-align: left;
-  width: 50vw;
+  width: calc(50vw - 130px);
+  min-width: 250px;
 }
 
 .header h1 {
@@ -33,7 +38,6 @@
 }
 
 .header p {
-  max-width: 600px;
   padding-top: 1vh;
 }
 

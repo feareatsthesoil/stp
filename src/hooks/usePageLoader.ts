@@ -24,15 +24,15 @@ export default function usePageLoader(){
     }, [])
   
     useEffect(()=>{
-      if(router.asPath=="/contactInfo"){
+      if(router.asPath=="/info"){
         return 
       }
       axios.get("/api/directory/meta").then(({data})=>{
-        console.log(data.contactInfo)
+        console.log(data.info)
         if(data.user){
-          if(!data.contactInfo){
-            console.log("Push ehere")
-            router.push("/contactInfo")
+          if(!data.info){
+            console.log("Push here")
+            router.push("/info")
           }
         }
       }).catch(()=>{
