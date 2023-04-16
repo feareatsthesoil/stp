@@ -40,34 +40,34 @@ em, i {
 a img {
   border: none;
 }
-
 /* END RESET */
-/* 
-.cl-internal {
-  font-family: Helvetica !important;
-} */
-
-/* .cl-modalBackdrop{
-  font-family: Helvetica;
-}
-
-.cl-userButton-popover{
-  font-family: Helvetica;
-} */
-
 :root {
-  box-sizing: border-box
+  box-sizing: border-box;
+  letter-spacing: -0.03em;
 }
 
+p {
+  line-height: 20px;
+}
 
-/* #MobileLogin {
+#MobileLogin {
   display: none;
-} */
+}
 
 #hide {
   display: none;
 }
 
+/* Clerk */
+.cl-modalBackdrop {
+  font-family: Helvetica;
+}
+
+.cl-userButton-popover {
+  font-family: Helvetica;
+}
+
+/* MuiForm */
 .MuiFormHelperText-root.Mui-error p {
   margin-left: 14px !important;
 }
@@ -76,57 +76,39 @@ a img {
   margin-left: 14px !important;
 }
 
-/* .MuiButtonBase-root input{
-  float: left;
-  appearance: none;
-  border: 1px solid black;
-  font: inherit;
-  height: 1em;
-  margin: 0 5px 0 116px;
-  transform: translateY(-0.1em);
-  width: 1em;
-  display: grid;
-  place-content: center;
-} */
-
-/* MuiCalendar */
-/* 
-.MuiPickersCalendarHeader-label {
+.MuiAutocomplete-option {
   font-family: 'Times New Roman', Times, serif;
 }
 
-.MuiPickersYear-root button {
-  font-family: 'Times New Roman', Times, serif;
+.MuiAutocomplete-noOptions {
+  font-family: 'Times New Roman', Times, serif !important;
 }
 
-.MuiTypography-root-MuiDayCalendar-weekDayLabel {
-  font-family: 'Times New Roman', Times, serif;
-} */
+.MuiAutocomplete-option.Mui-focused {
 
-/* MuiDateTimeField */
-
-/* p.Mui-required {
-  color: #d32f2f;
-} */
-/* 
-.Form-datePicker p {
-  padding-left: 10px !important;
-} */
+  background-color: rgba(25, 118, 210, 0.04) !important;
+}
 
 /* MuiList */
-
 .MuiList-root li {
   font-family: 'Times New Roman', Times, serif;
   background-color: #fff;
 }
 
+.MuiList-root li:hover {
+  background-color: rgba(25, 118, 210, 0.04);
+}
+
 .MuiList-root li.Mui-focusVisible {
-  background-color: #fff;
+  background-color: rgba(25, 118, 210, 0.04);
+}
+
+.MuiList-root li.Mui-selected.Mui-focusVisible {
+  background-color: rgba(25, 118, 210, 0.04)
 }
 
 .MuiList-root li.Mui-selected:hover {
-  background-color: #fff;
-  font-size: large;
+  background-color: rgba(25, 118, 210, 0.04);
 }
 
 .MuiTouchRipple-root {
@@ -134,12 +116,6 @@ a img {
 }
 
 .MuiList-root li.Mui-selected {
-  background-color: #fff !important;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.MuiList-root li:hover {
   background-color: #fff;
   font-weight: bold;
 }

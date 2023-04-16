@@ -10,9 +10,13 @@
 }
 
 .box {
-  min-width: 250px;
-  padding: 0 2vw 0 2vw;
-  width: calc(50vw - 130px);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-right: 130px;
+  height: 80vh;
 }
 
 @media screen and (min-width: 0px) and (max-width: 450px) {
@@ -21,6 +25,6 @@
   }
 
   .box {
-    width: 96vw;
+    width: 100vw;
   }
 }

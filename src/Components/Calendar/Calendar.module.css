@@ -1,50 +1,24 @@
-.body {
-  clear: both;
-  display: flex;
-  flex-direction: column;
-  min-height: 90vh;
-  padding: 0 0 0 2vw;
-  /* width: 50vw; */
-}
-
-.img {
-  max-width: none;
-}
-
-.box {
-  padding: 2vh 0 2vh 0vw;
-  /* max-width: 600px; */
-  min-width: 250px;
-  /* padding-bottom: 1vh; */
-  text-align: left;
-  width: calc(50vw - 130px);
-}
-
-.box h1 {
+.header h1 {
   font-size: 1.3em;
   font-weight: bold;
-  letter-spacing: -0.03em;
-  padding-bottom: 1vh;
+  padding: 0 0 1vh 0;
   text-decoration: underline;
 }
 
-.box p {
-  font-size: 1em;
+.header p {
   padding: 0 0 20px 0;
 }
 
-.box a {
+.header a {
   color: #0047FF;
 }
 
-.box a:visited {
+.header a:visited {
   color: #0047FF;
 }
 
 .date {
   color: #000;
-  text-align: left;
-  text-decoration: underline;
 }
 
 .date:hover {
@@ -52,70 +26,43 @@
 }
 
 .dateGroup {
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
 
 .dateGroup a {
   color: #000;
 }
 
-.add a {
-  color: #0047FF;
-  font-size: 1em;
-  padding-bottom: 20px;
-}
-
 .bottom {
   padding-bottom: 20px;
 }
 
-
-.eventBody {
-  flex-grow: 1;
-  letter-spacing: -0.03em;
-  overflow: auto;
-  padding: 2vh 2vw 2vh;
+.add a {
+  color: #0047FF;
 }
 
-.eventBody hr {
-  border: none;
+.add {
+  width: 130px;
 }
 
-.eventBody p {
-  padding-bottom: 20px;
-}
-
-.eventBody h1 {
-  font-size: 1.5em;
-  font-weight: bold;
-  padding: 0 0 20px 0;
-}
-
-.eventBody a {
-  font-weight: bold;
+.spacer {
+  height: 5px;
 }
 
 .eventRow {
   padding: 10px 50px;
   text-align: left;
-
+  width: 50vw;
 }
 
 .eventRow hr {
   border: 0;
 }
 
-.map {
-  height: 40vw;
-  max-height: 500px;
-  max-width: 500px;
-  min-height: 270px;
-  min-width: 270px;
-  width: 40vw;
-}
-
 .eventSocialsBody {
-  padding-top: 10px;
+  padding: 5px 0 0 0;
+  margin: 0 0 0 -5px;
+  width: 130px;
 }
 
 .mail svg {
@@ -131,19 +78,7 @@
   text-decoration: none;
 }
 
-.spacer {
-  height: 5px;
-}
-
-.eventInfo {
-  max-width: 200px;
-}
-
 .mainEvent strong {
   color: #0047FF;
   text-decoration: underline;
-}
-
-.MuiInputBase-root {
-  border-radius: 0;
 }

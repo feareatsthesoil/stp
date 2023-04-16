@@ -11,6 +11,7 @@ import { useFormik } from "formik"
 import * as Yup from "yup"
 import { useAuth } from "@clerk/nextjs";
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
+
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
 
 const type = [
@@ -107,7 +108,7 @@ export default function CalendarForm({}: { profile: boolean }) {
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
-    <div className={form.test}>
+    <div className={form.body}>
       {loading && <ElementLoader />}
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>

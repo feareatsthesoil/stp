@@ -72,9 +72,7 @@ const About = () => {
                 />
               </Grid>
               <Grid xs={6}>
-                <div className={index.buttonBody}>
                   <button className={index.button}>Subscribe</button>
-                </div>
               </Grid>
             </Grid>
           </div>

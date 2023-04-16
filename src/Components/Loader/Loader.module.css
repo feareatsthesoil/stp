@@ -1,22 +1,15 @@
 .body {
   display: flex;
   flex-direction: column;
-  height: 95vh;
-  justify-self: flex-end;
+  height: 90vh;
   text-align: center;
-  bottom: 0;
-  position: fixed;
-  z-index: 999;
   justify-content: center;
-}
-
-.subBody {
   width: calc(100vw - 130px);
 }
 
 .loading {
   color: #000;
-  margin-right: 130px;
+  margin-right: 150px;
 }
 
 .loading:after {
@@ -60,11 +53,10 @@
 }
 
 @media screen and (min-width: 0px) and (max-width: 450px) {
-  .subBody {
+  .body {
     width: 100vw;
   }
   .loading {
     margin: 0 0 0 0;
-    margin-right: 0;
   }
 } 

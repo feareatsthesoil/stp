@@ -1,0 +1,51 @@
+.body {
+  flex-grow: 1;
+  overflow: auto;
+  width: 80vw;
+  overflow: hidden;
+}
+
+.body h1 {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 0 0 20px 0;
+}
+
+.body p {
+  padding-bottom: 20px;
+}
+
+.body a {
+  font-weight: bold;
+}
+
+.add a {
+  color: #0047FF;
+  font-size: 1em;
+}
+
+.map {
+  height: 40vw;
+  max-height: 500px;
+  max-width: 500px;
+  min-height: 270px;
+  min-width: 270px;
+  width: 40vw;
+}
+
+.socials {
+  padding: 10px 0 0 0;
+  width: 130px;
+}
+
+.mail svg {
+  margin-bottom: -2px;
+}
+
+.whatsapp svg {
+  padding-left: 3px;
+}
+
+.spacer {
+  height: 5px;
+}

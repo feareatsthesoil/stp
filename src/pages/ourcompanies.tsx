@@ -4,11 +4,11 @@ import index from "../styles/OurCompanies.module.css"
 import STPlogo from "../../public/Images/STP-logo.png"
 import Woolrichlogo from "../../public/Images/Woolrich-logo.png"
 import Studiologo from "../../public/Images/Studio-logo.png"
-import DefaultLayout from "../Components/Layouts/DefaultLayout"
+import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
 
 const OurCompanies = () => {
   return (
-    <DefaultLayout>
+    <DefaultLayoutCentered>
       <div className={index.box}>
         <Image
           priority
@@ -32,7 +32,7 @@ const OurCompanies = () => {
           quality={100}
         />
       </div>
-    </DefaultLayout>
+    </DefaultLayoutCentered>
   )
 }
 

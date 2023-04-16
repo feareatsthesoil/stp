@@ -1,15 +1,15 @@
 import React from "react"
 import { SignIn } from "@clerk/nextjs"
-import DefaultLayout from "../Components/Layouts/DefaultLayout"
-import index from "../Components/Layouts/AuthLayout.module.css"
+import index from "../styles/Login.module.css"
+import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
 
 const Welcome = () => {
   return (
-    <DefaultLayout>
+    <DefaultLayoutCentered>
       <div className={index.box}>
         <SignIn />
       </div>
-    </DefaultLayout>
+    </DefaultLayoutCentered>
   )
 }
 

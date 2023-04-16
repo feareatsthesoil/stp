@@ -1,49 +1,12 @@
-.body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
 .box {
   display: flex;
   flex-direction: column;
-  /* max-width: 500px; */
-  padding: 20px 2vw;
-  text-align: left;
-  min-width: 300px;
-  width: calc(48vw - 130px);
+  max-width: 2050px;
+  padding: 0 0 40px 0;
 }
 
-.joinButton button{
-  border-radius: 0;
-  text-transform: none;
-  letter-spacing: -0.03em;
-  padding: 3px 10px!important;
-}
-
-.donateButton{
-  border-radius: 0!important;
-  background-color: #000!important;
-  color: #fff!important;
-  font-family: 'Times New Roman'!important;
-  text-transform: none!important;
-  padding: 3px 10px!important;
-  font-size: .9em!important;
-  letter-spacing: -0.03em!important;
-  box-shadow: none!important;
-}
-
-.donateButton:hover {
-  background-color: #000000b7!important;
-}
-
-.donateButton:active {
-  transform: translateY(4px)!important;
-  transition: 60ms transform ease-in-out!important;
-}
-
-.box:first-child {
-  padding-top: 2vh;
+.box:first-child h1 {
+  font-size: 1.3em;
 }
 
 .box h1 {
@@ -51,31 +14,26 @@
   font-weight: bold;
 }
 
-.box:first-child h1 {
-  font-size: 1.3em;
-}
-
 .box p {
-  letter-spacing: -0.03em;
-  line-height: 20px;
   padding: 10px 0;
 }
 
 .box ul {
-  letter-spacing: -0.03em;
   line-height: 20px;
-  padding-left: 20px;
+  padding: 0 0 0 20px;
+}
+
+.box a {
+  color: #000;
 }
 
 .box button {
-  align-self: center;
   background-color: #000;
   border: 1px solid black;
   color: #fff;
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
   padding: 7px 10px;
-  width: auto;
 }
 
 .box button:hover {
@@ -88,8 +46,40 @@
   transition: 60ms transform ease-in-out;
 }
 
-.box a {
-  color: #000;
+.joinButton button {
+  border-radius: 0;
+  text-transform: none;
+  letter-spacing: -0.03em;
+  padding: 3px 10px;
+}
+
+.donateButton {
+  border-radius: 0 !important;
+  background-color: #000 !important;
+  color: #fff !important;
+  font-family: 'Times New Roman' !important;
+  text-transform: none !important;
+  padding: 3px 10px !important;
+  font-size: .9em !important;
+  letter-spacing: -0.03em !important;
+  box-shadow: none !important;
+}
+
+.donateButton:hover {
+  background-color: #000000b7 !important;
+}
+
+.donateButton:active {
+  transform: translateY(4px) !important;
+  transition: 60ms transform ease-in-out !important;
+}
+
+.title {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 2050px;
 }
 
 .border {
@@ -97,32 +87,4 @@
   border-image-repeat: round;
   flex: 1;
   margin: 10px 0 -30px;
-  /* max-width: 500px; */
-  width: calc(48vw - 130px);
-  min-width: 300px;
 }
-
-.header {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* max-width: 500px; */
-  min-width: 300px;
-  width: calc(48vw - 130px);
-}
-
-
-/* @media screen and (min-width: 0px) and (max-width: 500px) {
-  .header {
-    width: 70vw;
-  }
-
-  .border {
-    width: 70vw;
-  }
-
-  .box {
-    width: 70vw;
-  }
-} */

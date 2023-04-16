@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react"
-import index from "./Calendar.module.css"
+import index from "./CalendarEvent.module.css"
 
 export default function Map({address}: {address: string}){
     const ref= useRef<HTMLDivElement>(null);

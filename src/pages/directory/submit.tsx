@@ -1,6 +1,6 @@
 import Link from "next/link"
 import DirectoryForm from "../../Components/Directory/DirectoryForm"
-import index from "src/styles/Form.module.css"
+import index from "src/styles/Submit.module.css"
 import AuthLayout from "../../Components/Layouts/AuthLayout"
 
 export default function DirectorySubmit() {

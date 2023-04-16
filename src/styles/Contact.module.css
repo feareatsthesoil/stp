@@ -2,23 +2,17 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  /* width: 100vw; */
 }
 
-.subBody{
+.subBody {
   align-self: flex-end;
   width: calc(100vw - 130px);
 }
 
 .box {
-  display: flex;
-  flex-direction: column;
-  font-size: 1em;
-  letter-spacing: -0.03em;
-  line-height: 20px;
   min-width: 250px;
-  padding: 2vh 2vw 4vh 2vw;
-  width: 35vw;
+  padding: 1vh 2vw 0 2vw;
+  width: calc(50vw - 130px);
 }
 
 .box h1 {
@@ -31,8 +25,16 @@
   color: #000;
 }
 
+.box a:visited {
+  color: #000;
+}
+
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .subBody {
     width: 100vw;
   }
-} 
+
+  .box {
+    width: 96vw;
+  }
+}

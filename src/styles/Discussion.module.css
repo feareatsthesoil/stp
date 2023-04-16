@@ -1,36 +1,10 @@
-.body {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.box {
-  display: flex;
-  flex-direction: column;
-  font-size: 1em;
-  letter-spacing: -0.03em;
-  line-height: 20px;
-  min-width: 250px;
-  padding: 2vh 2vw 4vh 2vw;
-  width: 40vw;
-}
-
-.box p {
-  padding: 1vh 0 10px;
-}
-
-.box h1 {
+.body h1 {
   font-size: 1.3em;
   font-weight: bold;
 }
 
-.box a {
-  color: #000;
-}
-
-.input {
-  display: flex;
-  flex-direction: row;
+.body p {
+  padding: 1vh 0 10px 0;
 }
 
 .text textarea {
@@ -46,14 +20,6 @@
   width: 20vw;
 }
 
-.buttonBody {
-  padding: 10px 0 40px;
-}
-
-.buttonBody:last-child {
-  padding: 10px 0 0;
-}
-
 .button {
   background-color: black;
   border: 1px solid black;
@@ -61,6 +27,7 @@
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
   letter-spacing: -0.03em;
+  margin: 10px 0 40px 0;
   padding: 8px 15px;
 }
 

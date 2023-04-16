@@ -19,7 +19,7 @@ function Header() {
   return (
     <div className={currentRoute === "/" ? header.bodyHome : header.body}>
       <Head>
-        <meta name="theme-color" content={currentRoute === "/" ? "#000" : "#fff"}/>
+        <meta name="theme-color" content={currentRoute === "/" ? "#000" : "#fff"} />
       </Head>
       <div className={header.logo}>
         <Link href={"/"}>
@@ -27,8 +27,7 @@ function Header() {
         </Link>
       </div>
       <div className={header.login}>
-      {isSignedIn ? <UserButton /> :
-        
+        {isSignedIn ? <UserButton /> :
           <Link
             className={currentRoute === "/login" ? header.active : header.idle}
             href={"login"}

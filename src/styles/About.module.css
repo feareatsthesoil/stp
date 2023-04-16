@@ -8,11 +8,6 @@
   display: flex;
   flex-direction: column;
   font-size: 1em;
-  letter-spacing: -0.03em;
-  line-height: 20px;
-  min-width: 250px;
-  padding: 2vh 2vw 4vh 2vw;
-  width: calc(50vw - 130px);
 }
 
 .box p {
@@ -54,11 +49,8 @@
   color: black;
 }
 
-.buttonBody {
-  padding: 10px;
-}
-
 .button {
+  margin: 10px;
   background-color: black;
   border: 1px solid black;
   color: #fff;

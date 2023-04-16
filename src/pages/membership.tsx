@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import Link from "next/link"
 import index from "../styles/Membership.module.css"
 import { UserContext } from "../Components/UserContext"
-import { Badge, Button, Chip } from "@mui/material"
+import { Button, Chip } from "@mui/material"
 import JoinButton from "../Components/Membership/JoinButton"
 import DefaultLayout from "../Components/Layouts/DefaultLayout"
 import { useUser } from "@clerk/nextjs"
@@ -33,10 +33,10 @@ const Membership = () => {
         <p>
           All memberships are valid for one year.
         </p>
-        <div className={index.border}></div>
+        <div className={index.border}/>
       </div>
       <div className={index.box}>
-        <div className={index.header}>
+        <div className={index.title}>
           <h1>
             Individual Member: $75
           </h1>
@@ -64,10 +64,10 @@ const Membership = () => {
             which is shared on our weekly newsletter.
           </li>
         </ul>
-        <div className={index.border}></div>
+        <div className={index.border}/>
       </div>
       <div className={index.box}>
-        <div className={index.header}>
+        <div className={index.title}>
           <h1>
             Seed Members
           </h1>
@@ -85,10 +85,10 @@ const Membership = () => {
             on <Link href="/">Urbit</Link> and <Link href="/">Discord</Link>.
           </li>
         </ul>
-        <div className={index.border}></div>
+        <div className={index.border}/>
       </div>
       <div className={index.box}>
-        <div className={index.header}>
+        <div className={index.title}>
           <h1>
             Student membership: Free
           </h1>
@@ -101,10 +101,10 @@ const Membership = () => {
           Students with a <strong>.edu</strong> email may enjoy all the benefits of the Individual Membership
           listed above. Simply <Link href="/login">Log in</Link> with <strong>.edu</strong> email to continue.
         </p>
-        <div className={index.border}></div>
+        <div className={index.border}/>
       </div>
       <div className={index.box}>
-        <div className={index.header}>
+        <div className={index.title}>
           <h1>
             Make a tax-deductible donation today.
           </h1>

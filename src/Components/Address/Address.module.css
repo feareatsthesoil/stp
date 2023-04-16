@@ -9,8 +9,9 @@
 }
 
 .body {
-  margin: -10px 0 0 0;
   color: #000;
+  margin: calc(-20px - 2vh) 0 0 0;
+  padding: 1vh 0 0 0;
   text-align: center;
 }
 

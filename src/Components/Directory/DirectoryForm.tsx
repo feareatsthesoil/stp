@@ -105,7 +105,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
-    <div className={form.test}>
+    <div className={form.body}>
       <form onSubmit={formik.handleSubmit}>
         {formik.isSubmitting && <ElementLoader />}
         <ThemeProvider theme={theme}>

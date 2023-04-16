@@ -6,9 +6,9 @@ import {useUser} from "@clerk/nextjs"
 
 
 function HomeNav() {
-  const isSignedIn = useUser()
+  const user = useUser()
   let login = "MobileLogin";
-  isSignedIn.isSignedIn ? login="hide" : login="MobileLogin"
+  const navItems = nav.items.filter(item=>(!item.authorized || user.isSignedIn ))
 
     
   return (
@@ -16,10 +16,10 @@ function HomeNav() {
     <div>
       <div className={index.items}>
         <ul>
-        <li id={login}>
+        <li id={user.isSignedIn ? "hide" : "MobileLogin"}>
             <Link href="/login">Login Portal</Link>
           </li>
-          {nav.items.map(({ href, name }) => {
+          {navItems.map(({ href, name }) => {
               return (
                 <li key={name}>
                   <Link
