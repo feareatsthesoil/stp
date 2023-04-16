@@ -9,7 +9,7 @@ const Submit = () => {
         Submit to Calendar
       </Link>
       <Link href="/directory/submit">
-        Add to Directory
+        Submit to Directory
       </Link>
     </DefaultLayoutCentered>
   )

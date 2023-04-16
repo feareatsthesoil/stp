@@ -13,7 +13,7 @@ import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 import { DirectoryRow } from "../../types"
 import { UserContext } from "../UserContext"
 
-const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", description: "", display: true }
+const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", instagram: "", twitter: "", description: "", display: true }
 
 const type = [
   {
@@ -72,18 +72,21 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
           .max(20, "Must be at most 20 characters")
           .min(2, "Must be at least 2 characters"),
 
+      category:
+        Yup.string()
+          .required("Category is required"),
+
+      address:
+        Yup.string(),
+
+      phone:
+        Yup.string()
+          .matches(rePhoneNumber, "Must be a valid phone number"),
+
       email:
         Yup.string()
           .required("Email is required")
           .email("Must be a valid email"),
-
-      address:
-        Yup.string(),
-          // .min(2),
-
-      category:
-        Yup.string()
-          .required("Category is required"),
 
     }),
     initialValues: { ...initialState, display: !profile, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
@@ -114,7 +117,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               <CssTextField
                 name="name"
                 label="Name/Business"
-                fullWidth
+                required fullWidth
                 color="secondary"
                 value={formik.values.name}
                 onChange={formik.handleChange}
@@ -126,7 +129,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               <CssTextField
                 name="category"
                 label="Category"
-                select fullWidth
+                required select fullWidth
                 color="secondary"
                 value={formik.values.category}
                 onChange={formik.handleChange}
@@ -176,12 +179,34 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               <CssTextField
                 name="email"
                 label="Email"
-                fullWidth
+                required fullWidth
                 color="secondary"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 helperText={formik.errors.email}
                 error={!!formik.errors.email} />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <CssTextField
+                name="instagram"
+                label="Instagram"
+                fullWidth
+                color="secondary"
+                value={formik.values.instagram}
+                onChange={formik.handleChange}
+                helperText={formik.errors.instagram}
+                error={!!formik.errors.instagram} />
+            </Grid>
+            <Grid xs={12} sm={6}>
+              <CssTextField
+                name="twitter"
+                label="Twitter"
+                fullWidth
+                color="secondary"
+                value={formik.values.twitter}
+                onChange={formik.handleChange}
+                helperText={formik.errors.twitter}
+                error={!!formik.errors.twitter} />
             </Grid>
             <Grid xs={12}>
               <CssTextField
@@ -197,21 +222,29 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 helperText={formik.errors.description}
-                 />
+              />
             </Grid>
             {profile && <>
-              <Checkbox 
-              name="display" 
-              sx={{
-                padding: "0px 5px 0 5px",
-                margin: "-4px 0 0 0",
-                color: "black",
-                '&.Mui-checked': {
+              <Checkbox
+                name="display"
+                sx={{
+                  padding: "0px 5px 0 5px",
+                  margin: "-4px 0 0 0",
                   color: "black",
-                },
-              }} 
-              onChange={formik.handleChange} 
-              checked={formik.values.display} />
+                  '&.Mui-checked': {
+                    color: "black",
+                  },
+                  '&:hover': {
+                    backgroundColor: "#fff",
+                  },
+                  '& .input': {
+                    backgroundColor: "black",
+                    borderRadius: "0",
+                    border: "1px solid black",
+                  }
+                }}
+                onChange={formik.handleChange}
+                checked={formik.values.display} />
               <label htmlFor="display">Display in directory</label>
             </>}
             <Grid xs={12}>

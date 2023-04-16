@@ -18,18 +18,12 @@ export default function Map({address}: {address: string}){
                         
                         new window.google.maps.Marker({map,  position: {lat,lng}})
                     }
-       
                 }catch(ex){
-
                 }
-            
-            
             }
         }
         effect()
-       
     }, [ref])
-
     return <div className={index.map}ref={ref} id="map">
 
     </div>
