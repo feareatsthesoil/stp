@@ -54,3 +54,9 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+
+## Database changes 
+1. Make changes to schema.prisma file as needed
+2. run  `npx prisma migrate dev --name add_socials_to_contacts`. Important: Change the name add_socials_to_contacts to something meaninful
+3. On the heroku server run the command `npx prisma migrate`

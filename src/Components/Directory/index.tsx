@@ -42,9 +42,9 @@ export default function Directory() {
                   <p>{row.email}</p>
                 </div>
                 <div className={directory.items}>
-                  <Link href="#">Twitter</Link>
-                  <Link href="#">Instagram</Link>
-                  <Link href="#">Website</Link>
+                  {row.twitter && <a href={`http://twitter.com/@${row.twitter}`}>Twitter</a>}
+                  {row.instagram && <a href={`http://instgram.com/${row.instagram}`}>Instagram</a>}
+                 {row.website && <a rel="noopener noreferrer"  href={row.website}>Website</a>}
                   <div className={directory.spacer} />
                   <p>{row.phone}</p>
                 </div>

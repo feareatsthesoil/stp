@@ -43,10 +43,16 @@ const Membership = () => {
           {!isEdu && initialized && <>{!purchase?.id && <div className={index.joinButton}><JoinButton /></div>}
             {purchase?.id && <>
               <div>
-                <Chip color="success" label="Joined" />
-                <br />
+                <Chip 
+                color="success" 
+                label="Joined" 
+                sx={{
+                  float: "right",
+                  
+                }}
+                />
                 <><p>
-                  Expires:{moment(purchase.expiryDate).format("DD MMMM, YYYY")}</p></>
+                  Expires: {moment(purchase.expiryDate).format("DD MMMM, YYYY")}</p></>
               </div>
             </>}</>}
         </div>

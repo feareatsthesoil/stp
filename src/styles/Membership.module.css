@@ -3,6 +3,7 @@
   flex-direction: column;
   max-width: 2050px;
   padding: 0 0 40px 0;
+  /* min-width: 375px; */
 }
 
 .box:first-child h1 {
@@ -80,6 +81,11 @@
   flex-direction: row;
   justify-content: space-between;
   max-width: 2050px;
+}
+
+.title p{
+  min-width: 200px;
+  padding: 6px 10px 0 0;
 }
 
 .border {

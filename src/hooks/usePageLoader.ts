@@ -28,9 +28,9 @@ export default function usePageLoader(){
         return 
       }
       axios.get("/api/directory/meta").then(({data})=>{
-        console.log(data.info)
+        console.log(data.profile)
         if(data.user){
-          if(!data.info){
+          if(!data.profile){
             console.log("Push here")
             router.push("/info")
           }

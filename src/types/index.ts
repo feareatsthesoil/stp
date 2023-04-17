@@ -28,6 +28,8 @@ export interface DirectoryRow {
   email: string
   website: string
   phone: string
+  twitter: string
+  instagram: string
   description: string
   approved: boolean
   profile? : boolean

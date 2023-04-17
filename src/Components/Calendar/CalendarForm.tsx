@@ -1,5 +1,5 @@
 import React from "react"
-import form from "src/styles/Form.module.css"
+import index from "src/styles/Form.module.css"
 import axios from "axios"
 import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
@@ -108,7 +108,7 @@ export default function CalendarForm({}: { profile: boolean }) {
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
-    <div className={form.body}>
+    <div className={index.body}>
       {loading && <ElementLoader />}
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
@@ -136,7 +136,6 @@ export default function CalendarForm({}: { profile: boolean }) {
                 helperText={formik.errors.type}>
                 {type.map((option) => (
                   <MenuItem
-                    className="menuitem"
                     key={option.value}
                     value={option.value}>
                     {option.value}
@@ -163,7 +162,7 @@ export default function CalendarForm({}: { profile: boolean }) {
               <DateTimePicker
                 label="Start Date/Time"
                 disablePast
-                className={form.datePicker}
+                className={index.datePicker}
                 sx={{
                   "& label.Mui-focused": { color: "black" },
                   "& fieldset": {
@@ -191,7 +190,7 @@ export default function CalendarForm({}: { profile: boolean }) {
               <DateTimePicker
                 label="End Date/Time"
                 disablePast
-                className={form.datePicker}
+                className={index.datePicker}
                 sx={{
                   "& label.Mui-focused": { color: "black" },
                   "& fieldset": {
@@ -239,7 +238,7 @@ export default function CalendarForm({}: { profile: boolean }) {
                 label="Short Description"
                 name="description"
                 multiline fullWidth
-                className={form.description} id="mui-theme-provider-outlined-input"
+                className={index.description} id="mui-theme-provider-outlined-input"
                 variant="outlined"
                 color="secondary"
                 rows={4}
@@ -253,12 +252,12 @@ export default function CalendarForm({}: { profile: boolean }) {
                 helperText={formik.errors.description} />
             </Grid>
             <Grid xs={12}>
-              <p className={isMax ? form.max : form.notMax}>
+              <p className={isMax ? index.max : index.notMax}>
                 {formik.values.description.length}/300
               </p>
               <button
                 type={"submit"}
-                className={form.button}>
+                className={index.button}>
                 Save
               </button>
             </Grid>
