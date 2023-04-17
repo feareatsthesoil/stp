@@ -10,9 +10,9 @@ export default withAuth(async (req: any, res: NextApiResponse) => {
   await client.events.create({ data: { ...body, starts_at: new Date(body.starts_at), ends_at: body.ends_at === '' ? undefined : new Date(body.ends_at), userId: req.auth.userId, approved: true } })
   const target = ["https://www.googleapis.com/auth/calendar"]
   const jwt = new google.auth.JWT(
-    process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+    process.env.GOOGLE_CLOUD_CLIENT_EMAIL,
     undefined,
-    (process.env.GOOGLE_SHEETS_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
+    (process.env.GOOGLE_CLOUD_PRIVATE_KEY || "").replace(/\\n/g, "\n"),
     target
   )
 

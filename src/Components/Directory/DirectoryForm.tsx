@@ -90,7 +90,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
           .email("Must be a valid email"),
       website:
         Yup.string()
-        .url("Must be a valid URL starting with http(s)://"),
+          .url("Must be a valid URL starting with http(s)://"),
 
     }),
     initialValues: { ...initialState, display: !profile, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
@@ -157,7 +157,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               <GooglePlacesAutoComplete
                 value={formik.values.address}
                 onChange={(val) => formik.setFieldValue("address", val)}
-                />
+              />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -194,8 +194,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 helperText={formik.errors.email}
-                error={!!formik.errors.email} 
-                disabled={formik.isSubmitting}/>
+                error={!!formik.errors.email}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -207,8 +207,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.instagram}
                 onChange={formik.handleChange}
                 helperText={formik.errors.instagram}
-                error={!!formik.errors.instagram} 
-                disabled={formik.isSubmitting}/>
+                error={!!formik.errors.instagram}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -220,8 +220,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.twitter}
                 onChange={formik.handleChange}
                 helperText={formik.errors.twitter}
-                error={!!formik.errors.twitter} 
-                disabled={formik.isSubmitting}/>
+                error={!!formik.errors.twitter}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12}>
               <CssTextField
@@ -240,7 +240,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 disabled={formik.isSubmitting}
               />
             </Grid>
-            {profile && isMember&& <>
+            {profile && isMember && <>
               <Checkbox
                 name="display"
                 sx={{
@@ -260,8 +260,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                   }
                 }}
                 onChange={formik.handleChange}
-                checked={formik.values.display} 
-                disabled={formik.isSubmitting}/>
+                checked={formik.values.display}
+                disabled={formik.isSubmitting} />
               <label htmlFor="display">Display in directory</label>
             </>}
             <Grid xs={12}>
