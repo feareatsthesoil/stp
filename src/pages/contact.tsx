@@ -12,8 +12,6 @@ const contactUs = () => {
     <Header />
 <Address />
       <div className={index.body}>
-      
-      
         <Nav />
         <div className={index.subBody}>
           <div className={index.box}>

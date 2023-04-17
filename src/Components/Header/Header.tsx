@@ -12,6 +12,9 @@ function Header() {
 
   return (
     <div className={currentRoute === "/" ? header.bodyHome : header.body}>
+      <Head>
+        <meta name="theme-color" content={currentRoute === "/" ? "#000" : "#fff"} />
+      </Head>
       <div className={header.logo}>
         <Link href={"/"}>
           <h1>SERVING the PEOPLE</h1>
