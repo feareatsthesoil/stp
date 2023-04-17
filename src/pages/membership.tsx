@@ -98,9 +98,9 @@ const Membership = () => {
           <h1>
             Student membership: Free
           </h1>
-          {isLoaded && !isSignedIn && <button>
-            Log in
-          </button>}
+          {isLoaded && !isSignedIn && <Button className={index.button} variant="contained" href="/login">
+              Log in
+            </Button>}
           {isEdu && <Chip color="success" label="Student" />}
         </div>
         <p>
@@ -115,7 +115,7 @@ const Membership = () => {
             Make a tax-deductible donation today.
           </h1>
           <div >
-            <Button className={index.donateButton} target="_blank" variant="contained" href="https://donate.stripe.com/test_dR6cNJdBy2vY7kY6oo">
+            <Button className={index.button} target="_blank" variant="contained" href="https://donate.stripe.com/test_dR6cNJdBy2vY7kY6oo">
               Donate
             </Button>
           </div>
