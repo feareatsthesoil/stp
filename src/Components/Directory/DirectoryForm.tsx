@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import form from "src/styles/Form.module.css"
 import axios from 'axios'
-import { Checkbox, MenuItem, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material"
+import { Checkbox, InputAdornment, MenuItem, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import React from "react";
@@ -109,17 +109,16 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
 
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
-  if(!initialized)
-  return <></>
+  if (!initialized)
+    return <></>
   return (
     <div className={form.body}>
       <form onSubmit={formik.handleSubmit}>
-    
+
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
             <Grid xs={12} sm={6} >
               <CssTextField
-              disabled={formik.isSubmitting}
                 name="name"
                 label="Name/Business"
                 required fullWidth
@@ -128,6 +127,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 onChange={formik.handleChange}
                 error={!!formik.errors.name}
                 helperText={formik.errors.name}
+                disabled={formik.isSubmitting}
               />
             </Grid>
             <Grid xs={12} sm={6}>
@@ -140,6 +140,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 onChange={formik.handleChange}
                 error={!!formik.errors.category}
                 helperText={formik.errors.category}
+                disabled={formik.isSubmitting}
               >
                 {type.map((option) => (
                   <MenuItem
@@ -151,10 +152,11 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 ))}
               </CssTextField>
             </Grid>
-            <Grid xs={12} sm={6}>
+            <Grid xs={12} sm={6} >
               <GooglePlacesAutoComplete
                 value={formik.values.address}
-                onChange={(val) => formik.setFieldValue("address", val)} />
+                onChange={(val) => formik.setFieldValue("address", val)}
+                />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -166,6 +168,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 onChange={formik.handleChange}
                 error={!!formik.errors.website}
                 helperText={formik.errors.website}
+                disabled={formik.isSubmitting}
               />
             </Grid>
             <Grid xs={12} sm={6}>
@@ -196,10 +199,12 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 name="instagram"
                 label="Instagram"
                 fullWidth
+                InputProps={{ startAdornment: <InputAdornment position="start">@</InputAdornment> }}
                 color="secondary"
                 value={formik.values.instagram}
                 onChange={formik.handleChange}
                 helperText={formik.errors.instagram}
+
                 error={!!formik.errors.instagram} />
             </Grid>
             <Grid xs={12} sm={6}>
@@ -207,6 +212,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 name="twitter"
                 label="Twitter"
                 fullWidth
+                InputProps={{ startAdornment: <InputAdornment position="start">@</InputAdornment> }}
                 color="secondary"
                 value={formik.values.twitter}
                 onChange={formik.handleChange}
@@ -257,14 +263,14 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 {formik.values.description.length}/300
               </p>
               <button
-              disabled={formik.isSubmitting}
+                disabled={formik.isSubmitting}
                 type={"submit"}
                 className={form.button}>
-                {!formik.isSubmitting &&<>Save</>}
-                {formik.isSubmitting && 
-                   <span style={{paddingLeft: 5}}><FontAwesomeIcon icon={faSpinner} spin/>
-                   </span> 
-                 }
+                {!formik.isSubmitting && <>Save</>}
+                {formik.isSubmitting &&
+                  <span style={{ paddingLeft: 5 }}><FontAwesomeIcon icon={faSpinner} spin />
+                  </span>
+                }
               </button>
             </Grid>
           </Grid>

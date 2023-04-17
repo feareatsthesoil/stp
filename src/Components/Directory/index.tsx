@@ -3,6 +3,8 @@ import directory from "./Directory.module.css"
 import { groupBy } from 'lodash'
 import { useState } from "react"
 import { useContacts } from "../../redux/hooks"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 export default function Directory() {
   const [searchText, setSearchText] = useState("")
@@ -44,7 +46,8 @@ export default function Directory() {
                 <div className={directory.items}>
                   {row.twitter && <a href={`http://twitter.com/@${row.twitter}`}>Twitter</a>}
                   {row.instagram && <a href={`http://instgram.com/${row.instagram}`}>Instagram</a>}
-                 {row.website && <a rel="noopener noreferrer"  href={row.website}>Website</a>}
+                  
+                 {row.website && <a rel="noopener noreferrer" target="_blank"href={row.website}>Website</a>}
                   <div className={directory.spacer} />
                   <p>{row.phone}</p>
                 </div>
