@@ -59,7 +59,7 @@ const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\
 
 export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow }) {
 
-  const { refresh, initialized } = useContext(UserContext)
+  const { refresh, initialized, isMember } = useContext(UserContext)
   let isMax = false;
 
   const router = useRouter()
@@ -88,6 +88,9 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
         Yup.string()
           .required("Email is required")
           .email("Must be a valid email"),
+      website:
+        Yup.string()
+        .url("Must be a valid URL starting with http(s)://"),
 
     }),
     initialValues: { ...initialState, display: !profile, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
@@ -237,7 +240,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 disabled={formik.isSubmitting}
               />
             </Grid>
-            {profile && <>
+            {profile && isMember&& <>
               <Checkbox
                 name="display"
                 sx={{
