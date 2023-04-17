@@ -40,7 +40,6 @@ em, i {
 a img {
   border: none;
 }
-
 /* END RESET */
 :root {
   box-sizing: border-box;
@@ -86,8 +85,32 @@ p {
 }
 
 .MuiAutocomplete-option.Mui-focused {
-
   background-color: rgba(25, 118, 210, 0.04) !important;
+}
+
+/* MuiBox */
+.MuiAlertTitle-root {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+.MuiAlert-standard {
+  background-color: #fff !important;
+  justify-content: center;
+  text-align: center;
+  color: #000 !important;
+  padding: 0 !important;
+}
+
+.MuiAlert-standard a {
+  color: #000;
+}
+
+.MuiAlert-standard a:visited {
+  color: #000;
+}
+
+.MuiAlert-icon {
+  display: none !important;
 }
 
 /* MuiList */

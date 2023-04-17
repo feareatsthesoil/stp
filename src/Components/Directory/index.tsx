@@ -1,10 +1,7 @@
-import Link from "next/link"
-import directory from "./Directory.module.css"
+import index from "./Directory.module.css"
 import { groupBy } from 'lodash'
 import { useState } from "react"
 import { useContacts } from "../../redux/hooks"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 export default function Directory() {
   const [searchText, setSearchText] = useState("")
@@ -19,9 +16,9 @@ export default function Directory() {
   const dataGrouped = groupBy(data, (row) => row.name.charAt(0))
 
   return <>
-    <div className={directory.search}>
+    <div className={index.search}>
       <input
-        className={directory.input}
+        className={index.input}
         type="text"
         value={searchText}
         placeholder="Search"
@@ -33,22 +30,22 @@ export default function Directory() {
 
       return <>
 
-        {_data.map((row, index) => {
+        {_data.map((row, i) => {
           return (
             <>
-              <div className={directory.contact} >
-                {index === 0 && alphabet !== "A" && <h1>{alphabet}</h1>}
-                <div className={directory.items}>
+              <div className={index.contact} >
+                {i === 0 && alphabet !== "A" && <h1>{alphabet}</h1>}
+                <div className={index.items}>
                   <p><strong>{row.name}</strong> - {row.category}</p>
-                  <div className={directory.border} />
+                  <div className={index.border} />
                   <p>{row.email}</p>
                 </div>
-                <div className={directory.items}>
+                <div className={index.items}>
                   {row.twitter && <a href={`http://twitter.com/@${row.twitter}`}>Twitter</a>}
                   {row.instagram && <a href={`http://instgram.com/${row.instagram}`}>Instagram</a>}
                   
-                 {row.website && <a rel="noopener noreferrer" target="_blank"href={row.website}>Website</a>}
-                  <div className={directory.spacer} />
+                 {row.website && <a rel="noopener noreferrer" target="_blank" href={row.website}>Website</a>}
+                  <div className={index.spacer} />
                   <p>{row.phone}</p>
                 </div>
               </div></>

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import DefaultLayout from "../../Components/Layouts/DefaultLayout";
+import DefaultLayoutCentered from "../../Components/Layouts/DefaultLayoutCentered";
 
 export default function CheckoutSuccess() {
     const [verifying, setVerifying] = useState(true)
@@ -25,12 +26,12 @@ export default function CheckoutSuccess() {
     }, [id])
 
     return (
-        <DefaultLayout>
-            {verifying && <h2>Verifying your payment</h2>}
+        <DefaultLayoutCentered>
+            {verifying && <h2>Verifying your payment...</h2>}
             {verified &&
                 <>
-                    Thank you for subscribing.
+                    Thank you for subscribing!
                 </>}
-        </DefaultLayout>
+        </DefaultLayoutCentered>
     )
 }

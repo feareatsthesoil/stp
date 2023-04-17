@@ -1,4 +1,5 @@
 .body {
+  align-items: center;
   background-color: black;
   display: flex;
   flex-direction: column;
@@ -7,10 +8,39 @@
   z-index: 0;
 }
 
+.box {
+  padding-top: calc(30vh - 156px)
+}
+
+.box ul {
+  color: #fff !important;
+  flex-flow: column nowrap !important;
+  font-size: 1.2em !important;
+  line-height: normal !important;
+  list-style: disc !important;
+  padding: 0 !important;
+  position: unset !important;
+  width: auto !important;
+}
+
+.box li {
+  padding: 30px 0 0 0 !important;
+}
+
+.box a {
+  color: #fff !important;
+}
+
 .background {
   border: none;
   height: auto;
   min-height: 100vh;
   overflow: hidden;
   z-index: -1;
+}
+
+@media screen and (max-width: 450px) and (max-height: 736px) {
+  .box {
+    padding-top: 2vh;
+  }
 }

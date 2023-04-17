@@ -1,15 +1,10 @@
 import * as React from 'react';import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import parse from 'autosuggest-highlight/parse';
 import { debounce } from '@mui/material/utils';
-
-// This key was created specifically for the demo in mui.com.
-// You need to create a new one for your application.
-
 
 function loadScript(src: string, position: HTMLElement | null, id: string) {
   if (!position) {
@@ -41,7 +36,6 @@ interface PlaceType {
 
 export default function GooglePlacesAutoComplete(props: {onChange: (value: string)=>any, value: string}) {
   const {value} = props
-  // const [value, setValue] = React.useState<PlaceType | null |string>(props.value);
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<readonly PlaceType[]>([]);
   const loaded = React.useRef(false);

@@ -14,7 +14,7 @@ export default function info() {
         <div className={index.box}>
           <h1>Contact Information</h1>
           <p>
-            By submitting you agree to our <Link href="/">privacy policy</Link>
+            By submitting you agree to our <Link href="#">privacy policy</Link>.
           </p>
         </div>
         <DirectoryForm profile={true} data={profile} />

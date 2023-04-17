@@ -1,6 +1,6 @@
 import React from "react"
 import Calendar from "../../Components/Calendar"
-import calendar from "../../Components/Calendar/Calendar.module.css"
+import index from "../../Components/Calendar/Calendar.module.css"
 import { CalendarRow } from "../../types"
 import Link from "next/link"
 import axios from "axios"
@@ -10,7 +10,7 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
 
   return (
     <DefaultLayout>
-      <div className={calendar.header}>
+      <div className={index.header}>
         <h1>2023 Calendar</h1>
         <p>
           To <Link href="/calendar/submit">submit</Link> to the calendar please <Link href="/login">log in</Link>.
@@ -23,7 +23,7 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
           </Link>.
         </p>
         <p>
-          By submitting to the calendar you are agreeing to our <Link href="#">Privacy Policy</Link>
+          By submitting to the calendar you are agreeing to our <Link href="#">Privacy Policy</Link>.
         </p>
       </div>
       <Calendar />

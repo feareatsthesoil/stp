@@ -1,5 +1,5 @@
 import React from "react"
-import footer from "./Footer.module.css"
+import index from "./Footer.module.css"
 import FooterSocials from "../FooterSocials"
 import { useRouter } from "next/router"
 
@@ -16,8 +16,8 @@ function Footer() {
 
   return (
     <>
-      <div className={`${isHome ? footer.bodyHome : footer.body}`}>
-        <div className={footer.socials}>
+      <div className={currentRoute ==="/" ? index.bodyHome : index.body}>
+        <div className={index.socials}>
           <FooterSocials />
         </div>
       </div>

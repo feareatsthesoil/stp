@@ -83,12 +83,12 @@ const Membership = () => {
         </div>
         <p>
           <Link href="/mintseed">Seeds</Link> is a digital artwork created with the purpose
-          of supporting our community. A seed may be purchased <Link href="/mintseed">here</Link> or on <Link href="www.opensea.com">Opensea</Link>.
+          of supporting our community. A seed may be purchased <Link href="/mintseed">here</Link> or on <Link href="https://opensea.io/collection/seeds-luciensmith">Opensea</Link>.
         </p>
         <ul>
           <li>
             All the benefits of Individual Membership listed above, plus access to special channels
-            on <Link href="/">Urbit</Link> and <Link href="/">Discord</Link>.
+            on <Link href="#">Urbit</Link> and <Link href="https://discord.com/invite/nhqyng5wQ9">Discord</Link>.
           </li>
         </ul>
         <div className={index.border}/>

@@ -1,13 +1,13 @@
 import React from "react"
 import { useRouter } from "next/router"
-import address from "./Address.module.css"
+import index from "./Address.module.css"
 
 function Address() {
   const router = useRouter()
-  const isHome = router.pathname === "/"
+  const currentRoute = router.pathname;
 
   return (
-    <div className={isHome ? address.bodyHome : address.body}>
+    <div className={currentRoute === "/" ? index.bodyHome : index.body}>
       <p>83 Canal Street</p>
       <p>New York, NY 10002</p>
       <h2>Official Website</h2>

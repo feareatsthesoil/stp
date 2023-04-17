@@ -14,17 +14,17 @@ export default function DirectorySubmit() {
       <div className={index.body}>
         <div className={index.box}>
           <h1>Directory Submission</h1>
-          <p>By submitting you agree to our <Link href="/">privacy policy</Link></p>
+          <p>By submitting you agree to our <Link href="/">privacy policy</Link>.</p>
         </div>
 
         {userData.isMember && <DirectoryForm profile={false} />}
         {!userData.isMember && < Box>
           <Alert color="warning">
-            <AlertTitle>You must be a member to submit events</AlertTitle>
-
+            <AlertTitle>Must be a member to submit to the directory</AlertTitle>
+            <AlertTitle>
+              Sign up <Link href="/membership">here</Link>.
+            </AlertTitle>
           </Alert>
-          To become a member, you can sign up for our membership here:
-          <Link href="/membership">Membership</Link>
         </Box>}
 
       </div>

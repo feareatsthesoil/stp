@@ -6,11 +6,12 @@ import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { DateTimePicker } from "@mui/x-date-pickers"
 import { useState } from "react"
-import ElementLoader from "../ElementLoader"
 import { useFormik } from "formik"
 import * as Yup from "yup"
 import { useAuth } from "@clerk/nextjs";
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
 
@@ -109,7 +110,6 @@ export default function CalendarForm({}: { profile: boolean }) {
 
   return (
     <div className={index.body}>
-      {loading && <ElementLoader />}
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
@@ -122,7 +122,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 error={!!formik.errors.name}
-                helperText={formik.errors.name} />
+                helperText={formik.errors.name} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -133,7 +134,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.type}
                 onChange={formik.handleChange}
                 error={!!formik.errors.type}
-                helperText={formik.errors.type}>
+                helperText={formik.errors.type}
+                disabled={formik.isSubmitting}>
                 {type.map((option) => (
                   <MenuItem
                     key={option.value}
@@ -156,7 +158,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.website}
                 onChange={formik.handleChange}
                 error={!!formik.errors.website}
-                helperText={formik.errors.website} />
+                helperText={formik.errors.website} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12} sm={6}>
               <DateTimePicker
@@ -177,6 +180,7 @@ export default function CalendarForm({}: { profile: boolean }) {
                 }}
                 value={formik.values.starts_at}
                 onChange={(value) => formik.setFieldValue("starts_at", value)}
+                disabled={formik.isSubmitting}
               />
               <div >
                 <FormHelperText
@@ -204,6 +208,7 @@ export default function CalendarForm({}: { profile: boolean }) {
                 }}
                 value={formik.values.ends_at}
                 onChange={(value) => formik.setFieldValue("ends_at", value)}
+                disabled={formik.isSubmitting}
               />
               <FormHelperText
                 className="helperText"
@@ -220,7 +225,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 error={!!formik.errors.phone}
-                helperText={formik.errors.phone} />
+                helperText={formik.errors.phone} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -231,7 +237,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={!!formik.errors.email}
-                helperText={formik.errors.email} />
+                helperText={formik.errors.email} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12}>
               <CssTextField
@@ -249,16 +256,22 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 error={!!formik.errors.description}
-                helperText={formik.errors.description} />
+                helperText={formik.errors.description} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12}>
               <p className={isMax ? index.max : index.notMax}>
                 {formik.values.description.length}/300
               </p>
               <button
+                disabled={formik.isSubmitting}
                 type={"submit"}
                 className={index.button}>
-                Save
+                {!formik.isSubmitting && <>Save</>}
+                {formik.isSubmitting &&
+                  <span style={{ paddingLeft: 5 }}><FontAwesomeIcon icon={faSpinner} spin />
+                  </span>
+                }
               </button>
             </Grid>
           </Grid>

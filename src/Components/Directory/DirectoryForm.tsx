@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import form from "src/styles/Form.module.css"
+import index from "src/styles/Form.module.css"
 import axios from 'axios'
 import { Checkbox, InputAdornment, MenuItem, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
@@ -7,7 +7,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles"
 import React from "react";
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import ElementLoader from "../ElementLoader";
 import { useRouter } from "next/router"
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 import { DirectoryRow } from "../../types"
@@ -112,7 +111,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
   if (!initialized)
     return <></>
   return (
-    <div className={form.body}>
+    <div className={index.body}>
       <form onSubmit={formik.handleSubmit}>
 
         <ThemeProvider theme={theme}>
@@ -144,7 +143,6 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               >
                 {type.map((option) => (
                   <MenuItem
-                    className="bolder"
                     key={option.value}
                     value={option.value}>
                     {option.value}
@@ -181,6 +179,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 onChange={formik.handleChange}
                 error={!!formik.errors.phone}
                 helperText={formik.errors.phone}
+                disabled={formik.isSubmitting}
               />
             </Grid>
             <Grid xs={12} sm={6}>
@@ -192,7 +191,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 helperText={formik.errors.email}
-                error={!!formik.errors.email} />
+                error={!!formik.errors.email} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -204,8 +204,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.instagram}
                 onChange={formik.handleChange}
                 helperText={formik.errors.instagram}
-
-                error={!!formik.errors.instagram} />
+                error={!!formik.errors.instagram} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -217,7 +217,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.twitter}
                 onChange={formik.handleChange}
                 helperText={formik.errors.twitter}
-                error={!!formik.errors.twitter} />
+                error={!!formik.errors.twitter} 
+                disabled={formik.isSubmitting}/>
             </Grid>
             <Grid xs={12}>
               <CssTextField
@@ -233,6 +234,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 helperText={formik.errors.description}
+                disabled={formik.isSubmitting}
               />
             </Grid>
             {profile && <>
@@ -255,17 +257,18 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                   }
                 }}
                 onChange={formik.handleChange}
-                checked={formik.values.display} />
+                checked={formik.values.display} 
+                disabled={formik.isSubmitting}/>
               <label htmlFor="display">Display in directory</label>
             </>}
             <Grid xs={12}>
-              <p className={isMax ? form.max : form.notMax}>
+              <p className={isMax ? index.max : index.notMax}>
                 {formik.values.description.length}/300
               </p>
               <button
                 disabled={formik.isSubmitting}
                 type={"submit"}
-                className={form.button}>
+                className={index.button}>
                 {!formik.isSubmitting && <>Save</>}
                 {formik.isSubmitting &&
                   <span style={{ paddingLeft: 5 }}><FontAwesomeIcon icon={faSpinner} spin />

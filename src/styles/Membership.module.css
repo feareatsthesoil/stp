@@ -3,7 +3,6 @@
   flex-direction: column;
   max-width: 2050px;
   padding: 0 0 40px 0;
-  /* min-width: 375px; */
 }
 
 .box:first-child h1 {
