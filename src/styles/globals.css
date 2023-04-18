@@ -143,6 +143,14 @@ p {
   font-weight: bold;
 }
 
+/* .MuiAutocomplete-root.Mui-focused{
+  color: #000;
+} */
+/* 
+.MuiAutocomplete-hasPopupIcon {
+  border: 1px solid red;
+} */
+
 /* MuiAlert */
 .MuiDialog-paper {
   border-radius: 0 !important;

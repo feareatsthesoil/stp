@@ -34,7 +34,7 @@ interface PlaceType {
   structured_formatting: StructuredFormatting;
 }
 
-export default function GooglePlacesAutoComplete(props: { onChange: (value: string) => any, value: string }) {
+export default function GooglePlacesAutoComplete(props: { onChange: (value: string) => any, value: string, disabled?: boolean, helperText?: string, error?: boolean }) {
   const { value } = props
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<readonly PlaceType[]>([]);
@@ -90,7 +90,6 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
       if (active) {
         let newOptions: readonly PlaceType[] = [];
 
-
         if (value) {
           newOptions = [];
         }
@@ -114,8 +113,10 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         width: "auto",
         "& fieldset": { borderColor: "black" },
         "&:hover fieldset": { borderWidth: "2px" },
-        "& .Mui-focused fieldset": { borderColor: "black!important" },
-        "& label": { color: "black!important" }
+        "& .Mui-focused fieldset": { borderColor: "#000!important" },
+        "& label": { color: "#000!important" },
+        "& .Mui-error": {borderColor: "red!important"},
+        "& .MuiAutocomplete-hasPopupIcon": {borderColor: "red!important"},
       }}
       placeholder="Location"
       getOptionLabel={(option) =>
@@ -123,6 +124,8 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
       }
       filterOptions={(x) => x}
       options={options}
+      error={props.error}
+      helperText={props.helperText}
       autoComplete
       includeInputInList
       filterSelectedOptions
@@ -141,8 +144,10 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField {...params} label="Add a location" fullWidth />
+        <TextField required {...params}  label="Location" fullWidth />
       )}
+      disabled={props.disabled}
+
       renderOption={(props, opt) => {
 
         const option = opt as PlaceType
@@ -164,6 +169,7 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
                   <Box 
                     key={index}
                     component="span"
+                    
                     sx={{ fontWeight: part.highlight ? 'bold' : 'regular' }}
                   >
                     {part.text}

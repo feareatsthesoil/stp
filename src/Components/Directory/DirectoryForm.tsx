@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import index from "src/styles/Form.module.css"
 import axios from 'axios'
-import { Checkbox, InputAdornment, MenuItem, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material"
+import { Checkbox, FormHelperText, InputAdornment, MenuItem, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import React from "react";
@@ -13,6 +13,7 @@ import { DirectoryRow } from "../../types"
 import { UserContext } from "../UserContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import AdornedTextBox from "../AdornedTextBox"
 
 const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", instagram: "", twitter: "", description: "", display: true }
 
@@ -57,10 +58,9 @@ const theme = createTheme({
 
 const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 const reInsta = /^[a-zA-Z_](?!.*?\.{2})[\w.]{1,28}[\w]$/;
-const reTwitter = /^@?(\w){1,15}$/;
+const reTwitter = /^(\w){1,15}$/;
 
 export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow }) {
-
 
   const [isSelected, setIsSelected] = useState(false);
 
@@ -76,7 +76,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
   let isMax = false;
   const router = useRouter()
   const formik = useFormik({
-    
+
     validationSchema: Yup.object({
       name:
         Yup.string()
@@ -89,7 +89,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
           .required("Category is required"),
 
       address:
-        Yup.string(),
+        Yup.string()
+          .required("Location is required"),
 
       phone:
         Yup.string()
@@ -115,7 +116,6 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
     }),
     initialValues: { ...initialState, display: !profile, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
 
-      
       const dataToSubmit = {
         ...values, profile
       }
@@ -174,9 +174,18 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
             </Grid>
             <Grid xs={12} sm={6} >
               <GooglePlacesAutoComplete
+                error={!!formik.errors.address}
+                disabled={formik.isSubmitting}
                 value={formik.values.address}
                 onChange={(val) => formik.setFieldValue("address", val)}
               />
+              <div >
+                <FormHelperText
+                  className="helperText"
+                  error={!!formik.errors.address}>
+                  {formik.errors.address}
+                </FormHelperText>
+              </div>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -217,13 +226,12 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12} sm={6}>
-              <CssTextField
+              <AdornedTextBox
+                adornment={<InputAdornment position="start">@</InputAdornment>}
                 name="instagram"
                 label="Instagram"
                 fullWidth
                 InputProps={iconAdornment}
-                onFocus={e => setIsSelected(true)}
-                onBlur={e => setIsSelected(false)}
                 color="secondary"
                 value={formik.values.instagram}
                 onChange={formik.handleChange}
@@ -232,13 +240,12 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12} sm={6}>
-              <CssTextField
+              <AdornedTextBox
+                adornment={<InputAdornment position="start">@</InputAdornment>}
                 name="twitter"
                 label="Twitter"
                 fullWidth
                 InputProps={iconAdornment}
-                onFocus={e => setIsSelected(true)}
-                onBlur={e => setIsSelected(false)}
                 color="secondary"
                 value={formik.values.twitter}
                 onChange={formik.handleChange}
@@ -278,7 +285,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                   },
                   '& .input': {
                     backgroundColor: "black",
-                    borderRadius: "0",
+                    borderRadius: "0!important",
                     border: "1px solid black",
                   }
                 }}

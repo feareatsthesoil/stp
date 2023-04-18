@@ -68,6 +68,7 @@ export default function CalendarForm({ }: { profile: boolean }) {
 
       address:
         Yup.string()
+          .required("Location is required")
           .min(2),
 
       starts_at:
@@ -150,7 +151,15 @@ export default function CalendarForm({ }: { profile: boolean }) {
             </Grid>
             <Grid xs={12} sm={6}>
               <GooglePlacesAutoComplete
+                disabled={formik.isSubmitting}
                 onChange={(value) => formik.setFieldValue("address", value)} value={formik.values.address} />
+              <div >
+                <FormHelperText
+                  className="helperText"
+                  error={!!formik.errors.address}>
+                  {formik.errors.address}
+                </FormHelperText>
+              </div>
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
