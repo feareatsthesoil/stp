@@ -13,7 +13,7 @@ function Footer() {
         <div className={index.socials}>
           <Socials />
         </div>
-      </div>z
+      </div>
     </>
   )
 }
