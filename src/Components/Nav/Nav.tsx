@@ -3,25 +3,25 @@ import Link from "next/link"
 import index from "./Nav.module.css"
 import { useRouter } from "next/router"
 import nav from "../Nav/Nav.json"
-import {useUser} from "@clerk/nextjs"
+import { useUser } from "@clerk/nextjs"
 
 const NavBar = () => {
   const user = useUser()
   const router = useRouter();
   const currentRoute = router.pathname;
-  const navItems = nav.items.filter(item=>(!item.authorized || user.isSignedIn ))
+  const navItems = nav.items.filter(item => (!item.authorized || user.isSignedIn))
 
   return (
     <div className={index.items}>
       <nav>
         <div>
           <ul>
-            {navItems.map(({href, name}) => {
+            {navItems.map(({ href, name }) => {
               return (
                 <li key={name}>
                   <Link
-                  href={href}
-                  className={currentRoute.startsWith (href) ? index.active : index.a}
+                    href={href}
+                    className={currentRoute.startsWith(href) ? index.active : index.a}
                   >
                     {name}
                   </Link>
@@ -35,12 +35,12 @@ const NavBar = () => {
               >
                 Login Portal
               </Link>
-            </li> 
+            </li>
           </ul>
         </div>
       </nav>
     </div>
   )
-} 
+}
 
 export default NavBar

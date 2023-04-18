@@ -1,4 +1,4 @@
-import * as React from 'react';import Box from '@mui/material/Box';
+import * as React from 'react'; import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
@@ -34,8 +34,8 @@ interface PlaceType {
   structured_formatting: StructuredFormatting;
 }
 
-export default function GooglePlacesAutoComplete(props: {onChange: (value: string)=>any, value: string}) {
-  const {value} = props
+export default function GooglePlacesAutoComplete(props: { onChange: (value: string) => any, value: string }) {
+  const { value } = props
   const [inputValue, setInputValue] = React.useState('');
   const [options, setOptions] = React.useState<readonly PlaceType[]>([]);
   const loaded = React.useRef(false);
@@ -82,7 +82,6 @@ export default function GooglePlacesAutoComplete(props: {onChange: (value: strin
     }
 
     if (inputValue === '') {
-      //setOptions(value ? [value] : []);
       setOptions([])
       return undefined;
     }
@@ -91,16 +90,14 @@ export default function GooglePlacesAutoComplete(props: {onChange: (value: strin
       if (active) {
         let newOptions: readonly PlaceType[] = [];
 
-        
+
         if (value) {
-          //newOptions = [value];
           newOptions = [];
         }
 
         if (results) {
           newOptions = [...newOptions, ...results];
         }
-        console.log({newOptions})
         setOptions(newOptions);
       }
     });
@@ -111,14 +108,15 @@ export default function GooglePlacesAutoComplete(props: {onChange: (value: strin
   }, [value, inputValue, fetch]);
 
   return (
-    <Autocomplete<string |PlaceType>
+    <Autocomplete<string | PlaceType>
       id="google-map-demo"
-      sx={{ 
-        width: "auto", 
-        "& fieldset": {borderColor: "black" },
-        "&:hover fieldset": {borderWidth: "2px" },
-      "& .Mui-focused fieldset": {borderColor: "black!important"},
-      "& label": {color: "black!important"}}}
+      sx={{
+        width: "auto",
+        "& fieldset": { borderColor: "black" },
+        "&:hover fieldset": { borderWidth: "2px" },
+        "& .Mui-focused fieldset": { borderColor: "black!important" },
+        "& label": { color: "black!important" }
+      }}
       placeholder="Location"
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
@@ -129,14 +127,14 @@ export default function GooglePlacesAutoComplete(props: {onChange: (value: strin
       includeInputInList
       filterSelectedOptions
       value={value}
-      isOptionEqualToValue={(option, value)=>{return  (option as PlaceType).description === value}}
+      isOptionEqualToValue={(option, value) => { return (option as PlaceType).description === value }}
       noOptionsText="No locations"
       //@ts-ignore
-      onChange={(event: any, newValue: PlaceType ) => {
+      onChange={(event: any, newValue: PlaceType) => {
         setOptions(newValue ? [newValue, ...options] : options);
-        //setValue(newValue);
-        if(!newValue)
-        return
+
+        if (!newValue)
+          return
         props.onChange(newValue?.description)
       }}
       onInputChange={(event, newInputValue) => {
@@ -146,8 +144,8 @@ export default function GooglePlacesAutoComplete(props: {onChange: (value: strin
         <TextField {...params} label="Add a location" fullWidth />
       )}
       renderOption={(props, opt) => {
-        
-        const option =  opt as PlaceType
+
+        const option = opt as PlaceType
         const matches =
           option.structured_formatting.main_text_matched_substrings || [];
 
@@ -160,11 +158,10 @@ export default function GooglePlacesAutoComplete(props: {onChange: (value: strin
           <li {...props}>
             <Grid container alignItems="center">
               <Grid item sx={{ display: 'flex', width: 44 }}>
-                
               </Grid>
               <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
-                  <Box
+                  <Box 
                     key={index}
                     component="span"
                     sx={{ fontWeight: part.highlight ? 'bold' : 'regular' }}

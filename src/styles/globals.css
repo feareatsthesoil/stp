@@ -40,8 +40,7 @@ em, i {
 a img {
   border: none;
 }
-/* END RESET */
-:root {
+/* END RESET */:root {
   box-sizing: border-box;
   letter-spacing: -0.03em;
 }
@@ -142,6 +141,37 @@ p {
 .MuiList-root li.Mui-selected {
   background-color: #fff;
   font-weight: bold;
+}
+
+/* MuiAlert */
+.MuiDialog-paper {
+  border-radius: 0 !important;
+}
+
+.MuiDialogContent-root p {
+  font-family: 'Times New Roman', Times, serif !important;
+  letter-spacing: -0.03em !important;
+  font-family: 'Times New Roman', Times, serif !important;
+  color: #000 !important;
+}
+
+.MuiDialogTitle-root {
+  font-weight: bold !important;
+  letter-spacing: -0.03em !important;
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+.MuiDialogActions-root button {
+  letter-spacing: -0.03em;
+  font-family: 'Times New Roman', Times, serif !important;
+  text-transform: none;
+  background-color: #000;
+  border-radius: 0;
+  color: #fff;
+}
+
+.MuiDialogActions-root button:hover {
+  background-color: #000000b7;
 }
 
 /* MEDIA QUERIES */

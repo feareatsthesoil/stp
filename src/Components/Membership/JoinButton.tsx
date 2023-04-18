@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useConfirm } from "material-ui-confirm";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
@@ -15,10 +14,13 @@ export default function JoinButton() {
     const confirm = useConfirm()
     const router = useRouter()
     const handleClick = () => {
+        
         if (!loggedIn) {
-            return confirm({ title: "Please login", description: <>Please login before purchasing a membership. <Link href="/login">Login</Link></>, confirmationText: "Login" }).then(() => {
+            return confirm({ title: "Please log in", description: "Please log in before purchasing a membership.", confirmationText: "Log in" }).then(() => {
                 router.push("/login")
             })
+            
+            
         }
         setLoading(true)
         axios.post("/api/checkout/create").then((response) => {

@@ -23,23 +23,22 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
           {row.address}
         </p>
         <p>
-          <div>
-            {moment(row.starts_at).format("MMMM DD, YYYY")}
+          {moment(row.starts_at).format("MMMM DD, YYYY")}
+          &nbsp;
+          {moment(row.starts_at).format("hh:mm A")}
+          {row.ends_at && row.ends_at !== "" && <>
+            &nbsp;to&nbsp;
+            {moment(row.ends_at).format("MMMM DD, YYYY")}
             &nbsp;
-            {moment(row.starts_at).format("hh:mm A")}
-            {row.ends_at && row.ends_at !== "" && <>
-              &nbsp;to&nbsp;
-              {moment(row.ends_at).format("MMMM DD, YYYY")}
-              &nbsp;
-              {moment(row.ends_at).format("hh:mm A")}
-            </>}
-          </div>
+            {moment(row.ends_at).format("hh:mm A")}
+          </>}
         </p>
         <p>
           {row.description}
-          <div className={index.spacer} />
+        </p>
+        <p>
           Contact: {row.email}
-        </p>  
+        </p>
         <div className={index.add}>
           <Link
             href="https://calendar.google.com/calendar/u/0?cid=anZhcmR5QHphdmFsLmNv"

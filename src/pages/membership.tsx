@@ -48,7 +48,6 @@ const Membership = () => {
                 label="Joined" 
                 sx={{
                   float: "right",
-                  
                 }}
                 />
                 <><p>

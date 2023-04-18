@@ -20,7 +20,6 @@ export default function AuthLayout(props: { children: ReactNode }) {
       setToken(await getToken())
     }
     setTheToken()
-
   }, [isSignedIn])
   useEffect(() => {
   }, [token])

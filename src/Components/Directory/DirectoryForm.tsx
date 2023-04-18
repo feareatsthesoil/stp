@@ -56,16 +56,27 @@ const theme = createTheme({
 });
 
 const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+const reInsta = /^[a-zA-Z_](?!.*?\.{2})[\w.]{1,28}[\w]$/;
+const reTwitter = /^@?(\w){1,15}$/;
 
 export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow }) {
 
+
+  const [isSelected, setIsSelected] = useState(false);
+
+  const iconAdornment = isSelected
+    ? {
+      startAdornment: (
+        <InputAdornment position="start">@</InputAdornment>
+      )
+    }
+    : {};
+
   const { refresh, initialized, isMember } = useContext(UserContext)
   let isMax = false;
-
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
-
   const formik = useFormik({
+    
     validationSchema: Yup.object({
       name:
         Yup.string()
@@ -88,14 +99,23 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
         Yup.string()
           .required("Email is required")
           .email("Must be a valid email"),
+
       website:
         Yup.string()
           .url("Must be a valid URL starting with http(s)://"),
 
+      instagram:
+        Yup.string()
+          .matches(reInsta, "Must be a valid username"),
+
+      twitter:
+        Yup.string()
+          .matches(reTwitter, "Must be a valid username")
+
     }),
     initialValues: { ...initialState, display: !profile, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
 
-
+      
       const dataToSubmit = {
         ...values, profile
       }
@@ -116,7 +136,6 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
   return (
     <div className={index.body}>
       <form onSubmit={formik.handleSubmit}>
-
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
             <Grid xs={12} sm={6} >
@@ -202,7 +221,9 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 name="instagram"
                 label="Instagram"
                 fullWidth
-                InputProps={{ startAdornment: <InputAdornment position="start">@</InputAdornment> }}
+                InputProps={iconAdornment}
+                onFocus={e => setIsSelected(true)}
+                onBlur={e => setIsSelected(false)}
                 color="secondary"
                 value={formik.values.instagram}
                 onChange={formik.handleChange}
@@ -215,7 +236,9 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 name="twitter"
                 label="Twitter"
                 fullWidth
-                InputProps={{ startAdornment: <InputAdornment position="start">@</InputAdornment> }}
+                InputProps={iconAdornment}
+                onFocus={e => setIsSelected(true)}
+                onBlur={e => setIsSelected(false)}
                 color="secondary"
                 value={formik.values.twitter}
                 onChange={formik.handleChange}

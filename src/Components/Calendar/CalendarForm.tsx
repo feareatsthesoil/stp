@@ -53,7 +53,7 @@ const theme = createTheme({
 
 const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
-export default function CalendarForm({}: { profile: boolean }) {
+export default function CalendarForm({ }: { profile: boolean }) {
   let isMax = false;
   const [loading, setLoading] = useState(false)
   const { getToken } = useAuth()
@@ -92,6 +92,10 @@ export default function CalendarForm({}: { profile: boolean }) {
           .required("Email is required")
           .email("Must be a valid email"),
 
+      website:
+        Yup.string()
+          .url("Must be a valid URL starting with http(s)://"),
+
     }),
     initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
 
@@ -105,7 +109,6 @@ export default function CalendarForm({}: { profile: boolean }) {
     }
   })
 
-  console.log(formik.values)
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
@@ -122,8 +125,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 error={!!formik.errors.name}
-                helperText={formik.errors.name} 
-                disabled={formik.isSubmitting}/>
+                helperText={formik.errors.name}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -158,12 +161,12 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.website}
                 onChange={formik.handleChange}
                 error={!!formik.errors.website}
-                helperText={formik.errors.website} 
-                disabled={formik.isSubmitting}/>
+                helperText={formik.errors.website}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12} sm={6}>
               <DateTimePicker
-                label="Start Date/Time"
+                label="Start Date/Time *"
                 disablePast
                 className={index.datePicker}
                 sx={{
@@ -225,8 +228,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.phone}
                 onChange={formik.handleChange}
                 error={!!formik.errors.phone}
-                helperText={formik.errors.phone} 
-                disabled={formik.isSubmitting}/>
+                helperText={formik.errors.phone}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
@@ -237,8 +240,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={!!formik.errors.email}
-                helperText={formik.errors.email} 
-                disabled={formik.isSubmitting}/>
+                helperText={formik.errors.email}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12}>
               <CssTextField
@@ -256,8 +259,8 @@ export default function CalendarForm({}: { profile: boolean }) {
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 error={!!formik.errors.description}
-                helperText={formik.errors.description} 
-                disabled={formik.isSubmitting}/>
+                helperText={formik.errors.description}
+                disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12}>
               <p className={isMax ? index.max : index.notMax}>

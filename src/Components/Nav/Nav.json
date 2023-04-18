@@ -1,33 +1,41 @@
 {
-  "items": [{
-    "href": "/about",
-    "name": "About"
-  }, {
-    "href": "/calendar",
-    "name": "Calendar"
-  }, {
-
-    "href": "/directory",
-    "name": "Directory"
-  }, {
-    "href": "/membership",
-    "name": "Membership"
-  }, {
-    "href": "/radio",
-    "name": "Radio"
-  }, {
-    "href": "/discussion",
-    "name": "Discussion"
-  }, {
-    "href": "/contact",
-    "name": "Contact Us"
-  }, {
-    "href": "https://shop.stp.world",
-    "name": "Shop"
-  }, {
-    "href": "/info",
-    "name": "Info",
-    "authorized": true
-  }
+  "items": [
+    {
+      "href": "/about",
+      "name": "About"
+    },
+    {
+      "href": "/calendar",
+      "name": "Calendar"
+    },
+    {
+      "href": "/directory",
+      "name": "Directory"
+    },
+    {
+      "href": "/membership",
+      "name": "Membership"
+    },
+    {
+      "href": "/radio",
+      "name": "Radio"
+    },
+    {
+      "href": "/discussion",
+      "name": "Discussion"
+    },
+    {
+      "href": "/contact",
+      "name": "Contact Us"
+    },
+    {
+      "href": "https://shop.stp.world",
+      "name": "Shop"
+    },
+    {
+      "href": "/info",
+      "name": "Info",
+      "authorized": true
+    }
   ]
 }
