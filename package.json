@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf .next/",
-    "migrate": "prisma migrate deploy"
+    "db:push": "prisma db push"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.7.17",
