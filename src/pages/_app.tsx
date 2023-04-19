@@ -1,19 +1,18 @@
-import { Provider } from 'react-redux'
-import { AppProps } from 'next/app'
-import Head from 'next/head'
-import { ClerkProvider } from "@clerk/nextjs"
+import { Provider } from "react-redux";
+import { AppProps } from "next/app";
+import Head from "next/head";
+import { ClerkProvider } from "@clerk/nextjs";
 import { ConfirmProvider } from "material-ui-confirm";
-import { LocalizationProvider } from '@mui/x-date-pickers'
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
-import '../styles/globals.css'
-import { RadioProvider } from '../Components/RadioContext'
-import { SideNavProvider } from '../Components/Nav/NavContext'
-import { store } from '../redux/store'
-import { UserProvider } from '../Components/UserContext'
+import "../styles/globals.css";
+import { RadioProvider } from "../Components/RadioContext";
+import { SideNavProvider } from "../Components/Nav/NavContext";
+import { store } from "../redux/store";
+import { UserProvider } from "../Components/UserContext";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
-
   return (
     <>
       <SideNavProvider>
@@ -21,7 +20,10 @@ export default function MyApp({ Component, pageProps }: AppProps) {
           <Provider store={store}>
             <RadioProvider>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
-                <ClerkProvider {...pageProps}>
+                <ClerkProvider
+                  {...pageProps}
+                  publishableKey="pk_test_bGVuaWVudC1wYW5nb2xpbi0zOC5jbGVyay5hY2NvdW50cy5kZXYk"
+                >
                   <UserProvider>
                     <Head>
                       <meta
@@ -39,5 +41,5 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         </ConfirmProvider>
       </SideNavProvider>
     </>
-  )
+  );
 }

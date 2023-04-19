@@ -6,63 +6,62 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
-  shadowDatabaseUrl= env("SHADOW_DATABASE_URL")
 }
 
 model Users {
-  id Int @id @default(autoincrement())
-  email String @unique
-  name String?
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
 }
 
 model Events {
-  id Int @id @default(autoincrement())
-  name String
-  type String
-  address String
-  website String
-  starts_at DateTime
-  ends_at DateTime?
-  phone String
-  email String
+  id          Int       @id @default(autoincrement())
+  name        String
+  type        String
+  address     String
+  website     String
+  starts_at   DateTime
+  ends_at     DateTime?
+  phone       String
+  email       String
   description String?
-  approved Boolean @default(true)
-  userId String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  approved    Boolean   @default(true)
+  userId      String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
-model Contacts{
-  id Int @id @default(autoincrement())
-  name String
-  pronouns String?
-  category String
-  address String
-  website String
-  email String
-  phone String
-  twitter String?
-  instagram String?
+model Contacts {
+  id          Int     @id @default(autoincrement())
+  name        String
+  pronouns    String?
+  category    String
+  address     String
+  website     String
+  email       String
+  phone       String
+  twitter     String?
+  instagram   String?
   description String?
-  approved Boolean @default(true)
+  approved    Boolean @default(true)
 
   profile Boolean @default(false)
-  display  Boolean @default(true)
+  display Boolean @default(true)
 
-  userId String?
+  userId    String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
-model Purchases{
+model Purchases {
   id Int @id @default(autoincrement())
-  
-  purchasePrice Decimal
+
+  purchasePrice  Decimal
   stripeIntentId String
-  expiryDate DateTime
-  userId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  expiryDate     DateTime
+  userId         String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }
