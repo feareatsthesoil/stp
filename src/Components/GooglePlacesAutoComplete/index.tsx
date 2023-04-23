@@ -111,20 +111,22 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
       id="google-map-demo"
       sx={{
         width: "auto",
-        "& fieldset": { borderColor: "black" },
+        "& fieldset": { borderColor: "#000" },
         "&:hover fieldset": { borderWidth: "2px" },
         "& .Mui-focused fieldset": { borderColor: "#000!important" },
         "& label": { color: "#000!important" },
-        "& .Mui-error": {borderColor: "red!important"},
-        "& .MuiAutocomplete-hasPopupIcon": {borderColor: "red!important"},
+        // "& .Mui-error": {borderColor: "red!important"},
+        // "& .MuiAutocomplete-hasPopupIcon": {borderColor: "red!important"},
+        "& .MuiAutocomplete-hasPopupIcon fieldset": {borderColor: "#d32f2f!important"}
       }}
       placeholder="Location"
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
+      // onFail={${error} => alert(error)}
       filterOptions={(x) => x}
       options={options}
-      error={props.error}
+      // error={props.error}
       helperText={props.helperText}
       autoComplete
       includeInputInList

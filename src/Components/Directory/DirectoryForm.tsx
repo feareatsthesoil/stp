@@ -44,7 +44,21 @@ const CssTextField = withStyles({
       "&:hover fieldset": {
         borderWidth: "2px",
       },
+      "& .Mui-error fieldset": {
+        borderColor: "black!important",
+      },
     },
+    "& .MuiOutlinedInput-root.Mui-error": {
+      "& fieldset": {
+        borderColor: "black!important",
+      }
+    },
+    "& .MuiFormLabel-root.Mui-error": {
+      color: "black!important",
+      "& span": {
+        color: "black!important",
+      }
+    }
   },
 })(TextField);
 
@@ -141,7 +155,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
             <Grid xs={12} sm={6} >
               <CssTextField
                 name="name"
-                label="Name/Business"
+                label="Name"
                 required fullWidth
                 color="secondary"
                 value={formik.values.name}
@@ -256,7 +270,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
             <Grid xs={12}>
               <CssTextField
                 name="description"
-                label="Short Description"
+                label="Short Bio"
                 multiline fullWidth
                 color="secondary"
                 rows={4}
@@ -270,28 +284,11 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 disabled={formik.isSubmitting}
               />
             </Grid>
-            {profile && isMember && <>
-              <Checkbox
-                name="display"
-                sx={{
-                  padding: "0px 5px 0 5px",
-                  margin: "-4px 0 0 0",
-                  color: "black",
-                  '&.Mui-checked': {
-                    color: "black",
-                  },
-                  '&:hover': {
-                    backgroundColor: "#fff",
-                  },
-                  '& .input': {
-                    backgroundColor: "black",
-                    borderRadius: "0!important",
-                    border: "1px solid black",
-                  }
-                }}
-                onChange={formik.handleChange}
+            {profile && <>
+              <input className={index.checkBox} type="checkbox" name="display" onChange={formik.handleChange}
                 checked={formik.values.display}
-                disabled={formik.isSubmitting} />
+                disabled={formik.isSubmitting} >
+              </input>
               <label htmlFor="display">Display in directory</label>
             </>}
             <Grid xs={12}>

@@ -4,10 +4,35 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Required Environment Variables
 This project uses a Google Spreadsheet as a database.
 Credentials for access must be configured via the environment.
-To do so for local development, create a `.env.local` file, using `.env.example` as a template.
+#Google keys and email are acquired from google cloud console
+GOOGLE_CLOUD_PRIVATE_KEY=
+GOOGLE_CLOUD_CLIENT_EMAIL=
+GOOGLE_CALENDAR_ID=
+NEXT_PUBLIC_GOOGLE_MAPS_API_KEY=
+
+#Clerk keys from clerk console
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+
+These can be obtained from stripe
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+
+The primary database url 
+DATABASE_URL=
+
+The shadown database is used by prisma to diff the current version of database from the schema version and create migrations. Not required in production
+SHADOW_DATABASE_URL=
+
+
+Used by Nextjs server side renders
+BACKEND_URL="http://localhost:3000"
+
+To do so for local development, create a `.env` file, using `.env.sample` as a template.
 
 ```
-cp .env.example .env.local
+cp .env.sample .env
 ```
 
 See [Environment Variables in Next.js](https://nextjs.org/docs/basic-features/environment-variables)

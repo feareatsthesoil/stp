@@ -19,8 +19,6 @@ export default function JoinButton() {
             return confirm({ title: "Please log in", description: "Please log in before purchasing a membership.", confirmationText: "Log in" }).then(() => {
                 router.push("/login")
             })
-            
-            
         }
         setLoading(true)
         axios.post("/api/checkout/create").then((response) => {

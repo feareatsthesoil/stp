@@ -46,7 +46,7 @@ export default function Directory() {
                   
                  {row.website && <a rel="noopener noreferrer" target="_blank" href={row.website}>Website</a>}
                   <div className={index.spacer} />
-                  <p>{row.phone}</p>
+                  {/* <p>{row.phone}</p> */}
                 </div>
               </div></>
           )

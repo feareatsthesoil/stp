@@ -19,11 +19,6 @@
   font-weight: bold;
 }
 
-.add a {
-  color: #0047FF;
-  font-size: 1em;
-}
-
 .map {
   height: 40vw;
   max-height: 500px;
@@ -33,19 +28,41 @@
   width: 40vw;
 }
 
-.socials {
-  padding: 10px 0 0 0;
-  width: 130px;
-}
-
-.mail svg {
-  margin-bottom: -2px;
-}
-
-.whatsapp svg {
-  padding-left: 3px;
-}
-
 .spacer {
   height: 5px;
+}
+
+.button {
+  height: 30px;
+  background-color: #000 !important;
+  border-radius: 0 !important;
+  border: 1px solid black;
+  box-shadow: none !important;
+  color: #fff !important;
+  font-family: 'Times New Roman' !important;
+  font-size: .9em !important;
+  letter-spacing: -0.03em !important;
+  margin: 10px 10px 0px 0 !important;
+  padding: 3px 10px !important;
+  text-transform: none !important;
+  font-weight: normal!important;
+}
+
+.button:hover {
+  background-color: #000000b7 !important;
+}
+
+.button:active {
+  transform: translateY(4px) !important;
+  transition: 60ms transform ease-in-out !important;
+}
+
+.buttonBody {
+  display: flex;
+  /* flex-direction: row; */
+  flex-flow: row wrap;
+}
+
+.buttonBody {
+  /* min-width: 90vw; */
 }

@@ -12,10 +12,7 @@ export default function info() {
     <AuthLayout>
       <div className={index.body}>
         <div className={index.box}>
-          <h1>Contact Information</h1>
-          <p>
-            By submitting you agree to our <Link href="#">privacy policy</Link>.
-          </p>
+          <h1>Tell us about yourself...</h1>
         </div>
         <DirectoryForm profile={true} data={profile} />
       </div>

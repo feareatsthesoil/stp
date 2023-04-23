@@ -38,3 +38,34 @@
 .max {
   color: #d32f2f;
 }
+
+.checkBox {
+  float: left;
+  appearance: none;
+  border: 1px solid black;
+  font: inherit;
+  height: 1em;
+  margin: 2px 5px 0 8px;
+  transform: translateY(-0.1em);
+  width: 1em;
+  display: grid;
+  place-content: center;
+}
+
+.checkBox::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 120ms transform ease-in-out;
+  box-shadow: inset 1em 1em var(#000);
+  background-color: CanvasText;
+}
+
+.checkBox:hover {
+  border: 1.5px solid black;
+}
+
+.checkBox:checked::before {
+  transform: scale(1);
+}

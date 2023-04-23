@@ -13,17 +13,14 @@ export default function CalendarSubmit() {
     <AuthLayout>
       <div className={index.body}>
         <div className={index.box}>
-          <h1>Calendar Submission</h1>
-          <h2>All submissions will be included in our weekly newsletter.</h2>
-          <p>
-            By submitting you agree to our <Link href="/">privacy policy</Link>.
-          </p>
+          <h1>Add to Calendar</h1>
         </div>
         {userData.isMember && <CalendarForm profile={false} />}
         {!userData.isMember && < Box>
           <Alert color="warning">
-            <AlertTitle>Must be a member to submit to the calendar</AlertTitle>
+          <AlertTitle><strong>Members Only</strong></AlertTitle>
             <AlertTitle>
+              You must be a member to submit to the calendar.
               Sign up <Link href="/membership">here</Link>.
             </AlertTitle>
           </Alert>

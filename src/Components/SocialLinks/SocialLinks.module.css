@@ -1,0 +1,125 @@
+.button {
+  position: absolute;
+  background-color: #000 !important;
+  border-radius: 0 !important;
+  border: 1px solid black;
+  box-shadow: none !important;
+  color: #fff !important;
+  font-family: 'Times New Roman' !important;
+  font-size: .9em !important;
+  height: 30px !important;
+  letter-spacing: -0.03em !important;
+  margin: 10px 10px 0px 0 !important;
+  padding: 3px 10px !important;
+  text-transform: none !important;
+  cursor: pointer;
+}
+
+.container {
+  background-color: #000;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+}
+
+.container svg {
+  display: none;
+  margin: 0 5px;
+  text-decoration: none;
+}
+
+/* Desktop */
+
+.wrapper.desktop {
+  display: inline-block;
+  position: relative;
+  /* width: 160px; */
+  width: 75px;
+}
+
+.wrapper.desktop:hover {
+  width: 170px;
+  margin-right: 10px;
+}
+
+.wrapper.desktop:hover .container {
+  height: 30px;
+  margin-top: 10px;
+}
+
+.wrapper.desktop:hover .button {
+  opacity: 0;
+}
+
+.wrapper.desktop:hover .container {
+  opacity: 1;
+}
+
+.wrapper.desktop:hover .container svg {
+  display: inline-block;
+}
+
+.wrapper.desktop .container svg:hover {
+  opacity: 60%;
+}
+
+/* Mobile */
+
+.wrapper.mobile {
+  position: static;
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+
+.wrapper.mobile .container {
+  position: static;
+  width: auto;
+  height: auto;
+  display: block;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.wrapper.mobile .button {
+  position: static;
+  width: auto;
+  height: auto;
+}
+
+.wrapper.mobile.expanded .button {
+  display: none;
+}
+
+.wrapper.mobile.expanded .container {
+  opacity: 1;
+  visibility: visible;
+  width: 204px;
+}
+
+.wrapper.mobile.expanded .container svg {
+  display: inline-block;
+}
+
+.expanded {
+  background-color: #000;
+  margin: 10px 10px 0 0;
+}
+
+.expanded svg {
+  margin-top: 2px;
+}
+
+.closeButton {
+  background-color: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transform: translateY(-8px);
+}

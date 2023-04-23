@@ -13,15 +13,14 @@ export default function DirectorySubmit() {
     <AuthLayout>
       <div className={index.body}>
         <div className={index.box}>
-          <h1>Directory Submission</h1>
-          <p>By submitting you agree to our <Link href="/">privacy policy</Link>.</p>
+          <h1>Add to Directory</h1>
         </div>
-
         {userData.isMember && <DirectoryForm profile={false} />}
         {!userData.isMember && < Box>
           <Alert color="warning">
-            <AlertTitle>Must be a member to submit to the directory</AlertTitle>
+            <AlertTitle><strong>Members Only</strong></AlertTitle>
             <AlertTitle>
+              You must be a member to submit to the directory.
               Sign up <Link href="/membership">here</Link>.
             </AlertTitle>
           </Alert>

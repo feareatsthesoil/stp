@@ -1,12 +1,16 @@
+.header {
+  padding: 0 0 2vh 0;
+}
+
 .header h1 {
   font-size: 1.3em;
   font-weight: bold;
-  padding: 0 0 1vh 0;
+  padding: 0 0 0 0;
   text-decoration: underline;
 }
 
 .header p {
-  padding: 0 0 20px 0;
+  padding: 10px 0 0px 0;
 }
 
 .header a {
@@ -37,14 +41,6 @@
   padding-bottom: 20px;
 }
 
-.add a {
-  color: #0047FF;
-}
-
-.add {
-  width: 130px;
-}
-
 .spacer {
   height: 5px;
 }
@@ -52,25 +48,20 @@
 .eventRow {
   padding: 10px 50px;
   text-align: left;
-  width: 50vw;
+  width: calc(48vw - 130px);
+  min-width: 250px;
+}
+
+.eventRow a:hover {
+  opacity: 50%;
+}
+
+.eventInfo:hover {
+  opacity: 50%;
 }
 
 .eventRow hr {
   border: 0;
-}
-
-.eventSocialsBody {
-  margin: 0 0 0 -5px;
-  padding: 5px 0 0 0;
-  width: 130px;
-}
-
-.mail svg {
-  margin-bottom: -2px;
-}
-
-.whatsapp svg {
-  padding-left: 3px;
 }
 
 .mainEvent {
@@ -79,6 +70,40 @@
 }
 
 .mainEvent strong {
-  color: #0047FF;
+  color: #000;
   text-decoration: underline;
+}
+
+.add {
+  min-width: 110px;
+}
+
+.button {
+  background-color: #000 !important;
+  border-radius: 0 !important;
+  border: 1px solid black;
+  box-shadow: none !important;
+  color: #fff !important;
+  font-family: 'Times New Roman' !important;
+  font-size: .9em !important;
+  height: 30px;
+  letter-spacing: -0.03em !important;
+  margin: 10px 10px 0px 0 !important;
+  padding: 3px 10px !important;
+  text-transform: none !important;
+}
+
+.button:hover {
+  background-color: #000000b7 !important;
+}
+
+.button:active {
+  transform: translateY(4px) !important;
+  transition: 60ms transform ease-in-out !important;
+}
+
+.buttonBody {
+  display: flex;
+  flex-flow: row wrap;
+  width: 50vw;
 }

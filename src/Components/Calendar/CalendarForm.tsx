@@ -207,6 +207,7 @@ export default function CalendarForm({ }: { profile: boolean }) {
                 label="End Date/Time"
                 disablePast
                 className={index.datePicker}
+                // error={!!formik.errors.starts_at}
                 sx={{
                   "& label.Mui-focused": { color: "black" },
                   "& fieldset": {

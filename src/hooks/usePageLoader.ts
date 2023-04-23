@@ -23,19 +23,5 @@ export default function usePageLoader() {
     }
   }, [])
 
-  useEffect(() => {
-    if (router.asPath == "/info") {
-      return
-    }
-    axios.get("/api/directory/meta").then(({ data }) => {
-      if (data.user) {
-        if (!data.profile) {
-          router.push("/info")
-        }
-      }
-    }).catch(() => {
-
-    })
-  }, [router.asPath])
   return loading
 }

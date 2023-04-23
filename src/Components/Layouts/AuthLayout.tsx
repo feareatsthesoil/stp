@@ -1,4 +1,5 @@
 import { SignIn, useAuth, useUser } from "@clerk/nextjs";
+import { Dialog, Modal } from "@mui/material";
 import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import usePageLoader from "../../hooks/usePageLoader";
@@ -41,6 +42,10 @@ export default function AuthLayout(props: { children: ReactNode }) {
   return <div className={index.body}>
     <Header />
     <NavBar />
+    {/* {!isSignedIn &&  <Dialog open={true}>
+      <SignIn afterSignInUrl={router.asPath}/>
+     </Dialog>
+    } */}
     <div className={index.subBody}>
       {loading && <Loader />}
       {!loading && props.children}
