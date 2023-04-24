@@ -1,5 +1,5 @@
 import React from "react"
-import footer from "./Footer.module.css"
+import css from "./Footer.module.css"
 import Socials from "../Socials"
 import { useRouter } from "next/router"
 import Link from "next/link"
@@ -12,9 +12,9 @@ function Footer() {
 
   return (
     <>
-      <div className={currentRoute === "/" ? footer.bodyHome : footer.body}>
+      <div className={currentRoute === "/" ? css.bodyHome : css.body}>
         <SignedIn>
-          <div className={footer.editButton}>
+          <div className={css.editButton}>
             <Link href="/info">
               <Button variant="contained">
                 Edit profile
@@ -22,7 +22,7 @@ function Footer() {
             </Link>
           </div>
         </SignedIn>
-        <div className={footer.socials}>
+        <div className={css.socials}>
           <Socials />
         </div>
       </div>

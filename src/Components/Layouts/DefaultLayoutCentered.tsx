@@ -6,7 +6,7 @@ import Header from "../Header/Header";
 import Loader from "../Loader";
 import NavBar from "../Nav/Nav";
 import { UserContext } from "../UserContext";
-import index from "./DefaultLayoutCentered.module.css"
+import css from "./DefaultLayoutCentered.module.css"
 
 export default function DefaultLayout(props: { children: ReactNode }) {
     const { initialized, profile, loggedIn } = useContext(UserContext);
@@ -16,22 +16,22 @@ export default function DefaultLayout(props: { children: ReactNode }) {
         if (router.asPath == "/info") {
         }
         router.push("/info")
-        return <div className={index.body}>
+        return <div className={css.body}>
             <Header />
             <NavBar />
-            <div className={index.subBody}>
-                <div className={index.box}>
+            <div className={css.subBody}>
+                <div className={css.box}>
                     Redirecting...
                 </div>
             </div>
             <Footer />
         </div>
     }
-    return <div className={index.body}>
+    return <div className={css.body}>
         <Header />
         <NavBar />
-        <div className={index.subBody}>
-            <div className={index.box}>
+        <div className={css.subBody}>
+            <div className={css.box}>
                 {loading && <Loader />}
                 {!loading && props.children}
             </div>

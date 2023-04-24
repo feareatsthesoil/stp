@@ -7,7 +7,7 @@ import Header from "../Header/Header";
 import Loader from "../Loader";
 import NavBar from "../Nav/Nav";
 import { UserContext } from "../UserContext";
-import index from "./DefaultLayout.module.css"
+import css from "./DefaultLayout.module.css"
 import DefaultLayoutCentered from "./DefaultLayoutCentered";
 
 export default function DefaultLayout(props: { children: ReactNode }) {
@@ -20,11 +20,11 @@ export default function DefaultLayout(props: { children: ReactNode }) {
         router.push("/info")
         return <DefaultLayoutCentered> Redirecting...</DefaultLayoutCentered>
     }
-    return <div className={index.body}>
+    return <div className={css.body}>
         <Header />
         <NavBar />
-        <div className={index.subBody}>
-            <div className={index.box}>
+        <div className={css.subBody}>
+            <div className={css.box}>
                 {loading && <Loader />}
                 {!loading && props.children}
             </div>

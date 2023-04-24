@@ -8,7 +8,6 @@ const Radio = () => {
     <DefaultLayoutCentered>
       <div className={css.wrapper}>
         <h1>Now Playing</h1>
-
         <RadioPlayer />
       </div>
     </DefaultLayoutCentered>

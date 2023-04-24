@@ -9,7 +9,7 @@ const NavBar = () => {
   const user = useUser()
   const router = useRouter();
   const currentRoute = router.pathname;
-  const navItems = nav.items.filter(item => (!item.authorized || user.isSignedIn))
+  const navItems = nav.items.filter(item => (user.isSignedIn))
 
   return (
     <div className={index.items}>
