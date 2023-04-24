@@ -23,29 +23,7 @@ export default function Document() {
           type="image/png"
           sizes="32x32"
         />
-        <link
-          rel="apple-touch-icon"
-          href="/apple-icon.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          href="touch-icon-iphone.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="152x152"
-          ref="touch-icon-ipad.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="touch-icon-iphone-retina.png"
-        />
-        <link
-          rel="apple-touch-icon"
-          sizes="167x167"
-          href="touch-icon-ipad-retina.png"
-        />
+
       </Head>
       <body>
         <Main />

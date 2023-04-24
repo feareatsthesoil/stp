@@ -1,7 +1,10 @@
 import React from "react"
-import index from "./Footer.module.css"
+import footer from "./Footer.module.css"
 import Socials from "../Socials"
 import { useRouter } from "next/router"
+import Link from "next/link"
+import { Button } from "@mui/material"
+import { SignedIn } from "@clerk/nextjs"
 
 function Footer() {
   const router = useRouter()
@@ -9,8 +12,17 @@ function Footer() {
 
   return (
     <>
-      <div className={currentRoute === "/" ? index.bodyHome : index.body}>
-        <div className={index.socials}>
+      <div className={currentRoute === "/" ? footer.bodyHome : footer.body}>
+        <SignedIn>
+          <div className={footer.editButton}>
+            <Link href="/info">
+              <Button variant="contained">
+                Edit profile
+              </Button>
+            </Link>
+          </div>
+        </SignedIn>
+        <div className={footer.socials}>
           <Socials />
         </div>
       </div>

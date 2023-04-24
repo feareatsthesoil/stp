@@ -7,7 +7,7 @@
   padding-top: 2em;
 }
 
-.bodyHome{
+.bodyHome {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -37,4 +37,9 @@
 
 .break {
   display: inline-block;
+}
+
+
+.editButton {
+  margin-left: 10px;
 }

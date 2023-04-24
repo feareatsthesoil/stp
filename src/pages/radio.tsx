@@ -1,10 +1,13 @@
 import React from "react"
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
+import RadioPlayer from "../Components/RadioPlayer"
 
 const Radio = () => {
   return (
     <DefaultLayoutCentered>
-      <h1>NOW PLAYING</h1>
+
+      <h2>Radio</h2>
+      <RadioPlayer />
     </DefaultLayoutCentered>
   )
 }
