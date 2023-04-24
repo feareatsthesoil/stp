@@ -36,17 +36,16 @@ export default function Directory() {
               <div className={index.contact} >
                 {i === 0 && alphabet !== "A" && <h1>{alphabet}</h1>}
                 <div className={index.items}>
-                  <p><strong>{row.name}</strong> - {row.category}</p>
+                  <p><strong>{row.name}</strong> {row.pronouns && `- ${row.pronouns}`} - {row.category}</p>
                   <div className={index.border} />
                   <p>{row.email}</p>
                 </div>
                 <div className={index.items}>
-                  {row.twitter && <a href={`http://twitter.com/@${row.twitter}`}>Twitter</a>}
-                  {row.instagram && <a href={`http://instgram.com/${row.instagram}`}>Instagram</a>}
+                  {row.twitter && <a href={`http://twitter.com/@${row.twitter}`}target="webapp-tab">Twitter</a>}
+                  {row.instagram && <a href={`http://instgram.com/${row.instagram}`} target="webapp-tab">Instagram</a>}
                   
                  {row.website && <a rel="noopener noreferrer" target="_blank" href={row.website}>Website</a>}
                   <div className={index.spacer} />
-                  {/* <p>{row.phone}</p> */}
                 </div>
               </div></>
           )

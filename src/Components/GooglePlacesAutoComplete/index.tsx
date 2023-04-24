@@ -114,10 +114,8 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         "& fieldset": { borderColor: "#000" },
         "&:hover fieldset": { borderWidth: "2px" },
         "& .Mui-focused fieldset": { borderColor: "#000!important" },
-        "& label": { color: "#000!important" },
-        // "& .Mui-error": {borderColor: "red!important"},
-        // "& .MuiAutocomplete-hasPopupIcon": {borderColor: "red!important"},
-        "& .MuiAutocomplete-hasPopupIcon fieldset": {borderColor: "#d32f2f!important"}
+        "& label": { color: "#000" },
+        "& label.Mui-focused": {color: "#000"},
       }}
       placeholder="Location"
       getOptionLabel={(option) =>

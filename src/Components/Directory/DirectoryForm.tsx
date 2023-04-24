@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import AdornedTextBox from "../AdornedTextBox"
 
-const initialState = { name: "", address: "", email: "", category: "", website: "", phone: "", instagram: "", twitter: "", description: "", display: true }
+const initialState = { name: "", pronouns: "", address: "", email: "", category: "", website: "", phone: "", instagram: "", twitter: "", description: "", display: true }
 
 const type = [
   {
@@ -165,11 +165,26 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 disabled={formik.isSubmitting}
               />
             </Grid>
-            <Grid xs={12} sm={6}>
+            <Grid xs={12} sm={6} >
+              <CssTextField
+                name="pronouns"
+                label="Pronouns"
+                fullWidth
+                color="secondary"
+                value={formik.values.pronouns}
+                onChange={formik.handleChange}
+                error={!!formik.errors.pronouns}
+                helperText={formik.errors.pronouns}
+                disabled={formik.isSubmitting}
+              />
+            </Grid>
+            <Grid xs={12} sm={12}>
               <CssTextField
                 name="category"
-                label="Category"
-                required select fullWidth
+                label="What do you do?"
+                required 
+                // select 
+                fullWidth
                 color="secondary"
                 value={formik.values.category}
                 onChange={formik.handleChange}

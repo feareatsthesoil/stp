@@ -37,6 +37,7 @@ model Events {
 model Contacts{
   id Int @id @default(autoincrement())
   name String
+  pronouns String?
   category String
   address String
   website String

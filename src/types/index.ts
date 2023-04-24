@@ -20,6 +20,7 @@ export type CalendarPageType = {
 }
 
 export interface DirectoryRow {
+  pronouns: string,
   id?: number,
   timestamp: string,
   name: string,
