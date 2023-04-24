@@ -1,7 +1,6 @@
 import { useContext, useState } from "react"
-import css from "src/styles/Form.module.css"
 import axios from 'axios'
-import { Checkbox, FormHelperText, InputAdornment, MenuItem, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material"
+import { FormHelperText, InputAdornment, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import React from "react";
@@ -14,6 +13,8 @@ import { UserContext } from "../UserContext"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import AdornedTextBox from "../AdornedTextBox"
+
+import css from "src/styles/Form.module.css"
 
 const initialState = { name: "", pronouns: "", address: "", email: "", category: "", website: "", phone: "", instagram: "", twitter: "", description: "", display: true }
 
@@ -148,7 +149,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
   if (!initialized)
     return <></>
   return (
-    <div className={css.body}>
+    <div className={css.wrapper}>
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >

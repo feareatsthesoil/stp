@@ -11,7 +11,7 @@ export default function CalendarSubmit() {
   const userData = useContext(UserContext)
   return (
     <AuthLayout>
-      <div className={css.body}>
+      <div className={css.wrapper}>
         <div className={css.box}>
           <h1>Add to Calendar</h1>
         </div>

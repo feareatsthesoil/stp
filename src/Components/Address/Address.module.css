@@ -1,20 +1,20 @@
-.bodyHome {
+.wrapperHome {
   color: #fff;
   padding: 1vh 0 0 0;
   text-align: center;
 }
 
-.bodyHome h2 {
+.wrapperHome h2 {
   font-size: 1.5em;
 }
 
-.body {
+.wrapper {
   color: #000;
   margin: calc(-20px - 2vh) 0 0 0;
   padding: 1vh 0 0 0;
   text-align: center;
 }
 
-.body h2 {
+.wrapper h2 {
   display: none;
 }

@@ -6,7 +6,7 @@ import Button from "@mui/material/Button"
 const Discussion = () => {
     return (
         <DefaultLayout>
-            <div className={css.body}>
+            <div className={css.wrapper}>
                 <h1>Discord</h1>
                 <p>
                     The Serving the People Discord is where our community gathers to discuss and chat. It features a diverse selection of channels, including art, film, video, tech, and more.

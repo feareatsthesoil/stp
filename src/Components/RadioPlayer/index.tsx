@@ -33,7 +33,7 @@ export default function RadioPlayer() {
         axios.get("https://public.radio.co/stations/s3546f3b2b/status").then(({ data }) => {
             setMetadata({
                 title: data.current_track.title,
-                artwork: data.current_track.artwork_url
+                artwork: data.current_track.artwork_url_large
             })
         })
     }

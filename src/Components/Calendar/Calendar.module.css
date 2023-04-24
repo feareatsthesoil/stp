@@ -102,7 +102,7 @@
   transition: 60ms transform ease-in-out !important;
 }
 
-.buttonBody {
+.buttonWrapper {
   display: flex;
   flex-flow: row wrap;
   width: 50vw;

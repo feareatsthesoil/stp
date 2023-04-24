@@ -1,21 +1,21 @@
-.body {
+.wrapper {
   flex-grow: 1;
   overflow: auto;
   width: 80vw;
   overflow: hidden;
 }
 
-.body h1 {
+.wrapper h1 {
   font-size: 1.5em;
   font-weight: bold;
   padding: 0 0 20px 0;
 }
 
-.body p {
+.wrapper p {
   padding-bottom: 20px;
 }
 
-.body a {
+.wrapper a {
   font-weight: bold;
 }
 
@@ -57,7 +57,7 @@
   transition: 60ms transform ease-in-out !important;
 }
 
-.buttonBody {
+.buttonWrapper {
   display: flex;
   flex-flow: row wrap;
 }

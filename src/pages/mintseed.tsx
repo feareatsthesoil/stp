@@ -27,7 +27,7 @@ const mintSeed = () => {
           placeholder="1"
         />
       </div>
-      <div className={css.buttonBody}>
+      <div className={css.buttonWrapper}>
         <button className={css.button}>
           Connect Wallet
         </button>

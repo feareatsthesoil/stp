@@ -12,7 +12,7 @@ function Footer() {
 
   return (
     <>
-      <div className={currentRoute === "/" ? css.bodyHome : css.body}>
+      <div className={currentRoute === "/" ? css.wrapperHome : css.wrapper}>
         <SignedIn>
           <div className={css.editButton}>
             <Link href="/info">

@@ -11,7 +11,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
   const row: CalendarEventType = params.row
 
   return (
-    <div className={css.body}>
+    <div className={css.wrapper}>
       <h1>{row.name}</h1>
       <div>
         <p>
@@ -39,7 +39,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
             <Map address={row.address} />
           </Wrapper>
         </div>
-        <div className={css.buttonBody}>
+        <div className={css.buttonWrapper}>
           <SocialLinks eventId={row.id} />
           <Button className={css.button} href={google({
             title: row.name,

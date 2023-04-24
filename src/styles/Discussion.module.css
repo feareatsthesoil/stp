@@ -1,9 +1,9 @@
-.body h1 {
+.wrapper h1 {
   font-size: 1.3em;
   font-weight: bold;
 }
 
-.body p {
+.wrapper p {
   padding: 1vh 0 10px 0;
 }
 

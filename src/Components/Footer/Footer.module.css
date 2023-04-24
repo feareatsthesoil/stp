@@ -1,4 +1,4 @@
-.body {
+.wrapper {
   display: flex;
   flex-direction: column;
   font-size: 1em;
@@ -7,7 +7,7 @@
   padding-top: 2em;
 }
 
-.bodyHome {
+.wrapperHome {
   display: flex;
   flex-direction: column;
   position: fixed;

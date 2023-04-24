@@ -1,9 +1,9 @@
-.body div {
+.wrapper div {
   border-radius: 0;
   font-family: 'Times New Roman', Times, serif;
 }
 
-.body label {
+.wrapper label {
   color: #000;
   font-family: 'Times New Roman', Times, serif;
   margin: 0px 0px 0px 0px;

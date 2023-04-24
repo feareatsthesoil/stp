@@ -1,5 +1,4 @@
 import React from "react"
-import css from "src/styles/Form.module.css"
 import axios from "axios"
 import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
@@ -12,6 +11,8 @@ import { useAuth } from "@clerk/nextjs";
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+
+import css from "src/styles/Form.module.css"
 
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
 
@@ -113,7 +114,7 @@ export default function CalendarForm({ }: { profile: boolean }) {
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
-    <div className={css.body}>
+    <div className={css.wrapper}>
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >

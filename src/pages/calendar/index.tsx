@@ -36,7 +36,7 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
         <p>
           All submissions will be included in our weekly newsletter and are subject to review. By submitting to the calendar you are agreeing to our <Link href="#">Privacy Policy</Link>.
         </p>
-        <div className={css.buttonBody}>
+        <div className={css.buttonWrapper}>
           <Button className={css.button} onClick={handleClick}>
             Submit to Calendar
           </Button>

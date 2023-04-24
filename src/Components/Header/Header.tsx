@@ -11,7 +11,7 @@ function Header() {
   const { isSignedIn } = useUser()
 
   return (
-    <div className={currentRoute === "/" ? header.bodyHome : header.body}>
+    <div className={currentRoute === "/" ? header.wrapperHome : header.wrapper}>
       <Head>
         <meta name="theme-color" content={currentRoute === "/" ? "#000" : "#fff"} />
       </Head>

@@ -7,7 +7,7 @@ function Address() {
   const currentRoute = router.pathname;
 
   return (
-    <div className={currentRoute === "/" ? css.bodyHome : css.body}>
+    <div className={currentRoute === "/" ? css.wrapperHome : css.wrapper}>
       <p>83 Canal Street</p>
       <p>New York, NY 10002</p>
       <h2>Official Website</h2>

@@ -45,7 +45,7 @@ export default function Calendar() {
                       <div className={css.spacer} />
                     </div>
                   </Link>
-                  <div className={css.buttonBody}>
+                  <div className={css.buttonWrapper}>
                     <Button className={`${css.button} ${css.add}`} href={google({
                       title: row.name,
                       description: row.description,
