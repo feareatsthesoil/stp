@@ -1,5 +1,5 @@
 import React from "react"
-import index from "src/styles/Form.module.css"
+import css from "src/styles/Form.module.css"
 import axios from "axios"
 import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
@@ -113,7 +113,7 @@ export default function CalendarForm({ }: { profile: boolean }) {
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (
-    <div className={index.body}>
+    <div className={css.body}>
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
@@ -177,7 +177,7 @@ export default function CalendarForm({ }: { profile: boolean }) {
               <DateTimePicker
                 label="Start Date/Time *"
                 disablePast
-                className={index.datePicker}
+                className={css.datePicker}
                 sx={{
                   "& label.Mui-focused": { color: "black" },
                   "& fieldset": {
@@ -206,7 +206,7 @@ export default function CalendarForm({ }: { profile: boolean }) {
               <DateTimePicker
                 label="End Date/Time"
                 disablePast
-                className={index.datePicker}
+                className={css.datePicker}
                 // error={!!formik.errors.starts_at}
                 sx={{
                   "& label.Mui-focused": { color: "black" },
@@ -258,7 +258,7 @@ export default function CalendarForm({ }: { profile: boolean }) {
                 label="Short Description"
                 name="description"
                 multiline fullWidth
-                className={index.description} id="mui-theme-provider-outlined-input"
+                className={css.description} id="mui-theme-provider-outlined-input"
                 variant="outlined"
                 color="secondary"
                 rows={4}
@@ -273,13 +273,13 @@ export default function CalendarForm({ }: { profile: boolean }) {
                 disabled={formik.isSubmitting} />
             </Grid>
             <Grid xs={12}>
-              <p className={isMax ? index.max : index.notMax}>
+              <p className={isMax ? css.max : css.notMax}>
                 {formik.values.description.length}/300
               </p>
               <button
                 disabled={formik.isSubmitting}
                 type={"submit"}
-                className={index.button}>
+                className={css.button}>
                 {!formik.isSubmitting && <>Save</>}
                 {formik.isSubmitting &&
                   <span style={{ paddingLeft: 5 }}><FontAwesomeIcon icon={faSpinner} spin />

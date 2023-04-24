@@ -31,8 +31,8 @@ export default function DefaultLayout(props: { children: ReactNode }) {
         <Header />
         <NavBar />
         <div className={css.subBody}>
+            {loading && <Loader />}
             <div className={css.box}>
-                {loading && <Loader />}
                 {!loading && props.children}
             </div>
         </div>

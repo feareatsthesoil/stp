@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import Link from "next/link"
 import Directory from "../../Components/Directory"
 import { DirectoryRow } from "../../types"
-import index from "../../Components/Directory/Directory.module.css"
+import css from "../../Components/Directory/Directory.module.css"
 import axios from "axios"
 import DefaultLayout from "../../Components/Layouts/DefaultLayout"
 import { loaded } from "../../redux/slices/directory"
@@ -38,18 +38,18 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
 
   return (
     <DefaultLayout>
-      <div className={index.header}>
+      <div className={css.header}>
         <h1>Directory</h1>
         <p>
           All submissions are subject to review. By submitting to the directory you are agreeing to our <Link href="#">Privacy Policy</Link>.
         </p>
         <Button
-          className={index.button}
+          className={css.button}
           onClick={handleClick}>
           Submit to Directory
         </Button>
       </div>
-      <div className={index.box}>
+      <div className={css.box}>
         <Directory />
       </div>
     </DefaultLayout>

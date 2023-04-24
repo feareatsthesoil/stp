@@ -3,7 +3,7 @@ import Link from "next/link"
 import Header from "../Components/Header/Header"
 import Footer from "../Components/Footer/Footer"
 import Address from "../Components/Address/address"
-import index from "../styles/Contact.module.css"
+import css from "../styles/Contact.module.css"
 import Nav from "../Components/Nav/Nav"
 
 const contactUs = () => {
@@ -11,10 +11,10 @@ const contactUs = () => {
     <>
       <Header />
       <Address />
-      <div className={index.body}>
+      <div className={css.body}>
         <Nav />
-        <div className={index.subBody}>
-          <div className={index.box}>
+        <div className={css.subBody}>
+          <div className={css.box}>
             <h1>Contact Us</h1>
             <p>
               If you would like to contact us, you can write us at the address

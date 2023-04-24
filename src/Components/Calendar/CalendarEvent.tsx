@@ -1,5 +1,5 @@
 import { CalendarEventType } from "../../types/index"
-import index from "./CalendarEvent.module.css"
+import css from "./CalendarEvent.module.css"
 import moment from "moment"
 import Map from "./Map"
 import { google } from 'calendar-link'
@@ -11,7 +11,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
   const row: CalendarEventType = params.row
 
   return (
-    <div className={index.body}>
+    <div className={css.body}>
       <h1>{row.name}</h1>
       <div>
         <p>
@@ -34,14 +34,14 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
         <p>
           Contact: {row.email}
         </p>
-        <div className={index.map}>
+        <div className={css.map}>
           <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!} >
             <Map address={row.address} />
           </Wrapper>
         </div>
-        <div className={index.buttonBody}>
-        <SocialLinks eventId={row.id} />
-          <Button className={index.button} href={google({
+        <div className={css.buttonBody}>
+          <SocialLinks eventId={row.id} />
+          <Button className={css.button} href={google({
             title: row.name,
             description: row.description,
             start: row.starts_at,
@@ -51,7 +51,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
             rel="noreferrer" variant="contained">
             Add to calendar
           </Button>
-          <Button className={index.button} href={`http://google.com/maps/search/${row.address}`}
+          <Button className={css.button} href={`http://google.com/maps/search/${row.address}`}
             target="_blank"
             rel="noreferrer" variant="contained">
             Open in map

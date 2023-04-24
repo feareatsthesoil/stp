@@ -6,7 +6,7 @@ export type CalendarEventType = {
   type: string
   starts_at: string
   ends_at: string
-  
+
   email: string
   address: string
   description?: string
@@ -33,7 +33,7 @@ export interface DirectoryRow {
   instagram: string
   description: string
   approved: boolean
-  profile? : boolean
+  profile?: boolean
 }
 
 export interface CalendarRow {
@@ -44,7 +44,7 @@ export interface CalendarRow {
   address: string
   website: string
 
-  
+
   starts_at: string
   ends_at: string
   phone: string

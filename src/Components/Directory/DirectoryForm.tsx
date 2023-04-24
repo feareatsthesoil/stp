@@ -1,5 +1,5 @@
 import { useContext, useState } from "react"
-import index from "src/styles/Form.module.css"
+import css from "src/styles/Form.module.css"
 import axios from 'axios'
 import { Checkbox, FormHelperText, InputAdornment, MenuItem, TextField, Typography, Unstable_Grid2 as Grid } from "@mui/material"
 import { withStyles } from "@mui/styles"
@@ -148,7 +148,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
   if (!initialized)
     return <></>
   return (
-    <div className={index.body}>
+    <div className={css.body}>
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
@@ -182,7 +182,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               <CssTextField
                 name="category"
                 label="What do you do?"
-                required 
+                required
                 // select 
                 fullWidth
                 color="secondary"
@@ -300,20 +300,20 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               />
             </Grid>
             {profile && <>
-              <input className={index.checkBox} type="checkbox" name="display" onChange={formik.handleChange}
+              <input className={css.checkBox} type="checkbox" name="display" onChange={formik.handleChange}
                 checked={formik.values.display}
                 disabled={formik.isSubmitting} >
               </input>
               <label htmlFor="display">Display in directory</label>
             </>}
             <Grid xs={12}>
-              <p className={isMax ? index.max : index.notMax}>
+              <p className={isMax ? css.max : css.notMax}>
                 {formik.values.description.length}/300
               </p>
               <button
                 disabled={formik.isSubmitting}
                 type={"submit"}
-                className={index.button}>
+                className={css.button}>
                 {!formik.isSubmitting && <>Save</>}
                 {formik.isSubmitting &&
                   <span style={{ paddingLeft: 5 }}><FontAwesomeIcon icon={faSpinner} spin />

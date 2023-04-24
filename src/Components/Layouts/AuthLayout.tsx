@@ -7,7 +7,7 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Loader from "../Loader";
 import NavBar from "../Nav/Nav";
-import index from "./AuthLayout.module.css"
+import css from "./AuthLayout.module.css"
 
 export default function AuthLayout(props: { children: ReactNode }) {
   const { isSignedIn, isLoaded } = useUser();
@@ -28,25 +28,25 @@ export default function AuthLayout(props: { children: ReactNode }) {
     return <></>
   if (!isSignedIn)
     return (
-      <div className={index.body}>
+      <div className={css.body}>
         <Header />
         <NavBar />
-        <div className={index.subBody}>
-          <div className={index.box}>
+        <div className={css.subBody}>
+          <div className={css.box}>
             <SignIn routing="virtual" afterSignInUrl={router.asPath} />
           </div>
         </div>
         <Footer />
       </div>
     )
-  return <div className={index.body}>
+  return <div className={css.body}>
     <Header />
     <NavBar />
     {/* {!isSignedIn &&  <Dialog open={true}>
       <SignIn afterSignInUrl={router.asPath}/>
      </Dialog>
     } */}
-    <div className={index.subBody}>
+    <div className={css.subBody}>
       {loading && <Loader />}
       {!loading && props.children}
     </div>

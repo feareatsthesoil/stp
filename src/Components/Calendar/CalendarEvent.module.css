@@ -45,7 +45,7 @@
   margin: 10px 10px 0px 0 !important;
   padding: 3px 10px !important;
   text-transform: none !important;
-  font-weight: normal!important;
+  font-weight: normal !important;
 }
 
 .button:hover {
@@ -59,10 +59,5 @@
 
 .buttonBody {
   display: flex;
-  /* flex-direction: row; */
   flex-flow: row wrap;
-}
-
-.buttonBody {
-  /* min-width: 90vw; */
 }

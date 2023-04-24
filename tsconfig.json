@@ -21,8 +21,9 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "../prisma/index.ts"  ],
+    "**/*.tsx",
+    "../prisma/index.ts"
+  ],
   "exclude": [
     "node_modules"
   ]

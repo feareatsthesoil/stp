@@ -1,6 +1,6 @@
 import Link from "next/link"
 import DirectoryForm from "../../Components/Directory/DirectoryForm"
-import index from "src/styles/Submit.module.css"
+import css from "src/styles/Submit.module.css"
 import AuthLayout from "../../Components/Layouts/AuthLayout"
 import { useContext } from "react"
 import { UserContext } from "../../Components/UserContext"
@@ -11,8 +11,8 @@ export default function DirectorySubmit() {
   const userData = useContext(UserContext)
   return (
     <AuthLayout>
-      <div className={index.body}>
-        <div className={index.box}>
+      <div className={css.body}>
+        <div className={css.box}>
           <h1>Add to Directory</h1>
         </div>
         {userData.isMember && <DirectoryForm profile={false} />}

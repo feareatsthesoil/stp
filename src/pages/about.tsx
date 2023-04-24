@@ -1,5 +1,5 @@
 import React from "react"
-import index from "../styles/About.module.css"
+import css from "../styles/About.module.css"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from "axios"
@@ -27,7 +27,7 @@ const About = () => {
   })
   return (
     <DefaultLayout>
-      <div className={index.box}>
+      <div className={css.box}>
         <h1>About</h1>
         <p>
           Serving the People is a 501(c)(3) non-profit organization that assists artists
@@ -46,7 +46,7 @@ const About = () => {
           <strong>Subscribe to our weekly newsletter for happenings and events</strong>
         </p>
         <form onSubmit={formik.handleSubmit}>
-          <div className={index.input}>
+          <div className={css.input}>
             <Grid container spacing={2} sx={{ maxWidth: "sm", }}>
               <Grid xs={6}>
                 <TextField
@@ -72,7 +72,7 @@ const About = () => {
                 />
               </Grid>
               <Grid xs={6}>
-                  <button className={index.button}>Subscribe</button>
+                <button className={css.button}>Subscribe</button>
               </Grid>
             </Grid>
           </div>

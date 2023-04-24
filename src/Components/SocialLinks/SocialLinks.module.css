@@ -39,7 +39,6 @@
 .wrapper.desktop {
   display: inline-block;
   position: relative;
-  /* width: 160px; */
   width: 75px;
 }
 

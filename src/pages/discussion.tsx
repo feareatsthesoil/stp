@@ -1,17 +1,17 @@
 import React from "react"
-import index from "../styles/Discussion.module.css"
+import css from "../styles/Discussion.module.css"
 import DefaultLayout from "../Components/Layouts/DefaultLayout"
 import Button from "@mui/material/Button"
 
 const Discussion = () => {
     return (
         <DefaultLayout>
-            <div className={index.body}>
+            <div className={css.body}>
                 <h1>Discord</h1>
                 <p>
                     The Serving the People Discord is where our community gathers to discuss and chat. It features a diverse selection of channels, including art, film, video, tech, and more.
                 </p>
-                <Button className={index.button} target="_blank" variant="contained" href="https://discord.com/invite/nhqyng5wQ9">
+                <Button className={css.button} target="_blank" variant="contained" href="https://discord.com/invite/nhqyng5wQ9">
                     Join the Conversation
                 </Button>
                 <h1>Urbit</h1>
@@ -21,7 +21,7 @@ const Discussion = () => {
                 <p>
                     Serving the People has partnered with the Tlon Corporation to offer free hosting (usually $20/month) to members of Serving the People. Join us and a cohort of communities making the move to Urbit's Landscape.
                 </p>
-                <Button className={index.button} target="_blank" variant="contained" href="https://urbit.org/">
+                <Button className={css.button} target="_blank" variant="contained" href="https://urbit.org/">
                     Learn More
                 </Button>
             </div>

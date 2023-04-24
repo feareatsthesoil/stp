@@ -1,12 +1,12 @@
 import React from "react"
 import { SignUp } from "@clerk/nextjs"
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
-import index from "../styles/Login.module.css"
+import css from "../styles/Login.module.css"
 
 const Welcome = () => {
   return (
     <DefaultLayoutCentered>
-      <div className={index.box}>
+      <div className={css.box}>
         <SignUp />
       </div>
     </DefaultLayoutCentered>

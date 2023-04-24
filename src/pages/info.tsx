@@ -1,5 +1,5 @@
 import Link from "next/link"
-import index from "src/styles/Submit.module.css"
+import css from "src/styles/Submit.module.css"
 import DirectoryForm from "../Components/Directory/DirectoryForm"
 import { UserContext } from "../Components/UserContext"
 import { useContext } from "react"
@@ -12,8 +12,8 @@ export default function info() {
     return <></>
   return (
     <AuthLayout>
-      <div className={index.body}>
-        <div className={index.box}>
+      <div className={css.body}>
+        <div className={css.box}>
           <h1>Tell us about yourself...</h1>
           {profile ? "" : <p>New users have to save to continue</p>}
         </div>

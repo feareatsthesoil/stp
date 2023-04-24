@@ -14,7 +14,7 @@ export default function JoinButton() {
     const confirm = useConfirm()
     const router = useRouter()
     const handleClick = () => {
-        
+
         if (!loggedIn) {
             return confirm({ title: "Please log in", description: "Please log in before purchasing a membership.", confirmationText: "Log in" }).then(() => {
                 router.push("/login")

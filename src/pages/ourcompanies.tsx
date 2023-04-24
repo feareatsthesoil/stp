@@ -1,6 +1,6 @@
 import React from "react"
 import Image from 'next/image'
-import index from "../styles/OurCompanies.module.css"
+import css from "../styles/OurCompanies.module.css"
 import STPlogo from "../../public/Images/STP-logo.png"
 import Woolrichlogo from "../../public/Images/Woolrich-logo.png"
 import Studiologo from "../../public/Images/Studio-logo.png"
@@ -9,7 +9,7 @@ import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
 const OurCompanies = () => {
   return (
     <DefaultLayoutCentered>
-      <div className={index.box}>
+      <div className={css.box}>
         <Image
           priority
           placeholder="blur"

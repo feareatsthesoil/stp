@@ -1,6 +1,6 @@
 import React from "react"
 import Link from "next/link"
-import index from "./Nav.module.css"
+import css from "./Nav.module.css"
 import { useRouter } from "next/router"
 import nav from "../Nav/Nav.json"
 import { useUser } from "@clerk/nextjs"
@@ -9,19 +9,18 @@ const NavBar = () => {
   const user = useUser()
   const router = useRouter();
   const currentRoute = router.pathname;
-  const navItems = nav.items.filter(item => (user.isSignedIn))
 
   return (
-    <div className={index.items}>
+    <div className={css.items}>
       <nav>
         <div>
           <ul>
-            {navItems.map(({ href, name }) => {
+            {nav.items.map(({ href, name }) => {
               return (
                 <li key={name}>
                   <Link
                     href={href}
-                    className={currentRoute.startsWith(href) ? index.active : index.a}
+                    className={currentRoute.startsWith(href) ? css.active : css.a}
                   >
                     {name}
                   </Link>
@@ -31,7 +30,7 @@ const NavBar = () => {
             <li id={user.isSignedIn ? "hide" : "MobileLogin"}>
               <Link
                 href={"/login"}
-                className={currentRoute.startsWith("/login") ? index.active : index.a}
+                className={currentRoute.startsWith("/login") ? css.active : css.a}
               >
                 Login Portal
               </Link>

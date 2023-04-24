@@ -1,5 +1,5 @@
 import Link from "next/link"
-import index from "./Calendar.module.css"
+import css from "./Calendar.module.css"
 import _ from "lodash"
 import moment from "moment"
 import { google } from 'calendar-link'
@@ -15,12 +15,12 @@ export default function Calendar() {
     <>
       {Object.entries(dateList).filter(([date]) => { return moment(date).diff(moment()) > 0 }).map(([date, list]) => {
         return (
-          <div key={date} className={index.dateGroup}>
+          <div key={date} className={css.dateGroup}>
             <div key={date}>
               <Link legacyBehavior href={`#${date}`}>
                 <h2
                   id={date}
-                  className={index.date}
+                  className={css.date}
                 >
                   {moment(date).format("MMMM DD, YYYY")}
                 </h2>
@@ -28,25 +28,25 @@ export default function Calendar() {
             </div>
             {list.map((row) => {
               return (
-                <div key={row.id} className={index.eventRow}>
-                  <Link scroll={true} className={index.mainEvent} href={`/calendar/${row.id}`}>
+                <div key={row.id} className={css.eventRow}>
+                  <Link scroll={true} className={css.mainEvent} href={`/calendar/${row.id}`}>
                     {" "}
                     <strong>{row.name}</strong>
-                    <div className={index.eventInfo}>
-                      <div className={index.spacer} />
+                    <div className={css.eventInfo}>
+                      <div className={css.spacer} />
                       <div>
                         {moment(row.starts_at).format("MMMM DD, YYYY hh:mm A")}
                         {row.ends_at ? <> - {moment(row.ends_at).format("MMMM DD, YYYY hh:mm A")} </> : ""}
                       </div>
-                      <div className={index.spacer} />
+                      <div className={css.spacer} />
                       {row.address}
-                      <div className={index.spacer} />
+                      <div className={css.spacer} />
                       {row.description}
-                      <div className={index.spacer} />
+                      <div className={css.spacer} />
                     </div>
                   </Link>
-                  <div className={index.buttonBody}>
-                    <Button className={`${index.button} ${index.add}`} href={google({
+                  <div className={css.buttonBody}>
+                    <Button className={`${css.button} ${css.add}`} href={google({
                       title: row.name,
                       description: row.description,
                       start: row.starts_at,

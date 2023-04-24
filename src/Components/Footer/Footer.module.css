@@ -39,7 +39,6 @@
   display: inline-block;
 }
 
-
 .editButton {
   margin: -0 0 -1em 2vw;
 
@@ -54,7 +53,6 @@
   font-family: 'Times New Roman' !important;
   font-size: .9em !important;
   letter-spacing: -0.03em !important;
-  /* margin: 10px 0 40px 0 !important; */
   padding: 3px 10px !important;
   text-transform: none !important;
 }

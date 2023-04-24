@@ -115,7 +115,7 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         "&:hover fieldset": { borderWidth: "2px" },
         "& .Mui-focused fieldset": { borderColor: "#000!important" },
         "& label": { color: "#000" },
-        "& label.Mui-focused": {color: "#000"},
+        "& label.Mui-focused": { color: "#000" },
       }}
       placeholder="Location"
       getOptionLabel={(option) =>
@@ -144,7 +144,7 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField required {...params}  label="Location" fullWidth />
+        <TextField required {...params} label="Location" fullWidth />
       )}
       disabled={props.disabled}
 
@@ -166,10 +166,10 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
               </Grid>
               <Grid item sx={{ width: 'calc(100% - 44px)', wordWrap: 'break-word' }}>
                 {parts.map((part, index) => (
-                  <Box 
+                  <Box
                     key={index}
                     component="span"
-                    
+
                     sx={{ fontWeight: part.highlight ? 'bold' : 'regular' }}
                   >
                     {part.text}
