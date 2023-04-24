@@ -9,8 +9,8 @@ import Nav from "../Components/Nav/Nav"
 const contactUs = () => {
   return (
     <>
-    <Header />
-<Address />
+      <Header />
+      <Address />
       <div className={index.body}>
         <Nav />
         <div className={index.subBody}>

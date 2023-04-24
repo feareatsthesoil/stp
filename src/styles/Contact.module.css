@@ -1,7 +1,7 @@
 .body {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: calc(100vh - (3vh + 2em + 30px));
 }
 
 .subBody {

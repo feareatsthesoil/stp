@@ -44,9 +44,6 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
             target="webapp-tab">
             Add Calendar
           </Button>
-          <Button className={index.button}>
-            Add Newsletter
-          </Button>
         </div>
       </div>
       <Calendar />

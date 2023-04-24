@@ -14,7 +14,8 @@ export default function info() {
     <AuthLayout>
       <div className={index.body}>
         <div className={index.box}>
-          {profile ? <h1>Tell us about yourself...</h1> : <h1>Submit your info to continue</h1>}
+          <h1>Tell us about yourself...</h1>
+          {profile ? "" : <p>New users have to save to continue</p>}
         </div>
         <DirectoryForm profile={true} data={profile} />
       </div>

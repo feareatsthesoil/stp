@@ -80,32 +80,23 @@ export default function RadioPlayer() {
     }
     return <>
 
-        <Box sx={{ border: "1px solid black", width: 500, height: 100 }}>
-            <Grid container sx={{ p: 2, height: "100%" }}>
-
-                <Grid item sm={2}>
-                    {metadata.artwork ? <Avatar className={currentState === "playing" ? "spin" : ""} src={metadata.artwork} sx={{ height: 70, width: 70 }} /> : ""}
-                </Grid>
-                <Grid item sm={10} sx={{ height: "100%" }}>
-
-                    <Grid container sx={{ height: "100%" }} alignItems={"center"}>
-                        <Grid item sm={12}>
-                            Now Playing: {metadata?.title}
-                        </Grid>
-                        <Grid sm={2} item>
-
-                            <Button onClick={toggleState}>
-                                <FontAwesomeIcon size="2x" icon={currentState === "paused" ? faPlay : faPause} />
-                            </Button>
-                        </Grid>
-
-                        <Grid sm={9} item>
-                            {formattedTime(currentTime)}
-                            <LinearProgress variant="determinate" value={100} />
-                        </Grid>
-
+        <Box sx={{ height: 400 }}>
+            <Grid container sx={{ height: "100%", width: "100%", paddingTop: "40px" }}>
+                <Grid item xs={12}>
+                    <Grid item xs={12} sx={{ height: 70, display: "flex", justifyContent: "center" }}>
+                        {metadata.artwork ? <Avatar className={currentState === "playing" ? "spin" : ""} src={metadata.artwork} sx={{ height: 70, width: 70, }} /> : ""}
                     </Grid>
-
+                    <Grid item xs={12} sx={{ padding: "10px 0 0 0", textAlign: "center" }}>
+                        {formattedTime(currentTime)}
+                    </Grid>
+                    <Grid item xs={12} sx={{ padding: "10px 0 0 0" }}>
+                        {metadata?.title}
+                    </Grid>
+                </Grid>
+                <Grid xs={12} item>
+                    <Button onClick={toggleState}>
+                        <FontAwesomeIcon size="2x" color="black" icon={currentState === "paused" ? faPlay : faPause} />
+                    </Button>
                 </Grid>
             </Grid>
         </Box>

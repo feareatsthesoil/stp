@@ -31,11 +31,6 @@
     {
       "href": "https://shop.stp.world",
       "name": "Store"
-    },
-    {
-      "href": "/info",
-      "name": "Info",
-      "authorized": true
     }
   ]
 }
