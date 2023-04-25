@@ -52,7 +52,7 @@ export default function RadioPlayer() {
 
                 setCurrentState(actualState)
             }
-        }, 700)
+        }, 500)
         return () => {
             clearInterval(interval)
         }
@@ -94,7 +94,7 @@ export default function RadioPlayer() {
                 </Grid>
             </Grid>
             <Grid xs={12} item>
-                <Button onClick={toggleState} sx={{ padding: "50px 0 0 0" }}>
+                <Button onClick={toggleState} sx={{ margin: "50px 0 0 0" }}>
                     <FontAwesomeIcon size="2x" color="black" icon={currentState === "paused" ? faPlay : faPause} />
                 </Button>
             </Grid>
