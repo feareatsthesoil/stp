@@ -81,8 +81,8 @@ export default function RadioPlayer() {
     return <>
         <Grid container sx={{ height: "100%", width: "100%", paddingTop: "40px" }}>
             <Grid item xs={12} >
-                <Grid item xs={12} sx={{ height: 70, display: "flex", justifyContent: "center" }}>
-                    {metadata.artwork ? <Avatar className={currentState === "playing" ? "spin" : ""} src={metadata.artwork} sx={{ height: 70, width: 70, }} /> : ""}
+                <Grid item xs={12} sx={{ height: 300, display: "flex", justifyContent: "center" }}>
+                    {metadata.artwork ? <Avatar className={currentState === "playing" ? "spin" : ""} src={metadata.artwork} sx={{ height: 300, width: 300, }} /> : ""}
                 </Grid>
                 <Grid item xs={12} sx={{ padding: "10px 0 0 0", textAlign: "center" }}>
                     {formattedTime(currentTime)}
@@ -94,7 +94,7 @@ export default function RadioPlayer() {
                 </Grid>
             </Grid>
             <Grid xs={12} item>
-                <Button onClick={toggleState}>
+                <Button onClick={toggleState} sx={{ padding: "50px 0 0 0" }}>
                     <FontAwesomeIcon size="2x" color="black" icon={currentState === "paused" ? faPlay : faPause} />
                 </Button>
             </Grid>
