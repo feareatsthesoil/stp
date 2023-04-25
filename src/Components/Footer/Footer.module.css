@@ -40,8 +40,10 @@
 }
 
 .editButton {
-  margin: -0 0 -1em 2vw;
-
+  /* display: fixed; */
+  position: fixed;
+  margin: 0 0 0 2vw;
+  bottom: 1em;
 }
 
 .editButton button {

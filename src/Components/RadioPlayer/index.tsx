@@ -21,7 +21,7 @@ export default function RadioPlayer() {
     }
 
 
-    const [metadata, setMetadata] = useState<{ title?: string, artwork?: string }>({})
+    const [metadata, setMetadata] = useState<{ title?: string, artwork?: string, history?: string }>({})
 
     const [currentState, setCurrentState] = useState<"playing" | "paused">("paused")
 
@@ -33,7 +33,8 @@ export default function RadioPlayer() {
         axios.get("https://public.radio.co/stations/s3546f3b2b/status").then(({ data }) => {
             setMetadata({
                 title: data.current_track.title,
-                artwork: data.current_track.artwork_url_large
+                artwork: data.current_track.artwork_url_large,
+                history: data.current_track.history,
             })
         })
     }
@@ -45,7 +46,6 @@ export default function RadioPlayer() {
 
             setCurrentTime(song.currentTime)
             setTotalTime(song.currentTime)
-            song.volume = 0.2
 
             const actualState = song.paused ? "paused" : "playing"
             if (actualState !== currentState) {
@@ -81,6 +81,7 @@ export default function RadioPlayer() {
     return <>
         <Grid container sx={{ height: "100%", width: "100%", paddingTop: "40px" }}>
             <Grid item xs={12} >
+
                 <Grid item xs={12} sx={{ height: 300, display: "flex", justifyContent: "center" }}>
                     {metadata.artwork ? <Avatar className={currentState === "playing" ? "spin" : ""} src={metadata.artwork} sx={{ height: 300, width: 300, }} /> : ""}
                 </Grid>
@@ -90,7 +91,9 @@ export default function RadioPlayer() {
                 <Grid item sx={{ display: "flex", justifyContent: "center" }}>
                     <Grid item xs={6} sm={12} sx={{ padding: "10px 0 0 0", textAlign: "center" }}>
                         {metadata?.title}
+
                     </Grid>
+                    <p>{metadata?.history}</p>
                 </Grid>
             </Grid>
             <Grid xs={12} item>
