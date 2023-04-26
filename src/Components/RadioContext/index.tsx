@@ -11,17 +11,22 @@ export interface RadioContextState {
     toggle: () => void,
     metadata?: RadioMetadata,
     total: number,
-    current: number
+    current: number,
+    volume: number,
+    setVolume: (vol: number) => void
+    history: { title: string }[]
 }
 
-export const RadioContext = createContext<RadioContextState>({ playing: false, play: () => { }, pause: () => { }, toggle: () => { }, metadata: undefined, total: 0, current: 0 })
+export const RadioContext = createContext<RadioContextState>({ playing: false, play: () => { }, pause: () => { }, toggle: () => { }, metadata: undefined, total: 0, current: 0, volume: 0.6, setVolume: () => { }, history: [] })
 
 export const RadioProvider = (props: { children: ReactNode }) => {
 
     const [metadata, setMetadata] = useState<{ title: string, artwork: string }>()
+    const [volume, setVolume] = useState<number>(0.6)
 
     const [currentState, setCurrentState] = useState<"playing" | "paused">("paused")
 
+    const [history, setHistory] = useState([])
 
     const [totalTime, setTotalTime] = useState(50)
     const [currentTime, setCurrentTime] = useState(20)
@@ -33,10 +38,14 @@ export const RadioProvider = (props: { children: ReactNode }) => {
             setMetadata({
                 title: data.current_track.title,
                 artwork: data.current_track.artwork_url_large,
-
             })
+            setHistory(data.history)
         })
     }
+    useEffect(() => {
+        if (!song) return
+        song.volume = volume
+    }, [volume])
 
     useEffect(() => {
         if (!song)
@@ -66,6 +75,8 @@ export const RadioProvider = (props: { children: ReactNode }) => {
         song.preload = "auto"
         const interval = setInterval(loadMetadata, 5000)
         loadMetadata()
+        console.log(song)
+
         return () => {
             clearInterval(interval)
             song.pause()
@@ -84,10 +95,11 @@ export const RadioProvider = (props: { children: ReactNode }) => {
 
     const toggleState = () => {
         setCurrentState(currentState == "playing" ? "paused" : "playing")
+
     }
 
 
-    const state = { playing: currentState === "playing", toggle: toggleState, play: () => setCurrentState("playing"), pause: () => setCurrentState("paused"), total: totalTime, current: currentTime, metadata }
+    const state = { playing: currentState === "playing", volume, setVolume, toggle: toggleState, play: () => setCurrentState("playing"), pause: () => setCurrentState("paused"), total: totalTime, current: currentTime, metadata, history }
     return <RadioContext.Provider value={state}>
         {props.children}
     </RadioContext.Provider>

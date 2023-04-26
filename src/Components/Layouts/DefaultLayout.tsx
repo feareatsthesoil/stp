@@ -30,7 +30,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
                 {!loading && props.children}
             </div>
         </div>
-        <RadioPlayerMini />
+
         <Footer />
     </div>
 

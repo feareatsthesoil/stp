@@ -291,18 +291,3 @@ p {
     width: 100vw;
   }
 }
-
-@keyframes rot {
-  0% {
-    transform: rotate(360deg)
-  }
-
-  100% {
-    transform: rotate(0deg)
-  }
-
-}
-
-.spin {
-  animation: rot 4s linear infinite;
-}

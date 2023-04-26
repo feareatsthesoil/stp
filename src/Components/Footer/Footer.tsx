@@ -5,6 +5,8 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import { Button } from "@mui/material"
 import { SignedIn } from "@clerk/nextjs"
+import RadioPlayer from "../RadioPlayer"
+import RadioPlayerMini from "../RadioPlayer/RadioPlayerMini"
 
 function Footer() {
   const router = useRouter()
@@ -12,7 +14,9 @@ function Footer() {
 
   return (
     <>
+
       <div className={currentRoute === "/" ? css.wrapperHome : css.wrapper}>
+        <RadioPlayerMini />
         <SignedIn>
           <div className={css.editButton}>
             <Link href="/info">
