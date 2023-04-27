@@ -16,7 +16,7 @@ function Footer() {
     <>
 
       <div className={currentRoute === "/" ? css.wrapperHome : css.wrapper}>
-        <RadioPlayerMini />
+        {/* <RadioPlayerMini /> */}
         <SignedIn>
           <div className={css.editButton}>
             <Link href="/info">

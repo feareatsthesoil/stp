@@ -28,17 +28,17 @@
 }
 
 .box button {
-  background-color: #000;
-  border: 1px solid black;
-  color: #fff;
+  background-color: rgb(239, 239, 239);
+  border: 1px solid #000;
+  color: #000;
   font-family: 'Times New Roman', Times, serif;
   font-size: .9em;
   padding: 7px 10px;
 }
 
 .box button:hover {
-  background-color: #000000b7;
-  border: 1px solid #000000b7;
+  background-color: rgb(199, 199, 199) !important;
+  /* border: 1px solid #000000b7; */
 }
 
 .box button:active {
@@ -54,19 +54,20 @@
 }
 
 .button {
+  background-color: rgb(239, 239, 239) !important;
+  border: 1px solid #000 !important;
   border-radius: 0 !important;
-  background-color: #000 !important;
-  color: #fff !important;
+  box-shadow: none !important;
+  color: #000 !important;
   font-family: 'Times New Roman' !important;
-  text-transform: none !important;
-  padding: 3px 10px !important;
   font-size: .9em !important;
   letter-spacing: -0.03em !important;
-  box-shadow: none !important;
+  padding: 3px 10px !important;
+  text-transform: none !important;
 }
 
 .button:hover {
-  background-color: #000000b7 !important;
+  background-color: rgb(199, 199, 199) !important;
 }
 
 .button:active {

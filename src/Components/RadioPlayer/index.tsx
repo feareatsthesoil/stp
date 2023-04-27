@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, CardContent, CardHeader, Grid, LinearProgress, List, ListItem, ListItemText, Slider } from "@mui/material";
+import { Avatar, Button, Grid, Slider } from "@mui/material";
 
 import { useContext, } from "react";
-import { faPlay, faPause, faVolumeDown, } from '@fortawesome/free-solid-svg-icons'
+import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 import css from "./RadioPlayer.module.css";
 
@@ -40,13 +40,11 @@ export default function RadioPlayer() {
             </Grid>
             <Grid item xs={12}>
                 <Stack direction={"row"} spacing={1} alignItems="center">
-                    <Slider max={1} min={0} value={volume} onChange={(ev, val) => { setVolume(val as number) }} step={0.001} sx={{ ".MuiSlider-thumb.Mui-focusVisible": { boxShadow: "0px 0px 0px 8px #00000031 !important" }, "&:hover .MuiSlider-thumb": { boxShadow: "0px 0px 0px 8px #00000031 !important" }, color: "#000" }} />
+                    <Slider max={1} min={0} value={volume} onChange={(ev, val) => { setVolume(val as number) }} step={0.001} sx={{ "& .MuiSlider-thumb": { boxShadow: "0px 0px 0px 8px #00000000 !important" }, color: "#000" }} />
                 </Stack>
             </Grid>
         </Grid>
-
         <div>
-
             {/* <Card>
                 <CardContent>
                     <CardHeader>
@@ -58,6 +56,4 @@ export default function RadioPlayer() {
         </div>
     </>
 }
-
-//<script src="https://embed.radio.co/player/822c48c.js"></script>
 

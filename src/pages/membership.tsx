@@ -100,7 +100,7 @@ const Membership = () => {
           {isLoaded && !isSignedIn && <Button className={css.button} variant="contained" href="/login">
             Log in
           </Button>}
-          {isEdu && <Chip color="success" label="Student" />}
+          {isEdu && <Chip sx={{ borderRadius: "0", fontFamily: "Times New Roman" }} color="success" label="Joined" />}
         </div>
         <p>
           Students with a <strong>.edu</strong> email may enjoy all the benefits of the Individual Membership

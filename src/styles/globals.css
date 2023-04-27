@@ -269,6 +269,10 @@ p {
   background-color: #000000b7;
 }
 
+.MuiDialogActions-root button:hover {
+  background-color: #00000000;
+}
+
 /* MEDIA QUERIES */
 @media (prefers-reduced-motion: no-preference) {
   :root {

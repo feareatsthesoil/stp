@@ -52,6 +52,3 @@ export default function RadioPlayerMini() {
         </div>
     </>
 }
-
-//<script src="https://embed.radio.co/player/822c48c.js"></script>
-
