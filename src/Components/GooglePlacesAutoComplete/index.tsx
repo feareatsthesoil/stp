@@ -93,7 +93,6 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         if (value) {
           newOptions = [];
         }
-
         if (results) {
           newOptions = [...newOptions, ...results];
         }
@@ -111,11 +110,21 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
       id="google-map-demo"
       sx={{
         width: "auto",
-        "& fieldset": { borderColor: "#000" },
-        "&:hover fieldset": { borderWidth: "2px" },
-        "& .Mui-focused fieldset": { borderColor: "#000!important" },
-        "& label": { color: "#000" },
-        "& label.Mui-focused": { color: "#000" },
+        "& fieldset": {
+          borderColor: "#000",
+        },
+        "&:hover fieldset": {
+          borderWidth: "2px"
+        },
+        "& .Mui-focused fieldset": {
+          borderColor: "#000!important"
+        },
+        "& label": {
+          color: "#000"
+        },
+        "& label.Mui-focused": {
+          color: "#000"
+        },
       }}
       placeholder="Location"
       getOptionLabel={(option) =>

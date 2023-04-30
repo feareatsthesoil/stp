@@ -6,6 +6,14 @@
   padding-top: calc(20vh - 60px);
 }
 
+.directoryWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-right: 130px;
+  padding-top: calc(20vh - 100px);
+}
+
 .box {
   align-items: center;
   display: flex;
@@ -20,6 +28,10 @@
 
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .wrapper {
+    margin: 2vw;
+  }
+
+  .directoryWrapper {
     margin: 2vw;
   }
 }

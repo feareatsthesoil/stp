@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Grid, Slider } from "@mui/material";
+import { Avatar, Button, Card, CardContent, CardHeader, Grid, List, ListItem, ListItemText, Slider } from "@mui/material";
 
 import { useContext, } from "react";
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
@@ -34,26 +34,27 @@ export default function RadioPlayer() {
                 </Grid>
             </Grid>
             <Grid xs={12} item>
-                <Button onClick={toggle} sx={{ margin: "50px 0 0 0" }}>
+                <Button onClick={toggle} sx={{ margin: "50px 0 0 0" }} >
                     <FontAwesomeIcon size="2x" color="black" icon={!playing ? faPlay : faPause} />
                 </Button>
             </Grid>
             <Grid item xs={12}>
                 <Stack direction={"row"} spacing={1} alignItems="center">
-                    <Slider max={1} min={0} value={volume} onChange={(ev, val) => { setVolume(val as number) }} step={0.001} sx={{ "& .MuiSlider-thumb": { boxShadow: "0px 0px 0px 8px #00000000 !important" }, color: "#000" }} />
+                    <Slider max={1} min={0} value={volume} onChange={(ev, val) => { setVolume(val as number) }} step={0.001}
+                        sx={{
+                            "& .MuiSlider-thumb": { boxShadow: "none !important" },
+                            "& .MuiSlider-thumb:before": { boxShadow: "none !important" },
+                            "& .MuiSlider-rail": { opacity: "1", backgroundColor: "rgb(239, 239, 239)" },
+                            color: "#000"
+                        }}
+                    />
                 </Stack>
             </Grid>
         </Grid>
-        <div>
-            {/* <Card>
-                <CardContent>
-                    <CardHeader>
-                        <h1>History</h1>
-                    </CardHeader>
-                    <List>{history?.map((item) => <ListItem key={item.title}><ListItemText primary={item.title} /></ListItem>)}</List>
-                </CardContent>
-            </Card> */}
-        </div>
+        {/* <div>
+            <h1>History</h1>
+            <List>{history?.map((item) => <ListItem key={item.title}><ListItemText primary={item.title} /></ListItem>)}</List>
+        </div> */}
     </>
 }
 

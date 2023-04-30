@@ -31,8 +31,8 @@ export default function Calendar() {
                 <div key={row.id} className={css.eventRow}>
                   <Link scroll={true} className={css.mainEvent} href={`/calendar/${row.id}`}>
                     {" "}
-                    <strong>{row.name}</strong>
                     <div className={css.eventInfo}>
+                      <strong>{row.name}</strong>
                       <div className={css.spacer} />
                       <div>
                         {moment(row.starts_at).format("MMMM DD, YYYY hh:mm A")}

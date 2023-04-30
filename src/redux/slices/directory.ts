@@ -25,6 +25,13 @@ export const directorySlice = createSlice({
                 state.store[event.id + ""] = event
 
             })
+        },
+        deleted: (state, action: PayloadAction<string | number>) => {
+
+            const { [action.toString()]: entry, ...rest } = state.store
+            state.store = rest
+            state.list = []
+
         }
     }
 })
@@ -38,6 +45,7 @@ export const contactsSelector = (state: RootState) => {
 }
 
 const storeSelector = (state: RootState) => state.directory.store
+export const { loaded, deleted } = directorySlice.actions
 
 export const contactByIdSelector = (id: string) => (state: RootState) => state.directory.store[id]
 
@@ -45,7 +53,11 @@ export const loadDirectory = (): AppThunk => async (dispatch) => {
     const { data } = await axios.get(`/api/directory`)
     dispatch(loaded(data))
 }
-export const { loaded } = directorySlice.actions
+
+export const deleteDirectory = (id: string | number): AppThunk => async (dispatch) => {
+    await axios.delete(`/api/directory/${id}`)
+    dispatch(deleted(id))
+}
 
 
 export default directorySlice.reducer

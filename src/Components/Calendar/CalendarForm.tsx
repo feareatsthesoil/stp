@@ -180,16 +180,29 @@ export default function CalendarForm({ }: { profile: boolean }) {
                 disablePast
                 className={css.datePicker}
                 sx={{
-                  "& label.Mui-focused": { color: "black" },
+                  "& label.Mui-focused": {
+                    color: "black"
+                  },
                   "& fieldset": {
                     border: "1px solid black",
                     color: "black"
                   },
-                  "&:hover fieldset": { border: "2px solid black", color: "black" },
-                  "& .Mui-focused fieldset": { border: "2px solid black !important" },
-                  "& .MuiInputBase-colorError fieldset ": { borderColor: "#d32f2f!important" },
-                  "& .MuiInputBase-colorError.Mui-focused fieldset": { borderColor: "#d32f2f!important" },
-                  ".MuiFormLabel-colorError.Mui-focused": { color: "#d32f2!important" }
+                  "&:hover fieldset": {
+                    border: "2px solid black",
+                    color: "black"
+                  },
+                  "& .Mui-focused fieldset": {
+                    border: "2px solid black !important"
+                  },
+                  "& .MuiInputBase-colorError fieldset ": {
+                    borderColor: "#d32f2f!important"
+                  },
+                  "& .MuiInputBase-colorError.Mui-focused fieldset": {
+                    borderColor: "#d32f2f!important"
+                  },
+                  ".MuiFormLabel-colorError.Mui-focused": {
+                    color: "#d32f2!important"
+                  }
                 }}
                 value={formik.values.starts_at}
                 onChange={(value) => formik.setFieldValue("starts_at", value)}
@@ -208,17 +221,27 @@ export default function CalendarForm({ }: { profile: boolean }) {
                 label="End Date/Time"
                 disablePast
                 className={css.datePicker}
-                // error={!!formik.errors.starts_at}
                 sx={{
-                  "& label.Mui-focused": { color: "black" },
+                  "& label.Mui-focused": {
+                    color: "black"
+                  },
                   "& fieldset": {
                     border: "1px solid black",
                     color: "black"
                   },
-                  "&:hover fieldset": { border: "2px solid black", color: "black" },
-                  "& .Mui-focused fieldset": { border: "2px solid black !important" },
-                  "& .MuiInputBase-colorError fieldset ": { borderColor: "#d32f2f!important" },
-                  ".MuiFormLabel-colorError": { color: "#d32f2f!important" }
+                  "&:hover fieldset": {
+                    border: "2px solid black",
+                    color: "black"
+                  },
+                  "& .Mui-focused fieldset": {
+                    border: "2px solid black !important"
+                  },
+                  "& .MuiInputBase-colorError fieldset ": {
+                    borderColor: "#d32f2f!important"
+                  },
+                  ".MuiFormLabel-colorError": {
+                    color: "#d32f2f!important"
+                  }
                 }}
                 value={formik.values.ends_at}
                 onChange={(value) => formik.setFieldValue("ends_at", value)}
@@ -283,7 +306,8 @@ export default function CalendarForm({ }: { profile: boolean }) {
                 className={css.button}>
                 {!formik.isSubmitting && <>Save</>}
                 {formik.isSubmitting &&
-                  <span style={{ paddingLeft: 5 }}><FontAwesomeIcon icon={faSpinner} spin />
+                  <span style={{ paddingRight: 2 }}>
+                    <FontAwesomeIcon icon={faSpinner} spin />
                   </span>
                 }
               </button>

@@ -34,6 +34,8 @@ export interface DirectoryRow {
   description: string
   approved: boolean
   profile?: boolean
+
+  userId: string
 }
 
 export interface CalendarRow {

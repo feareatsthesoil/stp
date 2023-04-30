@@ -165,6 +165,18 @@ p {
 }
 
 /* MuiForm */
+/* .MuiInputBase-input {
+  background-color: rgb(239, 239, 239) !important;
+} */
+/* input,
+textarea {
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+} */
+
 .MuiFormHelperText-root.Mui-error p {
   margin-left: 14px !important;
 }
@@ -257,12 +269,13 @@ p {
 }
 
 .MuiDialogActions-root button {
-  letter-spacing: -0.03em;
-  font-family: 'Times New Roman', Times, serif !important;
-  text-transform: none;
-  background-color: #000;
+  background-color: rgb(239, 239, 239) !important;
   border-radius: 0;
-  color: #fff;
+  border: 1px solid #000 !important;
+  color: #000 !important;
+  font-family: 'Times New Roman', Times, serif !important;
+  letter-spacing: -0.03em;
+  text-transform: none;
 }
 
 .MuiDialogActions-root button:hover {

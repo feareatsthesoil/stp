@@ -40,14 +40,26 @@ const Membership = () => {
           <h1>
             Individual Member: $75
           </h1>
+          {isEdu ? <Chip
+            sx={{
+              borderRadius: "0",
+              fontFamily: "Times New Roman"
+            }}
+            color="success"
+            label="Joined"
+          /> : ""}
           {!isEdu && initialized && <>{!purchase?.id && <div className={css.joinButton}><JoinButton /></div>}
+
             {purchase?.id && <>
               <div>
+
                 <Chip
                   color="success"
                   label="Joined"
                   sx={{
                     float: "right",
+                    borderRadius: "0",
+                    fontFamily: "Times New Roman",
                   }}
                 />
                 <><p>
@@ -100,7 +112,22 @@ const Membership = () => {
           {isLoaded && !isSignedIn && <Button className={css.button} variant="contained" href="/login">
             Log in
           </Button>}
-          {isEdu && <Chip sx={{ borderRadius: "0", fontFamily: "Times New Roman" }} color="success" label="Joined" />}
+          {isEdu ? <Chip
+            sx={{
+              borderRadius: "0",
+              fontFamily: "Times New Roman"
+            }}
+            color="success"
+            label="Joined"
+          /> : ""}
+          {isSignedIn && !isEdu ? <
+            Chip
+            sx={{
+              borderRadius: "0",
+              fontFamily: "Times New Roman",
+              border: "1px solid #000"
+            }}
+            label="Unauthenticated" /> : ""}
         </div>
         <p>
           Students with a <strong>.edu</strong> email may enjoy all the benefits of the Individual Membership

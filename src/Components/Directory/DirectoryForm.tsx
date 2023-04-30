@@ -18,24 +18,6 @@ import css from "src/styles/Form.module.css"
 
 const initialState = { name: "", pronouns: "", address: "", email: "", category: "", website: "", phone: "", instagram: "", twitter: "", description: "", display: true }
 
-const type = [
-  {
-    value: "Photographer"
-  },
-  {
-    value: "Painter"
-  },
-  {
-    value: "Writer"
-  },
-  {
-    value: "Producer"
-  },
-  {
-    value: "Coder"
-  },
-]
-
 const CssTextField = withStyles({
   root: {
     "& .MuiOutlinedInput-root": {
@@ -184,7 +166,6 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 name="category"
                 label="What do you do?"
                 required
-                // select 
                 fullWidth
                 color="secondary"
                 value={formik.values.category}
@@ -192,15 +173,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 error={!!formik.errors.category}
                 helperText={formik.errors.category}
                 disabled={formik.isSubmitting}
-              >
-                {type.map((option) => (
-                  <MenuItem
-                    key={option.value}
-                    value={option.value}>
-                    {option.value}
-                  </MenuItem>
-                ))}
-              </CssTextField>
+              />
             </Grid>
             <Grid xs={12} sm={6} >
               <GooglePlacesAutoComplete
@@ -263,6 +236,11 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 fullWidth
                 InputProps={iconAdornment}
                 color="secondary"
+                sx={{
+                  "& fieldset": {
+                    borderColor: "black",
+                  },
+                }}
                 value={formik.values.instagram}
                 onChange={formik.handleChange}
                 helperText={formik.errors.instagram}
@@ -277,6 +255,11 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 fullWidth
                 InputProps={iconAdornment}
                 color="secondary"
+                sx={{
+                  "& fieldset": {
+                    borderColor: "black",
+                  },
+                }}
                 value={formik.values.twitter}
                 onChange={formik.handleChange}
                 helperText={formik.errors.twitter}
@@ -292,7 +275,6 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 rows={4}
                 inputProps={{
                   maxLength: 300,
-                  style: { color: "black" }
                 }}
                 value={formik.values.description}
                 onChange={formik.handleChange}
@@ -317,7 +299,8 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 className={css.button}>
                 {!formik.isSubmitting && <>Save</>}
                 {formik.isSubmitting &&
-                  <span style={{ paddingLeft: 5 }}><FontAwesomeIcon icon={faSpinner} spin />
+                  <span style={{ paddingRight: 2 }}>
+                    <FontAwesomeIcon icon={faSpinner} spin />
                   </span>
                 }
               </button>

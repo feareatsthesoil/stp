@@ -42,10 +42,7 @@ export default function AuthLayout(props: { children: ReactNode }) {
   return <div className={css.body}>
     <Header />
     <NavBar />
-    {/* {!isSignedIn &&  <Dialog open={true}>
-      <SignIn afterSignInUrl={router.asPath}/>
-     </Dialog>
-    } */}
+
     <div className={css.subBody}>
       {loading && <Loader />}
       {!loading && props.children}
