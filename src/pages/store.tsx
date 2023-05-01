@@ -70,13 +70,15 @@ export default function Store() {
             }
           },
           "title": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-weight": "normal",
             "font-size": "14px",
             "color": "#000000"
           },
           "button": {
-            "font-family": "Arial, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-size": "13px",
             "padding-top": "6.5px",
             "padding-bottom": "6.5px",
@@ -100,15 +102,18 @@ export default function Store() {
             "padding-bottom": "14.5px"
           },
           "price": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "color": "#000000"
           },
           "compareAt": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "color": "#000000"
           },
           "unitPrice": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "color": "#000000"
           }
         },
@@ -139,7 +144,8 @@ export default function Store() {
             }
           },
           "button": {
-            "font-family": "Arial, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-size": "13px",
             "padding-top": "14.5px",
             "padding-bottom": "14.5px",
@@ -163,31 +169,36 @@ export default function Store() {
             "padding-bottom": "14.5px"
           },
           "title": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-weight": "normal",
             "font-size": "26px",
             "color": "#4c4c4c"
           },
           "price": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-weight": "normal",
             "font-size": "14px",
             "color": "#4c4c4c"
           },
           "compareAt": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-weight": "normal",
             "font-size": "11.9px",
             "color": "#4c4c4c"
           },
           "unitPrice": {
-            "font-family": "Gill Sans, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-weight": "normal",
             "font-size": "11.9px",
             "color": "#4c4c4c"
           },
           "description": {
-            "font-family": "Gill Sans, sans-serif"
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
           }
         },
         "text": {
@@ -197,17 +208,20 @@ export default function Store() {
       "option": {
         "styles": {
           "label": {
-            "font-family": "Gill Sans, sans-serif"
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
           },
           "select": {
-            "font-family": "Gill Sans, sans-serif"
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
           }
         }
       },
       "cart": {
         "styles": {
           "button": {
-            "font-family": "Arial, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "font-size": "13px",
             "padding-top": "14.5px",
             "padding-bottom": "14.5px",
@@ -278,7 +292,8 @@ export default function Store() {
       "toggle": {
         "styles": {
           "toggle": {
-            "font-family": "Arial, sans-serif",
+            "font-family": "Times New Roman",
+            "letter-spacing": "-0.03em",
             "background-color": "rgb(239, 239, 239)",
             ":hover": {
               "background-color": "rgb(239, 239, 239)"

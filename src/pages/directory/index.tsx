@@ -7,16 +7,18 @@ import axios from "axios"
 import DefaultLayout from "../../Components/Layouts/DefaultLayout"
 import { loaded } from "../../redux/slices/directory"
 import { useDispatch } from "react-redux"
-import { Button } from "@mui/material"
+import { Alert, AlertTitle, Box, Button } from "@mui/material"
 import { UserContext } from "../../Components/UserContext"
 import { useConfirm } from "material-ui-confirm"
 import { useRouter } from "next/router"
+import DefaultLayoutCentered from "../../Components/Layouts/DefaultLayoutCentered"
 
 export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[] }) {
   const dispatch = useDispatch()
   const { loggedIn, isMember } = useContext(UserContext)
   const confirm = useConfirm()
   const router = useRouter()
+  const userData = useContext(UserContext)
 
   const handleClick = () => {
     if (!loggedIn) {
@@ -37,8 +39,8 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
     console.log({ fullData })
   })
 
-  return (
-    <DefaultLayout>
+  return (<>
+    {userData.isMember && <DefaultLayout>
       <div className={css.header}>
         <h1>Directory</h1>
         <p>
@@ -53,8 +55,26 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
       <div className={css.box}>
         <Directory />
       </div>
-    </DefaultLayout>
-  )
+    </DefaultLayout >
+    }
+    {!userData.isMember && <>
+      <DefaultLayoutCentered>
+        <div className={css.header}>
+          <h1>Directory</h1>
+          < Box>
+            <Alert color="warning">
+              <AlertTitle><strong>Members Only</strong></AlertTitle>
+              <AlertTitle>
+                You must be a member to see the directory.
+                Sign up <Link href="/membership">here</Link>.
+              </AlertTitle>
+            </Alert>
+          </Box>
+        </div>
+      </DefaultLayoutCentered>
+    </>
+    }
+  </>)
 }
 
 export async function getServerSideProps() {
