@@ -51,7 +51,8 @@ export default function Store() {
         "styles": {
           "product": {
             "@media (min-width: 601px)": {
-              "max-width": "calc(25% - 20px)",
+              "text-align": "left",
+              "max-width": "400px",
               "margin-left": "20px",
               "margin-bottom": "50px",
               "width": "calc(25% - 20px)"
@@ -80,6 +81,7 @@ export default function Store() {
             "font-family": "Times New Roman",
             "letter-spacing": "-0.03em",
             "font-size": "13px",
+            // "font-weight": "bold",
             "padding-top": "6.5px",
             "padding-bottom": "6.5px",
             "border": "1px solid black",
@@ -92,9 +94,9 @@ export default function Store() {
             ":focus": {
               "background-color": "rgb(239, 239, 239)"
             },
-            "border-radius": "0px",
-            "padding-left": "20px",
-            "padding-right": "20px"
+            "border-radius": "4px",
+            "padding-left": "10px",
+            "padding-right": "10px"
           },
           "quantityInput": {
             "font-size": "13px",
@@ -159,7 +161,7 @@ export default function Store() {
             ":focus": {
               "background-color": "rgb(239, 239, 239)"
             },
-            "border-radius": "0px",
+            "border-radius": "4px",
             "padding-left": "100px",
             "padding-right": "100px"
           },
@@ -235,7 +237,7 @@ export default function Store() {
             ":focus": {
               "background-color": "rgb(239, 239, 239)"
             },
-            "border-radius": "0px"
+            "border-radius": "4px"
           },
           "title": {
             "color": "#000000"
