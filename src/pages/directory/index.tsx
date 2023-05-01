@@ -57,6 +57,22 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
       </div>
     </DefaultLayout >
     }
+    {!loggedIn && <>
+      <DefaultLayoutCentered>
+        <div className={css.header}>
+          <h1>Directory</h1>
+          < Box>
+            <Alert color="warning">
+              <AlertTitle><strong>Please Log In</strong></AlertTitle>
+              <AlertTitle>
+                Please log in to see the directory.
+                Log in <Link href="/login?redirect_url=/directory">here</Link>.
+              </AlertTitle>
+            </Alert>
+          </Box>
+        </div>
+      </DefaultLayoutCentered>
+    </>}
     {!userData.isMember && <>
       <DefaultLayoutCentered>
         <div className={css.header}>

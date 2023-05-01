@@ -5,7 +5,7 @@ import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered";
 import DefaultLayout from "../Components/Layouts/DefaultLayoutCentered";
 import Nav from "../Components/Nav/Nav";
 
-import css from "../styles/Contact.module.css";
+import css from "../styles/Store.module.css";
 
 export default function Store() {
   const collectionDivTagRef = useRef<HTMLDivElement>(null)
