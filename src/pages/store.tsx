@@ -364,7 +364,7 @@ export default function Store() {
     return () => {
       clearInterval(interval)
     }
-    v
+
   }, [])
 
   return <>
