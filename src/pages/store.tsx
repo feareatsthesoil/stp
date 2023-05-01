@@ -129,7 +129,10 @@ export default function Store() {
           "products": {
             "text-align": "left",
             "@media (min-width: 601px)": {
-              "margin-left": "-20px"
+              "margin-left": "-20px",
+            },
+            "@media (max-width: 450px)": {
+              "text-align": "center !important",
             }
           }
         }
