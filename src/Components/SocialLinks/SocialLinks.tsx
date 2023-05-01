@@ -78,8 +78,6 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ eventId }) => {
                     </div>
                 </EmailShareButton>
             </div>
-            {/* )} */}
-
         </div>
     );
 };

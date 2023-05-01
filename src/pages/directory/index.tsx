@@ -73,7 +73,7 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
         </div>
       </DefaultLayoutCentered>
     </>}
-    {!userData.isMember && <>
+    {!userData.isMember && loggedIn && <>
       <DefaultLayoutCentered>
         <div className={css.header}>
           <h1>Directory</h1>

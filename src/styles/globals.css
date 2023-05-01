@@ -165,18 +165,6 @@ p {
 }
 
 /* MuiForm */
-/* .MuiInputBase-input {
-  background-color: rgb(239, 239, 239) !important;
-} */
-/* input,
-textarea {
-  -webkit-user-select: text;
-  -khtml-user-select: text;
-  -moz-user-select: text;
-  -ms-user-select: text;
-  user-select: text;
-} */
-
 .MuiFormHelperText-root.Mui-error p {
   margin-left: 14px !important;
 }
