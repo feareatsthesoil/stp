@@ -19,15 +19,19 @@ function Footer() {
           <div className={currentRoute === "/" || currentRoute === "/info" ? css.hide : css.editButton}>
             <Button
               sx={{
-                backgroundColor: "rgb(239, 239, 239)",
+                backgroundColor: "white",
+                margin: "0px 0 -8px -8px!important",
                 opacity: "97%",
                 borderRadius: "100%",
                 height: "35px",
                 width: "35px !important",
                 minWidth: "0px !important",
+                "&:hover fieldset": {
+                  backgroundColor: "red!important",
+                }
               }}
               href="/info">
-              <FontAwesomeIcon icon={faUserPen} style={{ color: "#000", paddingLeft: "4px" }} />
+              <FontAwesomeIcon icon={faUserPen} style={{ height: "16px", color: "#000", paddingLeft: "4px" }} />
             </Button>
           </div>
         </SignedIn>

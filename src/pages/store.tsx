@@ -78,20 +78,21 @@ export default function Store() {
           "button": {
             "font-family": "Arial, sans-serif",
             "font-size": "13px",
-            "padding-top": "14.5px",
-            "padding-bottom": "14.5px",
+            "padding-top": "6.5px",
+            "padding-bottom": "6.5px",
+            "border": "1px solid black",
             "color": "#000000",
             ":hover": {
               "color": "#000000",
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             },
-            "background-color": "#fdfdfd",
+            "background-color": "rgb(239, 239, 239)",
             ":focus": {
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             },
-            "border-radius": "4px",
-            "padding-left": "100px",
-            "padding-right": "100px"
+            "border-radius": "0px",
+            "padding-left": "20px",
+            "padding-right": "20px"
           },
           "quantityInput": {
             "font-size": "13px",
@@ -142,16 +143,17 @@ export default function Store() {
             "font-size": "13px",
             "padding-top": "14.5px",
             "padding-bottom": "14.5px",
+            
             "color": "#000000",
             ":hover": {
               "color": "#000000",
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             },
-            "background-color": "#fdfdfd",
+            "background-color": "rgb(239, 239, 239)",
             ":focus": {
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             },
-            "border-radius": "4px",
+            "border-radius": "0px",
             "padding-left": "100px",
             "padding-right": "100px"
           },
@@ -209,16 +211,17 @@ export default function Store() {
             "font-size": "13px",
             "padding-top": "14.5px",
             "padding-bottom": "14.5px",
-            "color": "#000000",
+            
+            "color": "#000",
             ":hover": {
               "color": "#000000",
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             },
-            "background-color": "#fdfdfd",
+            "background-color": "rgb(239, 239, 239)",
             ":focus": {
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             },
-            "border-radius": "4px"
+            "border-radius": "0px"
           },
           "title": {
             "color": "#000000"
@@ -276,12 +279,12 @@ export default function Store() {
         "styles": {
           "toggle": {
             "font-family": "Arial, sans-serif",
-            "background-color": "#fdfdfd",
+            "background-color": "rgb(239, 239, 239)",
             ":hover": {
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             },
             ":focus": {
-              "background-color": "#e4e4e4"
+              "background-color": "rgb(239, 239, 239)"
             }
           },
           "count": {
@@ -344,8 +347,6 @@ export default function Store() {
 
     const node = document.querySelector("#collection-component-1682823359416")
 
-
-
     const script = document.createElement("script")
     script.id = "scriptShopify"
     script.innerHTML = scriptTag
@@ -363,24 +364,17 @@ export default function Store() {
     return () => {
       clearInterval(interval)
     }
-
+    v
   }, [])
 
   return <>
-    {/* <DefaultLayoutCentered> */}
     <div className={css.body}>
       <Header />
       <Nav />
       <div className={css.subBody}>
-        {/* <div style={{ marginTop: "-100px!important" }} > */}
         <div ref={collectionDivTagRef} id='collection-component-1682823359416'></div>
-        {/* </div> */}
       </div>
       <Footer />
     </div>
-
-
-
-    {/* </DefaultLayoutCentered> */}
   </>
 }

@@ -1,7 +1,7 @@
 .header {
   display: flex;
   flex-direction: column;
-  padding: 0 0 2vh 0;
+  padding: 0 0 3vh 0;
   text-align: left;
 }
 
@@ -48,7 +48,7 @@
 .search {
   align-items: flex-end;
   height: 30px;
-  margin: calc(-1 * (2vh + 1em + 15px)) 0 0 0;
+  margin: calc(-1 * (3vh + 1em + 15px)) 0 0 0;
   width: calc(96vw - 132px);
 }
 
