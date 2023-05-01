@@ -2,7 +2,6 @@ import React from "react"
 import css from "./Footer.module.css"
 import Socials from "../Socials"
 import { useRouter } from "next/router"
-import Link from "next/link"
 import { Button } from "@mui/material"
 import { SignedIn } from "@clerk/nextjs"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

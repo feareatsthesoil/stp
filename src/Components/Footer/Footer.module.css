@@ -43,6 +43,7 @@
   position: fixed;
   margin: 0 0 0 2vw;
   bottom: 1em;
+  z-index: 999;
 }
 
 .hide {

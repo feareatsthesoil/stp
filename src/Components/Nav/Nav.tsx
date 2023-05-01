@@ -1,17 +1,31 @@
-import React from "react"
+import React, { useState } from "react"
 import Link from "next/link"
 import css from "./Nav.module.css"
 import { useRouter } from "next/router"
 import nav from "../Nav/Nav.json"
 import { useUser } from "@clerk/nextjs"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faBars } from "@fortawesome/free-solid-svg-icons"
 
 const NavBar = () => {
   const user = useUser()
   const router = useRouter();
   const currentRoute = router.pathname;
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleSideNav = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  const menuWidth = menuOpen ? '100px' : '0px';
+
   return (
-    <div className={css.items}>
+
+    <div className={css.items} style={{ width: menuWidth }}>
+      <button id={currentRoute === "/" ? css.hide : css.menuBtn} onClick={toggleSideNav}>
+        <FontAwesomeIcon icon={faBars} size="2xl" style={{ color: "#000000", }} />
+      </button>
       <nav>
         <div>
           <ul>

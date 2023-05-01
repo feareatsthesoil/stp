@@ -20,7 +20,6 @@
   list-style: disc !important;
   padding: 0 !important;
   position: unset !important;
-  width: auto !important;
 }
 
 .box li {
@@ -54,4 +53,14 @@
   .box a:hover {
     text-decoration: none !important;
   }
+
+  .box ul {
+    margin: 0 0 0 0px !important;
+  }
+
+  .box div {
+    display: unset !important;
+    position: unset !important;
+  }
+
 }
