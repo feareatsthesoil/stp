@@ -14,13 +14,3 @@
   padding: 0 2vw 0 2vw;
   width: calc(50vw - 130px);
 }
-
-@media screen and (min-width: 0px) and (max-width: 450px) {
-  .subBody {
-    width: 100vw;
-  }
-
-  .box {
-    width: 96vw;
-  }
-}

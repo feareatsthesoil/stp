@@ -16,7 +16,6 @@
 
 .items a:hover {
   font-weight: bold;
-
 }
 
 .items a {
@@ -33,17 +32,15 @@
   display: none;
 }
 
-.items button {
-  background-color: #ffffffed;
-  border-radius: 4px;
-  margin: -3px 0 0 -12px;
+#menuBtn {
+  position: fixed;
+  top: 1vh;
+  left: 2vw;
+  z-index: 2;
 }
 
-#menuBtn {
-  left: 15px;
-  position: fixed;
-  top: 18px;
-  z-index: 2;
+.mobileMenu {
+  display: none;
 }
 
 #hide {
@@ -53,32 +50,6 @@
 @media (min-width: 450px) {
   #menuBtn {
     display: none;
-  }
-}
-
-@media screen and (min-width: 0px) and (max-width: 450px) {
-  .items {
-    background-color: #fff;
-    box-shadow: 10px 0px calc(100vw - 100px) 0px rgba(0, 0, 0, 0.75);
-    display: block;
-    height: 100%;
-    left: 0;
-    overflow-x: hidden;
-    padding-top: 60px;
-    padding: 0;
-    position: fixed;
-    top: 0;
-    transition: 0.3s;
-    width: 0;
-    z-index: 1;
-  }
-
-  .items ul {
-    position: relative;
-  }
-
-  .item a:hover {
-    font-weight: normal;
   }
 }
 

@@ -1,9 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered";
 import DefaultLayout from "../Components/Layouts/DefaultLayoutCentered";
 import Nav from "../Components/Nav/Nav";
+import { useSideNav } from "../Components/Nav/NavContext";
 
 import css from "../styles/Store.module.css";
 
@@ -50,8 +51,9 @@ export default function Store() {
       "product": {
         "styles": {
           "product": {
+
             "@media (min-width: 601px)": {
-              "text-align": "left",
+              "text-align": "center",
               "max-width": "400px",
               "margin-left": "20px",
               "margin-bottom": "50px",
@@ -81,7 +83,6 @@ export default function Store() {
             "font-family": "Times New Roman",
             "letter-spacing": "-0.03em",
             "font-size": "13px",
-            // "font-weight": "bold",
             "padding-top": "6.5px",
             "padding-bottom": "6.5px",
             "border": "1px solid black",
@@ -126,6 +127,7 @@ export default function Store() {
       "productSet": {
         "styles": {
           "products": {
+            "text-align": "left",
             "@media (min-width: 601px)": {
               "margin-left": "-20px"
             }
@@ -384,11 +386,49 @@ export default function Store() {
 
   }, [])
 
+  const { sideNavVisible } = useSideNav();
+  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+
+      const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+      };
+
+      window.addEventListener('resize', handleResize);
+
+      return () => {
+        window.removeEventListener('resize', handleResize);
+      };
+    }
+  }, []);
+
+  const subBodyStyle = {
+    overflow: "hidden",
+    width:
+      sideNavVisible
+        ? "calc(100vw - 130px)"
+        : windowWidth && windowWidth <= 450
+          ? "100vw"
+          : "calc(100vw - 130px)",
+  };
+
+  const boxStyle = {
+    width:
+      sideNavVisible
+        ? "calc(100vw - 150px)"
+        : windowWidth && windowWidth <= 450
+          ? "95vw"
+          : "",
+  }
+
   return <>
     <div className={css.body}>
       <Header />
       <Nav />
-      <div className={css.subBody}>
+      <div className={css.subBody} style={subBodyStyle}>
         <div ref={collectionDivTagRef} id='collection-component-1682823359416'></div>
       </div>
       <Footer />
