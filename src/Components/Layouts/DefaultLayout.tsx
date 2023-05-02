@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Loader from "../Loader";
 import NavBar from "../Nav/Nav";
-import RadioPlayerMini from "../RadioPlayer/RadioPlayerMini";
 import { UserContext } from "../UserContext";
 import css from "./DefaultLayout.module.css"
 import DefaultLayoutCentered from "./DefaultLayoutCentered";

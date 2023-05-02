@@ -17,10 +17,12 @@ const NavBar = () => {
   const { sideNavVisible, setSideNavVisible } = useSideNav();
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
 
+
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
+
     };
 
     window.addEventListener("resize", handleResize);

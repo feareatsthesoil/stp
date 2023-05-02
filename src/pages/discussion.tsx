@@ -21,7 +21,7 @@ const Discussion = () => {
                 <p>
                     Serving the People has partnered with the Tlon Corporation to offer free hosting (usually $20/month) to members of Serving the People. Join us and a cohort of communities making the move to Urbit's Landscape.
                 </p>
-                <Button className={css.button} target="_blank" variant="contained" href="https://urbit.org/">
+                <Button className={css.button} target="_blank" variant="contained" href="https://tlon.network/landing/serving-the%20people/ba7c33b6-d045-4c94-80a6-988b83da1518">
                     Learn More
                 </Button>
             </div>
