@@ -1,7 +1,6 @@
+import { NextApiResponse } from "next"
 import { withAuth } from "@clerk/nextjs/api";
 import { PrismaClient } from "@prisma/client"
-import { NextApiResponse } from "next"
-
 
 async function directorySubmit(req: any, res: NextApiResponse) {
   const { body } = req

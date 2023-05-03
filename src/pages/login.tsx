@@ -1,9 +1,9 @@
-
 import React from "react"
 import { SignIn } from "@clerk/nextjs"
+import { useRouter } from "next/router"
+
 import css from "../styles/Login.module.css"
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
-import { useRouter } from "next/router"
 
 const Welcome = () => {
   const router = useRouter();

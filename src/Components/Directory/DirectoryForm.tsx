@@ -1,20 +1,20 @@
-import { useContext, useState } from "react"
-import axios from 'axios'
-import { FormHelperText, InputAdornment, MenuItem, TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
-import { withStyles } from "@mui/styles"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
 import React from "react";
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+import { useContext, useState } from "react"
 import { useRouter } from "next/router"
-import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
-import { DirectoryRow } from "../../types"
-import { UserContext } from "../UserContext"
+import { FormHelperText, InputAdornment, TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
+import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { withStyles } from "@mui/styles"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import AdornedTextBox from "../AdornedTextBox"
+import { useFormik } from 'formik'
+import axios from 'axios'
+import * as Yup from 'yup'
 
 import css from "src/styles/Form.module.css"
+import { DirectoryRow } from "../../types"
+import { UserContext } from "../UserContext"
+import AdornedTextBox from "../AdornedTextBox"
+import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 
 const initialState = { name: "", pronouns: "", address: "", email: "", category: "", website: "", phone: "", instagram: "", twitter: "", description: "", display: true }
 
@@ -59,7 +59,7 @@ const reTwitter = /^(\w){1,15}$/;
 
 export default function DirectoryForm({ profile = false, data }: { profile: boolean, data?: DirectoryRow }) {
 
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected] = useState(false);
 
   const iconAdornment = isSelected
     ? {
@@ -238,8 +238,11 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 color="secondary"
                 sx={{
                   "& fieldset": {
-                    borderColor: "black",
+                    borderColor: "#000 !important",
                   },
+                  "& label": {
+                    color: "#000 !important"
+                  }
                 }}
                 value={formik.values.instagram}
                 onChange={formik.handleChange}
@@ -257,7 +260,10 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                 color="secondary"
                 sx={{
                   "& fieldset": {
-                    borderColor: "black",
+                    borderColor: "#000 !important",
+                  },
+                  "& label": {
+                    color: "#000 !important"
                   },
                 }}
                 value={formik.values.twitter}

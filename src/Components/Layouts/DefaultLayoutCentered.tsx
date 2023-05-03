@@ -1,13 +1,13 @@
 import { CSSProperties, ReactNode, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { UserContext } from "../UserContext";
-import { useSideNav } from "../Nav/NavContext";
 
 import css from "./DefaultLayoutCentered.module.css"
-import Header from "../Header/Header";
-import NavBar from "../Nav/Nav";
-import Loader from "../Loader";
+import { UserContext } from "../UserContext";
+import { useSideNav } from "../Nav/NavContext";
 import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
+import Loader from "../Loader";
+import NavBar from "../Nav/Nav";
 import usePageLoader from "../../hooks/usePageLoader";
 
 export default function DefaultLayout(props: { children: ReactNode }) {

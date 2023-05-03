@@ -1,9 +1,9 @@
 import { useContext } from "react"
 
 import css from "src/styles/Submit.module.css"
-import DirectoryForm from "../Components/Directory/DirectoryForm"
 import { UserContext } from "../Components/UserContext"
 import AuthLayout from "../Components/Layouts/AuthLayout"
+import DirectoryForm from "../Components/Directory/DirectoryForm"
 
 export default function info() {
   const { profile, initialized, isMember } = useContext(UserContext)

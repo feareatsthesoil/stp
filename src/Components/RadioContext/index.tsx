@@ -1,5 +1,6 @@
-import axios from "axios";
 import { createContext, ReactNode, useEffect, useMemo, useState } from "react";
+import axios from "axios";
+
 export interface RadioMetadata {
     artwork: string
     title: string
@@ -91,7 +92,6 @@ export const RadioProvider = (props: { children: ReactNode }) => {
 
     const toggleState = () => {
         setCurrentState(currentState == "playing" ? "paused" : "playing")
-
     }
 
     const state = { playing: currentState === "playing", volume, setVolume, toggle: toggleState, play: () => setCurrentState("playing"), pause: () => setCurrentState("paused"), total: totalTime, current: currentTime, metadata, history }

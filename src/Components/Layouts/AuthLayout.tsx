@@ -1,14 +1,14 @@
-import { SignIn, useAuth, useUser } from "@clerk/nextjs";
-import { Dialog, Modal } from "@mui/material";
-import { useRouter } from "next/router";
 import { CSSProperties, ReactNode, useEffect, useState } from "react";
-import usePageLoader from "../../hooks/usePageLoader";
+import { useRouter } from "next/router";
+import { SignIn, useAuth, useUser } from "@clerk/nextjs";
+
+import css from "./AuthLayout.module.css"
+import { useSideNav } from "../Nav/NavContext";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Loader from "../Loader";
 import NavBar from "../Nav/Nav";
-import { useSideNav } from "../Nav/NavContext";
-import css from "./AuthLayout.module.css"
+import usePageLoader from "../../hooks/usePageLoader";
 
 export default function AuthLayout(props: { children: ReactNode }) {
   const { isSignedIn, isLoaded } = useUser();
@@ -81,7 +81,6 @@ export default function AuthLayout(props: { children: ReactNode }) {
   return <div className={css.body}>
     <Header />
     <NavBar />
-
     <div className={css.subBody} style={subBodyStyle}>
       {loading && <Loader />}
       {!loading && props.children}

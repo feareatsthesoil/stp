@@ -1,11 +1,12 @@
-import Link from "next/link"
-import CalendarForm from "../../Components/Calendar/CalendarForm"
-import css from "src/styles/Submit.module.css"
-import AuthLayout from "../../Components/Layouts/AuthLayout"
 import { useContext } from "react"
-import { UserContext } from "../../Components/UserContext"
+import Link from "next/link"
 import { Box } from "@mui/system"
 import { Alert, AlertTitle } from "@mui/material"
+
+import css from "src/styles/Submit.module.css"
+import { UserContext } from "../../Components/UserContext"
+import AuthLayout from "../../Components/Layouts/AuthLayout"
+import CalendarForm from "../../Components/Calendar/CalendarForm"
 
 export default function CalendarSubmit() {
   const userData = useContext(UserContext)

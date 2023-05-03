@@ -1,16 +1,16 @@
 import React from "react"
 import axios from "axios"
+import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { DateTimePicker } from "@mui/x-date-pickers"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
 import { useFormik } from "formik"
 import { withStyles } from "@mui/styles"
 import * as Yup from "yup"
-import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 
 import css from "src/styles/Form.module.css"
+import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
 
@@ -119,7 +119,6 @@ export default function CalendarForm({ }: { profile: boolean }) {
       helpers.resetForm()
     }
   })
-
   formik.values.description.length === 300 ? isMax = true : isMax = false;
 
   return (

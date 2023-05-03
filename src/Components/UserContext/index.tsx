@@ -1,6 +1,7 @@
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
-import { createContext, ReactNode, useEffect, useState } from "react";
+
 import { DirectoryRow } from "../../types";
 
 interface UserMetadata { profile?: DirectoryRow, userId?: string, loggedIn?: boolean, initialized: boolean, refresh: () => any, purchase?: { id: number, expiryDate: string }, isEdu?: boolean, isMember?: boolean }
@@ -8,7 +9,6 @@ interface UserMetadata { profile?: DirectoryRow, userId?: string, loggedIn?: boo
 export const UserContext = createContext<UserMetadata>({ initialized: false, refresh: () => { }, isEdu: false, isMember: false })
 
 export const UserProvider = (props: { children: ReactNode }) => {
-
 
   const [loggedIn, setLoggedIn] = useState<boolean>()
   const [initialized, setInitialized] = useState(false)

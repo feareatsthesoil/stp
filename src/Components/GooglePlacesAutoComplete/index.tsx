@@ -1,4 +1,5 @@
-import * as React from 'react'; import Box from '@mui/material/Box';
+import * as React from 'react';
+import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Grid from '@mui/material/Grid';
@@ -77,6 +78,7 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         window as any
       ).google.maps.places.AutocompleteService();
     }
+
     if (!autocompleteService.current) {
       return undefined;
     }
@@ -130,10 +132,8 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
       getOptionLabel={(option) =>
         typeof option === 'string' ? option : option.description
       }
-      // onFail={${error} => alert(error)}
       filterOptions={(x) => x}
       options={options}
-      // error={props.error}
       helperText={props.helperText}
       autoComplete
       includeInputInList
@@ -141,7 +141,7 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
       value={value}
       isOptionEqualToValue={(option, value) => { return (option as PlaceType).description === value }}
       noOptionsText="No locations"
-      //@ts-ignore
+      // @ts-ignore
       onChange={(event: any, newValue: PlaceType) => {
         setOptions(newValue ? [newValue, ...options] : options);
 

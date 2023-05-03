@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useSideNav } from "../Nav/NavContext";
-import css from "./Loader.module.css"
 import { CSSProperties } from "styled-components";
+
+import css from "./Loader.module.css"
+import { useSideNav } from "../Nav/NavContext";
 
 export default function Loader() {
 

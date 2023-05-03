@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
-import Link from "next/link"
-import { Button } from "@mui/material"
 import { useRouter } from "next/router"
+import Link from "next/link"
 import { useUser } from "@clerk/nextjs"
+import { Button } from "@mui/material"
 
 import css from "./Nav.module.css"
 import { useSideNav } from "./NavContext"

@@ -1,7 +1,8 @@
 import React from "react"
+import Button from "@mui/material/Button"
+
 import css from "../styles/Discussion.module.css"
 import DefaultLayout from "../Components/Layouts/DefaultLayout"
-import Button from "@mui/material/Button"
 
 const Discussion = () => {
     return (

@@ -1,7 +1,8 @@
 import React from "react"
 import { SignUp } from "@clerk/nextjs"
-import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
+
 import css from "../styles/Login.module.css"
+import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
 
 const Welcome = () => {
   return (

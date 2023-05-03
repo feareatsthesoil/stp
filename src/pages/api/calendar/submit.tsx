@@ -1,6 +1,6 @@
+import { NextApiResponse } from "next"
 import { withAuth } from "@clerk/nextjs/api"
 import { PrismaClient } from "@prisma/client"
-import { NextApiResponse } from "next"
 import { google } from "googleapis"
 
 export default withAuth(async (req: any, res: NextApiResponse) => {

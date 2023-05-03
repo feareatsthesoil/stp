@@ -1,6 +1,7 @@
 import Link from "next/link";
-import DefaultLayoutCentered from "../../Components/Layouts/DefaultLayoutCentered";
+
 import css from "../../styles/Contact.module.css"
+import DefaultLayoutCentered from "../../Components/Layouts/DefaultLayoutCentered";
 
 export default function checkoutCancel() {
     return (

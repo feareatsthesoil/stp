@@ -26,7 +26,6 @@ export default function DirectorySubmit() {
             </AlertTitle>
           </Alert>
         </Box>}
-
       </div>
     </AuthLayout>
   )

@@ -1,5 +1,5 @@
-import { PrismaClient } from "@prisma/client"
 import { NextApiResponse } from "next"
+import { PrismaClient } from "@prisma/client"
 
 export default (async (req: any, res: NextApiResponse) => {
   const client = new PrismaClient()

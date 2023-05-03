@@ -1,6 +1,6 @@
+import { NextApiResponse } from "next"
 import { withAuth } from "@clerk/nextjs/api"
 import { PrismaClient } from "@prisma/client"
-import { NextApiResponse } from "next"
 
 export default withAuth(async (req: any, res: NextApiResponse) => {
   const { body } = req

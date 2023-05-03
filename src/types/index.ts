@@ -1,4 +1,3 @@
-
 export type CalendarEventType = {
   id: string
   index: number

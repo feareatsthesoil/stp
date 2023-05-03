@@ -1,7 +1,8 @@
 import React from "react"
+
+import css from "../styles/Radio.module.css"
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
 import RadioPlayer from "../Components/RadioPlayer"
-import css from "../styles/Radio.module.css"
 
 const Radio = () => {
   return (

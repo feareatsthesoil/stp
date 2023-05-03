@@ -1,6 +1,5 @@
-import axios from "axios"
-import { Router, useRouter } from "next/router"
 import { useCallback, useEffect, useState } from "react"
+import { Router, useRouter } from "next/router"
 
 export default function usePageLoader() {
   const [loading, setLoading] = useState(false)

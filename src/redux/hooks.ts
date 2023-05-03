@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+
 import { eventsByIdSelector, eventsSelector, loadEvents } from "./slices/calendar"
 import { contactByIdSelector, contactsSelector, loadDirectory } from "./slices/directory"
 import { AppDispatch } from "./store"
@@ -16,11 +17,9 @@ export const useEvents = (refresh = true) => {
       if (refresh)
         clearInterval(interval)
     }
-
   }, [])
   return useSelector(eventsSelector)
 }
-
 
 export const useEvent = (id: string) => {
   const dispatch: AppDispatch = useDispatch()
@@ -29,15 +28,11 @@ export const useEvent = (id: string) => {
   useEffect(() => {
     if (!event)
       dispatch(loadEvents())
-
-
   }, [])
   return event
 }
 
-
 //Contacts
-
 export const useContact = (id: string) => {
   const dispatch: AppDispatch = useDispatch()
 
@@ -45,8 +40,6 @@ export const useContact = (id: string) => {
   useEffect(() => {
     if (!event)
       dispatch(loadDirectory())
-
-
   }, [])
   return event
 }

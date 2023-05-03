@@ -5,13 +5,13 @@
   overflow: hidden;
 }
 
-.box p {
-  padding: 1vh 0 10px;
-}
-
 .box h1 {
   font-size: 1.3em;
   font-weight: bold;
+}
+
+.box p {
+  padding: 1vh 0 10px;
 }
 
 .box a {
@@ -19,46 +19,9 @@
 }
 
 .input {
+  border: 1px solid black;
   display: flex;
   flex-direction: row;
   min-width: 300px;
-}
-
-.text textarea {
-  background-color: #E8F1FD;
-  border: 1px solid black;
-  font-family: 'Times New Roman', Times, serif;
-  font-size: .8em;
-  height: 10px;
-  line-height: 10px;
-  margin-top: 10px;
-  max-width: 250px;
-  min-width: 100px;
-  overflow: hidden;
-  padding: 10px 5px;
-  resize: none;
-  text-align: left;
-  width: 20vw;
-}
-
-.text textarea::placeholder {
-  color: black;
-}
-
-.button:hover {
-  transition: 0.3s;
-  background-color: rgb(220, 220, 220) !important;
-  border: 1px solid #000;
-}
-
-.button:active {
-  transform: translateY(4px);
-  transition: 60ms transform ease-in-out;
-}
-
-@media screen and (max-width: 450px) {
-  .input {
-    width: 100vw;
-  }
-
+  width: 50vw;
 }

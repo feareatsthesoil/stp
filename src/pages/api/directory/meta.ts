@@ -1,7 +1,6 @@
+import { NextApiResponse } from "next"
 import { withAuth, clerkClient } from "@clerk/nextjs/api";
 import { PrismaClient } from "@prisma/client"
-import { NextApiResponse } from "next"
-
 
 async function meta(req: any, res: NextApiResponse) {
 

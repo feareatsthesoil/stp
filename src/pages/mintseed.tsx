@@ -1,6 +1,7 @@
 import React from "react"
-import css from "../styles/MintSeed.module.css"
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
+
+import css from "../styles/MintSeed.module.css"
 
 const mintSeed = () => {
   return (

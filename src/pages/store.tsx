@@ -1,10 +1,10 @@
 import { CSSProperties, useEffect, useRef, useState } from "react";
+
+import css from "../styles/Store.module.css";
+import { useSideNav } from "../Components/Nav/NavContext";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import Nav from "../Components/Nav/Nav";
-import { useSideNav } from "../Components/Nav/NavContext";
-
-import css from "../styles/Store.module.css";
 
 export default function Store() {
   const collectionDivTagRef = useRef<HTMLDivElement>(null)

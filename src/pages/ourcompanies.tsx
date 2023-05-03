@@ -1,10 +1,11 @@
 import React from "react"
 import Image from 'next/image'
+
 import css from "../styles/OurCompanies.module.css"
-import STPlogo from "../../public/Images/STP-logo.png"
-import Woolrichlogo from "../../public/Images/Woolrich-logo.png"
-import Studiologo from "../../public/Images/Studio-logo.png"
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
+import STPlogo from "../../public/Images/STP-logo.png"
+import Studiologo from "../../public/Images/Studio-logo.png"
+import Woolrichlogo from "../../public/Images/Woolrich-logo.png"
 
 const OurCompanies = () => {
   return (

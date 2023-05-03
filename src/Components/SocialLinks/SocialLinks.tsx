@@ -1,8 +1,6 @@
 import React from 'react';
 import { EmailShareButton, FacebookShareButton, RedditShareButton, TwitterShareButton, WhatsappShareButton } from 'next-share';
 
-import css from "./SocialLinks.module.css";
-
 interface SocialLinksProps {
     eventId: string;
 }
@@ -10,7 +8,7 @@ interface SocialLinksProps {
 const SocialLinks: React.FC<SocialLinksProps> = ({ eventId }) => {
 
     return (
-        <div className={css.wrapper}>
+        <div>
             <TwitterShareButton
                 url={`${window.location.href}/${eventId}`} >
                 <svg viewBox="0 -6 64 64" width="25" height="25">

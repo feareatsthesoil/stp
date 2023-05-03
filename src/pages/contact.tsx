@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
-import Header from "../Components/Header/Header"
-import Footer from "../Components/Footer/Footer"
-import Address from "../Components/Address/address"
-import css from "../styles/Contact.module.css"
-import Nav from "../Components/Nav/Nav"
-import { useSideNav } from "../Components/Nav/NavContext"
 import { CSSProperties } from "styled-components"
+
+import css from "../styles/Contact.module.css"
+import { useSideNav } from "../Components/Nav/NavContext"
+import Address from "../Components/Address/address"
+import Footer from "../Components/Footer/Footer"
+import Header from "../Components/Header/Header"
+import Nav from "../Components/Nav/Nav"
 
 const contactUs = () => {
   const { sideNavVisible } = useSideNav();

@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import { Alert, AlertTitle, Box, Button } from "@mui/material"
 import { useConfirm } from "material-ui-confirm"
-import { useDispatch } from "react-redux"
 import axios from "axios"
 
 import css from "../../Components/Directory/Directory.module.css"
@@ -23,11 +23,17 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
 
   const handleClick = () => {
     if (!loggedIn) {
-      return confirm({ title: "Please log in", description: "Please log in to submit to the directory.", confirmationText: "Log in" }).then(() => {
+      return confirm({
+        title: "Please log in",
+        description: "Please log in to submit to the directory.", confirmationText: "Log in"
+      }).then(() => {
         router.push("/login?redirect_url=/directory")
       })
     } else if (!isMember) {
-      return confirm({ title: "Members only", description: "Please get a membership to submit to the directory.", confirmationText: "Membership" }).then(() => {
+      return confirm({
+        title: "Members only",
+        description: "Please get a membership to submit to the directory.", confirmationText: "Membership"
+      }).then(() => {
         router.push("/membership")
       })
     } else {
@@ -76,7 +82,12 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
     </>}
     {!userData.isMember && loggedIn && <>
       <DefaultLayoutCentered>
-        <div className={css.header} style={{ margin: "0 2vw", minWidth: "none", width: "20vw !important" }}>
+        <div className={css.header}
+          style={{
+            margin: "0 2vw",
+            minWidth: "none",
+            width: "20vw !important"
+          }}>
           <h1>Directory</h1>
           < Box>
             <Alert color="warning">

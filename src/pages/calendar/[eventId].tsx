@@ -1,7 +1,8 @@
-import { useRouter } from "next/router"
-import CalendarEvent from "../../Components/Calendar/CalendarEvent"
 import React from "react"
+import { useRouter } from "next/router"
+
 import { useEvent } from "../../redux/hooks"
+import CalendarEvent from "../../Components/Calendar/CalendarEvent"
 import DefaultLayout from "../../Components/Layouts/DefaultLayout"
 
 export default function EventPage() {

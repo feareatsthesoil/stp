@@ -7,9 +7,9 @@ import axios from "axios"
 
 import css from "../../Components/Calendar/Calendar.module.css"
 import { CalendarRow } from "../../types"
+import { UserContext } from "../../Components/UserContext"
 import Calendar from "../../Components/Calendar"
 import DefaultLayout from "../../Components/Layouts/DefaultLayout"
-import { UserContext } from "../../Components/UserContext"
 
 export default function IndexPage({ calendarData }: { calendarData: CalendarRow[] }) {
   const { loggedIn, isMember } = useContext(UserContext)
@@ -18,11 +18,17 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
 
   const handleClick = () => {
     if (!loggedIn) {
-      return confirm({ title: "Please log in", description: "Please log in to submit to the calendar.", confirmationText: "Log in" }).then(() => {
+      return confirm({
+        title: "Please log in",
+        description: "Please log in to submit to the calendar.", confirmationText: "Log in"
+      }).then(() => {
         router.push("/login?redirect_url=/calendar")
       })
     } else if (!isMember) {
-      return confirm({ title: "Members only", description: "Please get a membership to submit to the calendar.", confirmationText: "Membership" }).then(() => {
+      return confirm({
+        title: "Members only",
+        description: "Please get a membership to submit to the calendar.", confirmationText: "Membership"
+      }).then(() => {
         router.push("/membership")
       })
     } else {

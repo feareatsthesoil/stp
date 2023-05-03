@@ -1,15 +1,16 @@
-import Head from 'next/head'
-import '../styles/globals.css'
+import { Provider } from 'react-redux'
 import { AppProps } from 'next/app'
+import Head from 'next/head'
 import { ClerkProvider } from "@clerk/nextjs"
+import { ConfirmProvider } from "material-ui-confirm";
 import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
-import { UserProvider } from '../Components/UserContext'
-import { Provider } from 'react-redux'
-import { store } from '../redux/store'
-import { ConfirmProvider } from "material-ui-confirm";
+
+import '../styles/globals.css'
 import { RadioProvider } from '../Components/RadioContext'
 import { SideNavProvider } from '../Components/Nav/NavContext'
+import { store } from '../redux/store'
+import { UserProvider } from '../Components/UserContext'
 
 export default function MyApp({ Component, pageProps }: AppProps) {
 
@@ -18,7 +19,6 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <SideNavProvider>
         <ConfirmProvider>
           <Provider store={store}>
-
             <RadioProvider>
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <ClerkProvider {...pageProps}>
