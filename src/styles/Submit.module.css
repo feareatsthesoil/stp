@@ -26,6 +26,16 @@
   font-weight: bold;
 }
 
+.delete {
+  margin: -57px 0 0 auto;
+}
+
+@media screen and (min-width: 845px) {
+  .delete {
+    margin: -57px 0 0 520px;
+  }
+}
+
 @media screen and (min-width: 0px) and (max-width: 450px) {
   .wrapper {
     margin: 2vw;

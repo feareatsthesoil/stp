@@ -1,20 +1,20 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useState } from "react";
+import { useRouter } from "next/router";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useConfirm } from "material-ui-confirm";
-import { useRouter } from "next/router";
-import { useContext, useState } from "react";
-import { UserContext } from "../UserContext";
 
+import { UserContext } from "../UserContext";
 
 export default function JoinButton() {
     const { loggedIn } = useContext(UserContext)
     const [loading, setLoading] = useState(false)
     const confirm = useConfirm()
     const router = useRouter()
-    const handleClick = () => {
 
+    const handleClick = () => {
         if (!loggedIn) {
             return confirm({ title: "Please log in", description: "Please log in before purchasing a membership.", confirmationText: "Log in" }).then(() => {
                 router.push("/login")

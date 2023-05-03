@@ -1,6 +1,6 @@
 import React from "react"
-import Link from "next/link"
 import { useRouter } from "next/router"
+import Link from "next/link"
 
 export default function Socials() {
   const router = useRouter()

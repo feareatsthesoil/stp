@@ -1,14 +1,12 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Avatar, Button, Card, CardContent, CardHeader, Grid, List, ListItem, ListItemText, Slider } from "@mui/material";
-
 import { useContext, } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Stack } from "@mui/system";
+import { Avatar, Button, Grid, Slider } from "@mui/material";
 import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 import css from "./RadioPlayer.module.css";
-
 import { RadioContext } from "../RadioContext";
-import { Stack } from "@mui/system";
-import { omit } from "lodash";
+
 const formattedTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60)
     const remaining = Math.floor(seconds % 60)
@@ -18,7 +16,7 @@ const formattedTime = (seconds: number) => {
 export default function RadioPlayer() {
     const { playing, total, toggle, history, volume, setVolume, current, metadata } = useContext(RadioContext)
     return <>
-        <Grid container sx={{ height: "100%", width: "100%", paddingTop: "40px" }}>
+        <Grid container sx={{ alignItems: "center", justifyContent: "center", height: "100%", width: "100%", paddingTop: "40px" }}>
             <Grid item xs={12} >
 
                 <Grid item xs={12} sx={{ height: 300, display: "flex", justifyContent: "center" }}>
@@ -38,7 +36,7 @@ export default function RadioPlayer() {
                     <FontAwesomeIcon size="2x" color="black" icon={!playing ? faPlay : faPause} />
                 </Button>
             </Grid>
-            <Grid item xs={12}>
+            <Grid item xs={10} sx={{ alignItems: "center !important" }}>
                 <Stack direction={"row"} spacing={1} alignItems="center">
                     <Slider max={1} min={0} value={volume} onChange={(ev, val) => { setVolume(val as number) }} step={0.001}
                         sx={{
@@ -51,10 +49,6 @@ export default function RadioPlayer() {
                 </Stack>
             </Grid>
         </Grid>
-        {/* <div>
-            <h1>History</h1>
-            <List>{history?.map((item) => <ListItem key={item.title}><ListItemText primary={item.title} /></ListItem>)}</List>
-        </div> */}
     </>
 }
 

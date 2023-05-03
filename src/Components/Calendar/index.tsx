@@ -1,10 +1,11 @@
 import Link from "next/link"
-import css from "./Calendar.module.css"
-import _ from "lodash"
-import moment from "moment"
-import { google } from 'calendar-link'
 import { useEvents } from "../../redux/hooks"
 import { Button } from "@mui/material"
+import { google } from 'calendar-link'
+import _ from "lodash"
+import moment from "moment"
+
+import css from "./Calendar.module.css"
 import SocialLinks from "../SocialLinks/SocialLinks"
 
 export default function Calendar() {
@@ -29,14 +30,20 @@ export default function Calendar() {
             {list.map((row) => {
               return (
                 <div key={row.id} className={css.eventRow}>
-                  <Link scroll={true} className={css.mainEvent} href={`/calendar/${row.id}`}>
+                  <Link
+                    scroll={true}
+                    className={css.mainEvent}
+                    href={`/calendar/${row.id}`}
+                  >
                     {" "}
                     <div className={css.eventInfo}>
                       <strong>{row.name}</strong>
                       <div className={css.spacer} />
                       <div>
                         {moment(row.starts_at).format("MMMM DD, YYYY hh:mm A")}
-                        {row.ends_at ? <> - {moment(row.ends_at).format("MMMM DD, YYYY hh:mm A")} </> : ""}
+                        {row.ends_at ?
+                          <> - {moment(row.ends_at)
+                            .format("MMMM DD, YYYY hh:mm A")} </> : ""}
                       </div>
                       <div className={css.spacer} />
                       {row.address}
@@ -46,18 +53,19 @@ export default function Calendar() {
                     </div>
                   </Link>
                   <div className={css.buttonWrapper}>
-                    <Button className={`${css.button} ${css.add}`} href={google({
-                      title: row.name,
-                      description: row.description,
-                      start: row.starts_at,
-                      end: row.ends_at ?? row.starts_at
-                    })}
-                      target="_blank"
-                      rel="noreferrer" variant="contained">
+                    <Button
+                      className={`${css.button} ${css.add}`}
+                      href={google({
+                        title: row.name,
+                        description: row.description,
+                        start: row.starts_at,
+                        end: row.ends_at ?? row.starts_at
+                      })}
+                      target="_blank" rel="noreferrer" variant="contained">
                       Add to calendar
                     </Button>
-                    <SocialLinks eventId={row.id} />
                   </div>
+                  <SocialLinks eventId={row.id} />
                 </div>
               )
             })}

@@ -1,9 +1,10 @@
 import React from "react"
-import css from "../styles/About.module.css"
+import { TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from "axios"
-import { TextField, Unstable_Grid2 as Grid } from "@mui/material"
+
+import css from "../styles/About.module.css"
 import DefaultLayout from "../Components/Layouts/DefaultLayout"
 
 const initialState = { email: "" }
@@ -25,6 +26,7 @@ const About = () => {
       helpers.resetForm()
     }
   })
+
   return (
     <DefaultLayout>
       <div className={css.box}>
@@ -52,7 +54,7 @@ const About = () => {
                 <TextField
                   sx={{
                     "& fieldset": {
-                      borderRadius: "0",
+                      borderRadius: "4px",
                       padding: "0px",
                       alignSelf: "center",
                       margin: "10px 0 -10px 0",
@@ -61,7 +63,7 @@ const About = () => {
                     "& input": {
                       fontFamily: "Times New Roman",
                       padding: "11px",
-                      height: "10px",
+                      height: "8px",
                       margin: "10px 0 -10px 0"
                     }
                   }}
@@ -72,7 +74,11 @@ const About = () => {
                 />
               </Grid>
               <Grid xs={6}>
-                <button className={css.button}>Subscribe</button>
+                <Button
+                  sx={{ textTransform: "none" }}
+                  className={css.button}>
+                  Subscribe
+                </Button>
               </Grid>
             </Grid>
           </div>

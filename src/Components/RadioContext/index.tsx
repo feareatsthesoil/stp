@@ -75,7 +75,6 @@ export const RadioProvider = (props: { children: ReactNode }) => {
         song.preload = "auto"
         const interval = setInterval(loadMetadata, 5000)
         loadMetadata()
-        console.log(song)
 
         return () => {
             clearInterval(interval)
@@ -84,20 +83,16 @@ export const RadioProvider = (props: { children: ReactNode }) => {
 
     }, [])
 
-
-
     useEffect(() => {
         if (!song)
             return
         currentState === "playing" ? song.play() : song.pause()
     }, [currentState])
 
-
     const toggleState = () => {
         setCurrentState(currentState == "playing" ? "paused" : "playing")
 
     }
-
 
     const state = { playing: currentState === "playing", volume, setVolume, toggle: toggleState, play: () => setCurrentState("playing"), pause: () => setCurrentState("paused"), total: totalTime, current: currentTime, metadata, history }
     return <RadioContext.Provider value={state}>

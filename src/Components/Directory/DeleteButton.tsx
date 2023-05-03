@@ -1,11 +1,12 @@
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "@mui/material";
-import { useConfirm } from "material-ui-confirm";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteDirectory } from "../../redux/slices/directory";
+import { useConfirm } from "material-ui-confirm";
+import { Button } from "@mui/material";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import { AppDispatch } from "../../redux/store";
+import { deleteDirectory } from "../../redux/slices/directory";
 
 export default function DeleteButton({ after = () => { }, id }: { after?: () => void, id: string | number }) {
     const dispatch: AppDispatch = useDispatch()
@@ -27,15 +28,19 @@ export default function DeleteButton({ after = () => { }, id }: { after?: () => 
         sx={{
             backgroundColor: "rgb(239, 239, 239)",
             textTransform: "none",
-            fontFamily: "Times New Roman",
-            borderRadius: "0",
+            fontFamily: "Helvetica",
+            fontSize: "0.8em",
+            borderRadius: "4px",
             color: "#000",
             border: "1px solid #000",
             height: "30px",
             margin: "60px 0 0 0",
             "&:hover ": {
-                backgroundColor: "rgb(199, 199, 199)",
+                backgroundColor: "rgb(220, 220, 220) !important;",
             }
         }}
-    >Delete {loading && <FontAwesomeIcon icon={faSpinner} spin />}</Button>
+    >
+        {!loading && <>Delete</>}
+        {loading && <FontAwesomeIcon icon={faSpinner} spin />}
+    </Button>
 }

@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react"
 import Link from "next/link"
-import css from "./Nav.module.css"
-import { useRouter } from "next/router"
-import nav from "../Nav/Nav.json"
-import { useUser } from "@clerk/nextjs"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faBars } from "@fortawesome/free-solid-svg-icons"
-import { useSideNav } from "./NavContext"
 import { Button } from "@mui/material"
+import { useRouter } from "next/router"
+import { useUser } from "@clerk/nextjs"
+
+import css from "./Nav.module.css"
+import { useSideNav } from "./NavContext"
+import nav from "../Nav/Nav.json"
 
 const NavBar = () => {
   const user = useUser()
@@ -17,12 +16,10 @@ const NavBar = () => {
   const { sideNavVisible, setSideNavVisible } = useSideNav();
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
 
-
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
-
     };
 
     window.addEventListener("resize", handleResize);
@@ -31,6 +28,15 @@ const NavBar = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    if (typeof document !== "undefined") {
+      const subBody = document.getElementById("subBody");
+      if (subBody) {
+        subBody.style.marginLeft = sideNavVisible ? "250px" : "0";
+      }
+    }
+  }, [sideNavVisible]);
 
   const toggleNav = () => {
     if (isMobile) {

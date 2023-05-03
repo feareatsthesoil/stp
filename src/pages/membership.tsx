@@ -1,12 +1,13 @@
 import React, { useContext } from "react"
 import Link from "next/link"
+import { useUser } from "@clerk/nextjs"
+import { Button, Chip } from "@mui/material"
+import moment from "moment"
+
 import css from "../styles/Membership.module.css"
 import { UserContext } from "../Components/UserContext"
-import { Button, Chip } from "@mui/material"
-import JoinButton from "../Components/Membership/JoinButton"
 import DefaultLayout from "../Components/Layouts/DefaultLayout"
-import { useUser } from "@clerk/nextjs"
-import moment from "moment"
+import JoinButton from "../Components/Membership/JoinButton"
 
 const Membership = () => {
   const { initialized, purchase, isEdu } = useContext(UserContext)
@@ -40,26 +41,25 @@ const Membership = () => {
           <h1>
             Individual Member: $75
           </h1>
-          {isEdu ? <Chip
-            sx={{
-              borderRadius: "0",
-              fontFamily: "Times New Roman"
-            }}
-            color="success"
-            label="Joined"
-          /> : ""}
-          {!isEdu && initialized && <>{!purchase?.id && <div className={css.joinButton}><JoinButton /></div>}
-
+          {isEdu ?
+            <Chip
+              sx={{
+                borderRadius: "4px",
+                fontFamily: "Helvetica"
+              }}
+              color="success"
+              label="Joined"
+            /> : ""}
+          {!isEdu && initialized && <> {!purchase?.id && <div className={css.joinButton}><JoinButton /></div>}
             {purchase?.id && <>
               <div>
-
                 <Chip
                   color="success"
                   label="Joined"
                   sx={{
                     float: "right",
-                    borderRadius: "0",
-                    fontFamily: "Times New Roman",
+                    borderRadius: "4px",
+                    fontFamily: "Helvetica",
                   }}
                 />
                 <><p>
@@ -109,13 +109,13 @@ const Membership = () => {
           <h1>
             Student membership: Free
           </h1>
-          {isLoaded && !isSignedIn && <Button className={css.button} variant="contained" href="/login">
+          {isLoaded && !isSignedIn && <Button className={css.button} variant="contained" href="/login?redirect_url=/membership">
             Log in
           </Button>}
           {isEdu ? <Chip
             sx={{
-              borderRadius: "0",
-              fontFamily: "Times New Roman"
+              borderRadius: "4px",
+              fontFamily: "Helvetica"
             }}
             color="success"
             label="Joined"
@@ -123,15 +123,15 @@ const Membership = () => {
           {isSignedIn && !isEdu ? <
             Chip
             sx={{
-              borderRadius: "0",
-              fontFamily: "Times New Roman",
+              borderRadius: "4px",
+              fontFamily: "Helvetica",
               border: "1px solid #000"
             }}
             label="Unauthenticated" /> : ""}
         </div>
         <p>
           Students with a <strong>.edu</strong> email may enjoy all the benefits of the Individual Membership
-          listed above. Simply <Link href="/login">Log in</Link> with <strong>.edu</strong> email to continue.
+          listed above. Simply <Link href="/login?redirect_url=/membership">Log in</Link> with <strong>.edu</strong> email to continue.
         </p>
         <div className={css.border} />
       </div>

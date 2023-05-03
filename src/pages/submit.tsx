@@ -1,5 +1,6 @@
 import React from "react"
 import Link from "next/link"
+
 import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
 
 const Submit = () => {

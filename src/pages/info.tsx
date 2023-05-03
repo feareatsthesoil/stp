@@ -1,15 +1,19 @@
-import DirectoryForm from "../Components/Directory/DirectoryForm"
-import { UserContext } from "../Components/UserContext"
 import { useContext } from "react"
-import AuthLayout from "../Components/Layouts/AuthLayout"
 
 import css from "src/styles/Submit.module.css"
+import DirectoryForm from "../Components/Directory/DirectoryForm"
+import { UserContext } from "../Components/UserContext"
+import AuthLayout from "../Components/Layouts/AuthLayout"
 
 export default function info() {
-  const { profile, initialized } = useContext(UserContext)
+  const { profile, initialized, isMember } = useContext(UserContext)
 
-  if (!initialized)
-    return <></>
+  if (!initialized) return <></>
+
+  if (!isMember) {
+    return <h1>You must be a member to access this page.</h1>;
+  }
+
   return (
     <AuthLayout>
       <div className={css.wrapper}>

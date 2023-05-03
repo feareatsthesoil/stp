@@ -8,7 +8,6 @@ import { useRouter } from "next/router"
 const Welcome = () => {
   const router = useRouter();
   const url = router.query.redirect_url as string
-  console.log({ query: router.query })
 
   return (
     <DefaultLayoutCentered>

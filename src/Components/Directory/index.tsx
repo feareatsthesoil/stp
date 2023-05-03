@@ -1,18 +1,17 @@
-import css from "./Directory.module.css"
-import { groupBy } from 'lodash'
 import { useState } from "react"
-import { useContacts } from "../../redux/hooks"
+import Link from "next/link"
 import { useAuth } from "@clerk/nextjs"
 import { TextField } from "@mui/material"
-import Link from "next/link"
+import { groupBy } from 'lodash'
 
+import css from "./Directory.module.css"
+import { useContacts } from "../../redux/hooks"
 
 export default function Directory() {
   const [searchText, setSearchText] = useState("")
   const fullData = useContacts()
   const { userId } = useAuth()
 
-  console.log({ userId })
   const data = searchText === "" ? fullData : fullData.filter((row) => {
     return row.name.toLowerCase().match(new RegExp(searchText.toLowerCase())) ||
       row.email.toLowerCase().match(new RegExp(searchText.toLowerCase())) ||
@@ -33,11 +32,11 @@ export default function Directory() {
           "& fieldset": {
             alignSelf: "center",
             border: "1px solid black",
-            borderRadius: "0",
+            borderRadius: "4px",
           },
           "& input": {
-            fontFamily: "Times New Roman",
-            fontSize: ".9em",
+            fontFamily: "Helvetica",
+            fontSize: ".8em",
             padding: "11px",
           },
           "&::placeholder ": {
@@ -61,9 +60,21 @@ export default function Directory() {
                   </div>
                 </Link>
                 <div className={css.items}>
-                  {row.twitter && <a href={`http://twitter.com/@${row.twitter}`} target="webapp-tab">Twitter</a>}
-                  {row.instagram && <a href={`http://instgram.com/${row.instagram}`} target="webapp-tab">Instagram</a>}
-                  {row.website && <a rel="noopener noreferrer" target="_blank" href={row.website}>Website</a>}
+                  {row.twitter &&
+                    <a
+                      href={`http://twitter.com/@${row.twitter}`} target="webapp-tab">
+                      Twitter
+                    </a>}
+                  {row.instagram &&
+                    <a
+                      href={`http://instgram.com/${row.instagram}`} target="webapp-tab">
+                      Instagram
+                    </a>}
+                  {row.website &&
+                    <a
+                      href={row.website} rel="noopener noreferrer" target="_blank" >
+                      Website
+                    </a>}
                   {userId === row.userId &&
                     <Link className={css.edit} href={`/directory/${row.id}/edit`}>
                       Edit

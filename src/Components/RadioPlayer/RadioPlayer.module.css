@@ -1,3 +1,7 @@
+.spin {
+    animation: rot 4s linear infinite;
+}
+
 @keyframes rot {
     0% {
         transform: rotate(360deg)
@@ -7,38 +11,4 @@
         transform: rotate(0deg)
     }
 
-}
-
-.spin {
-    animation: rot 4s linear infinite;
-}
-
-@keyframes fadeIn {
-
-    0% {
-        opacity: 0
-    }
-
-    100% {
-        opacity: 1
-    }
-}
-
-@keyframes fadeOut {
-
-    0% {
-        opacity: 1
-    }
-
-    100% {
-        opacity: 0
-    }
-}
-
-.fadeOut {
-    display: none !important;
-}
-
-.fadeIn {
-    animation: fadeIn .5s linear;
 }

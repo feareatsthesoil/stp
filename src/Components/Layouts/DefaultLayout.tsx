@@ -12,7 +12,7 @@ import DefaultLayoutCentered from "./DefaultLayoutCentered";
 import { useSideNav } from "../Nav/NavContext"
 
 export default function DefaultLayout(props: { children: ReactNode }) {
-    const { initialized, profile, loggedIn } = useContext(UserContext);
+    const { initialized, profile, loggedIn, isMember } = useContext(UserContext);
     const loading = usePageLoader() || !initialized
     const router = useRouter()
     const { sideNavVisible } = useSideNav();
@@ -35,7 +35,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
     }, []);
 
     const subBodyStyle = {
-        overflow: "hidden",
+        overflowX: "hidden",
         width:
             sideNavVisible
                 ? "calc(100vw - 130px)"
@@ -53,7 +53,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
                     : "",
     }
 
-    if (initialized && loggedIn && !profile) {
+    if (initialized && loggedIn && !profile && isMember) {
         if (router.asPath == "/info") {
         }
         router.push("/info")

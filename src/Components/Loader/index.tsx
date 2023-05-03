@@ -25,7 +25,7 @@ export default function Loader() {
   }, []);
 
   const loadingStyle = {
-    overflow: "hidden",
+    overflowX: "hidden",
     width:
       sideNavVisible
         ? "calc(100vw - 130px)"

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react"
+
 import css from "./CalendarEvent.module.css"
 
 export default function Map({ address }: { address: string }) {
@@ -14,9 +15,17 @@ export default function Map({ address }: { address: string }) {
 
                     if (result) {
                         const [lat, lng] = [result.geometry.location.lat(), result.geometry.location.lng()]
-                        const map = new window.google.maps.Map(ref.current, { center: { lat, lng }, zoomControl: true, fullscreenControl: true, scaleControl: true, zoom: 10, })
-
-                        new window.google.maps.Marker({ map, position: { lat, lng } })
+                        const map = new window.google.maps.Map(
+                            ref.current, {
+                            center: { lat, lng },
+                            zoomControl: true,
+                            fullscreenControl: true,
+                            scaleControl: true,
+                            zoom: 10,
+                        })
+                        new window.google.maps.Marker({
+                            map, position: { lat, lng }
+                        })
                     }
                 } catch (ex) {
                 }
@@ -24,7 +33,7 @@ export default function Map({ address }: { address: string }) {
         }
         effect()
     }, [ref])
-    return <div className={css.map} ref={ref} id="map">
-
-    </div>
+    return <div
+        className={css.map}
+        ref={ref} id="map" />
 }

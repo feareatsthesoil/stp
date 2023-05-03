@@ -1,11 +1,12 @@
-import Link from "next/link"
-import DirectoryForm from "../../Components/Directory/DirectoryForm"
-import css from "src/styles/Submit.module.css"
-import AuthLayout from "../../Components/Layouts/AuthLayout"
 import { useContext } from "react"
-import { UserContext } from "../../Components/UserContext"
-import { Box } from "@mui/system"
+import Link from "next/link"
 import { Alert, AlertTitle } from "@mui/material"
+import { Box } from "@mui/system"
+
+import css from "src/styles/Submit.module.css"
+import { UserContext } from "../../Components/UserContext"
+import AuthLayout from "../../Components/Layouts/AuthLayout"
+import DirectoryForm from "../../Components/Directory/DirectoryForm"
 
 export default function DirectorySubmit() {
   const userData = useContext(UserContext)

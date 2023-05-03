@@ -10,7 +10,7 @@ import { UserContext } from "../UserContext";
 import css from "./DefaultLayoutCentered.module.css"
 
 export default function DefaultLayout(props: { children: ReactNode }) {
-    const { initialized, profile, loggedIn } = useContext(UserContext);
+    const { initialized, profile, loggedIn, isMember } = useContext(UserContext);
     const loading = usePageLoader() || !initialized
     const router = useRouter()
 
@@ -34,7 +34,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
     }, []);
 
     const subBodyStyle = {
-        overflow: "hidden",
+        overflowX: "hidden",
         width:
             sideNavVisible
                 ? "calc(100vw - 130px)"
@@ -52,7 +52,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
                     : "",
     }
 
-    if (initialized && loggedIn && !profile) {
+    if (initialized && loggedIn && !profile && isMember) {
         if (router.asPath == "/info") {
         }
         router.push("/info")

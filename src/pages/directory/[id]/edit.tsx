@@ -1,14 +1,16 @@
-import Link from "next/link"
-import DirectoryForm from "../../../Components/Directory/DirectoryForm"
-import css from "src/styles/Submit.module.css"
-import AuthLayout from "../../../Components/Layouts/AuthLayout"
 import { useContext } from "react"
-import { UserContext } from "../../../Components/UserContext"
+import { useRouter } from "next/router"
+import Link from "next/link"
 import { Box } from "@mui/system"
 import { Alert, AlertTitle } from "@mui/material"
-import { useRouter } from "next/router"
 import { useContact } from "../../../redux/hooks"
+
+import css from "src/styles/Submit.module.css"
 import DeleteButton from "../../../Components/Directory/DeleteButton"
+import DirectoryForm from "../../../Components/Directory/DirectoryForm"
+import { UserContext } from "../../../Components/UserContext"
+import AuthLayout from "../../../Components/Layouts/AuthLayout"
+
 export default function DirectorySubmit() {
     const userData = useContext(UserContext)
     const router = useRouter()
@@ -23,9 +25,11 @@ export default function DirectorySubmit() {
                     <h1>Edit Directory Entry</h1>
                 </div>
                 {userData.isMember && <DirectoryForm data={contact} profile={false} />}
-                <DeleteButton id={id as string} after={() => {
-                    router.push("/directory")
-                }} />
+                <div className={css.delete}>
+                    <DeleteButton id={id as string} after={() => {
+                        router.push("/directory")
+                    }} />
+                </div>
                 {!userData.isMember && < Box>
                     <Alert color="warning">
                         <AlertTitle><strong>Members Only</strong></AlertTitle>

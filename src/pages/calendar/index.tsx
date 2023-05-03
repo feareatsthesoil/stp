@@ -1,13 +1,14 @@
 import React, { useContext } from "react"
-import Calendar from "../../Components/Calendar"
+import { useRouter } from "next/router"
+import Link from "next/link"
+import { Button } from "@mui/material"
+import { useConfirm } from "material-ui-confirm"
+import axios from "axios"
+
 import css from "../../Components/Calendar/Calendar.module.css"
 import { CalendarRow } from "../../types"
-import Link from "next/link"
-import axios from "axios"
+import Calendar from "../../Components/Calendar"
 import DefaultLayout from "../../Components/Layouts/DefaultLayout"
-import { Button } from "@mui/material"
-import { useRouter } from "next/router"
-import { useConfirm } from "material-ui-confirm"
 import { UserContext } from "../../Components/UserContext"
 
 export default function IndexPage({ calendarData }: { calendarData: CalendarRow[] }) {

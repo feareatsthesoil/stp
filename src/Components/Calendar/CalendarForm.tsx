@@ -1,16 +1,14 @@
 import React from "react"
 import axios from "axios"
-import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
-import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import { DateTimePicker } from "@mui/x-date-pickers"
-import { useState } from "react"
-import { useFormik } from "formik"
-import * as Yup from "yup"
-import { useAuth } from "@clerk/nextjs";
-import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
+import { useFormik } from "formik"
+import { withStyles } from "@mui/styles"
+import * as Yup from "yup"
+import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
 
 import css from "src/styles/Form.module.css"
 
@@ -40,7 +38,21 @@ const CssTextField = withStyles({
       "&:hover fieldset": {
         borderWidth: "2px",
       },
+      "& .Mui-error fieldset": {
+        borderColor: "black!important",
+      },
     },
+    "& .MuiOutlinedInput-root.Mui-error": {
+      "& fieldset": {
+        borderColor: "black!important",
+      }
+    },
+    "& .MuiFormLabel-root.Mui-error": {
+      color: "black!important",
+      "& span": {
+        color: "black!important",
+      }
+    }
   },
 })(TextField);
 
@@ -56,8 +68,6 @@ const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\
 
 export default function CalendarForm({ }: { profile: boolean }) {
   let isMax = false;
-  const [loading, setLoading] = useState(false)
-  const { getToken } = useAuth()
 
   const formik = useFormik({
     validationSchema: Yup.object({
@@ -100,7 +110,6 @@ export default function CalendarForm({ }: { profile: boolean }) {
 
     }),
     initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
-
 
       const dataToSubmit = {
         ...values

@@ -28,7 +28,7 @@ const contactUs = () => {
   }, []);
 
   const subBodyStyle = {
-    overflow: "hidden",
+    overflowX: "hidden",
     width:
       sideNavVisible
         ? "calc(100vw - 130px)"

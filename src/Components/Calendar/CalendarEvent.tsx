@@ -1,10 +1,11 @@
-import { CalendarEventType } from "../../types/index"
-import css from "./CalendarEvent.module.css"
-import moment from "moment"
-import Map from "./Map"
+import { Button } from "@mui/material"
 import { google } from 'calendar-link'
 import { Wrapper } from "@googlemaps/react-wrapper"
-import { Button } from "@mui/material"
+import moment from "moment"
+
+import css from "./CalendarEvent.module.css"
+import { CalendarEventType } from "../../types/index"
+import Map from "./Map"
 import SocialLinks from "../SocialLinks/SocialLinks"
 
 export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.Element {
@@ -28,36 +29,40 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
             {moment(row.ends_at).format("hh:mm A")}
           </>}
         </p>
-        <p>
-          {row.description}
-        </p>
+        {row.description &&
+          <p>
+            {row.description}
+          </p>
+        }
         <p>
           Contact: {row.email}
         </p>
+        <div className={css.buttonWrapper}>
+          <Button
+            className={css.button}
+            href={google({
+              title: row.name,
+              description: row.description,
+              start: row.starts_at,
+              end: row.ends_at ?? row.starts_at
+            })}
+            target="_blank"
+            rel="noreferrer" variant="contained">
+            Add to calendar
+          </Button>
+          <Button
+            className={css.button}
+            href={`http://google.com/maps/search/${row.address}`}
+            target="_blank" rel="noreferrer" variant="contained">
+            Open in map
+          </Button>
+        </div>
         <div className={css.map}>
           <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!} >
             <Map address={row.address} />
           </Wrapper>
         </div>
-        <div className={css.buttonWrapper}>
-          <SocialLinks eventId={row.id} />
-          <Button className={css.button} href={google({
-            title: row.name,
-            description: row.description,
-            start: row.starts_at,
-            end: row.ends_at ?? row.starts_at
-          })}
-            target="_blank"
-            rel="noreferrer" variant="contained">
-            Add to calendar
-          </Button>
-          <Button className={css.button} href={`http://google.com/maps/search/${row.address}`}
-            target="_blank"
-            rel="noreferrer" variant="contained">
-            Open in map
-          </Button>
-
-        </div>
+        <SocialLinks eventId={row.id} />
       </div>
     </div >
   )

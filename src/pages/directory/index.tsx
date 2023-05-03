@@ -1,17 +1,18 @@
 import { useContext, useEffect, useState } from "react"
-import Link from "next/link"
-import Directory from "../../Components/Directory"
-import { DirectoryRow } from "../../types"
-import css from "../../Components/Directory/Directory.module.css"
-import axios from "axios"
-import DefaultLayout from "../../Components/Layouts/DefaultLayout"
-import { loaded } from "../../redux/slices/directory"
-import { useDispatch } from "react-redux"
-import { Alert, AlertTitle, Box, Button } from "@mui/material"
-import { UserContext } from "../../Components/UserContext"
-import { useConfirm } from "material-ui-confirm"
 import { useRouter } from "next/router"
+import Link from "next/link"
+import { Alert, AlertTitle, Box, Button } from "@mui/material"
+import { useConfirm } from "material-ui-confirm"
+import { useDispatch } from "react-redux"
+import axios from "axios"
+
+import css from "../../Components/Directory/Directory.module.css"
+import { DirectoryRow } from "../../types"
+import { loaded } from "../../redux/slices/directory"
+import { UserContext } from "../../Components/UserContext"
+import DefaultLayout from "../../Components/Layouts/DefaultLayout"
 import DefaultLayoutCentered from "../../Components/Layouts/DefaultLayoutCentered"
+import Directory from "../../Components/Directory"
 
 export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[] }) {
   const dispatch = useDispatch()
@@ -75,7 +76,7 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
     </>}
     {!userData.isMember && loggedIn && <>
       <DefaultLayoutCentered>
-        <div className={css.header}>
+        <div className={css.header} style={{ margin: "0 2vw", minWidth: "none", width: "20vw !important" }}>
           <h1>Directory</h1>
           < Box>
             <Alert color="warning">
