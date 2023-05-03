@@ -44,18 +44,6 @@
   color: black;
 }
 
-.button {
-  background-color: rgb(239, 239, 239);
-  border-radius: 4px;
-  border: 1px solid #000;
-  color: #000;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: .8em;
-  height: 30px;
-  margin: 10px 0 0 -5px;
-  letter-spacing: normal;
-}
-
 .button:hover {
   transition: 0.3s;
   background-color: rgb(220, 220, 220) !important;

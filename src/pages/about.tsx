@@ -75,7 +75,21 @@ const About = () => {
               </Grid>
               <Grid xs={6}>
                 <Button
-                  sx={{ textTransform: "none" }}
+                  sx={{
+                    float: "right",
+                    backgroundColor: "rgb(239, 239, 239)",
+                    textTransform: "none",
+                    fontFamily: "Helvetica",
+                    fontSize: "0.8em",
+                    borderRadius: "4px",
+                    color: "#000",
+                    border: "1px solid #000",
+                    height: "30px",
+                    margin: "10px 60px 0 -50px",
+                    "&:hover ": {
+                      backgroundColor: "rgb(220, 220, 220) !important;",
+                    }
+                  }}
                   className={css.button}>
                   Subscribe
                 </Button>
