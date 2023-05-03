@@ -35,5 +35,6 @@ export default function Map({ address }: { address: string }) {
     }, [ref])
     return <div
         className={css.map}
-        ref={ref} id="map" />
+        ref={ref}
+        id="map" />
 }
