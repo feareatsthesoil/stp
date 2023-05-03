@@ -56,10 +56,9 @@
   transition: 60ms transform ease-in-out;
 }
 
-@media screen and (max-width: 600px) {
-  .input button {
-    margin: 0 0 0 0 !important;
-    float: left;
+@media screen and (max-width: 450px) {
+  .input {
+    width: 100vw;
   }
 
 }

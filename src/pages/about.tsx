@@ -50,7 +50,7 @@ const About = () => {
         <form onSubmit={formik.handleSubmit}>
           <div className={css.input}>
             <Grid container spacing={2} sx={{ maxWidth: "sm", }}>
-              <Grid xs={12} sm={6}>
+              <Grid xs={6} sm={6}>
                 <TextField
                   sx={{
                     "& fieldset": {
@@ -73,7 +73,7 @@ const About = () => {
                   helperText={formik.errors.email}
                 />
               </Grid>
-              <Grid xs={12} sm={6}>
+              <Grid xs={6} sm={6}>
                 <Button
                   sx={{
                     float: "right",
