@@ -1,13 +1,14 @@
+import { CSSProperties, ReactNode, useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import { ReactNode, useContext, useEffect, useState } from "react";
-import usePageLoader from "../../hooks/usePageLoader";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
-import Loader from "../Loader";
-import NavBar from "../Nav/Nav";
-import { useSideNav } from "../Nav/NavContext";
 import { UserContext } from "../UserContext";
+import { useSideNav } from "../Nav/NavContext";
+
 import css from "./DefaultLayoutCentered.module.css"
+import Header from "../Header/Header";
+import NavBar from "../Nav/Nav";
+import Loader from "../Loader";
+import Footer from "../Footer/Footer";
+import usePageLoader from "../../hooks/usePageLoader";
 
 export default function DefaultLayout(props: { children: ReactNode }) {
     const { initialized, profile, loggedIn, isMember } = useContext(UserContext);
@@ -33,7 +34,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
         }
     }, []);
 
-    const subBodyStyle = {
+    const subBodyStyle: CSSProperties = {
         overflowX: "hidden",
         width:
             sideNavVisible

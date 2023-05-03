@@ -1,8 +1,6 @@
-import { useEffect, useRef, useState } from "react";
+import { CSSProperties, useEffect, useRef, useState } from "react";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
-import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered";
-import DefaultLayout from "../Components/Layouts/DefaultLayoutCentered";
 import Nav from "../Components/Nav/Nav";
 import { useSideNav } from "../Components/Nav/NavContext";
 
@@ -408,7 +406,7 @@ export default function Store() {
     }
   }, []);
 
-  const subBodyStyle = {
+  const subBodyStyle: CSSProperties = {
     overflowX: "hidden",
     width:
       sideNavVisible

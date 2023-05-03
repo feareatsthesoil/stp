@@ -1,6 +1,6 @@
 import { useContext, useState } from "react"
 import axios from 'axios'
-import { FormHelperText, InputAdornment, MenuItem, TextField, Unstable_Grid2 as Grid } from "@mui/material"
+import { FormHelperText, InputAdornment, MenuItem, TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
 import { withStyles } from "@mui/styles"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
 import React from "react";
@@ -293,7 +293,22 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
               <p className={isMax ? css.max : css.notMax}>
                 {formik.values.description.length}/300
               </p>
-              <button
+              <Button
+                sx={{
+                  float: "right",
+                  backgroundColor: "rgb(239, 239, 239)",
+                  textTransform: "none",
+                  fontFamily: "Helvetica",
+                  fontSize: "0.8em",
+                  borderRadius: "4px",
+                  color: "#000",
+                  border: "1px solid #000",
+                  height: "30px",
+                  margin: "-30px 0 0 0",
+                  "&:hover ": {
+                    backgroundColor: "rgb(220, 220, 220) !important;",
+                  }
+                }}
                 disabled={formik.isSubmitting}
                 type={"submit"}
                 className={css.button}>
@@ -303,7 +318,7 @@ export default function DirectoryForm({ profile = false, data }: { profile: bool
                     <FontAwesomeIcon icon={faSpinner} spin />
                   </span>
                 }
-              </button>
+              </Button>
             </Grid>
           </Grid>
         </ThemeProvider>

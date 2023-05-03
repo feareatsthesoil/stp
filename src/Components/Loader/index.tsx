@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSideNav } from "../Nav/NavContext";
 import css from "./Loader.module.css"
+import { CSSProperties } from "styled-components";
 
 export default function Loader() {
 
@@ -24,7 +25,7 @@ export default function Loader() {
     }
   }, []);
 
-  const loadingStyle = {
+  const loadingStyle: CSSProperties = {
     overflowX: "hidden",
     width:
       sideNavVisible

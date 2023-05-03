@@ -10,6 +10,7 @@ import { UserContext } from "../UserContext";
 import css from "./DefaultLayout.module.css"
 import DefaultLayoutCentered from "./DefaultLayoutCentered";
 import { useSideNav } from "../Nav/NavContext"
+import { CSSProperties } from "styled-components";
 
 export default function DefaultLayout(props: { children: ReactNode }) {
     const { initialized, profile, loggedIn, isMember } = useContext(UserContext);
@@ -34,7 +35,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
         }
     }, []);
 
-    const subBodyStyle = {
+    const subBodyStyle: CSSProperties = {
         overflowX: "hidden",
         width:
             sideNavVisible

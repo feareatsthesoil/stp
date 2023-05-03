@@ -38,10 +38,14 @@ export default function IndexPage({ calendarData }: { calendarData: CalendarRow[
           All submissions will be included in our weekly newsletter and are subject to review. By submitting to the calendar you are agreeing to our <Link href="#">Privacy Policy</Link>.
         </p>
         <div className={css.buttonWrapper}>
-          <Button className={css.button} onClick={handleClick}>
+          <Button
+            className={css.button}
+            onClick={handleClick}>
             Submit to Calendar
           </Button>
-          <Button className={css.button} href="https://calendar.google.com/calendar/u/1?cid=Y19mZDdkZGU5ZGY3MzBmM2Q5OTE5NjM1YmI0MzRiNDM4MTAxOGViZDg2MDY4NGUxN2ViMGU2NzAxMWY5OWIyNWYxQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+          <Button
+            className={css.button}
+            href="https://calendar.google.com/calendar/u/1?cid=Y19mZDdkZGU5ZGY3MzBmM2Q5OTE5NjM1YmI0MzRiNDM4MTAxOGViZDg2MDY4NGUxN2ViMGU2NzAxMWY5OWIyNWYxQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
             target="webapp-tab">
             Add Calendar
           </Button>

@@ -6,6 +6,7 @@ import Address from "../Components/Address/address"
 import css from "../styles/Contact.module.css"
 import Nav from "../Components/Nav/Nav"
 import { useSideNav } from "../Components/Nav/NavContext"
+import { CSSProperties } from "styled-components"
 
 const contactUs = () => {
   const { sideNavVisible } = useSideNav();
@@ -27,7 +28,7 @@ const contactUs = () => {
     }
   }, []);
 
-  const subBodyStyle = {
+  const subBodyStyle: CSSProperties = {
     overflowX: "hidden",
     width:
       sideNavVisible

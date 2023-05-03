@@ -1,7 +1,7 @@
 import { SignIn, useAuth, useUser } from "@clerk/nextjs";
 import { Dialog, Modal } from "@mui/material";
 import { useRouter } from "next/router";
-import { ReactNode, useEffect, useState } from "react";
+import { CSSProperties, ReactNode, useEffect, useState } from "react";
 import usePageLoader from "../../hooks/usePageLoader";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
@@ -35,7 +35,7 @@ export default function AuthLayout(props: { children: ReactNode }) {
     }
   }, []);
 
-  const subBodyStyle = {
+  const subBodyStyle: CSSProperties = {
     overflow: "hidden",
     width:
       sideNavVisible

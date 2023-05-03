@@ -34,7 +34,7 @@ export default function DeleteButton({ after = () => { }, id }: { after?: () => 
             color: "#000",
             border: "1px solid #000",
             height: "30px",
-            margin: "60px 0 0 0",
+            margin: "63px 0 0 0",
             "&:hover ": {
                 backgroundColor: "rgb(220, 220, 220) !important;",
             }
