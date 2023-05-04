@@ -19,9 +19,31 @@
 }
 
 .input {
-  border: 1px solid black;
   display: flex;
   flex-direction: row;
-  min-width: 300px;
-  width: 50vw;
+  height: auto;
+}
+
+.button {
+  justify-content: space-between;
+  margin: 10px 0 0 0;
+  background-color: rgb(239, 239, 239);
+  border: 1px solid #000;
+  border-radius: 4px;
+  color: #000;
+  height: 32px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: .8em;
+  padding: 7px 10px;
+  width: auto;
+}
+
+.button:hover {
+  background-color: rgb(199, 199, 199);
+  border: 1px solid #000;
+}
+
+.button:active {
+  transform: translateY(4px);
+  transition: 60ms transform ease-in-out;
 }

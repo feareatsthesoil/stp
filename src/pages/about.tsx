@@ -48,55 +48,42 @@ const About = () => {
           <strong>Subscribe to our weekly newsletter for happenings and events</strong>
         </p>
         <form onSubmit={formik.handleSubmit}>
-          <Grid
-            container
-            spacing={2}
-            sx={{
-              maxWidth: "sm",
-              minWidth: "300px"
-            }}>
-            <Grid xs={6} sm={6}>
-              <TextField
-                sx={{
-                  "& fieldset": {
-                    borderRadius: "4px",
-                    border: "1px solid black",
-                  },
-                  "& input": {
-                    fontFamily: "Times New Roman",
-                    padding: "11px",
-                    height: "8px",
-                  }
-                }}
-                value={formik.values.email}
-                onChange={formik.handleChange}
-                error={!!formik.errors.email}
-                helperText={formik.errors.email}
-              />
+          <div className={css.input}>
+            <Grid
+              container
+              spacing={2}
+              sx={{
+                maxWidth: "sm",
+                minWidth: "300px"
+              }}>
+              <Grid xs={6} sm={6}>
+                <TextField
+                  sx={{
+                    "& fieldset": {
+                      borderRadius: "4px",
+                      padding: "0px",
+                      alignSelf: "center",
+                      margin: "10px 0 -10px 0",
+                      border: "1px solid black",
+                    },
+                    "& input": {
+                      fontFamily: "Times New Roman",
+                      padding: "11px",
+                      height: "10px",
+                      margin: "10px 0 -10px 0"
+                    }
+                  }}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  error={!!formik.errors.email}
+                  helperText={formik.errors.email}
+                />
+              </Grid>
+              <Grid xs={6} sm={6}>
+                <button className={css.button}>Subscribe</button>
+              </Grid>
             </Grid>
-            <Grid xs={6} sm={6}>
-              <Button
-                sx={{
-                  backgroundColor: "rgb(239, 239, 239)",
-                  textTransform: "none",
-                  fontFamily: "Helvetica",
-                  fontSize: "0.8em",
-                  borderRadius: "4px",
-                  color: "#000",
-                  border: "1px solid #000",
-                  height: "30px",
-                  "&:hover ": {
-                    backgroundColor: "rgb(220, 220, 220) !important;",
-                  },
-                  "@media screen and (max-width: 450px)": {
-                    margin: "0 0px 0 -40px !important"
-                  }
-                }}
-              >
-                Subscribe
-              </Button>
-            </Grid>
-          </Grid>
+          </div>
         </form>
       </div >
     </DefaultLayout >
