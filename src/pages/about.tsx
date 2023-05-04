@@ -94,8 +94,13 @@ const About = () => {
                 />
               </Grid>
               <Grid xs={6} sm={6}>
-                <button className={css.button}>Subscribe
-                  {formik.isSubmitting && <FontAwesomeIcon spin icon={faSpinner} />}
+                <button className={css.button}>
+                  {!formik.isSubmitting && <>Subscribe</>}
+                  {formik.isSubmitting &&
+                    <span style={{ paddingRight: 2 }}>
+                      <FontAwesomeIcon icon={faSpinner} spin />
+                    </span>
+                  }
                 </button>
               </Grid>
             </Grid>

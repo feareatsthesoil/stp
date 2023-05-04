@@ -167,7 +167,6 @@ p {
   height: 30px !important;
 }
 
-
 .embed-page-inner button {
   height: 30px !important;
 }
@@ -261,7 +260,7 @@ p {
 
 /* MuiAlert */
 .MuiDialog-paper {
-  border-radius: 0 !important;
+  border-radius: 4px !important;
 }
 
 .MuiDialogContent-root p {
