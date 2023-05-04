@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useRef } from "react"
 import { TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
@@ -6,10 +6,18 @@ import axios from "axios"
 
 import css from "../styles/About.module.css"
 import DefaultLayout from "../Components/Layouts/DefaultLayout"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
+import { useConfirm } from "material-ui-confirm"
 
 const initialState = { email: "" }
 
 const About = () => {
+
+  const embedRef = useRef<HTMLDivElement>(null)
+
+
+  const confirm = useConfirm()
   const formik = useFormik({
     validationSchema: Yup.object({
       email:
@@ -17,15 +25,19 @@ const About = () => {
           .required("Required")
           .email(),
     }),
-    initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
-      const dataToSubmit = {
-        ...values
-      }
-      const response = await axios.post("/api/about", dataToSubmit)
+    initialValues: { ...initialState },
+
+    onSubmit: async (values, helpers) => {
+      const response = await axios.post("https://substackapi.com/api/subscribe", { email: values.email, domain: "blog.stp.world" })
       helpers.setSubmitting(false)
       helpers.resetForm()
-    }
+      confirm({ title: "We've sent an email to your email addres", description: "Please click on email to verify", hideCancelButton: true })
+
+    },
+
+
   })
+
 
   return (
     <DefaultLayout>
@@ -47,6 +59,7 @@ const About = () => {
         <p>
           <strong>Subscribe to our weekly newsletter for happenings and events</strong>
         </p>
+
         <form onSubmit={formik.handleSubmit}>
           <div className={css.input}>
             <Grid
@@ -73,6 +86,7 @@ const About = () => {
                       margin: "10px 0 -10px 0"
                     }
                   }}
+                  name="email"
                   value={formik.values.email}
                   onChange={formik.handleChange}
                   error={!!formik.errors.email}
@@ -80,11 +94,16 @@ const About = () => {
                 />
               </Grid>
               <Grid xs={6} sm={6}>
-                <button className={css.button}>Subscribe</button>
+                <button className={css.button}>Subscribe
+                  {formik.isSubmitting && <FontAwesomeIcon spin icon={faSpinner} />}
+                </button>
               </Grid>
             </Grid>
           </div>
         </form>
+
+        <div ref={embedRef} id="custom-substack-embed"></div>
+
       </div >
     </DefaultLayout >
   )

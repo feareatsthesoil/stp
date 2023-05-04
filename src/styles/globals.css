@@ -155,6 +155,27 @@ p {
   display: none;
 }
 
+
+/* Substack */
+.subscribe-widget form.form .sideBySideWrap button.rightButton {
+  border: 1px solid black !important;
+  height: 30px !important;
+}
+
+.sideBySideWrap button.rightButton {
+  border: 1px solid black;
+  height: 30px !important;
+}
+
+
+.embed-page-inner button {
+  height: 30px !important;
+}
+
+.set-password-page .container input {
+  border: 1px solid black !important;
+}
+
 /* Clerk */
 .cl-modalBackdrop {
   font-family: Helvetica;
