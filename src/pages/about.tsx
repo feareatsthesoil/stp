@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react"
-import { TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
+import { TextField, Unstable_Grid2 as Grid } from "@mui/material"
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
 import axios from "axios"
@@ -16,14 +16,13 @@ const About = () => {
 
   const embedRef = useRef<HTMLDivElement>(null)
 
-
   const confirm = useConfirm()
   const formik = useFormik({
     validationSchema: Yup.object({
       email:
         Yup.string()
           .required("Required")
-          .email(),
+          .email("Must be a valid email"),
     }),
     initialValues: { ...initialState },
 
@@ -31,13 +30,13 @@ const About = () => {
       const response = await axios.post("https://substackapi.com/api/subscribe", { email: values.email, domain: "blog.stp.world" })
       helpers.setSubmitting(false)
       helpers.resetForm()
-      confirm({ title: "We've sent an email to your email addres", description: "Please click on email to verify", hideCancelButton: true })
-
+      confirm({
+        title: "We've sent you an email!",
+        description: "Click on link inside to verify",
+        hideCancelButton: true
+      })
     },
-
-
   })
-
 
   return (
     <DefaultLayout>
@@ -80,7 +79,8 @@ const About = () => {
                       border: "1px solid black",
                     },
                     "& input": {
-                      fontFamily: "Times New Roman",
+                      fontFamily: "Helvetica",
+                      fontSize: ".8em",
                       padding: "11px",
                       height: "10px",
                       margin: "10px 0 -10px 0"
@@ -101,9 +101,7 @@ const About = () => {
             </Grid>
           </div>
         </form>
-
         <div ref={embedRef} id="custom-substack-embed"></div>
-
       </div >
     </DefaultLayout >
   )
