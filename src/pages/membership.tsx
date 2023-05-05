@@ -67,15 +67,15 @@ const Membership = () => {
         <p>Benefits</p>
         <ul>
           <li>
-            Receive a 20% discount on any items in our shop&#8211; this includes tote bags
+            Receive a 20% discount on select items in our shop&#8211; this includes tote bags, hats and more. 
           </li>
           <li>
             Exclusive invites to events and happenings.
           </li>
           <li>
-            Contributor access to our community calendar.
-            This allows you to post your own events and happenings to our calendar
-            which is shared on our weekly newsletter.
+            Gain access as a contributor to our community calendar and creator directory. 
+            This empowers you to share your events and happenings on our calendar, while also 
+            showcasing your talents within our network of creators.
           </li>
         </ul>
         <div className={css.border} />
