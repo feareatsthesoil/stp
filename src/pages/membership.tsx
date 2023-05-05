@@ -31,15 +31,12 @@ const Membership = () => {
           By joining our community, you can enjoy priority access to events and support
           artists globally.
         </p>
-        <p>
-          All memberships are valid for one year.
-        </p>
         <div className={css.border} />
       </div>
       <div className={css.box}>
         <div className={css.title}>
           <h1>
-            Individual Member: $75
+            Individual Member: $75/year
           </h1>
           {isEdu ?
             <Chip
