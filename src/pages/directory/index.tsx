@@ -43,7 +43,6 @@ export default function DirectoryPage({ data: fullData }: { data: DirectoryRow[]
 
   useEffect(() => {
     dispatch(loaded(fullData))
-    console.log({ fullData })
   })
 
   return (<>

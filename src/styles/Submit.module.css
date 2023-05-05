@@ -30,6 +30,16 @@
   margin: -57px 0 0 auto;
 }
 
+.info {
+  text-align: center;
+  padding: 2vh 0 50px 0;
+}
+
+.info h1 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 @media screen and (min-width: 845px) {
   .delete {
     margin: -57px 0 0 520px;

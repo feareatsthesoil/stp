@@ -4,10 +4,14 @@ import { CSSProperties } from "styled-components";
 import css from "./Loader.module.css"
 import { useSideNav } from "../Nav/NavContext";
 
-export default function Loader() {
+interface LoaderProps {
+  initialWindowWidth: number;
+}
+
+export default function Loader({ initialWindowWidth }: LoaderProps) {
 
   const { sideNavVisible } = useSideNav();
-  const [windowWidth, setWindowWidth] = useState<number | null>(null);
+  const [windowWidth, setWindowWidth] = useState<number | null>(initialWindowWidth);
 
   useEffect(() => {
 
