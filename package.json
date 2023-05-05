@@ -9,7 +9,8 @@
     "start": "next start",
     "lint": "next lint",
     "clean": "rm -rf .next/",
-    "db:push": "prisma db push"
+    "db:push": "prisma db push",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.7.17",
@@ -26,7 +27,7 @@
     "@mui/material": "^5.11.14",
     "@mui/styles": "^5.11.13",
     "@mui/x-date-pickers": "^6.0.3",
-    "@prisma/client": "^4.11.0",
+    "@prisma/client": "^4.13.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/google-map-react": "^2.1.7",
@@ -44,7 +45,7 @@
     "moment": "^2.29.4",
     "next": "^13.2.3",
     "next-share": "^0.19.0",
-    "prisma": "^4.11.0",
+    "prisma": "^4.13.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-google-maps": "^9.4.5",

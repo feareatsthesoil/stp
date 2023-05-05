@@ -17,13 +17,17 @@ async function meta(req: any, res: NextApiResponse) {
     record.emailAddress.endsWith(".edu")
   );
 
+  const isStp = user.emailAddresses.some((record) =>
+    record.emailAddress.endsWith("@stp.world")
+  );
+
   return res.status(200).json({
     profile,
     purchase,
     message: "Queried succesfully",
     user: userId,
     isEdu,
-    isMember: purchase || isEdu,
+    isMember: purchase || isEdu || isStp,
   });
 }
 export default withAuth(meta);
