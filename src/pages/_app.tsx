@@ -22,7 +22,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
               <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <ClerkProvider
                   {...pageProps}
-                  publishableKey="pk_test_bGVuaWVudC1wYW5nb2xpbi0zOC5jbGVyay5hY2NvdW50cy5kZXYk"
+                  publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
                 >
                   <UserProvider>
                     <Head>

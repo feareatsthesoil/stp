@@ -1,13 +1,14 @@
-import { NextApiResponse } from "next"
+import { NextApiResponse } from "next";
 import { withAuth } from "@clerk/nextjs/api";
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../utils/prisma";
 
 async function directorySubmit(req: any, res: NextApiResponse) {
-  const { body } = req
-  const { userId } = req.auth
-  const { id, ...rest } = body
-  const client = new PrismaClient();
-  await client.contacts.create({ data: { ...rest, display: body.profile ? body.display : true, userId } })
-  return res.status(200).json({ message: "Inserted succesfully" })
+  const { body } = req;
+  const { userId } = req.auth;
+  const { id, ...rest } = body;
+  await prisma.contacts.create({
+    data: { ...rest, display: body.profile ? body.display : true, userId },
+  });
+  return res.status(200).json({ message: "Inserted succesfully" });
 }
-export default withAuth(directorySubmit)
+export default withAuth(directorySubmit);
