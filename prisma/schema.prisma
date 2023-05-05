@@ -26,7 +26,7 @@ model Events {
   ends_at     DateTime?
   phone       String
   email       String
-  description String?
+  description String?   @db.Text
   approved    Boolean   @default(true)
   userId      String?
   createdAt   DateTime  @default(now())
@@ -44,7 +44,7 @@ model Contacts {
   phone       String
   twitter     String?
   instagram   String?
-  description String?
+  description String? @db.Text
   approved    Boolean @default(true)
 
   profile Boolean @default(false)
