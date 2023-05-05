@@ -62,6 +62,7 @@ const contactUs = () => {
               shown above or email <Link href="mailto:info@stp.world">info@stp.world</Link>.
               However, due to the limited number of personnel in our office, we may be unable to provide a timely response.
             </p>
+            <p className={css.signature}>Developed by J. Vardy</p>
           </div>
         </div>
         <Footer />
