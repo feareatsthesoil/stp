@@ -70,7 +70,7 @@ export default function IndexPage({
 }
 
 export async function getServerSideProps() {
-  const { data } = await axios.get(`/api/calendar`);
+  const { data } = await axios.get(`${process.env.BACKEND_URL}/api/calendar`);
   return {
     props: {
       calendarData: data,

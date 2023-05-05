@@ -123,7 +123,7 @@ export default function DirectoryPage({
 }
 
 export async function getServerSideProps() {
-  const { data } = await axios.get(`/api/directory`);
+  const { data } = await axios.get(`${process.env.BACKEND_URL}/api/directory`);
   return {
     props: {
       data,
