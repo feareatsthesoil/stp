@@ -9,37 +9,45 @@ import axios from "axios";
 import { UserContext } from "../UserContext";
 
 export default function JoinButton() {
-    const { loggedIn } = useContext(UserContext)
-    const [loading, setLoading] = useState(false)
-    const confirm = useConfirm()
-    const router = useRouter()
+  const { loggedIn } = useContext(UserContext);
+  const [loading, setLoading] = useState(false);
+  const confirm = useConfirm();
+  const router = useRouter();
 
-    const handleClick = () => {
-        if (!loggedIn) {
-            return confirm({
-                title: "Please log in",
-                description: "Please log in before purchasing a membership.", confirmationText: "Log in"
-            }).then(() => {
-                router.push("/login")
-            })
-        }
-        setLoading(true)
-        axios.post("/api/checkout/create").then((response) => {
-            window.location.replace(response.data.redirect)
-
-        }).catch(() => {
-            confirm({
-                title: "Unsuccessful",
-                description: "Unable to purchase a membership due to a server error. Please contact us with details of this issue.", confirmationText: "Contact"
-            }).then(() => {
-                router.push("/contact")
-            })
-        }).then(() => {
-            setLoading(false)
-        })
+  const handleClick = () => {
+    if (!loggedIn) {
+      return confirm({
+        title: "Please log in",
+        description: "Please log in before purchasing a membership.",
+        confirmationText: "Log in",
+      }).then(() => {
+        router.push("/login");
+      });
     }
-    return <Button onClick={handleClick}>
-        {!loading && <>Join Now!</>}
-        {loading && <FontAwesomeIcon icon={faSpinner} spin />}
+    setLoading(true);
+    axios
+      .post("/api/checkout/create")
+      .then((response) => {
+        window.location.replace(response.data.redirect);
+      })
+      .catch(() => {
+        confirm({
+          title: "Unsuccessful",
+          description:
+            "Unable to purchase a membership due to a server error. Please contact us with details of this issue.",
+          confirmationText: "Contact",
+        }).then(() => {
+          router.push("/contact");
+        });
+      })
+      .then(() => {
+        setLoading(false);
+      });
+  };
+  return (
+    <Button onClick={handleClick}>
+      {!loading && <>Join Now!</>}
+      {loading && <FontAwesomeIcon icon={faSpinner} spin />}
     </Button>
+  );
 }

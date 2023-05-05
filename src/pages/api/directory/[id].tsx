@@ -26,7 +26,7 @@ async function directorySubmit(req: any, res: NextApiResponse) {
       return res.status(200).json(contact);
     } else {
       await prisma.contacts.delete({ where: { id: contact.id } });
-      return res.status(200).json({ message: "Deleted suīcesfully" });
+      return res.status(200).json({ message: "Deleted succesfully" });
     }
   }
   res.status(200).json(contact);

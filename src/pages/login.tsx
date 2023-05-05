@@ -1,13 +1,13 @@
-import React from "react"
-import { SignIn } from "@clerk/nextjs"
-import { useRouter } from "next/router"
+import React from "react";
+import { SignIn } from "@clerk/nextjs";
+import { useRouter } from "next/router";
 
-import css from "../styles/Login.module.css"
-import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
+import css from "../styles/Login.module.css";
+import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered";
 
 const Welcome = () => {
   const router = useRouter();
-  const url = router.query.redirect_url as string
+  const url = router.query.redirect_url as string;
 
   return (
     <DefaultLayoutCentered>
@@ -15,7 +15,7 @@ const Welcome = () => {
         <SignIn afterSignInUrl={url ?? "/"} />
       </div>
     </DefaultLayoutCentered>
-  )
-}
+  );
+};
 
-export default Welcome
+export default Welcome;

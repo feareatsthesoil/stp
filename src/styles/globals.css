@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body,
 div,
@@ -114,7 +118,7 @@ blockquote:before,
 blockquote:after,
 q:before,
 q:after {
-  content: '';
+  content: "";
   content: none;
 }
 
@@ -155,7 +159,6 @@ p {
   display: none;
 }
 
-
 /* Substack */
 .subscribe-widget form.form .sideBySideWrap button.rightButton {
   border: 1px solid black !important;
@@ -194,11 +197,11 @@ p {
 }
 
 .MuiAutocomplete-option {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .MuiAutocomplete-noOptions {
-  font-family: 'Times New Roman', Times, serif !important;
+  font-family: "Times New Roman", Times, serif !important;
 }
 
 .MuiAutocomplete-option.Mui-focused {
@@ -207,7 +210,7 @@ p {
 
 /* MuiBox */
 .MuiAlertTitle-root {
-  font-family: 'Times New Roman', Times, serif !important;
+  font-family: "Times New Roman", Times, serif !important;
 }
 
 .MuiAlert-standard {
@@ -229,7 +232,7 @@ p {
 
 /* MuiList */
 .MuiList-root li {
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   background-color: #fff;
 }
 
@@ -242,7 +245,7 @@ p {
 }
 
 .MuiList-root li.Mui-selected.Mui-focusVisible {
-  background-color: rgba(25, 118, 210, 0.04)
+  background-color: rgba(25, 118, 210, 0.04);
 }
 
 .MuiList-root li.Mui-selected:hover {
@@ -264,16 +267,16 @@ p {
 }
 
 .MuiDialogContent-root p {
-  font-family: 'Times New Roman', Times, serif !important;
+  font-family: "Times New Roman", Times, serif !important;
   letter-spacing: -0.03em !important;
-  font-family: 'Times New Roman', Times, serif !important;
+  font-family: "Times New Roman", Times, serif !important;
   color: #000 !important;
 }
 
 .MuiDialogTitle-root {
   font-weight: bold !important;
   letter-spacing: -0.03em !important;
-  font-family: 'Times New Roman', Times, serif !important;
+  font-family: "Times New Roman", Times, serif !important;
 }
 
 .MuiDialogActions-root button {

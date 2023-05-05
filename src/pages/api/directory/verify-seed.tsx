@@ -2,7 +2,7 @@ import { NextApiResponse } from "next";
 import { withAuth } from "@clerk/nextjs/api";
 import { prisma } from "../../../utils/prisma";
 
-async function directorySubmit(req: any, res: NextApiResponse) {
+async function verifySeed(req: any, res: NextApiResponse) {
   const { body } = req;
   const { userId } = req.auth;
   if (!userId) return res.status(401).json({ message: "Not logged in" });
@@ -12,4 +12,4 @@ async function directorySubmit(req: any, res: NextApiResponse) {
   });
   return res.status(200).json({ message: "Inserted succesfully" });
 }
-export default withAuth(directorySubmit);
+export default withAuth(verifySeed);

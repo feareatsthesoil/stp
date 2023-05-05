@@ -27,7 +27,8 @@ async function meta(req: any, res: NextApiResponse) {
     message: "Queried succesfully",
     user: userId,
     isEdu,
-    isMember: purchase || isEdu || isStp,
+    isSeedHolder: user.unsafeMetadata.isSeedHolder,
+    isMember: purchase || isEdu || isStp || user.unsafeMetadata.isSeedHolder,
   });
 }
 export default withAuth(meta);
