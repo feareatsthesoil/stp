@@ -73,9 +73,7 @@ const Membership = () => {
             Exclusive invites to events and happenings.
           </li>
           <li>
-            Gain access as a contributor to our community calendar and creator directory. 
-            This empowers you to share your events and happenings on our calendar, while also 
-            showcasing your talents within our network of creators.
+            Gain access as a contributor to our community calendar and creator directory.
           </li>
         </ul>
         <div className={css.border} />
