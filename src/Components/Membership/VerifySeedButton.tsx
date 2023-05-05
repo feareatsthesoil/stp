@@ -64,11 +64,14 @@ export default function VerifySeedButton() {
         await user?.update({
           unsafeMetadata: { isSeedHolder: owner },
         });
-        alert("You don't have a seed.");
-        refresh();
+        if (owner) {
+          refresh();
+        } else {
+          alert("You don't have a seed.");
+        }
       } catch {}
     }
-  }, [signer, user]);
+  }, [signer, user, refresh]);
   return (
     <>
       {!loggedIn && (
