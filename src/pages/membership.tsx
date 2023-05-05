@@ -67,7 +67,7 @@ const Membership = () => {
         <p>Benefits</p>
         <ul>
           <li>
-            Receive a 20% discount on select items in our shop&#8211; this includes tote bags, hats and more. 
+            Receive a 20% discount on select items in our shop&#8211; this includes tote bags, hats, and more. 
           </li>
           <li>
             Exclusive invites to events and happenings.
