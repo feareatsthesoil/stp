@@ -87,10 +87,9 @@ const Membership = () => {
             Receive a 20% discount on select items in our shop&#8211; this
             includes tote bags, hats, and more.
           </li>
-          <li>Exclusive invites to events and happenings.</li>
+          <li>Early access to all Serving the People related events and happeneings.</li>
           <li>
-            Gain access as a contributor to our community calendar and creator
-            directory.
+            Unlock the ability to post to our community calendar, and creator directory.
           </li>
         </ul>
         <div className={css.border} />
