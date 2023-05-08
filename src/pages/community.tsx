@@ -8,6 +8,13 @@ const Discussion = () => {
     return (
         <DefaultLayout>
             <div className={css.wrapper}>
+               <h1>Whatsapp</h1>
+                <p>
+                    The Serving the People Whatsapp group is where our community votes on topics and discusses details pertaining to the weekly community meetings.
+                </p>
+                <Button className={css.button} target="_blank" variant="contained" href="https://chat.whatsapp.com/Bqtf9Q2hhQw96RCHpuMPLm">
+                    Join the group
+                </Button>
                 <h1>Discord</h1>
                 <p>
                     The Serving the People Discord is where our community gathers to discuss and chat. It features a diverse selection of channels, including art, film, video, tech, and more.
