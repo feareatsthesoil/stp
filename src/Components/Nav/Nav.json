@@ -25,6 +25,10 @@
       "name": "Community"
     },
     {
+      "href": "/blog",
+      "name": "Blog"
+    },
+    {
       "href": "/contact",
       "name": "Contact Us"
     },
