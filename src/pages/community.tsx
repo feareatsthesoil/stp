@@ -10,7 +10,7 @@ const Discussion = () => {
             <div className={css.wrapper}>
                <h1>Whatsapp</h1>
                 <p>
-                    The Serving the People Whatsapp group is where our community votes on topics and discusses details pertaining to the weekly community meetings.
+                    Our Whatsapp group is where we vote on topics and discuss details pertaining to the weekly community meetings.
                 </p>
                 <Button className={css.button} target="_blank" variant="contained" href="https://chat.whatsapp.com/Bqtf9Q2hhQw96RCHpuMPLm">
                     Join the group
