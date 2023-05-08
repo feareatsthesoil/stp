@@ -84,7 +84,7 @@ const Membership = () => {
         <p>Benefits</p>
         <ul>
           <li>
-            Receive early access to merchandise and apparel, as well as discount codes for select items in our shop&#8211; this
+            Receive early access to merchandise and apparel, as well as discount codes for select items in our shop - this
             includes tote bags, hats, and more.
           </li>
           <li>Access to all of Serving the People's  <Link href="/community">community</Link> channels including Whatsapp, Discord, and Urbit.</li>
