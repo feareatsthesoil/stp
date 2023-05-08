@@ -84,10 +84,10 @@ const Membership = () => {
         <p>Benefits</p>
         <ul>
           <li>
-            Receive a 20% discount on select items in our shop&#8211; this
+            Receive early access to merchandise and apparel, as well as discount codes for select items in our shop&#8211; this
             includes tote bags, hats, and more.
           </li>
-          <li>Early access to all Serving the People related events and happeneings.</li>
+          <li>Access to all of Serving the People's  <Link href="/community">community</Link> channels including Whatsapp, Discord, and Urbit.</li>
           <li>
             Unlock the ability to post to our community calendar, and creator directory.
           </li>
