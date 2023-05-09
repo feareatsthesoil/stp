@@ -21,6 +21,7 @@
 .box ul {
   line-height: 20px;
   padding: 0 0 0 20px;
+  list-style: disc;
 }
 
 .box a {
