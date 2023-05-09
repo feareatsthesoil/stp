@@ -12,7 +12,7 @@ const Welcome = () => {
   return (
     <DefaultLayoutCentered>
       <div className={css.box}>
-        <SignIn afterSignInUrl={url ?? "/"} />
+        <SignIn afterSignInUrl={url ?? "/"} afterSignUpUrl={url ?? "/"} />
       </div>
     </DefaultLayoutCentered>
   );
