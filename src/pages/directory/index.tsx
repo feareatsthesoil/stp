@@ -57,17 +57,7 @@ export default function DirectoryPage({
         <DefaultLayout>
           <div className={css.header}>
             <h1>Directory</h1>
-            <p>
-              All submissions are subject to review. By submitting to the
-              directory you are agreeing to our{" "}
-              <Link href="#">Privacy Policy</Link>.
-            </p>
-            <Button className={css.button} onClick={handleClick}>
-              Submit to Directory
-            </Button>
-          </div>
-          <div className={css.box}>
-            <Directory />
+            <p>Coming soon...</p>
           </div>
         </DefaultLayout>
       )}

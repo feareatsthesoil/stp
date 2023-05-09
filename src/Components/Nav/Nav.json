@@ -9,11 +9,6 @@
       "name": "Calendar"
     },
     {
-      "href": "/directory",
-      "name": "Directory",
-      "membersOnly": true
-    },
-    {
       "href": "/membership",
       "name": "Membership"
     },

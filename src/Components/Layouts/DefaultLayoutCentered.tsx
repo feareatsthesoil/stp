@@ -53,21 +53,6 @@ export default function DefaultLayout(props: { children: ReactNode }) {
                     : "",
     }
 
-    if (initialized && loggedIn && !profile && isMember) {
-        if (router.asPath == "/info") {
-        }
-        router.push("/info")
-        return <div className={css.body}>
-            <Header />
-            <NavBar />
-            <div className={css.subBody}>
-                <div className={css.box}>
-                    Redirecting...
-                </div>
-            </div>
-            <Footer />
-        </div>
-    }
     return <div className={css.body}>
         <Header />
         <NavBar />

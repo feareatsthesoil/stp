@@ -54,13 +54,6 @@ export default function DefaultLayout(props: { children: ReactNode }) {
                     ? "95vw"
                     : "",
     }
-
-    if (initialized && loggedIn && !profile && isMember) {
-        if (router.asPath == "/info") {
-        }
-        router.push("/info")
-        return <DefaultLayoutCentered> Redirecting...</DefaultLayoutCentered>
-    }
     return <div className={css.body}>
         <Header />
         <NavBar />
