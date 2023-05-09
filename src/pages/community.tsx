@@ -31,7 +31,7 @@ export default function Discussion() {
                     router.push("/membership");
                 });
             } else {
-                return router.push(uniqueDestination);
+                return window.open(uniqueDestination);
             }
         };
     };
