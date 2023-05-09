@@ -45,7 +45,7 @@ export interface CalendarRow {
   address: string
   website: string
 
-
+  userId?: string
   starts_at: string
   ends_at: string
   phone: string

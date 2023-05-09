@@ -11,6 +11,7 @@ import * as Yup from "yup"
 
 import css from "src/styles/Form.module.css"
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
+import { CalendarRow } from "../../types"
 
 const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
 
@@ -66,7 +67,7 @@ const theme = createTheme({
 
 const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
-export default function CalendarForm({ }: { profile: boolean }) {
+export default function CalendarForm({ data, after }: { profile?: boolean, data?: CalendarRow, after?: () => void }) {
   let isMax = false;
 
   const formik = useFormik({

@@ -1,15 +1,17 @@
 import Link from "next/link"
-import { Button } from "@mui/material"
+import { useAuth } from "@clerk/nextjs"
+import { Button, Stack } from "@mui/material"
 import { google } from 'calendar-link'
-import { useEvents } from "../../redux/hooks"
 import _ from "lodash"
 import moment from "moment"
 
 import css from "./Calendar.module.css"
 import SocialLinks from "../SocialLinks/SocialLinks"
+import { useEvents } from "../../redux/hooks"
 
 export default function Calendar() {
   const data = useEvents()
+  const { userId } = useAuth()
   const dateList = _.groupBy(data, (row) => moment(row.starts_at).format("YYYY-MM-DD"))
 
   return (
@@ -53,17 +55,25 @@ export default function Calendar() {
                     </div>
                   </Link>
                   <div className={css.buttonWrapper}>
-                    <Button
-                      className={`${css.button} ${css.add}`}
-                      href={google({
-                        title: row.name,
-                        description: row.description,
-                        start: row.starts_at,
-                        end: row.ends_at ?? row.starts_at
-                      })}
-                      target="_blank" rel="noreferrer" variant="contained">
-                      Add to calendar
-                    </Button>
+                    <Stack direction={"row"} spacing={2}>
+                      <Button
+                        className={`${css.button} ${css.add}`}
+                        href={google({
+                          title: row.name,
+                          description: row.description,
+                          start: row.starts_at,
+                          end: row.ends_at ?? row.starts_at
+                        })}
+                        target="_blank" rel="noreferrer" variant="contained">
+                        Add to calendar
+                      </Button>
+                      {userId === row.userId ?
+                        <Link className={css.editLink} href={`/calendar/${row.id}/edit`}>
+                          <Button className={`${css.button} ${css.edit}`}>
+                            Edit
+                          </Button></Link>
+                        : null}
+                    </Stack>
                   </div>
                   <SocialLinks eventId={row.id} />
                 </div>
