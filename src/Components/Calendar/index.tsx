@@ -14,7 +14,7 @@ export default function Calendar() {
 
   return (
     <>
-      {Object.entries(dateList).filter(([date]) => { return moment(date).diff(moment()) > 0 }).map(([date, list]) => {
+      {Object.entries(dateList).map(([date, list]) => {
         return (
           <div key={date} className={css.dateGroup}>
             <div key={date}>

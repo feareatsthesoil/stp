@@ -1,10 +1,11 @@
-import { NextApiResponse } from "next";
-import { prisma } from "../../../utils/prisma";
+import { NextApiResponse } from "next"
+import { PrismaClient } from "@prisma/client"
+import moment from "moment"
 
-export default async (req: any, res: NextApiResponse) => {
-  const calendarData = await prisma.events.findMany({
-    orderBy: { starts_at: "asc" },
-  });
+export default (async (req: any, res: NextApiResponse) => {
+  const client = new PrismaClient()
 
-  return res.status(200).json(calendarData);
-};
+  const calendarData = await client.events.findMany({ where: { starts_at: { gt: moment().add(-1, "days").toDate() } }, orderBy: { starts_at: "asc" } })
+
+  return res.status(200).json(calendarData)
+})
