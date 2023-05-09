@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import { useUser } from "@clerk/nextjs"
@@ -7,6 +7,7 @@ import { Button } from "@mui/material"
 import css from "./Nav.module.css"
 import { useSideNav } from "./NavContext"
 import nav from "../Nav/Nav.json"
+import { UserContext } from "../UserContext"
 
 const NavBar = () => {
   const user = useUser()
@@ -16,6 +17,7 @@ const NavBar = () => {
   const { sideNavVisible, setSideNavVisible } = useSideNav();
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
 
+  const { isMember } = useContext(UserContext)
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     const handleResize = () => {

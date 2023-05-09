@@ -10,7 +10,8 @@
     },
     {
       "href": "/directory",
-      "name": "Directory"
+      "name": "Directory",
+      "membersOnly": true
     },
     {
       "href": "/membership",
