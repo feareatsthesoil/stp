@@ -72,7 +72,7 @@ const NavBar = () => {
       <nav>
         <div>
           <ul style={{ display: !isHome && isMobile ? (sideNavVisible ? "block" : "none") : "block" }}>
-            {nav.items.filter(item => !item.membersOnly || isMember).map(({ href, name }) => {
+            {nav.items.map(({ href, name }) => {
               return (
                 <li key={name}>
                   <Link
