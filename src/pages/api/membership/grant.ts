@@ -25,5 +25,6 @@ async function grant(req: any, res: NextApiResponse) {
             expiryDate: date
         }
     })
+    res.json({ "message": "Successfully purchased" })
 }
 export default withAuth(grant)

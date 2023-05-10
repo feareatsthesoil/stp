@@ -11,6 +11,7 @@ import { publicProvider } from "wagmi/providers/public";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
+import { SnackbarProvider } from "notistack";
 
 import "../styles/globals.css";
 import { RadioProvider } from "../Components/RadioContext";
@@ -55,31 +56,33 @@ export default function MyApp({ Component, pageProps }: AppProps) {
     <>
       <WagmiConfig client={client}>
         <SideNavProvider>
-          <ConfirmProvider>
-            <Provider store={store}>
-              <RadioProvider>
-                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                  <ClerkProvider
-                    {...pageProps}
-                    publishableKey={
-                      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-                    }
-                  >
-                    <UserProvider>
-                      <Head>
-                        <meta
-                          name="viewport"
-                          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-                        />
-                        <title>Serving the People</title>
-                      </Head>
-                      <Component {...pageProps} />
-                    </UserProvider>
-                  </ClerkProvider>
-                </LocalizationProvider>
-              </RadioProvider>
-            </Provider>
-          </ConfirmProvider>
+          <SnackbarProvider>
+            <ConfirmProvider>
+              <Provider store={store}>
+                <RadioProvider>
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <ClerkProvider
+                      {...pageProps}
+                      publishableKey={
+                        process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+                      }
+                    >
+                      <UserProvider>
+                        <Head>
+                          <meta
+                            name="viewport"
+                            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+                          />
+                          <title>Serving the People</title>
+                        </Head>
+                        <Component {...pageProps} />
+                      </UserProvider>
+                    </ClerkProvider>
+                  </LocalizationProvider>
+                </RadioProvider>
+              </Provider>
+            </ConfirmProvider>
+          </SnackbarProvider>
         </SideNavProvider>
       </WagmiConfig>
     </>
