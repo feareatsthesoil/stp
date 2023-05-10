@@ -5,24 +5,24 @@
       "name": "About"
     },
     {
+       "href": "/membership",
+      "name": "Membership"
+    },
+    {
       "href": "/calendar",
       "name": "Calendar"
     },
     {
-      "href": "/membership",
-      "name": "Membership"
-    },
-    {
-      "href": "/radio",
-      "name": "Radio"
+       "href": "/blog",
+      "name": "Blog"
     },
     {
       "href": "/community",
       "name": "Community"
     },
     {
-      "href": "/blog",
-      "name": "Blog"
+      "href": "/radio",
+      "name": "Radio"
     },
     {
       "href": "/contact",
