@@ -16,7 +16,7 @@ export default function CalendarSubmit() {
         <div className={css.box}>
           <h1>Add to Calendar</h1>
         </div>
-        {userData.isMember && <CalendarForm profile={false} />}
+        {userData.isMember && <CalendarForm after={() => router.push("/calendar")} profile={false} />}
         {!userData.isMember && < Box>
           <Alert color="warning">
             <AlertTitle><strong>Members Only</strong></AlertTitle>
