@@ -107,7 +107,6 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
 
       address:
         Yup.string()
-          .required("Location is required")
           .min(2),
 
       starts_at:
