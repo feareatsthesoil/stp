@@ -44,6 +44,12 @@ const NavBar = () => {
     }
   };
 
+  const handleLinkClick = () => {
+    if (isMobile) {
+      setSideNavVisible(false);
+    }
+  }
+
   const isHome = currentRoute === "/";
   const isMobile = windowWidth !== undefined && windowWidth <= 450;
 
@@ -76,6 +82,7 @@ const NavBar = () => {
                   <Link
                     href={href}
                     className={currentRoute.startsWith(href) ? css.active : css.a}
+                    onClick={handleLinkClick}
                   >
                     {name}
                   </Link>
@@ -86,6 +93,7 @@ const NavBar = () => {
               <Link
                 href={"/login"}
                 className={currentRoute.startsWith("/login") ? css.active : css.a}
+                onClick={handleLinkClick}
               >
                 Login Portal
               </Link>
