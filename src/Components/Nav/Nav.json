@@ -5,16 +5,16 @@
       "name": "About"
     },
     {
+       "href": "/blog",
+      "name": "Blog"
+    },
+    {
        "href": "/membership",
       "name": "Membership"
     },
     {
       "href": "/calendar",
       "name": "Calendar"
-    },
-    {
-       "href": "/blog",
-      "name": "Blog"
     },
     {
       "href": "/community",
