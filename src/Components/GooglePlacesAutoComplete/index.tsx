@@ -153,7 +153,7 @@ export default function GooglePlacesAutoComplete(props: { onChange: (value: stri
         setInputValue(newInputValue);
       }}
       renderInput={(params) => (
-        <TextField required {...params} label="Location" fullWidth />
+        <TextField {...params} label="Location" fullWidth />
       )}
       disabled={props.disabled}
 
