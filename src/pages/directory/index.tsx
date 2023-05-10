@@ -12,7 +12,6 @@ import { loaded } from "../../redux/slices/directory";
 import { UserContext } from "../../Components/UserContext";
 import DefaultLayout from "../../Components/Layouts/DefaultLayout";
 import DefaultLayoutCentered from "../../Components/Layouts/DefaultLayoutCentered";
-import Directory from "../../Components/Directory";
 
 export default function DirectoryPage({
   data: fullData,

@@ -7,7 +7,6 @@ import { Button } from "@mui/material"
 import css from "./Nav.module.css"
 import { useSideNav } from "./NavContext"
 import nav from "../Nav/Nav.json"
-import { UserContext } from "../UserContext"
 
 const NavBar = () => {
   const user = useUser()
@@ -17,7 +16,6 @@ const NavBar = () => {
   const { sideNavVisible, setSideNavVisible } = useSideNav();
   const [windowWidth, setWindowWidth] = useState<number | undefined>(undefined);
 
-  const { isMember } = useContext(UserContext)
   useEffect(() => {
     setWindowWidth(window.innerWidth);
     const handleResize = () => {
