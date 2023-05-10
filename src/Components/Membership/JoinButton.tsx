@@ -45,7 +45,9 @@ export default function JoinButton() {
       });
   };
   return (
-    <Button onClick={handleClick}>
+    <Button sx={{
+      minWidth: 83,
+    }} onClick={handleClick}>
       {!loading && <>Join Now!</>}
       {loading && <FontAwesomeIcon icon={faSpinner} spin />}
     </Button>

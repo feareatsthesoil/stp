@@ -39,7 +39,6 @@
 }
 
 .box button:hover {
-  transition: 0.3s;
   cursor: pointer;
   background-color: rgb(220, 220, 220) !important;
 }
