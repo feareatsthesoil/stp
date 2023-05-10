@@ -22,13 +22,25 @@ const type = [
     value: "In-person meeting"
   },
   {
-    value: "Remote meeting"
+    value: "Zoom Meeting"
   },
   {
-    value: "Exhibit"
+    value: "Exhibition"
   },
   {
-    value: "Pop up event"
+    value: "Performance"
+  },
+  {
+    value: "Event"
+  },  
+  {
+    value: "Workshop"
+  },
+  {
+    value: "Presentation"
+  },
+  {
+    value: "Meetup"
   }
 ]
 
