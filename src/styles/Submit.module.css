@@ -27,7 +27,7 @@
 }
 
 .delete {
-  margin: -57px 0 0 auto;
+  margin: -57px 0 0 calc(100% - 60px);
 }
 
 .info {
