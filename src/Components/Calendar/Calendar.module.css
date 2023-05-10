@@ -74,6 +74,11 @@
   text-decoration: underline;
 }
 
+.button.edit {
+  text-decoration: none I !important;
+  margin: 2px 0 0 -6px !important;
+}
+
 .button.add {
   margin: 2px 0 0 0 !important;
   width: 135px;

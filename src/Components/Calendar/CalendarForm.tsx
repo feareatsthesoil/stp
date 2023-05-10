@@ -1,13 +1,15 @@
 import React from "react"
 import axios from "axios"
+import { useFormik } from "formik"
 import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
 import { createTheme, ThemeProvider } from "@mui/material/styles"
+import { withStyles } from "@mui/styles"
 import { DateTimePicker } from "@mui/x-date-pickers"
 import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useFormik } from "formik"
-import { withStyles } from "@mui/styles"
+import { useSnackbar } from "notistack"
 import * as Yup from "yup"
+import dayjs from "dayjs"
 
 import css from "src/styles/Form.module.css"
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
@@ -70,6 +72,15 @@ const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\
 export default function CalendarForm({ data, after }: { profile?: boolean, data?: CalendarRow, after?: () => void }) {
   let isMax = false;
 
+  const formData = {
+    ...data,
+    starts_at: data?.starts_at ? dayjs(data.starts_at) : undefined,
+    ...(data?.ends_at ? {
+      ends_at: dayjs(data.ends_at)
+    } : {})
+  }
+  const { enqueueSnackbar } = useSnackbar()
+
   const formik = useFormik({
     validationSchema: Yup.object({
       name:
@@ -77,6 +88,10 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
           .required("Name is required")
           .max(20, "Must be at most 20 characters")
           .min(2, "Must be at least 2 characters"),
+
+      type:
+        Yup.string()
+          .required("Type is required"),
 
       address:
         Yup.string()
@@ -110,14 +125,17 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
           .url("Must be a valid URL starting with http(s)://"),
 
     }),
-    initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
+    initialValues: { ...initialState, ...formData }, onSubmit: async (values, helpers) => {
 
       const dataToSubmit = {
         ...values
       }
-      const response = await axios.post("/api/calendar/submit", dataToSubmit)
+      const response = data?.id ? await axios.put("/api/calendar/" + data.id, dataToSubmit) : await axios.post("/api/calendar/submit", dataToSubmit)
       helpers.setSubmitting(false)
       helpers.resetForm()
+      enqueueSnackbar(data?.id ? "Saved Successfully" : "Created event", { variant: "success" })
+      if (after)
+        after()
     }
   })
   formik.values.description.length === 300 ? isMax = true : isMax = false;
