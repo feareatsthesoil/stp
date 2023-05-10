@@ -9,16 +9,16 @@
       "name": "Blog"
     },
     {
-       "href": "/membership",
-      "name": "Membership"
+      "href": "/community",
+      "name": "Community"
     },
     {
       "href": "/calendar",
       "name": "Calendar"
     },
     {
-      "href": "/community",
-      "name": "Community"
+       "href": "/membership",
+      "name": "Membership"
     },
     {
       "href": "/radio",
