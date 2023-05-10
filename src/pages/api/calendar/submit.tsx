@@ -10,7 +10,7 @@ export default withAuth(async (req: any, res: NextApiResponse) => {
     data: {
       ...body,
       starts_at: new Date(body.starts_at),
-      ends_at: body.ends_at === "" ? undefined : new Date(body.ends_at),
+      ends_at: body.ends_at === "" || !body.ends_at ? undefined : new Date(body.ends_at),
       userId: req.auth.userId,
       approved: true,
     },
