@@ -18,15 +18,15 @@ export default function CalendarEdit() {
     const userData = useContext(UserContext)
     const { userId } = useAuth()
     const router = useRouter()
-    const { id } = router.query
+    const { eventId } = router.query
     const [data, setData] = useState<CalendarRow>()
     useEffect(() => {
-        if (!id)
+        if (!eventId)
             return () => { }
-        axios.get("/api/calendar/" + id).then(({ data }) => {
+        axios.get("/api/calendar/" + eventId).then(({ data }) => {
             setData(data)
         })
-    }, [id])
+    }, [eventId])
 
     if (!data)
         return <DefaultLayoutCentered>Loading...</DefaultLayoutCentered>
