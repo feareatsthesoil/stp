@@ -1,6 +1,5 @@
 .wrapper {
   flex-grow: 1;
-  width: 80vw;
 }
 
 .wrapper h1 {
@@ -15,6 +14,11 @@
 
 .wrapper a {
   font-weight: bold;
+}
+
+.info {
+  overflow: hidden;
+  min-width: 270px;
 }
 
 .map {

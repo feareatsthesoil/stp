@@ -43,24 +43,16 @@
     float: right;
 }
 
-
 @media screen and (min-width: 0px) and (max-width: 600px) {
-    .poster {
-        max-width: none;
-        height: 500px;
+    .wrapper {
+        min-width: 200px;
     }
 }
 
-@media screen and (min-width: 600px) and (max-width: 750px) {
+@media screen and (min-width: 0px) and (max-width: 575px) {
     .poster {
-        height: 150px;
-    }
-
-    .title {
-        width: 96vw;
-    }
-
-    .subTitle {
+        max-width: none;
+        height: 500px;
         width: 96vw;
     }
 }

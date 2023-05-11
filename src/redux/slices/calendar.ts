@@ -57,7 +57,6 @@ export const loadEvents = (): AppThunk => async (dispatch) => {
 }
 
 export const loadEvent = (id: string | number): AppThunk => async (dispatch) => {
-
     const { data } = await axios.get(`/api/calendar/${id}`)
     dispatch(loadedEvent(data))
 }

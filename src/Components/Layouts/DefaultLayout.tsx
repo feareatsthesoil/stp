@@ -1,12 +1,10 @@
 
 import { ReactNode, useContext, useEffect, useState } from "react";
-import { useRouter } from "next/router";
 import { CSSProperties } from "styled-components";
 
 import css from "./DefaultLayout.module.css"
 import { UserContext } from "../UserContext";
 import { useSideNav } from "../Nav/NavContext"
-import DefaultLayoutCentered from "./DefaultLayoutCentered";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Loader from "../Loader";
@@ -14,9 +12,8 @@ import NavBar from "../Nav/Nav";
 import usePageLoader from "../../hooks/usePageLoader";
 
 export default function DefaultLayout(props: { children: ReactNode }) {
-    const { initialized, profile, loggedIn, isMember } = useContext(UserContext);
+    const { initialized } = useContext(UserContext);
     const loading = usePageLoader() || !initialized
-    const router = useRouter()
     const { sideNavVisible, setSideNavVisible } = useSideNav();
     const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
@@ -43,7 +40,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
     }, [windowWidth]);
 
     const subBodyStyle: CSSProperties = {
-        overflowX: "hidden",
+        overflowY: "hidden",
         width:
             sideNavVisible
                 ? "calc(100vw - 130px)"

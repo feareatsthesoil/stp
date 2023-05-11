@@ -14,7 +14,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
   return (
     <div className={css.wrapper}>
       <h1>{row.name}</h1>
-      <div>
+      <div className={css.info}>
         <p>
           {row.address}
         </p>
@@ -57,13 +57,14 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
             Open in map
           </Button>
         </div>
-        <div className={css.map}>
-          <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!} >
-            <Map address={row.address} />
-          </Wrapper>
-        </div>
-        <SocialLinks eventId={row.id} />
       </div>
+      <div className={css.map}>
+        <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!} >
+          <Map address={row.address} />
+        </Wrapper>
+      </div>
+      <SocialLinks eventId={row.id} />
+
     </div >
   )
 }
