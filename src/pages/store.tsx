@@ -129,7 +129,7 @@ export default function Store() {
             "@media (min-width: 601px)": {
               "margin-left": "-20px",
             },
-            "@media (max-width: 450px)": {
+            "@media (max-width: 575px)": {
               "text-align": "center !important",
             }
           }
@@ -411,7 +411,7 @@ export default function Store() {
     width:
       sideNavVisible
         ? "calc(100vw - 130px)"
-        : windowWidth && windowWidth <= 450
+        : windowWidth && windowWidth <= 575
           ? "100vw"
           : "calc(100vw - 130px)",
   };
@@ -420,7 +420,7 @@ export default function Store() {
     width:
       sideNavVisible
         ? "calc(100vw - 150px)"
-        : windowWidth && windowWidth <= 450
+        : windowWidth && windowWidth <= 575
           ? "95vw"
           : "",
   }

@@ -10,7 +10,7 @@ import Header from "../Components/Header/Header"
 import Nav from "../Components/Nav/Nav"
 
 const contactUs = () => {
-  const { sideNavVisible } = useSideNav();
+  const { sideNavVisible, setSideNavVisible } = useSideNav();
   const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
   useEffect(() => {
@@ -29,12 +29,18 @@ const contactUs = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (windowWidth && windowWidth > 575 && sideNavVisible) {
+      setSideNavVisible(false);
+    }
+  }, [windowWidth]);
+
   const subBodyStyle: CSSProperties = {
     overflowX: "hidden",
     width:
       sideNavVisible
         ? "calc(100vw - 130px)"
-        : windowWidth && windowWidth <= 450
+        : windowWidth && windowWidth <= 575
           ? "100vw"
           : "calc(100vw - 130px)",
   };
@@ -43,7 +49,7 @@ const contactUs = () => {
     width:
       sideNavVisible
         ? "calc(100vw - 150px)"
-        : windowWidth && windowWidth <= 450
+        : windowWidth && windowWidth <= 575
           ? "95vw"
           : "",
   }

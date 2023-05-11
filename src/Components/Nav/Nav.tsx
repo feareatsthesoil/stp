@@ -51,14 +51,14 @@ const NavBar = () => {
   }
 
   const isHome = currentRoute === "/";
-  const isMobile = windowWidth !== undefined && windowWidth <= 450;
+  const isMobile = windowWidth !== undefined && windowWidth <= 575;
 
   return (
     <div className={css.items}>
       {!isHome && isMobile && (
         <Button
           sx={{
-            backgroundColor: "white",
+            backgroundColor: "#fff!important",
             opacity: "97%",
             borderRadius: "80%",
             height: "40px!important",

@@ -1,4 +1,5 @@
 import { useContext } from "react"
+import router from "next/router"
 import Link from "next/link"
 import { Box } from "@mui/system"
 import { Alert, AlertTitle } from "@mui/material"
@@ -7,7 +8,6 @@ import css from "src/styles/Submit.module.css"
 import { UserContext } from "../../Components/UserContext"
 import AuthLayout from "../../Components/Layouts/AuthLayout"
 import CalendarForm from "../../Components/Calendar/CalendarForm"
-import router from "next/router"
 
 export default function CalendarSubmit() {
   const userData = useContext(UserContext)

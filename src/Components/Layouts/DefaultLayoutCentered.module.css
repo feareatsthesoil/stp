@@ -19,7 +19,7 @@
   height: 80vh;
 }
 
-@media screen and (min-width: 0px) and (max-width: 450px) {
+@media screen and (min-width: 0px) and (max-width: 575px) {
   .subBody {
     width: 100vw;
   }

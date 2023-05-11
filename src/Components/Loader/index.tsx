@@ -34,9 +34,9 @@ export default function Loader({ initialWindowWidth }: LoaderProps) {
     overflowX: "hidden",
     width: sideNavVisible
       ? "calc(100vw - 130px)"
-      : windowWidth && windowWidth <= 450
-      ? "100vw"
-      : "",
+      : windowWidth && windowWidth <= 575
+        ? "100vw"
+        : "",
   };
   return (
     <div className={css.wrapper}>

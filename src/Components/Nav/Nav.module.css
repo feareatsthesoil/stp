@@ -46,7 +46,7 @@
   display: none;
 }
 
-@media (min-width: 450px) {
+@media (min-width: 575px) {
   #menuBtn {
     display: none;
   }

@@ -43,6 +43,7 @@
     float: right;
 }
 
+
 @media screen and (min-width: 0px) and (max-width: 600px) {
     .poster {
         max-width: none;
@@ -50,10 +51,9 @@
     }
 }
 
-@media screen and (min-width: 0px) and (max-width: 450px) {
+@media screen and (min-width: 600px) and (max-width: 750px) {
     .poster {
-        width: 96vw;
-        margin: 0 0 -25px 0;
+        height: 150px;
     }
 
     .title {

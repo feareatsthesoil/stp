@@ -43,13 +43,13 @@
   z-index: -1;
 }
 
-@media screen and (max-width: 450px) and (max-height: 736px) {
+@media screen and (max-width: 575px) and (max-height: 736px) {
   .box {
     padding-top: 2vh;
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 450px) {
+@media screen and (min-width: 0px) and (max-width: 575px) {
   .box a:hover {
     text-decoration: none !important;
   }

@@ -266,12 +266,14 @@ p {
   border-radius: 4px !important;
 }
 
+
 .MuiDialogContent-root p {
   font-family: "Times New Roman", Times, serif !important;
   letter-spacing: -0.03em !important;
   font-family: "Times New Roman", Times, serif !important;
   color: #000 !important;
 }
+
 
 .MuiDialogTitle-root {
   font-weight: bold !important;
@@ -310,7 +312,7 @@ p {
   }
 }
 
-@media screen and (min-width: 0px) and (max-width: 450px) {
+@media screen and (min-width: 0px) and (max-width: 575px) {
   .subBody {
     width: 100vw;
   }

@@ -17,7 +17,7 @@ export default function DefaultLayout(props: { children: ReactNode }) {
     const { initialized, profile, loggedIn, isMember } = useContext(UserContext);
     const loading = usePageLoader() || !initialized
     const router = useRouter()
-    const { sideNavVisible } = useSideNav();
+    const { sideNavVisible, setSideNavVisible } = useSideNav();
     const [windowWidth, setWindowWidth] = useState<number | null>(null);
 
     useEffect(() => {
@@ -36,12 +36,18 @@ export default function DefaultLayout(props: { children: ReactNode }) {
         }
     }, []);
 
+    useEffect(() => {
+        if (windowWidth && windowWidth > 575 && sideNavVisible) {
+            setSideNavVisible(false);
+        }
+    }, [windowWidth]);
+
     const subBodyStyle: CSSProperties = {
         overflowX: "hidden",
         width:
             sideNavVisible
                 ? "calc(100vw - 130px)"
-                : windowWidth && windowWidth <= 450
+                : windowWidth && windowWidth <= 575
                     ? "100vw"
                     : "calc(100vw - 130px)",
     };
@@ -50,10 +56,11 @@ export default function DefaultLayout(props: { children: ReactNode }) {
         width:
             sideNavVisible
                 ? "calc(100vw - 150px)"
-                : windowWidth && windowWidth <= 450
+                : windowWidth && windowWidth <= 575
                     ? "95vw"
                     : "",
     }
+
     return <div className={css.body}>
         <Header />
         <NavBar />
