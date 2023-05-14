@@ -77,7 +77,10 @@ export default function RadioPlayer() {
                                 opacity: "1",
                                 backgroundColor: "rgb(239, 239, 239)"
                             },
-                            color: "#000"
+                            color: "#000",
+                            "@media screen and (max-width: 450px)": {
+                                display: "none",
+                            }
                         }}
                     />
                 </Stack>
