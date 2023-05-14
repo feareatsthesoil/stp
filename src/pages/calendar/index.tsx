@@ -3,19 +3,13 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { Button } from "@mui/material";
 import { useConfirm } from "material-ui-confirm";
-import axios from "axios";
 
 import css from "../../Components/Calendar/Calendar.module.css";
-import { CalendarRow } from "../../types";
 import { UserContext } from "../../Components/UserContext";
 import Calendar from "../../Components/Calendar";
 import DefaultLayout from "../../Components/Layouts/DefaultLayout";
 
-export default function IndexPage({
-  calendarData,
-}: {
-  calendarData: CalendarRow[];
-}) {
+export default function IndexPage() {
   const { loggedIn, isMember } = useContext(UserContext);
   const confirm = useConfirm();
   const router = useRouter();
@@ -67,13 +61,4 @@ export default function IndexPage({
       <Calendar />
     </DefaultLayout>
   );
-}
-
-export async function getServerSideProps() {
-  const { data } = await axios.get(`${process.env.BACKEND_URL}/api/calendar`);
-  return {
-    props: {
-      calendarData: data,
-    },
-  };
 }
