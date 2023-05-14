@@ -57,7 +57,7 @@ export default function IndexPage({
           </Button>
           <Button
             className={css.button}
-            href="https://calendar.google.com/calendar/u/1?cid=Y19mZDdkZGU5ZGY3MzBmM2Q5OTE5NjM1YmI0MzRiNDM4MTAxOGViZDg2MDY4NGUxN2ViMGU2NzAxMWY5OWIyNWYxQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+            href="https://calendar.google.com/calendar/u/1?cid=Y182OGU2OWRlYjJlN2ZkOWMyMzQ2YTZkZTM4NDBhYTczYWQxYzBjZjU1OTk3NTAxYjBhZTY3ZDEyNGFhNzZkYjcwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
             target="webapp-tab"
           >
             Add Calendar

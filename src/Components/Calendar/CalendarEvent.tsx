@@ -58,11 +58,13 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
           </Button>
         </div>
       </div>
-      <div className={css.map}>
-        <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!} >
-          <Map address={row.address} />
-        </Wrapper>
-      </div>
+      {row.address &&
+        <div className={css.map}>
+          <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!} >
+            <Map address={row.address} />
+          </Wrapper>
+        </div>
+      }
       <SocialLinks eventId={row.id} />
 
     </div >

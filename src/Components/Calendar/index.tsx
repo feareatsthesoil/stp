@@ -16,6 +16,8 @@ export default function Calendar() {
 
   return (
     <>
+      {Object.entries(dateList).length === 0 && <div>
+        No events for now... Stay tuned! </div>}
       {Object.entries(dateList).map(([date, list]) => {
         return (
           <div key={date} className={css.dateGroup}>
