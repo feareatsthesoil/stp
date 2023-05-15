@@ -1,4 +1,4 @@
-import { Button } from "@mui/material"
+import { Button, Link } from "@mui/material"
 import { google } from 'calendar-link'
 import { Wrapper } from "@googlemaps/react-wrapper"
 import moment from "moment"
@@ -15,9 +15,10 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
     <div className={css.wrapper}>
       <h1>{row.name}</h1>
       <div className={css.info}>
-        <p>
+        {row.address && <p>
           {row.address}
         </p>
+        }
         <p>
           {moment(row.starts_at).format("MMMM DD, YYYY")}
           &nbsp;
@@ -35,13 +36,22 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
           </p>
         }
         {row.website &&
-          <a href={row.website}>
-            {row.website}
-          </a>
+          <p>
+            <Link
+              target="webapp-tab"
+              href={row.website}
+              sx={{
+                color: "#0047ff",
+              }}>
+              {row.website}
+            </Link>
+          </p>
         }
-        <p>
-          Contact: {row.email}
-        </p>
+        {row.email &&
+          <p>
+            Contact: {row.email}
+          </p>
+        }
         <div className={css.buttonWrapper}>
           <Button
             className={css.button}
@@ -55,12 +65,14 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
             rel="noreferrer" variant="contained">
             Add to calendar
           </Button>
-          <Button
-            className={css.button}
-            href={`http://google.com/maps/search/${row.address}`}
-            target="_blank" rel="noreferrer" variant="contained">
-            Open in map
-          </Button>
+          {row.address &&
+            <Button
+              className={css.button}
+              href={`http://google.com/maps/search/${row.address}`}
+              target="_blank" rel="noreferrer" variant="contained">
+              Open in map
+            </Button>
+          }
         </div>
       </div>
       {row.address &&
