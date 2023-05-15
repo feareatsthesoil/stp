@@ -5,6 +5,7 @@ export type CalendarEventType = {
   type: string
   starts_at: string
   ends_at: string
+  website: string
 
   email: string
   address: string

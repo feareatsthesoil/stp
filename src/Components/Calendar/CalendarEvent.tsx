@@ -34,6 +34,11 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
             {row.description}
           </p>
         }
+        {row.website &&
+          <a href={row.website}>
+            {row.website}
+          </a>
+        }
         <p>
           Contact: {row.email}
         </p>
