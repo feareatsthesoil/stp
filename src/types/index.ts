@@ -54,4 +54,14 @@ export interface CalendarRow {
   description: string
 }
 
+export interface Resource {
+  id: number
 
+  name: string
+
+  link: string
+  userId: string
+
+  createdAt: string
+  updatedAt: string
+}

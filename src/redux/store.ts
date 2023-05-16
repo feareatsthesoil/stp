@@ -3,12 +3,14 @@ import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import app from "./slices/app"
 import calendar from "./slices/calendar"
 import directory from "./slices/directory"
+import resource from "./slices/resource"
 
 export const store = configureStore({
     reducer: {
         app,
         calendar,
         directory,
+        resource,
     }
 });
 

@@ -14,6 +14,15 @@
   padding-top: calc(20vh - 100px);
 }
 
+.resourceWrapper {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 70vh;
+  padding-top: calc(20vh - 60px);
+  width: calc(90vw - 130px);
+}
+
 .box {
   align-items: center;
   display: flex;
@@ -53,5 +62,9 @@
 
   .directoryWrapper {
     margin: 2vw;
+  }
+
+  .resourceWrapper {
+    width: 96vw;
   }
 }
