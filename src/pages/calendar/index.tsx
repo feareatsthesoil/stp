@@ -37,7 +37,7 @@ export default function IndexPage() {
   };
 
   return (
-    <DefaultLayout>
+    <DefaultLayout boxClassName="!w-full">
       <div className={css.header}>
         <h1>2023 Calendar</h1>
         <p>
@@ -51,7 +51,7 @@ export default function IndexPage() {
           </Button>
           <Button
             className={css.button}
-            href="https://calendar.google.com/calendar/u/1?cid=Y182OGU2OWRlYjJlN2ZkOWMyMzQ2YTZkZTM4NDBhYTczYWQxYzBjZjU1OTk3NTAxYjBhZTY3ZDEyNGFhNzZkYjcwQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
+            href="https://calendar.google.com/calendar/u/1?cid=Y19lYmFlMTRjZDcyMDVhY2U3NDhjMjM3ZDU4MzFhNTlmY2FjNmJiOWFkZGZmYTM2YjIzNzEzNGZlMWE1ODI4YmUzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
             target="webapp-tab"
           >
             Add Calendar

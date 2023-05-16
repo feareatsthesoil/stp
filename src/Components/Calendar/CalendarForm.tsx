@@ -1,48 +1,64 @@
-import React from "react"
-import axios from "axios"
-import { useFormik } from "formik"
-import { FormHelperText, MenuItem, TextField, Unstable_Grid2 as Grid, Button } from "@mui/material"
-import { createTheme, ThemeProvider } from "@mui/material/styles"
-import { withStyles } from "@mui/styles"
-import { DateTimePicker } from "@mui/x-date-pickers"
-import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { useSnackbar } from "notistack"
-import * as Yup from "yup"
-import dayjs from "dayjs"
+import React from "react";
+import axios from "axios";
+import { useFormik } from "formik";
+import {
+  FormHelperText,
+  MenuItem,
+  TextField,
+  Unstable_Grid2 as Grid,
+  Button,
+} from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { withStyles } from "@mui/styles";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSnackbar } from "notistack";
+import * as Yup from "yup";
+import dayjs from "dayjs";
 
-import css from "src/styles/Form.module.css"
-import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete"
-import { CalendarRow } from "../../types"
+import css from "src/styles/Form.module.css";
+import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete";
+import { CalendarRow } from "../../types";
 
-const initialState = { name: "", type: "", address: "", website: "", starts_at: null, ends_at: null, phone: "", email: "", description: "" }
+const initialState = {
+  name: "",
+  type: "",
+  address: "",
+  website: "",
+  starts_at: null,
+  ends_at: null,
+  phone: "",
+  email: "",
+  description: "",
+};
 
 const type = [
   {
-    value: "In-person meeting"
+    value: "In-person meeting",
   },
   {
-    value: "Zoom Meeting"
+    value: "Zoom Meeting",
   },
   {
-    value: "Exhibition"
+    value: "Exhibition",
   },
   {
-    value: "Performance"
+    value: "Performance",
   },
   {
-    value: "Event"
-  },  
-  {
-    value: "Workshop"
+    value: "Event",
   },
   {
-    value: "Presentation"
+    value: "Workshop",
   },
   {
-    value: "Meetup"
-  }
-]
+    value: "Presentation",
+  },
+  {
+    value: "Meetup",
+  },
+];
 
 const CssTextField = withStyles({
   root: {
@@ -60,14 +76,14 @@ const CssTextField = withStyles({
     "& .MuiOutlinedInput-root.Mui-error": {
       "& fieldset": {
         borderColor: "black!important",
-      }
+      },
     },
     "& .MuiFormLabel-root.Mui-error": {
       color: "black!important",
       "& span": {
         color: "black!important",
-      }
-    }
+      },
+    },
   },
 })(TextField);
 
@@ -79,110 +95,116 @@ const theme = createTheme({
   },
 });
 
-const rePhoneNumber = /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
+const rePhoneNumber =
+  /^(\+?\d{0,4})?\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{3}\)?)\s?-?\s?(\(?\d{4}\)?)?$/;
 
-export default function CalendarForm({ data, after }: { profile?: boolean, data?: CalendarRow, after?: () => void }) {
+export default function CalendarForm({
+  data,
+  after,
+}: {
+  profile?: boolean;
+  data?: CalendarRow;
+  after?: (eventId?: string) => void;
+}) {
   let isMax = false;
 
   const formData = {
     ...data,
     starts_at: data?.starts_at ? dayjs(data.starts_at) : undefined,
-    ...(data?.ends_at ? {
-      ends_at: dayjs(data.ends_at)
-    } : {})
-  }
-  const { enqueueSnackbar } = useSnackbar()
+    ...(data?.ends_at
+      ? {
+          ends_at: dayjs(data.ends_at),
+        }
+      : {}),
+  };
+  const { enqueueSnackbar } = useSnackbar();
 
   const formik = useFormik({
     validationSchema: Yup.object({
-      name:
-        Yup.string()
-          .required("Name is required")
-          .max(20, "Must be at most 20 characters")
-          .min(2, "Must be at least 2 characters"),
+      name: Yup.string()
+        .required("Name is required")
+        .max(20, "Must be at most 20 characters")
+        .min(2, "Must be at least 2 characters"),
 
-      type:
-        Yup.string()
-          .required("Type is required"),
+      type: Yup.string().required("Type is required"),
 
-      address:
-        Yup.string()
-          .min(2),
+      address: Yup.string().min(2),
 
-      starts_at:
-        Yup.date()
-          .required("Start Date/Time is required")
-          .typeError("Must be a valid date")
-          .min(new Date(), "Must be after current date/time")
-          .transform((_, val) => val === null ? undefined : new Date(val)),
+      starts_at: Yup.date()
+        .required("Start Date/Time is required")
+        .typeError("Must be a valid date")
+        .min(new Date(), "Must be after current date/time")
+        .transform((_, val) => (val === null ? undefined : new Date(val))),
 
-      ends_at:
-        Yup.date()
-          .typeError("Must be a valid date")
-          .min(new Date(), "Must be after current date/time")
-          .transform((_, val) => val === null ? undefined : new Date(val)),
+      ends_at: Yup.date()
+        .typeError("Must be a valid date")
+        .min(new Date(), "Must be after current date/time")
+        .transform((_, val) => (val === null ? undefined : new Date(val))),
 
-      phone:
-        Yup.string()
-          .matches(rePhoneNumber, "Must be a valid phone number"),
+      phone: Yup.string().matches(
+        rePhoneNumber,
+        "Must be a valid phone number"
+      ),
 
-      email:
-        Yup.string()
-          .required("Email is required")
-          .email("Must be a valid email"),
+      email: Yup.string()
+        .required("Email is required")
+        .email("Must be a valid email"),
 
-      website:
-        Yup.string()
-          .url("Must be a valid URL starting with http(s)://"),
-
+      website: Yup.string().url("Must be a valid URL starting with http(s)://"),
     }),
-    initialValues: { ...initialState, ...formData }, onSubmit: async (values, helpers) => {
-
+    initialValues: { ...initialState, ...formData },
+    onSubmit: async (values, helpers) => {
       const dataToSubmit = {
-        ...values
-      }
-      const response = data?.id ? await axios.put("/api/calendar/" + data.id, dataToSubmit) : await axios.post("/api/calendar/submit", dataToSubmit)
-      helpers.setSubmitting(false)
-      helpers.resetForm()
-      enqueueSnackbar(data?.id ? "Saved Successfully" : "Created event", { variant: "success" })
-      if (after)
-        after()
-    }
-  })
-  formik.values.description.length === 300 ? isMax = true : isMax = false;
+        ...values,
+      };
+      const response = data?.id
+        ? await axios.put("/api/calendar/" + data.id, dataToSubmit)
+        : await axios.post("/api/calendar/submit", dataToSubmit);
+      helpers.setSubmitting(false);
+      helpers.resetForm();
+      enqueueSnackbar(data?.id ? "Saved Successfully" : "Created event", {
+        variant: "success",
+      });
+      if (after) after(response?.data?.createdEventId);
+    },
+  });
+  formik.values.description.length === 300 ? (isMax = true) : (isMax = false);
 
   return (
     <div className={css.wrapper}>
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
-          <Grid container spacing={2} sx={{ maxWidth: "sm" }}  >
-            <Grid xs={12} sm={6} >
+          <Grid container spacing={2} sx={{ maxWidth: "sm" }}>
+            <Grid xs={12} sm={6}>
               <CssTextField
                 name="name"
                 label="Name of Happening"
-                required fullWidth
+                required
+                fullWidth
                 color="secondary"
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 error={!!formik.errors.name}
                 helperText={formik.errors.name}
-                disabled={formik.isSubmitting} />
+                disabled={formik.isSubmitting}
+              />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
                 name="type"
                 label="Type of Happening"
-                required select fullWidth
+                required
+                select
+                fullWidth
                 color="secondary"
                 value={formik.values.type}
                 onChange={formik.handleChange}
                 error={!!formik.errors.type}
                 helperText={formik.errors.type}
-                disabled={formik.isSubmitting}>
+                disabled={formik.isSubmitting}
+              >
                 {type.map((option) => (
-                  <MenuItem
-                    key={option.value}
-                    value={option.value}>
+                  <MenuItem key={option.value} value={option.value}>
                     {option.value}
                   </MenuItem>
                 ))}
@@ -191,11 +213,14 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
             <Grid xs={12} sm={6}>
               <GooglePlacesAutoComplete
                 disabled={formik.isSubmitting}
-                onChange={(value) => formik.setFieldValue("address", value)} value={formik.values.address} />
-              <div >
+                onChange={(value) => formik.setFieldValue("address", value)}
+                value={formik.values.address}
+              />
+              <div>
                 <FormHelperText
                   className="helperText"
-                  error={!!formik.errors.address}>
+                  error={!!formik.errors.address}
+                >
                   {formik.errors.address}
                 </FormHelperText>
               </div>
@@ -210,7 +235,8 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
                 onChange={formik.handleChange}
                 error={!!formik.errors.website}
                 helperText={formik.errors.website}
-                disabled={formik.isSubmitting} />
+                disabled={formik.isSubmitting}
+              />
             </Grid>
             <Grid xs={12} sm={6}>
               <DateTimePicker
@@ -219,37 +245,38 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
                 className={css.datePicker}
                 sx={{
                   "& label.Mui-focused": {
-                    color: "black"
+                    color: "black",
                   },
                   "& fieldset": {
                     border: "1px solid black",
-                    color: "black"
+                    color: "black",
                   },
                   "&:hover fieldset": {
                     border: "2px solid black",
-                    color: "black"
+                    color: "black",
                   },
                   "& .Mui-focused fieldset": {
-                    border: "2px solid black !important"
+                    border: "2px solid black !important",
                   },
                   "& .MuiInputBase-colorError fieldset ": {
-                    borderColor: "#d32f2f!important"
+                    borderColor: "#d32f2f!important",
                   },
                   "& .MuiInputBase-colorError.Mui-focused fieldset": {
-                    borderColor: "#d32f2f!important"
+                    borderColor: "#d32f2f!important",
                   },
                   ".MuiFormLabel-colorError.Mui-focused": {
-                    color: "#d32f2!important"
-                  }
+                    color: "#d32f2!important",
+                  },
                 }}
                 value={formik.values.starts_at}
                 onChange={(value) => formik.setFieldValue("starts_at", value)}
                 disabled={formik.isSubmitting}
               />
-              <div >
+              <div>
                 <FormHelperText
                   className="helperText"
-                  error={!!formik.errors.starts_at}>
+                  error={!!formik.errors.starts_at}
+                >
                   {formik.errors.starts_at}
                 </FormHelperText>
               </div>
@@ -261,25 +288,25 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
                 className={css.datePicker}
                 sx={{
                   "& label.Mui-focused": {
-                    color: "black"
+                    color: "black",
                   },
                   "& fieldset": {
                     border: "1px solid black",
-                    color: "black"
+                    color: "black",
                   },
                   "&:hover fieldset": {
                     border: "2px solid black",
-                    color: "black"
+                    color: "black",
                   },
                   "& .Mui-focused fieldset": {
-                    border: "2px solid black !important"
+                    border: "2px solid black !important",
                   },
                   "& .MuiInputBase-colorError fieldset ": {
-                    borderColor: "#d32f2f!important"
+                    borderColor: "#d32f2f!important",
                   },
                   ".MuiFormLabel-colorError": {
-                    color: "#d32f2f!important"
-                  }
+                    color: "#d32f2f!important",
+                  },
                 }}
                 value={formik.values.ends_at}
                 onChange={(value) => formik.setFieldValue("ends_at", value)}
@@ -287,7 +314,8 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
               />
               <FormHelperText
                 className="helperText"
-                error={!!formik.errors.ends_at}>
+                error={!!formik.errors.ends_at}
+              >
                 {formik.errors.ends_at}
               </FormHelperText>
             </Grid>
@@ -301,38 +329,44 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
                 onChange={formik.handleChange}
                 error={!!formik.errors.phone}
                 helperText={formik.errors.phone}
-                disabled={formik.isSubmitting} />
+                disabled={formik.isSubmitting}
+              />
             </Grid>
             <Grid xs={12} sm={6}>
               <CssTextField
                 name="email"
                 label="Email"
-                required fullWidth
+                required
+                fullWidth
                 color="secondary"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 error={!!formik.errors.email}
                 helperText={formik.errors.email}
-                disabled={formik.isSubmitting} />
+                disabled={formik.isSubmitting}
+              />
             </Grid>
             <Grid xs={12}>
               <CssTextField
                 label="Short Description"
                 name="description"
-                multiline fullWidth
-                className={css.description} id="mui-theme-provider-outlined-input"
+                multiline
+                fullWidth
+                className={css.description}
+                id="mui-theme-provider-outlined-input"
                 variant="outlined"
                 color="secondary"
                 rows={4}
                 inputProps={{
                   maxLength: 300,
-                  style: { color: "black" }
+                  style: { color: "black" },
                 }}
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 error={!!formik.errors.description}
                 helperText={formik.errors.description}
-                disabled={formik.isSubmitting} />
+                disabled={formik.isSubmitting}
+              />
             </Grid>
             <Grid xs={12}>
               <p className={isMax ? css.max : css.notMax}>
@@ -352,22 +386,23 @@ export default function CalendarForm({ data, after }: { profile?: boolean, data?
                   margin: "-30px 0 0 0",
                   "&:hover ": {
                     backgroundColor: "rgb(220, 220, 220) !important;",
-                  }
+                  },
                 }}
                 disabled={formik.isSubmitting}
                 type={"submit"}
-                className={css.button}>
+                className={css.button}
+              >
                 {!formik.isSubmitting && <>Save</>}
-                {formik.isSubmitting &&
+                {formik.isSubmitting && (
                   <span style={{ paddingRight: 2 }}>
                     <FontAwesomeIcon icon={faSpinner} spin />
                   </span>
-                }
+                )}
               </Button>
             </Grid>
           </Grid>
         </ThemeProvider>
       </form>
     </div>
-  )
+  );
 }
