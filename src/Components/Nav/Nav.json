@@ -5,8 +5,12 @@
       "name": "About"
     },
     {
-       "href": "/blog",
+      "href": "/blog",
       "name": "Blog"
+    },
+    {
+      "href": "/resources",
+      "name": "Resources"
     },
     {
       "href": "/community",
@@ -17,7 +21,7 @@
       "name": "Calendar"
     },
     {
-       "href": "/membership",
+      "href": "/membership",
       "name": "Membership"
     },
     {
