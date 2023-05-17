@@ -1,4 +1,5 @@
 export type CalendarEventType = {
+  userId?: string
   id: string
   index: number
   name: string
