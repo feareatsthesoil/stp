@@ -51,10 +51,19 @@ const EventUpdate = (async (req: any, res: NextApiResponse) => {
             res.status(400).json({ message: "You are not authorized to do this" })
         }
         await client.events.delete({ where: { id: Number(id) } })
+
+        if (calendarData.calendarEventId) {
+            await calendar.events.delete({
+                calendarId,
+                eventId: calendarData.calendarEventId!,
+            })
+        }
+
         return res.status(200).json(calendarData)
     }
     return res.status(200).json(calendarData)
-
 })
 
 export default withAuth(EventUpdate)
+
+
