@@ -1,4 +1,5 @@
 import { Button, Link } from "@mui/material"
+import { useAuth } from "@clerk/nextjs"
 import { google } from 'calendar-link'
 import { Wrapper } from "@googlemaps/react-wrapper"
 import moment from "moment"
@@ -10,6 +11,7 @@ import SocialLinks from "../SocialLinks/SocialLinks"
 
 export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.Element {
   const row: CalendarEventType = params.row
+  const { userId } = useAuth()
 
   return (
     <div className={css.wrapper}>
@@ -73,6 +75,12 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
               Open in map
             </Button>
           }
+          {userId === row.userId ?
+            <Link sx={{ textDecoration: "none!important" }} className={css.editLink} href={`/calendar/${row.id}/edit`}>
+              <Button className={`${css.button} ${css.edit}`}>
+                Edit
+              </Button></Link>
+            : null}
         </div>
       </div>
       {row.address &&
@@ -82,7 +90,7 @@ export function CalendarEventComponent(params: { row: CalendarEventType }): JSX.
           </Wrapper>
         </div>
       }
-      <SocialLinks eventId={row.id} />
+      <SocialLinks eventURL={`${window.location.href}/${row.id}`} />
 
     </div >
   )

@@ -23,6 +23,7 @@ model Events {
   type        String
   address     String
   website     String
+  calendarEventId String?
   starts_at   DateTime
   ends_at     DateTime?
   phone       String

@@ -1,10 +1,11 @@
 import { NextApiResponse } from "next";
 import { withAuth } from "@clerk/nextjs/api";
-import { prisma } from "../../../utils/prisma";
+import { PrismaClient, prisma } from "../../../utils/prisma";
 import { google } from "googleapis";
 
 export default withAuth(async (req: any, res: NextApiResponse) => {
   const { body } = req;
+  const client = new PrismaClient()
 
   const event = await prisma.events.create({
     data: {
@@ -47,6 +48,7 @@ export default withAuth(async (req: any, res: NextApiResponse) => {
       end: { dateTime: body.ends_at ?? body.starts_at },
     },
   });
+  await client.events.update({ where: { id: event.id }, data: { ...event, calendarEventId: calres.data.id } })
   console.log("CALENDAR RESPONSE", calres);
   return res
     .status(200)
