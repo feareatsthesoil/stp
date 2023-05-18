@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 
 import css from "../../styles/Submit.module.css"
-import ResourcesForm from "../../Components/Resources/resourcesForm";
+import ResourcesForm from "../../Components/Resources/ResourcesForm";
 import AuthLayout from "../../Components/Layouts/AuthLayout";
 
 export default function () {

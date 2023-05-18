@@ -7,10 +7,11 @@ import DeleteResourceButton from "./DeleteResourceButton";
 export default function ResourcesList() {
     const resources = useResources()
     const { userId } = useAuth()
+    const sortResources = [...resources].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
 
     return (
         <>
-            {resources.map((resource) => (
+            {sortResources.map((resource) => (
                 <div key={resource.id} className={css.item}>
                     <div className={css.name}>
                         <p>  <strong>{resource.name}</strong></p>

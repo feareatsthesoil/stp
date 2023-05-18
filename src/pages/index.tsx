@@ -19,7 +19,7 @@ export default function Home() {
           alt="SERVING the PEOPLE"
           fill
           style={{ objectFit: "cover" }}
-          quality={100}
+          quality={50}
         />
         <Header />
         <Address />
