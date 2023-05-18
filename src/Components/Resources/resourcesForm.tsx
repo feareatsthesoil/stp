@@ -48,7 +48,6 @@ export default function ResourcesForm({ data, after = () => { } }: { after?: () 
         link: ""
     }
     const formik = useFormik({
-
         validationSchema: Yup.object({
             name:
                 Yup.string()
