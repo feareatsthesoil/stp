@@ -11,6 +11,10 @@
     padding-top: 10px;
 }
 
+.listWrapper {
+    padding: 0 0 20px 0;
+}
+
 .button {
     background-color: rgb(239, 239, 239) !important;
     border-radius: 4px !important;
@@ -21,6 +25,12 @@
     height: 30px;
     margin: 10px 0 20px 0 !important;
     text-transform: none !important;
+}
+
+.header {
+    font-weight: bold;
+    font-size: 1.15em;
+    text-decoration: underline;
 }
 
 .button:hover {
@@ -34,29 +44,42 @@
 }
 
 .list {
-    padding: 10px 0 0 0;
+    padding: 10px 0 20px 0;
+}
+
+.edit {
+    margin: 3px 0 0 0;
+}
+
+.edit a {
+    color: #000;
+    text-decoration: underline #000;
+}
+
+.name {
+    display: flex;
+    min-width: 350px;
+    font-weight: bold;
 }
 
 .item {
     display: flex;
     width: calc(90vw - 130px);
-    padding: 0 0 20px 0;
+    padding: 0 0 10px 0;
+    flex-wrap: nowrap;
+    overflow-x: auto;
 }
 
 .item a {
     margin-top: 10px !important;
 }
 
-.items a:hover {
+.item a:hover {
     opacity: 60% !important;
 }
 
 .item>div {
     padding: 0 10px 0 0;
-}
-
-.link:hover {
-    opacity: 50%;
 }
 
 @media screen and (min-width: 0px) and (max-width: 575px) {

@@ -1,4 +1,5 @@
 import { Button, Unstable_Grid2 as Grid, Stack, TextField } from "@mui/material";
+import Autocomplete from "@mui/material/Autocomplete";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useFormik } from "formik";
@@ -9,6 +10,13 @@ import axios from "axios";
 
 import css from "src/styles/Form.module.css"
 import { Resource } from "../../types";
+import categories from "./categories.json"
+
+const initialState = {
+    name: "",
+    link: "",
+    category: "",
+}
 
 const CssTextField = withStyles({
     root: {
@@ -43,10 +51,6 @@ const CssTextField = withStyles({
 export default function ResourcesForm({ data, after = () => { } }: { after?: () => void, data?: Resource }) {
 
     const { enqueueSnackbar } = useSnackbar()
-    const initialState = {
-        name: "",
-        link: ""
-    }
     const formik = useFormik({
         validationSchema: Yup.object({
             name:
@@ -58,9 +62,13 @@ export default function ResourcesForm({ data, after = () => { } }: { after?: () 
                 Yup.string()
                     .required("Link is required")
                     .url("Must be a valid URL starting with http(s)://"),
+            category:
+                Yup.string()
+                    .required("Category is required")
+                    .oneOf(categories, "Must be one of the predefined categories")
 
         }),
-        initialValues: { ...initialState }, onSubmit: async (values, helpers) => {
+        initialValues: { ...initialState, ...(data ?? {}) }, onSubmit: async (values, helpers) => {
             try {
                 const dataToSubmit = { ...values };
                 const response = data?.id
@@ -84,6 +92,30 @@ export default function ResourcesForm({ data, after = () => { } }: { after?: () 
         <div className={css.wrapper}>
             <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={2} sx={{ maxWidth: "sm" }} >
+                    <Grid xs={12}>
+                        <Autocomplete
+                            id="category"
+                            options={categories}
+                            renderInput={(params) =>
+                                <CssTextField
+                                    {...params}
+                                    name="category"
+                                    label="Category"
+                                    required
+                                    fullWidth
+                                    onBlur={formik.handleBlur}
+                                    onChange={formik.handleChange}
+                                    error={!!formik.errors.category}
+                                    helperText={formik.errors.category}
+                                    disabled={formik.isSubmitting}
+                                />
+                            }
+                            onInputChange={(event, value) => {
+                                formik.setFieldValue("category", value);
+                            }}
+                            value={formik.values.category}
+                        />
+                    </Grid>
                     <Grid xs={12} sm={6}>
                         <CssTextField
                             name="name"
@@ -123,7 +155,7 @@ export default function ResourcesForm({ data, after = () => { } }: { after?: () 
                                 color: "#000",
                                 border: "1px solid #000",
                                 height: "30px",
-                                margin: "-30px 0 0 0",
+                                margin: "-35px 0 0 0",
                                 width: 40,
                                 "&:hover ": {
                                     backgroundColor: "rgb(220, 220, 220) !important;",

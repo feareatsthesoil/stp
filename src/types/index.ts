@@ -56,6 +56,7 @@ export interface CalendarRow {
 }
 
 export interface Resource {
+  category: string
   id: number
 
   name: string

@@ -42,7 +42,7 @@ export default function DeleteResourceButton({ after = () => { }, id }: { after?
             color: "#000",
             border: "1px solid #000",
             height: "30px!important",
-            margin: "-17px 0 0 0",
+            margin: "22px 150px 0 0",
             "&:hover ": {
                 backgroundColor: "rgb(220, 220, 220) !important;",
             }

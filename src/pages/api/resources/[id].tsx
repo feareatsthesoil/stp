@@ -13,10 +13,18 @@ async function resourceSubmit(req: any, res: NextApiResponse) {
 
     if (req.method === "PUT" || req.method === "DELETE") {
         if (resource.userId !== userId)
-            return res.status(403).json({ message: "You are not authorized to edit this" })
+            return res
+                .status(403)
+                .json({ message: "You are not authorized to edit this" })
 
         if (req.method === "PUT") {
-            await client.resource.update({ where: { id: resource.id }, data: { ...body, display: body.profile ? body.display : true } })
+            await client.resource.update({
+                where: { id: resource.id },
+                data: {
+                    ...body,
+                    display: body.profile ? body.display : true
+                }
+            })
             return res.status(200).json(resource)
         } else {
             await client.resource.delete({ where: { id: resource.id } })
