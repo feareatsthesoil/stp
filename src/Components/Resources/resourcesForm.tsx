@@ -92,30 +92,6 @@ export default function ResourcesForm({ data, after = () => { } }: { after?: () 
         <div className={css.wrapper}>
             <form onSubmit={formik.handleSubmit}>
                 <Grid container spacing={2} sx={{ maxWidth: "sm" }} >
-                    <Grid xs={12}>
-                        <Autocomplete
-                            id="category"
-                            options={categories}
-                            renderInput={(params) =>
-                                <CssTextField
-                                    {...params}
-                                    name="category"
-                                    label="Category"
-                                    required
-                                    fullWidth
-                                    onBlur={formik.handleBlur}
-                                    onChange={formik.handleChange}
-                                    error={!!formik.errors.category}
-                                    helperText={formik.errors.category}
-                                    disabled={formik.isSubmitting}
-                                />
-                            }
-                            onInputChange={(event, value) => {
-                                formik.setFieldValue("category", value);
-                            }}
-                            value={formik.values.category}
-                        />
-                    </Grid>
                     <Grid xs={12} sm={6}>
                         <CssTextField
                             name="name"
@@ -141,6 +117,30 @@ export default function ResourcesForm({ data, after = () => { } }: { after?: () 
                             error={!!formik.errors.link}
                             helperText={formik.errors.link}
                             disabled={formik.isSubmitting}
+                        />
+                    </Grid>
+                    <Grid xs={12}>
+                        <Autocomplete
+                            id="category"
+                            options={categories}
+                            renderInput={(params) =>
+                                <CssTextField
+                                    {...params}
+                                    name="category"
+                                    label="Category"
+                                    required
+                                    fullWidth
+                                    onBlur={formik.handleBlur}
+                                    onChange={formik.handleChange}
+                                    error={!!formik.errors.category}
+                                    helperText={formik.errors.category}
+                                    disabled={formik.isSubmitting}
+                                />
+                            }
+                            onInputChange={(event, value) => {
+                                formik.setFieldValue("category", value);
+                            }}
+                            value={formik.values.category}
                         />
                     </Grid>
                     <Grid xs={12} sx={{ marginTop: 4 }}>
