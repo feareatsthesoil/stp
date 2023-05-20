@@ -1,22 +1,59 @@
 import { useAuth } from "@clerk/nextjs";
-import { Select, MenuItem, Link, Grid, Button, FormControlLabel } from "@mui/material";
-import { useEffect, useState } from "react";
-
-import css from "../../styles/Resources.module.css";
-import { useResources } from "../../redux/hooks"
-import DeleteResourceButton from "./DeleteResourceButton";
-import { Resource } from "../../types/index"
-import { useRouter } from "next/router";
-import { Link as ScrollLink, animateScroll as scroll, scrollSpy, scroller } from "react-scroll";
+import { Button, Link, Grid } from "@mui/material";
+import { useState } from "react";
 import { Element } from "react-scroll";
 
+import css from "../../styles/Resources.module.css";
+import { useResources } from "../../redux/hooks";
+import { Resource } from "../../types/index";
+
+interface ResourceItemProps {
+    resource: Resource;
+    userId?: string;
+    showTimestamp?: boolean;
+}
+
+function ResourceItem({ resource, userId, showTimestamp }: ResourceItemProps) {
+    return (
+        <div key={resource.id} className={css.item}>
+            <Grid container>
+                <Grid className={css.name} item xs={12}>
+                    <p>{resource.name}</p>
+                </Grid>
+                <Grid item xs={12}>
+                    <p>
+                        <a target="webapp-tab" href={resource.link} className={css.link}>
+                            {resource.link}
+                        </a>
+                    </p>
+                </Grid>
+                {showTimestamp &&
+                    <Grid item xs={12} className={css.time}>
+                        <p >
+                            Created at: {new Date(resource.createdAt).toLocaleString()}
+                        </p>
+                    </Grid>
+                }
+                <Grid item xs={12}>
+                    {userId === resource.userId ?
+                        <div className={css.edit}>
+                            <Link sx={{ color: "#000000ab !important" }} href={`/resources/${resource.id}/edit`}>EDIT</Link>
+                        </div>
+                        : null}
+                </Grid>
+            </Grid>
+        </div>
+    );
+}
+
 export default function ResourcesList() {
-    const router = useRouter();
     const resources = useResources();
-    const { userId } = useAuth();
+    const { userId: authUserId } = useAuth();
+    const userId = authUserId || undefined;
 
     const [viewOption, setViewOption] = useState<'chronological' | 'categorized'>('chronological');
     const [sortOrder, setSortOrder] = useState<'oldest' | 'newest'>('newest');
+    const [globalSortOrder, setGlobalSortOrder] = useState<'Alphabetical' | 'Most Recently Added'>('Most Recently Added');
 
     const resourcesByCategory: Record<string, Resource[]> = {};
     resources.forEach(resource => {
@@ -33,32 +70,30 @@ export default function ResourcesList() {
         return a.localeCompare(b);
     });
 
-    const initialSortTypes: Record<string, 'Alphabetical' | 'Most Recently Added'> = {};
-    categoryKeys.forEach((category) => {
-        initialSortTypes[category] = 'Most Recently Added';
-    });
-
-    const [sortType, setSortType] = useState(initialSortTypes);
-
-    const handleSortChange = (category: string) => {
-        setSortType(prev => ({
-            ...prev,
-            [category]: prev[category] === 'Alphabetical' ? 'Most Recently Added' : 'Alphabetical'
-        }));
-    };
-
     const handleViewOptionToggle = () => {
         setViewOption(prev => prev === 'categorized' ? 'chronological' : 'categorized');
     };
 
     const handleSortOrderToggle = () => {
-        setSortOrder(prev => prev === 'oldest' ? 'newest' : 'oldest');
+        if (viewOption === 'chronological') {
+            setSortOrder(prev => prev === 'oldest' ? 'newest' : 'oldest');
+        } else {
+            setGlobalSortOrder(prev => prev === 'Alphabetical' ? 'Most Recently Added' : 'Alphabetical');
+        }
     };
 
-    const sortResources = (resources: Resource[], category: string) => {
+    const getSortButtonLabel = () => {
+        if (viewOption === 'chronological') {
+            return sortOrder === 'oldest' ? 'Oldest First' : 'Newest First';
+        } else {
+            return globalSortOrder === 'Alphabetical' ? 'Alphabetical' : 'Most Recently Added';
+        }
+    };
+
+    const sortResources = (resources: Resource[]) => {
         let sortedResources = [...resources];
 
-        switch (sortType[category]) {
+        switch (globalSortOrder) {
             case 'Alphabetical':
                 sortedResources.sort((a, b) => a.name.localeCompare(b.name));
                 break;
@@ -72,71 +107,48 @@ export default function ResourcesList() {
 
     return (
         <>
-            <Button sx={{
-                margin: "-109px 0 0 75px!important",
-                minWidth: 200,
-                "@media screen and (min-width: 1120px) and (max-width: 1142px)": {
-                    marginTop: "-110px !important"
-                }
-            }} className={css.button} onClick={handleViewOptionToggle}>
+            <Button
+                sx={{
+                    margin: "-109px 0 0 75px!important",
+                    minWidth: 200,
+                    "@media screen and (min-width: 1120px) and (max-width: 1228px)": {
+                        marginTop: "-109px !important",
+                    }
+                }}
+                className={css.button}
+                onClick={handleViewOptionToggle}>
                 Switch to {viewOption === 'categorized' ? 'Chronological' : 'Categorized'} View
             </Button>
-            {viewOption === 'categorized' ? (
-                categoryKeys.map(category => (
-                    <Element className={css.listWrapper} name={category} key={category}>
-                        <ScrollLink
-                            to={category}
-                            smooth={true}
-                            duration={500}
-                            style={{ cursor: "pointer" }}
-                        >
-                            <h1 className={css.header}> {category}</h1>
-                        </ScrollLink>
-                        {resourcesByCategory[category].length > 1 && (
-                            <Button className={css.button} onClick={() => handleSortChange(category)}>
-                                {sortType[category] === 'Most Recently Added' ? 'Most Recently Added' : 'Alphabetical'}
-                            </Button>
-                        )}
-                        {sortResources(resourcesByCategory[category], category).map(resource => (
-                            <div key={resource.id} className={css.item}>
-                                <Grid container>
-                                    <Grid className={css.name} item xs={12}>
-                                        <p>{resource.name}</p>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        <p>
-                                            <a target="webapp-tab" href={resource.link} className={css.link}>
-                                                {resource.link}
-                                            </a>
-                                        </p>
-                                    </Grid>
-                                    <Grid item xs={12}>
-                                        {userId === resource.userId ?
-                                            <div className={css.edit}>
-                                                <Link href={`/resources/${resource.id}/edit`}>EDIT</Link>
-                                            </div>
-                                            : null}
-                                    </Grid>
-                                </Grid>
-                            </div>
 
-                        ))}
-                    </Element>
-                ))
-            ) :
-                (<>
-                    <Button sx={{
-                        margin: "-110px 0px 0 10px!important",
-                        minWidth: 120,
-                        "@media screen and (min-width: 575px) and (max-width: 1141px)": {
-                            margin: "-60px 0 0 0!important"
-                        },
-                        "@media screen and (min-width: 0px) and (max-width: 445px)": {
-                            margin: "-60px 200px 0 0!important",
-                        }
-                    }} className={css.button} onClick={handleSortOrderToggle}>
-                        {sortOrder === 'oldest' ? 'Oldest First' : 'Newest First'}
-                    </Button>
+            <Button
+                sx={{
+                    margin: "-110px 0px 0 10px!important",
+                    minWidth: 150,
+                    "@media screen and (min-width: 575px) and (max-width: 1228px)": {
+                        margin: "-60px 10px 0 0px!important"
+                    },
+                    "@media screen and (min-width: 0px) and (max-width: 445px)": {
+                        margin: "-60px 200px 0 0!important",
+                    }
+                }}
+                className={css.button}
+                onClick={handleSortOrderToggle}>
+                {getSortButtonLabel()}
+            </Button>
+
+            {viewOption === 'categorized' ? (
+                <>
+                    {categoryKeys.map(category => (
+                        <Element className={css.listWrapper} name={category} key={category}>
+                            <h1 className={css.header}> {category}</h1>
+                            {sortResources(resourcesByCategory[category]).map(resource => (
+                                <ResourceItem resource={resource} userId={userId} />
+                            ))}
+                        </Element>
+                    ))}
+                </>
+            ) : (
+                <>
                     {resources.sort((a, b) => {
                         if (sortOrder === 'oldest') {
                             return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
@@ -144,45 +156,10 @@ export default function ResourcesList() {
                             return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
                         }
                     }).map(resource => (
-                        <div key={resource.id} className={css.item}>
-                            <Grid container>
-                                <Grid className={css.name} item xs={6} sm={3}>
-                                    <p>{resource.name}</p>
-                                </Grid>
-                                <Grid item xs={6} sm={3}>
-                                    <p>
-                                        <a target="webapp-tab" href={resource.link} className={css.link}>
-                                            {resource.link}
-                                        </a>
-                                    </p>
-                                </Grid>
-                                <Grid item xs={12} sm={6}
-                                    sx={{
-                                        // sm: { textAlign: 'right' } 
-                                        "@media screen and (min-width: 1712px) and (max-width: 4045px)": {
-                                            textAlign: "right",
-                                        },
-                                        "@media screen and (min-width: 600px) and (max-width: 675px)": {
-                                            display: "none",
-                                        }
-                                    }}>
-                                    <p>
-                                        Created at: {new Date(resource.createdAt).toLocaleString()}
-                                    </p>
-                                </Grid>
-                                <Grid item xs={12}>
-                                    {userId === resource.userId ?
-                                        <div className={css.edit}>
-                                            <Link href={`/resources/${resource.id}/edit`}>EDIT</Link>
-                                        </div>
-                                        : null}
-                                </Grid>
-                            </Grid>
-                        </div>
-                    ))
-                    } </>
-                )
-            }
+                        <ResourceItem resource={resource} userId={userId} showTimestamp={true} />
+                    ))}
+                </>
+            )}
         </>
     );
 }
