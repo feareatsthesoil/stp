@@ -42,9 +42,9 @@ export default function () {
     return (
         <DefaultLayout>
             <div className={css.wrapper}>
-                <h1>Resources</h1>
+                <h1>Links</h1>
                 <p>
-                    By submitting to resources you are agreeing to our <Link style={{ color: "#0047FF", textDecoration: "underline" }} href="#">Privacy Policy</Link>.
+                    By submitting to links you are agreeing to our <Link style={{ color: "#0047FF", textDecoration: "underline" }} href="#">Privacy Policy</Link>.
                 </p>
                 <Button
                     className={css.button}
