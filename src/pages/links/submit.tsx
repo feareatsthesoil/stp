@@ -9,7 +9,7 @@ export default function () {
     return <AuthLayout>
         <div className={css.resourceWrapper}>
             <div className={css.box}>
-                <h1>Add to Resources</h1>
+                <h1>Add to Links</h1>
             </div>
             <ResourcesForm after={() => router.push("/resources")} />
         </div>

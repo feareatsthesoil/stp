@@ -30,12 +30,12 @@ export default function () {
         if (!loggedIn) {
             return confirm({
                 title: "Please log in",
-                description: "Please log in to submit to resources.", confirmationText: "Log in"
+                description: "Please log in to submit to links.", confirmationText: "Log in"
             }).then(() => {
-                router.push("/login?redirect_url=/resources")
+                router.push("/login?redirect_url=/links")
             })
         } else {
-            return router.push("/resources/submit")
+            return router.push("/links/submit")
         }
     }
 
