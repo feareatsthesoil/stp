@@ -46,16 +46,16 @@ export default function DefaultLayout(props: {
     width: sideNavVisible
       ? "calc(100vw - 130px)"
       : windowWidth && windowWidth <= 575
-      ? "100vw"
-      : "calc(100vw - 130px)",
+        ? "100vw"
+        : "calc(100vw - 130px)",
   };
 
   const boxStyle = {
     width: sideNavVisible
       ? "calc(100vw - 150px)"
       : windowWidth && windowWidth <= 575
-      ? "95vw"
-      : "",
+        ? "95vw"
+        : "",
   };
 
   return (

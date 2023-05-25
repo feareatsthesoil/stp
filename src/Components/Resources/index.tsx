@@ -1,5 +1,6 @@
 import { useAuth } from "@clerk/nextjs";
 import { Button, Link, Grid } from "@mui/material";
+import { Tooltip } from "@mui/material";
 import { useState } from "react";
 import { Element } from "react-scroll";
 
@@ -15,29 +16,30 @@ interface ResourceItemProps {
 
 function ResourceItem({ resource, userId, showTimestamp }: ResourceItemProps) {
     return (
+
         <div key={resource.id} className={css.item}>
             <Grid container>
-                <Grid className={css.name} item xs={12}>
-                    <p>{resource.name}</p>
-                </Grid>
-                <Grid item xs={12}>
-                    <p>
-                        <a target="webapp-tab" href={resource.link} className={css.link}>
-                            {resource.link}
-                        </a>
-                    </p>
-                </Grid>
                 {showTimestamp &&
-                    <Grid item xs={12} className={css.time}>
+                    <Grid item xs={12} sm={2} className={css.time}>
                         <p >
-                            Created at: {new Date(resource.createdAt).toLocaleString()}
+                            {new Date(resource.createdAt).toLocaleString()}
                         </p>
                     </Grid>
                 }
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={2} className={css.name}>
+                    <Tooltip title={resource.link} arrow>
+                        <a
+                            target="webapp-tab"
+                            href={resource.link}
+                            className={css.link}>
+                            <p>{resource.name}</p>
+                        </a>
+                    </Tooltip>
+                </Grid>
+                <Grid item xs={12} sm={2}>
                     {userId === resource.userId ?
                         <div className={css.edit}>
-                            <Link sx={{ color: "#000000ab !important" }} href={`/resources/${resource.id}/edit`}>EDIT</Link>
+                            <Link sx={{ color: "#000000ab !important" }} href={`/resources/${resource.id}/edit`}>Edit</Link>
                         </div>
                         : null}
                 </Grid>
@@ -109,10 +111,10 @@ export default function ResourcesList() {
         <>
             <Button
                 sx={{
-                    margin: "-109px 0 0 75px!important",
+                    margin: "-89px 0 0 75px!important",
                     minWidth: 200,
                     "@media screen and (min-width: 1120px) and (max-width: 1228px)": {
-                        marginTop: "-109px !important",
+                        marginTop: "-89px !important",
                     }
                 }}
                 className={css.button}
@@ -122,20 +124,19 @@ export default function ResourcesList() {
 
             <Button
                 sx={{
-                    margin: "-110px 0px 0 10px!important",
+                    margin: "-90px 0px 0 10px!important",
                     minWidth: 150,
                     "@media screen and (min-width: 575px) and (max-width: 1228px)": {
-                        margin: "-60px 10px 0 0px!important"
+                        margin: "-40px 10px 0 0px!important"
                     },
                     "@media screen and (min-width: 0px) and (max-width: 445px)": {
-                        margin: "-60px 200px 0 0!important",
+                        margin: "-40px 200px 0 0!important",
                     }
                 }}
                 className={css.button}
                 onClick={handleSortOrderToggle}>
                 {getSortButtonLabel()}
             </Button>
-
             {viewOption === 'categorized' ? (
                 <>
                     {categoryKeys.map(category => (

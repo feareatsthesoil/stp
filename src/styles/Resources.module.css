@@ -30,7 +30,6 @@
 .header {
     font-weight: bold;
     font-size: 1.15em;
-    text-decoration: underline;
 }
 
 .button:hover {
@@ -44,7 +43,7 @@
 }
 
 .list {
-    padding: 10px 0 20px 0;
+    padding: 0px 0 20px 0;
 }
 
 .edit {
@@ -58,8 +57,10 @@
 
 .name {
     display: flex;
+    text-align: left;
     min-width: 350px;
-    font-weight: bold;
+    margin: -10px 0 0 0 !important;
+    color: rgb(0, 71, 255);
 }
 
 .item {
@@ -72,19 +73,15 @@
 
 .item a {
     margin-top: 10px !important;
-    color: rgb(0, 71, 255);
 }
 
 .item a:hover {
     opacity: 60% !important;
 }
 
-.item>div {
-    padding: 0 10px 0 0;
-}
-
 .time {
     color: #000000ab;
+    min-width: 240px;
 }
 
 @media screen and (min-width: 0px) and (max-width: 575px) {
