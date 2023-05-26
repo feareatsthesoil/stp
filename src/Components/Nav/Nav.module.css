@@ -1,16 +1,14 @@
 .items ul {
   display: flex;
-  flex-direction: column;
-  font-size: 1em;
-  line-height: 13px;
-  list-style: none;
-  padding: calc(4vh + 47px) 1vw 0 0;
-  position: fixed;
-  top: 0;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+  width: 96vw;
+  flex-flow: row wrap;
+  justify-content: center;
 }
 
 .items li {
-  padding: 0 0 1em 2vw;
+  padding: 1vh 2vw 1vh 0;
 }
 
 .items a:hover {
@@ -20,6 +18,10 @@
 .items a {
   color: #000;
   text-decoration: none;
+}
+
+.container {
+  padding: 1vh 0 2vh 0;
 }
 
 .active {
@@ -49,11 +51,5 @@
 @media (min-width: 575px) {
   #menuBtn {
     display: none;
-  }
-}
-
-@media screen and (min-width: 0px) and (max-width: 323px) {
-  .items ul {
-    padding-bottom: 60px;
   }
 }

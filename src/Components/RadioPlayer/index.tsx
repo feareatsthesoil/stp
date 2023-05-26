@@ -6,6 +6,7 @@ import { faPlay, faPause } from '@fortawesome/free-solid-svg-icons'
 
 import css from "./RadioPlayer.module.css";
 import { RadioContext } from "../RadioContext";
+import Link from "next/link";
 
 const formattedTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60)
@@ -57,11 +58,14 @@ export default function RadioPlayer() {
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid xs={12} item>
-                <Button onClick={toggle} sx={{ margin: "50px 0 0 0" }} >
-                    <FontAwesomeIcon size="2x" color="black"
+            <Grid xs={12} item sx={{ textAlign: "center!important" }}>
+                <Link className="font-bold hover:underline" onClick={toggle} href={""}>
+                    {playing ? 'Pause' : 'Play'}
+                </Link>
+                {/* <Button onClick={toggle} sx={{ margin: "50px 0 0 0" }} >
+                    <FontAwesomeIcon size="2x" className="place-content-center" color="black"
                         icon={!playing ? faPlay : faPause} />
-                </Button>
+                </Button> */}
             </Grid>
             <Grid item xs={10} sx={{ alignItems: "center !important" }}>
                 <Stack direction={"row"} spacing={1} alignItems="center">

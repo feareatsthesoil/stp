@@ -12,10 +12,10 @@ function Header() {
   const { isSignedIn } = useUser()
 
   return (
-    <div className={currentRoute === "/" ? css.wrapperHome : css.wrapper}>
+    <div className={css.wrapper}>
       <Head>
-        <meta name="theme-color" content={currentRoute === "/" ? "#000" : "#fff"} />
-        <meta name="viewport" content={currentRoute === "/" ? "width=device-width, initial-scale=1.0, viewport-fit=cover" : "width=device-width, initial-scale=1.0"} />
+        <meta name="theme-color" content={"#fff"} />
+        <meta name="viewport" content={"width=device-width, initial-scale=1.0"} />
       </Head>
       <div className={css.logo}>
         <Link href={"/"}>
@@ -28,7 +28,7 @@ function Header() {
             className={currentRoute === "/login" ? css.active : css.idle}
             href={"login"}
           >
-            Login Portal
+            Login
           </Link>
         }</div>
     </div>

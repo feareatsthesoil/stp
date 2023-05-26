@@ -1,7 +1,8 @@
 .body {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - (3vh + 2em + 30px));
+  min-height: 91vh;
 }
 
 .subBody {
@@ -12,7 +13,7 @@
 .box {
   min-width: 250px;
   padding: 1vh 2vw 0 2vw;
-  width: calc(50vw - 130px);
+  align-self: flex-start;
 }
 
 .box h1 {

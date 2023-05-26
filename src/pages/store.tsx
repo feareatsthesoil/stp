@@ -387,51 +387,11 @@ export default function Store() {
 
   }, [])
 
-  const { sideNavVisible } = useSideNav();
-  const [windowWidth, setWindowWidth] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setWindowWidth(window.innerWidth);
-
-      const handleResize = () => {
-        setWindowWidth(window.innerWidth);
-      };
-
-      window.addEventListener('resize', handleResize);
-
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-  }, []);
-
-  const subBodyStyle: CSSProperties = {
-    overflowX: "hidden",
-    width:
-      sideNavVisible
-        ? "calc(100vw - 130px)"
-        : windowWidth && windowWidth <= 575
-          ? "100vw"
-          : "calc(100vw - 130px)",
-  };
-
-  const boxStyle = {
-    width:
-      sideNavVisible
-        ? "calc(100vw - 150px)"
-        : windowWidth && windowWidth <= 575
-          ? "95vw"
-          : "",
-  }
-
   return <>
     <div className={css.body}>
       <Header />
       <Nav />
-      <div className={css.subBody} style={subBodyStyle}>
-        <div ref={collectionDivTagRef} id='collection-component-1682823359416'></div>
-      </div>
+      <div className="px-[2vw]" ref={collectionDivTagRef} id='collection-component-1682823359416'></div>
       <Footer />
     </div>
   </>

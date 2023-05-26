@@ -1,6 +1,6 @@
 .body {
   align-items: center;
-  background-color: #000;
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -36,11 +36,9 @@
 }
 
 .background {
-  border: none;
-  height: auto;
-  min-height: 100vh;
-  overflow: hidden;
-  z-index: -1;
+  width: 50vw;
+  min-width: 300px;
+  align-self: center;
 }
 
 @media screen and (max-width: 575px) and (max-height: 736px) {

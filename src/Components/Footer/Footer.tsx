@@ -1,22 +1,37 @@
 import React, { useContext } from "react"
-import { useRouter } from "next/router"
-import { SignedIn } from "@clerk/nextjs"
-import { Button } from "@mui/material"
-
-import css from "./Footer.module.css"
-import { UserContext } from "../UserContext"
-import Socials from "../Socials"
+import Link from "next/link"
 
 function Footer() {
-  const router = useRouter()
-  const currentRoute = router.pathname;
-  const userData = useContext(UserContext);
-
   return (
     <>
-      <div className={currentRoute === "/" ? css.wrapperHome : css.wrapper}>
-        <div className={css.socials}>
-          <Socials />
+      <div className="mt-auto py-[1vh] w-[96vw] flex flex-row">
+        <div className="hidden sm:flex sm:flex-col">
+          <p>Copyright © 2023, by The STP Creative Foundation.</p>
+          <p>All rights reserved. Send comments, suggestions, and/or problems to: info@stp.world</p>
+        </div>
+        <div
+          className="mt-auto ml-auto [&>*]:px-1 [&>*]:text-blue-600 [&>*]:border-[0] [&>*]:border-r-[1px] [&>*]:border-solid [&>*]:border-black [&>*]:underline"
+        >
+          <Link href="#"
+            className="hover:text-indigo-600"
+          >
+            Instagram
+          </Link>
+          <Link href="#"
+            className="hover:text-indigo-600"
+          >
+            Twitter
+          </Link>
+          <Link href="#"
+            className="hover:text-indigo-600"
+          >
+            Opensea
+          </Link>
+          <Link href="#"
+            className="hover:text-indigo-600"
+          >
+            Discord
+          </Link>
         </div>
       </div >
     </>

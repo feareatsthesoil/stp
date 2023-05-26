@@ -126,9 +126,6 @@ export default function ResourcesList() {
                 sx={{
                     margin: "-90px 0px 0 10px!important",
                     minWidth: 150,
-                    "@media screen and (min-width: 575px) and (max-width: 1228px)": {
-                        margin: "-40px 10px 0 0px!important"
-                    },
                     "@media screen and (min-width: 0px) and (max-width: 445px)": {
                         margin: "-40px 200px 0 0!important",
                     }
