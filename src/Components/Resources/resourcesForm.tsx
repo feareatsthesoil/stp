@@ -56,7 +56,7 @@ export default function ResourcesForm({ data, after = () => { } }: { after?: () 
             name:
                 Yup.string()
                     .required("Name is required")
-                    .max(50, "Must be at most 50 characters")
+                    .max(30, "Must be at most 30 characters")
                     .min(2, "Must be at least 2 characters"),
             link:
                 Yup.string()

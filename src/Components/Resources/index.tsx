@@ -37,7 +37,7 @@ function ResourceItem({ resource, userId }: ResourceItemProps) {
                 <Grid item xs={12}>
                     {userId === resource.userId ?
                         <div className={css.edit}>
-                            <Link sx={{ color: "#000000ab !important" }} href={`/resources/${resource.id}/edit`}>Edit</Link>
+                            <Link sx={{ color: "#000000ab !important" }} href={`/links/${resource.id}/edit`}>Edit</Link>
                         </div>
                         : null}
                 </Grid>

@@ -11,7 +11,7 @@ export default function () {
             <div className={css.box}>
                 <h1>Add to Links</h1>
             </div>
-            <ResourcesForm after={() => router.push("/resources")} />
+            <ResourcesForm after={() => router.push("/links")} />
         </div>
     </AuthLayout>
 }

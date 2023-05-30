@@ -32,16 +32,16 @@ export default function EditResource() {
     return <AuthLayout>
         <div className={css.wrapper}>
             <div className={css.box}>
-                <h1>Add to Calendar</h1>
+                <h1>Add to Links</h1>
             </div>
             {userData.isMember && data &&
                 <ResourcesForm data={data} after={() => router
-                    .push("/resources")} />
+                    .push("/links")} />
             }
             {userId == data?.userId &&
                 <div className={css.delete}>
                     <DeleteResourceButton id={data.id} after={() => router
-                        .push("/resources")} />
+                        .push("/links")} />
                 </div>
             }
             {!userData.isMember &&
