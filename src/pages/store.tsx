@@ -87,7 +87,11 @@ export default function Store() {
             "color": "#000000",
             ":hover": {
               "color": "#000000",
-              "background-color": "rgb(239, 239, 239)"
+              "  background-color": "rgb(199, 199, 199)",
+            },
+            ":active": {
+              "transform": "translateY(4px)",
+              "transition": "60ms transform ease-in-out",
             },
             "background-color": "rgb(239, 239, 239)",
             ":focus": {
@@ -391,7 +395,7 @@ export default function Store() {
     <div className={css.body}>
       <Header />
       <Nav />
-      <div className="px-[2vw]" ref={collectionDivTagRef} id='collection-component-1682823359416'></div>
+      <div className="px-[2vw] pb-5" ref={collectionDivTagRef} id='collection-component-1682823359416'></div>
       <Footer />
     </div>
   </>

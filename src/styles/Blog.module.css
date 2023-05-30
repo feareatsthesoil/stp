@@ -43,6 +43,30 @@
     float: right;
 }
 
+
+.button {
+    justify-content: space-between;
+    background-color: rgb(239, 239, 239);
+    border: 1px solid #000;
+    border-radius: 4px;
+    color: #000;
+    height: 32px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: .8em;
+    padding: 7px 10px;
+    width: auto;
+}
+
+.button:hover {
+    background-color: rgb(199, 199, 199);
+    border: 1px solid #000;
+}
+
+.button:active {
+    transform: translateY(4px);
+    transition: 60ms transform ease-in-out;
+}
+
 @media screen and (min-width: 0px) and (max-width: 600px) {
     .wrapper {
         min-width: 200px;
@@ -53,6 +77,6 @@
     .poster {
         max-width: none;
         height: 500px;
-        width: 96vw;
+        margin-bottom: -25px;
     }
 }

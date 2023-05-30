@@ -4,12 +4,11 @@
   height: 90vh;
   text-align: center;
   justify-content: center;
-  width: calc(100vw - 130px);
+  width: 100vw;
 }
 
 .loading {
   color: #000;
-  margin-right: 150px;
 }
 
 .loading:after {

@@ -38,27 +38,26 @@ export default function IndexPage() {
 
   return (
     <DefaultLayout boxClassName="!w-full">
-      <div className={css.header}>
-        <h1>2023 Calendar</h1>
-        <p>
-          All submissions will be included in our weekly newsletter and are
-          subject to review. By submitting to the calendar you are agreeing to
-          our <Link href="#">Privacy Policy</Link>.
-        </p>
-        <div className={css.buttonWrapper}>
-          <Button className={css.button} onClick={handleClick}>
-            Submit to Calendar
-          </Button>
-          <Button
-            className={css.button}
+      <div className="w-[96vw] border-[0] mt-[-18px] ml-[-2vw] p-5 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm sm:flex-row">
+        <p className="pb-4 sm:pb-0 sm:pr-4">
+          This calendar features events and activity submitted by the Serving the People community. All submissions are subject to review.
+        </p >
+        <div className="min-w-max">
+          <Link
+            className="min-w-max text-blue-600 underline hover:text-indigo-600"
+            onClick={handleClick}
+            href="#"
+          >Submit to Calendar</Link>
+          <Link
+            className="min-w-max text-blue-600 underline pl-4 hover:text-indigo-600"
             href="https://calendar.google.com/calendar/u/1?cid=Y19lYmFlMTRjZDcyMDVhY2U3NDhjMjM3ZDU4MzFhNTlmY2FjNmJiOWFkZGZmYTM2YjIzNzEzNGZlMWE1ODI4YmUzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
             target="webapp-tab"
-          >
-            Add Calendar
-          </Button>
+          >Add Calendar</Link>
         </div>
+      </div >
+      <div className="py-5">
+        <Calendar />
       </div>
-      <Calendar />
-    </DefaultLayout>
+    </DefaultLayout >
   );
 }

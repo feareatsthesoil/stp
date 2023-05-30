@@ -30,9 +30,9 @@ export default function Home() {
           alt="SERVING the PEOPLE"
           quality={50}
         />
-        <div>
+        <div className="w-[96vw]">
           <p className="pt-5 text-base text-center font-bold" >Community Photo Thompkins Square Park</p>
-          <p className="text-sm text-center font-bold" >Photo Credit: <Link className="text-blue-600 underline" href="https://www.instagram.com/graysorrenti/">Gray Sorrenti</Link></p>
+          <p className="text-sm text-center font-bold" >Photo Credit: <Link className="text-blue-600 hover:text-indigo-600 underline" href="https://www.instagram.com/graysorrenti/">Gray Sorrenti</Link></p>
           <p className="text-base px-[2vw] pt-5">Serving the People is a 501(c)(3) non-profit organization that assists artists and creators in making meaningful connections both online and in person. Established in 2017, STP has launched a number of initiatives and developed a platform for connecting creators with audiences, as well as finding opportunities for collaboration and support.</p>
           <p className="text-base px-[2vw] pt-5">Our organization hosts weekly in-person meetings led by artists, providing a space for creative collaboration and discussion. These meetings offer members the opportunity to connect and engage in meaningful dialogue about their work, ideas, and projects. They are designed to foster a supportive and inclusive environment where members can share their experiences and learn from one another.</p>
         </div>
@@ -47,3 +47,4 @@ export default function Home() {
     </>
   )
 }
+

@@ -42,10 +42,6 @@
     transition: 60ms transform ease-in-out;
 }
 
-.list {
-    padding: 0px 0 20px 0;
-}
-
 .edit {
     margin: 3px 0 0 0;
 }
@@ -63,29 +59,7 @@
     color: rgb(0, 71, 255);
 }
 
-.item {
-    display: flex;
-    width: calc(90vw - 130px);
-    padding: 0 0 10px 0;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-}
-
-.item a {
-    margin-top: 10px !important;
-}
-
-.item a:hover {
-    opacity: 60% !important;
-}
-
 .time {
     color: #000000ab;
     min-width: 240px;
-}
-
-@media screen and (min-width: 0px) and (max-width: 575px) {
-    .item {
-        width: 96vw;
-    }
 }

@@ -59,13 +59,10 @@ export default function RadioPlayer() {
                 </Grid>
             </Grid>
             <Grid xs={12} item sx={{ textAlign: "center!important" }}>
-                <Link className="font-bold hover:underline" onClick={toggle} href={""}>
-                    {playing ? 'Pause' : 'Play'}
-                </Link>
-                {/* <Button onClick={toggle} sx={{ margin: "50px 0 0 0" }} >
+                <Button onClick={toggle} sx={{ margin: "50px 0 0 0" }} >
                     <FontAwesomeIcon size="2x" className="place-content-center" color="black"
                         icon={!playing ? faPlay : faPause} />
-                </Button> */}
+                </Button>
             </Grid>
             <Grid item xs={10} sx={{ alignItems: "center !important" }}>
                 <Stack direction={"row"} spacing={1} alignItems="center">

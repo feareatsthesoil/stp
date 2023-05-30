@@ -14,8 +14,8 @@ function Header() {
   return (
     <div className={css.wrapper}>
       <Head>
-        <meta name="theme-color" content={"#fff"} />
-        <meta name="viewport" content={"width=device-width, initial-scale=1.0"} />
+        <meta name="theme-color" content={currentRoute === "/links" ? "#F4F4FE" : "#fff"} />
+        <meta name="viewport" content={"width=device-width, initial-scale=1.0,viewport-fit=cover"} />
       </Head>
       <div className={css.logo}>
         <Link href={"/"}>

@@ -11,13 +11,3 @@
   justify-content: center;
   height: 80vh;
 }
-
-@media screen and (min-width: 0px) and (max-width: 575px) {
-  .subBody {
-    width: 100vw;
-  }
-
-  .box {
-    width: 100vw;
-  }
-}

@@ -90,7 +90,7 @@
 }
 
 .border {
-  border-bottom: 2px dotted black;
+  border-bottom: 1px solid black;
   border-image-repeat: round;
   flex: 1;
   margin: 10px 0 -30px;

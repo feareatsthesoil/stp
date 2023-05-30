@@ -1,11 +1,9 @@
-import { Button } from "@mui/material";
 import { useConfirm } from "material-ui-confirm";
 import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
 
-import css from "../../styles/Resources.module.css"
 import { Resource } from "../../types";
 import { UserContext } from "../../Components/UserContext";
 import DefaultLayout from "../../Components/Layouts/DefaultLayout";
@@ -39,22 +37,26 @@ export default function () {
         }
     }
 
-    return (
-        <DefaultLayout>
-            <div className={css.wrapper}>
-                <h1>Links</h1>
-                <p>
-                    By submitting to links you are agreeing to our <Link style={{ color: "#0047FF", textDecoration: "underline" }} href="#">Privacy Policy</Link>.
-                </p>
-                <Button
-                    className={css.button}
-                    onClick={handleClick}>
-                    Submit
-                </Button>
-            </div>
-            <div className={css.list}>
-                <ResourcesList />
-            </div>
-        </DefaultLayout>
+    return (<>
+        <div className="bg-[#F4F4FE]">
+            <DefaultLayout>
+                <div className="w-[96vw] border-[0] mt-[-18px] ml-[-2vw] p-5 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm text-center">
+                    <p>
+                        All links are submitted by the Serving the People  community.  All submissions are subject to review.&nbsp;
+                    </p>
+                    <Link
+                        className="text-blue-600 underline hover:text-indigo-600"
+                        href="#"
+                        onClick={handleClick}
+                    >
+                        Submit link
+                    </Link>
+                </div>
+                <div className="py-5">
+                    <ResourcesList />
+                </div>
+            </DefaultLayout>
+        </div>
+    </>
     )
 }
