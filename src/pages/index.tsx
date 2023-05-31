@@ -1,5 +1,6 @@
 import React from "react"
 import Image from 'next/image'
+import Link from "next/link"
 import useSWR from 'swr';
 
 import css from "../styles/Home.module.css"
@@ -8,7 +9,6 @@ import Footer from "../Components/Footer/Footer"
 import Header from "../Components/Header/Header"
 import homePic from "../../public/Images/home.jpg"
 import Nav from "../Components/Nav/Nav"
-import Link from "next/link"
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
@@ -17,6 +17,8 @@ export default function Home() {
 
   if (error) return <div>Error loading data</div>
   if (!data) return <div>Loading...</div>
+
+  const eventDate = new Date(data.starts_at).toLocaleString()
   return (
     <>
       <div className={css.body}>
@@ -38,9 +40,11 @@ export default function Home() {
         </div>
         <div className="w-[96vw] border-[0] mt-5 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm">
           <p className="pr-1">Next Meeting:</p>
-          <h2>{data.name}</h2>
-          <h2>{data.location}</h2>
-          <p>{new Date(data.starts_at).toLocaleString()}</p>
+          <Link href={`https://www.google.com/calendar/event?eid=${data.id}`}>
+            <h2>{data.name}</h2>
+            <h2>{data.location}</h2>
+            <p>{eventDate}</p>
+          </Link>
         </div>
         <Footer />
       </div>
