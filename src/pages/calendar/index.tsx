@@ -39,7 +39,7 @@ export default function IndexPage() {
   return (
     <DefaultLayout boxClassName="!w-full">
       <div className="w-[96vw] border-[0] mt-[-18px] ml-[-2vw] p-5 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm sm:flex-row">
-        <p className="pb-4 sm:pb-0 sm:pr-4">
+        <p className="pb-1 sm:pb-0 sm:pr-4">
           This calendar features events and activity submitted by the Serving the People community. All submissions are subject to review.
         </p >
         <div className="min-w-max">
