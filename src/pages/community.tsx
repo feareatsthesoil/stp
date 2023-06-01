@@ -36,7 +36,7 @@ export default function Discussion() {
         };
     };
 
-    const whatsAppHandler = clickHandler("https://chat.whatsapp.com/Bqtf9Q2hhQw96RCHpuMPLm");
+    const whatsAppHandler = clickHandler("https://chat.whatsapp.com/C4DZ6DrsyxUJf6B3VOKKQ4");
     const discordHandler = clickHandler("https://discord.com/invite/nhqyng5wQ9");
     const urbitHandler = clickHandler("https://tlon.network/lure/~hodpel-witdyr/serving-the-people");
 
