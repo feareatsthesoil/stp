@@ -52,7 +52,7 @@ export default function Home() {
         </div>
         <div className="w-[96vw] border-[0] mt-5 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
           <Link href={data.htmlLink} target="_blank" rel="noreferrer" className="flex hover:text-slate-600">
-            <p className="pr-1 min-w-max">Upcoming:</p>
+            <p className="pr-1 min-w-max">This Week:</p>
             <div>
               <h2>{data.summary}{data.location && <> at: <Link className="text-blue-600 hover:text-indigo-600 underline"
                 href={`http://google.com/maps/search/${data.location}`} target="_blank" rel="noreferrer">{data.location}</Link></>}</h2>
