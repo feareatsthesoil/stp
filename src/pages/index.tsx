@@ -1,39 +1,13 @@
+import React from "react";
 import Image from "next/image";
-import Link from "next/link";
-import React, { Suspense, lazy, useMemo } from "react";
 import Address from "../Components/Address/address";
-import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import Nav from "../Components/Nav/Nav";
 import css from "../styles/Home.module.css";
-
 import homePic from "../../public/Images/home.jpg";
+import NextEvent from "../Components/Calendar/NextEvent";
 
-const NextEvent = lazy(() => import("../Components/Calendar/NextEvent"));
-
-interface Props {
-  data: any;
-}
-
-const MyComponent: React.FC<Props> = React.memo(({ data }) => {
-  const eventDate = useMemo(
-    () => new Date(data.start.dateTime),
-    [data.start.dateTime]
-  );
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "2-digit",
-    minute: "2-digit",
-    hour12: true,
-  };
-  const formattedDate = useMemo(
-    () => new Intl.DateTimeFormat("en-US", options).format(eventDate),
-    [eventDate]
-  );
-
+const Home: React.FC = () => {
   return (
     <div className={css.body}>
       <Header />
@@ -52,12 +26,12 @@ const MyComponent: React.FC<Props> = React.memo(({ data }) => {
         </p>
         <p className="text-sm text-center font-bold">
           Photo Credit:{" "}
-          <Link
+          <a
             className="text-blue-600 hover:text-indigo-600 underline"
             href="https://www.instagram.com/graysorrenti/"
           >
             Gray Sorrenti
-          </Link>
+          </a>
         </p>
         <p className="text-base px-[2vw] pt-5">
           Serving the People is a 501(c)(3) non-profit organization that assists
@@ -76,37 +50,9 @@ const MyComponent: React.FC<Props> = React.memo(({ data }) => {
           members can share their experiences and learn from one another.
         </p>
       </div>
-      <Suspense fallback={<div>Loading next event...</div>}>
-        <NextEvent />
-      </Suspense>
+      <NextEvent />
     </div>
   );
-});
-
-export async function getServerSideProps() {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/calendar/next`
-  );
-
-  if (!response.ok) {
-    const message = `An error has occurred: ${response.status}`;
-    return { props: { message } };
-  }
-
-  const data = await response.json();
-
-  return {
-    props: { data },
-  };
-}
-
-const Home: React.FC<Props> = ({ data }) => {
-  if (!data) return <div>Loading...</div>;
-  if (data.message) {
-    return <div>Error loading data: {data.message}</div>;
-  }
-
-  return <MyComponent data={data} />;
 };
 
 export default Home;
