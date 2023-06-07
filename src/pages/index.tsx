@@ -1,11 +1,12 @@
-import React from "react";
 import Image from "next/image";
+import React from "react";
+import homePic from "../../public/Images/home.jpg";
 import Address from "../Components/Address/address";
+import NextEvent from "../Components/Calendar/NextEvent";
+import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import Nav from "../Components/Nav/Nav";
 import css from "../styles/Home.module.css";
-import homePic from "../../public/Images/home.jpg";
-import NextEvent from "../Components/Calendar/NextEvent";
 
 const Home: React.FC = () => {
   return (
@@ -51,6 +52,7 @@ const Home: React.FC = () => {
         </p>
       </div>
       <NextEvent />
+      <Footer/>
     </div>
   );
 };
