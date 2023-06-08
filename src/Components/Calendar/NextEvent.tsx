@@ -39,7 +39,7 @@ export default function NextEvent() {
         rel="noreferrer"
         className="flex hover:text-slate-600"
       >
-        <p className="pr-1 min-w-max">This Week:</p>
+        <p className="pr-1 min-w-max">Upcoming:</p>
         <div>
           <h2>
             {data.summary}
