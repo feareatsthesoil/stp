@@ -30,7 +30,7 @@
     "@mui/styles": "^5.11.13",
     "@mui/x-date-pickers": "^6.0.3",
     "@planetscale/database": "^1.7.0",
-    "@prisma/client": "^4.13.0",
+    "@prisma/client": "^4.15.0",
     "@reduxjs/toolkit": "^1.9.3",
     "@types/autosuggest-highlight": "^3.2.0",
     "@types/google-map-react": "^2.1.7",

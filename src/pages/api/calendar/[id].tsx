@@ -2,6 +2,7 @@ import { NextApiResponse } from "next"
 import { PrismaClient } from "@prisma/client"
 import { withAuth } from "@clerk/nextjs/api"
 import { google } from "googleapis"
+import { prisma } from "../../../utils/prisma"
 
 const EventUpdate = (async (req: any, res: NextApiResponse) => {
     const { id } = req.query
@@ -12,8 +13,8 @@ const EventUpdate = (async (req: any, res: NextApiResponse) => {
     if (!id) {
         return res.status(404).json({ message: "ID not specifed" })
     }
-    const client = new PrismaClient()
-    const calendarData = await client.events.findFirstOrThrow({ where: { id: Number(id) } })
+
+    const calendarData = await prisma.events.findFirstOrThrow({ where: { id: Number(id) } })
 
     const target = ["https://www.googleapis.com/auth/calendar"]
     const jwt = new google.auth.JWT(
@@ -31,7 +32,7 @@ const EventUpdate = (async (req: any, res: NextApiResponse) => {
         ) {
             res.status(400).json({ message: "You are not authorized to do this" })
         }
-        await client.events.update({ where: { id: Number(id) }, data })
+        await prisma.events.update({ where: { id: Number(id) }, data })
         if (calendarData.calendarEventId) {
             const gcalEvent = await calendar.events.update({
                 calendarId, eventId: calendarData.calendarEventId!, requestBody: {
@@ -50,7 +51,7 @@ const EventUpdate = (async (req: any, res: NextApiResponse) => {
         ) {
             res.status(400).json({ message: "You are not authorized to do this" })
         }
-        await client.events.delete({ where: { id: Number(id) } })
+        await prisma.events.delete({ where: { id: Number(id) } })
 
         if (calendarData.calendarEventId) {
             await calendar.events.delete({

@@ -1,6 +1,7 @@
 import { NextApiResponse } from "next"
 import { withAuth } from "@clerk/nextjs/api";
 import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../utils/prisma";
 
 async function resourceSubmit(req: any, res: NextApiResponse) {
     const { id } = req.query
@@ -9,8 +10,7 @@ async function resourceSubmit(req: any, res: NextApiResponse) {
         const { body } = req
         const { userId } = req.auth
         const { id, ...rest } = body
-        const client = new PrismaClient();
-        await client.resource.create({ data: { ...rest, userId } })
+        await prisma.resource.create({ data: { ...rest, userId } })
         return res.status(200).json({ message: "Inserted succesfully" })
     } catch (error) {
         if (error instanceof Error) {

@@ -1,4 +1,4 @@
-import { ReactNode, useContext, useEffect, useState } from "react";
+import { ReactNode, useContext } from "react";
 import { CSSProperties } from "styled-components";
 import clsx from "clsx";
 
@@ -11,18 +11,25 @@ import Loader from "../Loader";
 import NavBar from "../Nav/Nav";
 import usePageLoader from "../../hooks/usePageLoader";
 
-export default function DefaultLayout(props: {
+interface DefaultLayoutProps {
   children: ReactNode;
   boxClassName?: string;
-}) {
+  backgroundColor?: string;
+}
+
+export default function DefaultLayout(props: DefaultLayoutProps) {
   const { initialized } = useContext(UserContext);
   const loading = usePageLoader() || !initialized;
+
+  const layoutStyles: CSSProperties = {
+    backgroundColor: props.backgroundColor,
+  };
 
   return (
     <div className={css.body}>
       <Header />
       <NavBar />
-      <div className={css.box}>
+      <div className={clsx(css.box, props.boxClassName)} style={layoutStyles}>
         {loading && <Loader />}
         {!loading && props.children}
       </div>

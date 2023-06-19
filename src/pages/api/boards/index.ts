@@ -1,10 +1,10 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import { PrismaClient } from "@prisma/client"
+
 import { prisma } from "../../../utils/prisma"
 
-export default async function resourcesIndex(req: NextApiRequest, res: NextApiResponse) {
+export default async function boardsIndex(req: NextApiRequest, res: NextApiResponse) {
 
-    const data = await prisma.resource.findMany({
+    const data = await prisma.boards.findMany({
         where: {},
         orderBy: { name: "asc" }
     })
