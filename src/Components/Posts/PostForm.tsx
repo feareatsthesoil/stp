@@ -1,60 +1,124 @@
-import React from "react";
-import { useContext, useState } from "react"
-import { useRouter } from "next/router"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faSpinner } from "@fortawesome/free-solid-svg-icons"
-import { useFormik } from 'formik'
-import * as Yup from 'yup'
+
 import { Button, TextField } from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { withStyles } from "@mui/styles";
+import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import React from "react";
+import * as Yup from "yup";
 import { createPost } from "../../utils/services";
-export default function PostForm({slug}: {slug: string}){
-  const router = useRouter()
 
-    const formik = useFormik({
+const theme = createTheme({
+  palette: {
+    secondary: {
+      main: "#000",
+    },
+  },
+});
 
-        validationSchema: Yup.object({
-         title: Yup.string().required("required"),
-         content: Yup.string().required("required")
+const CssTextField = withStyles({
+  root: {
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: "black",
+      },
+      "&:hover fieldset": {
+        borderWidth: "2px",
+      },
+      "& .Mui-error fieldset": {
+        borderColor: "black!important",
+      },
+    },
+    "& .MuiOutlinedInput-root.Mui-error": {
+      "& fieldset": {
+        borderColor: "black!important",
+      },
+    },
+    "& .MuiFormLabel-root": {
+      fontFamily: "Times New Roman",
+      color: "black",
+    },
+    "& .MuiFormLabel-root.Mui-error": {
+      color: "black!important",
+      "& span": {
+        color: "black!important",
+      },
+    },
+  },
+})(TextField);
 
-        }),
-        initialValues: {title: "", content: ""}, onSubmit: async (values, helpers) => {
+export default function PostForm({ slug }: { slug: string }) {
+  const router = useRouter();
 
-          const dataToSubmit = {
-            ...values
-          }
-        //   const response = data?.id ? await axios.put(`/api/directory/${data.id}`, dataToSubmit) : await axios.post("/api/directory/submit", dataToSubmit)
-        await createPost(slug, dataToSubmit)
-        helpers.setSubmitting(false)
-       helpers.resetForm()
+  const formik = useFormik({
+    validationSchema: Yup.object({
+      title: Yup.string().required("required"),
+      content: Yup.string().required("required"),
+    }),
+    initialValues: { title: "", content: "" },
+    onSubmit: async (values, helpers) => {
+      const dataToSubmit = {
+        ...values,
+      };
+      await createPost(slug, dataToSubmit);
+      helpers.setSubmitting(false);
+      helpers.resetForm();
 
-            router.push("/chan/"+ slug)
-        }
-      })
+      router.push("/chan/" + slug);
+    },
+  });
 
-      return <form onSubmit={formik.handleSubmit}>
-        <TextField  label="Name"
-        name= "title"
-                 fullWidth
-                color="secondary"
-                value={formik.values.title}
-                onChange={formik.handleChange}
-                error={!!formik.errors.title}
-                helperText={formik.errors.title}
-                disabled={formik.isSubmitting}/>
-
-
-         <TextField  label="Content"
-         rows={3}
-                 name="content"
-                 fullWidth
-                multiline={true}
-                color="secondary"
-                value={formik.values.content}
-                onChange={formik.handleChange}
-                error={!!formik.errors.content}
-                helperText={formik.errors.content}
-                disabled={formik.isSubmitting}/>
-
-                <Button type="submit" color="secondary" variant="contained">Submit</Button>
-      </form >
+  return (
+    <form onSubmit={formik.handleSubmit}>
+      <ThemeProvider theme={theme}>
+        <CssTextField
+          label="Name"
+          name="title"
+          fullWidth
+          color="secondary"
+          value={formik.values.title}
+          onChange={formik.handleChange}
+          error={!!formik.errors.title}
+          helperText={formik.errors.title}
+          disabled={formik.isSubmitting}
+        />
+        <CssTextField
+          sx={{ margin: "10px 0 0 0" }}
+          label="Content"
+          rows={3}
+          name="content"
+          fullWidth
+          multiline={true}
+          color="secondary"
+          value={formik.values.content}
+          onChange={formik.handleChange}
+          error={!!formik.errors.content}
+          helperText={formik.errors.content}
+          disabled={formik.isSubmitting}
+        />
+        <Button
+          sx={{
+            float: "right",
+            backgroundColor: "rgb(239, 239, 239)",
+            textTransform: "none",
+            fontFamily: "Helvetica",
+            fontSize: "1em",
+            borderRadius: "4px",
+            color: "#000",
+            border: "1px solid #000",
+            height: "30px",
+            margin: "10px 0 0 0",
+            "&:hover ": {
+              backgroundColor: "rgb(220, 220, 220) !important;",
+            },
+          }}
+          type="submit"
+          color="secondary"
+          variant="contained"
+        >
+          Save
+        </Button>
+      </ThemeProvider>
+    </form>
+  );
 }

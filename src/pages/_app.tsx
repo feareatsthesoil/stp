@@ -1,23 +1,22 @@
-import { Provider } from "react-redux";
-import { AppProps } from "next/app";
-import Head from "next/head";
 import { ClerkProvider } from "@clerk/nextjs";
-import { ConfirmProvider } from "material-ui-confirm";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { WagmiConfig, createClient, configureChains, mainnet } from "wagmi";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
+import { ConfirmProvider } from "material-ui-confirm";
+import { AppProps } from "next/app";
+import Head from "next/head";
+import { SnackbarProvider } from "notistack";
+import { Provider } from "react-redux";
+import { WagmiConfig, configureChains, createClient, mainnet } from "wagmi";
+import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
 import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
-import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";
-import { SnackbarProvider } from "notistack";
-
-import "../styles/globals.css";
-import { RadioProvider } from "../Components/RadioContext";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+import { publicProvider } from "wagmi/providers/public";
 import { SideNavProvider } from "../Components/Nav/NavContext";
-import { store } from "../redux/store";
+import { RadioProvider } from "../Components/RadioContext";
 import { UserProvider } from "../Components/UserContext";
+import { store } from "../redux/store";
+import "../styles/globals.css";
 
 const { provider, webSocketProvider } = configureChains(
   [mainnet],

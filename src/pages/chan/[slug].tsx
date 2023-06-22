@@ -16,17 +16,18 @@ export default function BoardsShow() {
   const router = useRouter();
 
   const {
-    query: { slug },
+    query: { slug, name },
   } = router;
+
   return (
     <div className="bg-[#F4F4FE]">
       <DefaultLayout boxClassName="!w-full">
         <div className="w-[96vw] border-[0] mt-[-18px] p-6 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm sm:flex-row">
           <p className="sm:pb-0 sm:pr-4 text-lg">/{slug}/</p>
-          <div className="min-w-max"></div>
+          {/* <div className="min-w-max"></div> */}
         </div>
         <div className="py-5">
-          <BoardView slug={slug as string} />
+          <BoardView slug={slug as string}/>
         </div>
       </DefaultLayout>
     </div>

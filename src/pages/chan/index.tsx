@@ -1,19 +1,8 @@
-import React, { useContext } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-
-import { useConfirm } from "material-ui-confirm";
-
-import { UserContext } from "../../Components/UserContext";
-import Calendar from "../../Components/Calendar";
-import DefaultLayout from "../../Components/Layouts/DefaultLayout";
+import React from "react";
 import Boards from "../../Components/Boards";
+import DefaultLayout from "../../Components/Layouts/DefaultLayout";
 
 export default function BoardsIndexPage() {
-  const { loggedIn, isMember } = useContext(UserContext);
-  const confirm = useConfirm();
-  const router = useRouter();
-
   return (
     <div className="bg-[#F4F4FE]">
       <DefaultLayout boxClassName="!w-full">

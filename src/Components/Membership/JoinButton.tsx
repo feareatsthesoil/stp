@@ -1,11 +1,10 @@
-import { useContext, useState } from "react";
-import { useRouter } from "next/router";
-import { Button } from "@mui/material";
-import { useConfirm } from "material-ui-confirm";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Button } from "@mui/material";
 import axios from "axios";
-
+import { useConfirm } from "material-ui-confirm";
+import { useRouter } from "next/router";
+import { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
 
 export default function JoinButton() {
@@ -45,9 +44,25 @@ export default function JoinButton() {
       });
   };
   return (
-    <Button sx={{
-      minWidth: 83,
-    }} onClick={handleClick}>
+    <Button
+      sx={{
+        backgroundColor: "rgb(239, 239, 239) !important",
+        textTransform: "none",
+        fontFamily: "Helvetica",
+        fontSize: ".8em",
+        borderRadius: "4px",
+        color: "#000",
+        border: "1px solid #000",
+        height: "31.8px",
+        padding: "0 8px",
+        "&:hover ": {
+          backgroundColor: "rgb(220, 220, 220) !important;",
+        },
+      }}
+      color="secondary"
+      variant="contained"
+      onClick={handleClick}
+    >
       {!loading && <>Join Now!</>}
       {loading && <FontAwesomeIcon icon={faSpinner} spin />}
     </Button>

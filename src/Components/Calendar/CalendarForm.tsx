@@ -1,25 +1,25 @@
-import React from "react";
-import axios from "axios";
-import { useFormik } from "formik";
-import {
-  FormHelperText,
-  MenuItem,
-  TextField,
-  Unstable_Grid2 as Grid,
-  Button,
-} from "@mui/material";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { withStyles } from "@mui/styles";
-import { DateTimePicker } from "@mui/x-date-pickers";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useSnackbar } from "notistack";
-import * as Yup from "yup";
+import {
+  Button,
+  FormHelperText,
+  Unstable_Grid2 as Grid,
+  MenuItem,
+  TextField,
+} from "@mui/material";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { withStyles } from "@mui/styles";
+import { DateTimePicker } from "@mui/x-date-pickers";
+import axios from "axios";
+import clsx from "clsx";
 import dayjs from "dayjs";
-
+import { useFormik } from "formik";
+import { useSnackbar } from "notistack";
+import React from "react";
 import css from "src/styles/Form.module.css";
-import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete";
+import * as Yup from "yup";
 import { CalendarRow } from "../../types";
+import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete";
 
 const initialState = {
   name: "",
@@ -369,25 +369,28 @@ export default function CalendarForm({
               />
             </Grid>
             <Grid xs={12}>
-              <p className={isMax ? css.max : css.notMax}>
+              <p className={clsx(isMax ? css.max : css.notMax, "mt-[-13px]")}>
                 {formik.values.description.length}/300
               </p>
               <Button
                 sx={{
                   float: "right",
-                  backgroundColor: "rgb(239, 239, 239)",
+                  backgroundColor: "rgb(239, 239, 239) !important",
                   textTransform: "none",
                   fontFamily: "Helvetica",
-                  fontSize: "0.8em",
+                  fontSize: ".8em",
                   borderRadius: "4px",
                   color: "#000",
                   border: "1px solid #000",
-                  height: "30px",
-                  margin: "-30px 0 0 0",
+                  height: "31.8px",
+                  padding: "0 8px",
+                  margin: "-13px 0 20px 0",
                   "&:hover ": {
                     backgroundColor: "rgb(220, 220, 220) !important;",
                   },
                 }}
+                color="secondary"
+                variant="contained"
                 disabled={formik.isSubmitting}
                 type={"submit"}
                 className={css.button}

@@ -1,14 +1,13 @@
-import React, { useContext } from "react";
-import Link from "next/link";
 import { useUser } from "@clerk/nextjs";
 import { Button, Chip } from "@mui/material";
 import moment from "moment";
-
-import css from "../styles/Membership.module.css";
-import { UserContext } from "../Components/UserContext";
+import Link from "next/link";
+import React, { useContext } from "react";
 import DefaultLayout from "../Components/Layouts/DefaultLayout";
 import JoinButton from "../Components/Membership/JoinButton";
 import VerifySeedButton from "../Components/Membership/VerifySeedButton";
+import { UserContext } from "../Components/UserContext";
+import css from "../styles/Membership.module.css";
 
 const Membership = () => {
   const { initialized, purchase, isEdu, isSeedHolder } =
@@ -52,11 +51,7 @@ const Membership = () => {
           {!isEdu && initialized && (
             <>
               {" "}
-              {!purchase?.id && (
-                <div className={css.joinButton}>
-                  <JoinButton />
-                </div>
-              )}
+              {!purchase?.id && <JoinButton />}
               {purchase?.id && (
                 <>
                   <div>
@@ -84,12 +79,18 @@ const Membership = () => {
         <p>Benefits</p>
         <ul>
           <li>
-            Receive early access to merchandise and apparel, as well as discount codes for select items in our shop - this
-            includes tote bags, hats, and more.
+            Receive early access to merchandise and apparel, as well as discount
+            codes for select items in our shop - this includes tote bags, hats,
+            and more.
           </li>
-          <li>Access to all of Serving the People's  <Link href="/community">community</Link> channels including Whatsapp, Discord, and Urbit.</li>
           <li>
-            Unlock the ability to post to our community calendar, and creator directory.
+            Access to all of Serving the People's{" "}
+            <Link href="/community">community</Link> channels including
+            Whatsapp, Discord, and Urbit.
+          </li>
+          <li>
+            Unlock the ability to post to our community calendar, and creator
+            directory.
           </li>
         </ul>
         <div className={css.border} />
@@ -135,7 +136,21 @@ const Membership = () => {
           <h1>Student membership: Free</h1>
           {isLoaded && !isSignedIn && (
             <Button
-              className={css.button}
+              sx={{
+                backgroundColor: "rgb(239, 239, 239) !important",
+                textTransform: "none",
+                fontFamily: "Helvetica",
+                fontSize: ".8em",
+                borderRadius: "4px",
+                color: "#000",
+                border: "1px solid #000",
+                height: "31.8px",
+                padding: "0 8px",
+                "&:hover ": {
+                  backgroundColor: "rgb(220, 220, 220) !important;",
+                },
+              }}
+              color="secondary"
               variant="contained"
               href="/login?redirect_url=/membership"
             >
@@ -160,6 +175,8 @@ const Membership = () => {
                 borderRadius: "4px",
                 fontFamily: "Helvetica",
                 border: "1px solid #000",
+                boxShadow:
+                  "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
               }}
               label="Unauthenticated"
             />
@@ -180,8 +197,21 @@ const Membership = () => {
           <h1>Make a tax-deductible donation today.</h1>
           <div>
             <Button
-              className={css.button}
-              target="_blank"
+              sx={{
+                backgroundColor: "rgb(239, 239, 239) !important",
+                textTransform: "none",
+                fontFamily: "Helvetica",
+                fontSize: ".8em",
+                borderRadius: "4px",
+                color: "#000",
+                border: "1px solid #000",
+                height: "31.8px",
+                padding: "0 8px",
+                "&:hover ": {
+                  backgroundColor: "rgb(220, 220, 220) !important;",
+                },
+              }}
+              color="secondary"
               variant="contained"
               href="https://donate.stripe.com/test_dR6cNJdBy2vY7kY6oo"
             >

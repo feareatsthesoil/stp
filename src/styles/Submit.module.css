@@ -4,6 +4,7 @@
   flex-direction: column;
   padding-top: calc(20vh - 60px);
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .directoryWrapper {

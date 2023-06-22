@@ -12,6 +12,7 @@
 .box h1 {
   font-size: 1em;
   font-weight: bold;
+  margin: -10px 0 0 0;
 }
 
 .box p {
@@ -34,18 +35,13 @@
   border-radius: 4px;
   color: #000;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: .8em;
+  font-size: 0.8em;
   padding: 7px 10px;
 }
 
 .box button:hover {
   cursor: pointer;
   background-color: rgb(220, 220, 220) !important;
-}
-
-.box button:active {
-  transform: translateY(4px);
-  transition: 60ms transform ease-in-out;
 }
 
 .joinButton button {
@@ -60,9 +56,9 @@
   border-radius: 4px !important;
   box-shadow: none !important;
   color: #000 !important;
-  font-family: 'Helvetica' !important;
+  font-family: "Helvetica" !important;
   font-weight: 400 !important;
-  font-size: .8em !important;
+  font-size: 0.8em !important;
   padding: 3px 10px !important;
   text-transform: none !important;
 }

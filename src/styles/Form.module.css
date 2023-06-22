@@ -1,11 +1,11 @@
 .wrapper div {
   border-radius: 4px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
 .wrapper label {
   color: #000;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
   margin: 0px 0px 0px 0px;
 }
 
@@ -16,11 +16,6 @@
 
 .button:hover {
   background-color: rgb(220, 220, 220) !important;
-}
-
-.button:active {
-  transform: translateY(4px);
-  transition: 60ms transform ease-in-out;
 }
 
 .max {

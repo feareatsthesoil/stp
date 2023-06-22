@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import Link from "next/link";
+import React, { useEffect } from "react";
 import useSWR, { mutate } from "swr";
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -14,8 +14,18 @@ export default function NextEvent() {
     }
   }, [error]);
 
-  if (error) return <div>Error loading data</div>;
-  if (!data) return <div>Loading...</div>;
+  if (error)
+    return (
+      <div className="w-[96vw] border-[0] mt-5 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
+        Error loading data
+      </div>
+    );
+  if (!data)
+    return (
+      <div className="w-[96vw] border-[0] mt-5 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
+        Loading...
+      </div>
+    );
 
   const eventDate = new Date(data.start.dateTime);
   const options: Intl.DateTimeFormatOptions = {
