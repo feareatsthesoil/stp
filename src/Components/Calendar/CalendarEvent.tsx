@@ -111,7 +111,29 @@ export function CalendarEventComponent(params: {
               className={css.editLink}
               href={`/calendar/${row.id}/edit`}
             >
-              <Button className={`${css.button} ${css.edit}`}>Edit</Button>
+              <Button
+                sx={{
+                  float: "right",
+                  backgroundColor: "rgb(239, 239, 239)!important",
+                  textTransform: "none",
+                  fontFamily: "Helvetica",
+                  fontSize: ".9em",
+                  borderRadius: "4px",
+                  color: "#000",
+                  border: "1px solid #000",
+                  height: "31.8px",
+                  margin: "5px 0 20px 0",
+                  "&:hover ": {
+                    backgroundColor: "#dcdcdc !important;",
+                  },
+                  
+                }}
+                type="submit"
+                color="secondary"
+                variant="contained"
+              >
+                Edit
+              </Button>
             </Link>
           ) : null}
         </div>
