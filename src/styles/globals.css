@@ -280,6 +280,26 @@ p {
   background-color: #00000000;
 }
 
+/* UploadCare */
+.uploadcare--widget__button.uploadcare--widget__button_type_open {
+  color: #000;
+  text-decoration: underline;
+  margin: 0 0 0 -10px;
+}
+
+.uploadcare--widget__button.uploadcare--widget__button_type_open:hover {
+  background-color: #F4F4FE;
+  cursor: pointer;
+}
+
+.uploadcare--widget__button.uploadcare--widget__button_type_open:active{
+  background-color: #F4F4FE;
+}
+
+.uploadcare--widget__button.uploadcare--widget__button_type_open:focus{
+  background-color: #F4F4FE;
+}
+
 /* MEDIA QUERIES */
 @media (prefers-reduced-motion: no-preference) {
   :root {

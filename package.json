@@ -37,6 +37,7 @@
     "@types/google.maps": "^3.52.3",
     "@types/lodash": "^4.14.191",
     "@types/next": "^9.0.0",
+    "@uploadcare/react-widget": "^2.4.3",
     "autosuggest-highlight": "^3.3.4",
     "axios": "^1.4.0",
     "calendar-link": "^2.4.0",

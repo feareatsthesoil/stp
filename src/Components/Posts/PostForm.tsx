@@ -1,5 +1,4 @@
-
-import { Button, TextField } from "@mui/material";
+import { Button, Input, TextField } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { withStyles } from "@mui/styles";
 import { useFormik } from "formik";
@@ -7,6 +6,9 @@ import { useRouter } from "next/router";
 import React from "react";
 import * as Yup from "yup";
 import { createPost } from "../../utils/services";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { Widget } from "@uploadcare/react-widget";
 
 const theme = createTheme({
   palette: {
@@ -19,6 +21,7 @@ const theme = createTheme({
 const CssTextField = withStyles({
   root: {
     "& .MuiOutlinedInput-root": {
+      fontFamily: "Times New Roman",
       "& fieldset": {
         borderColor: "black",
       },
@@ -44,6 +47,11 @@ const CssTextField = withStyles({
         color: "black!important",
       },
     },
+    "& .MuiOutlinedInput-input": {
+      "& fieldset": {
+        fontFamily: "Times New Roman",
+      },
+    },
   },
 })(TextField);
 
@@ -52,10 +60,11 @@ export default function PostForm({ slug }: { slug: string }) {
 
   const formik = useFormik({
     validationSchema: Yup.object({
-      title: Yup.string().required("required"),
-      content: Yup.string().required("required"),
+      title: Yup.string().required("Name is required"),
+      content: Yup.string().required("Content is required"),
+      attachment: Yup.string().url().nullable(),
     }),
-    initialValues: { title: "", content: "" },
+    initialValues: { title: "", content: "", attachment: null },
     onSubmit: async (values, helpers) => {
       const dataToSubmit = {
         ...values,
@@ -72,10 +81,17 @@ export default function PostForm({ slug }: { slug: string }) {
     <form onSubmit={formik.handleSubmit}>
       <ThemeProvider theme={theme}>
         <CssTextField
+          sx={{
+            boxShadow:
+              "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+            borderRadius: "4px",
+          }}
           label="Name"
           name="title"
           fullWidth
+          required
           color="secondary"
+          variant="outlined"
           value={formik.values.title}
           onChange={formik.handleChange}
           error={!!formik.errors.title}
@@ -83,11 +99,18 @@ export default function PostForm({ slug }: { slug: string }) {
           disabled={formik.isSubmitting}
         />
         <CssTextField
-          sx={{ margin: "10px 0 0 0" }}
+          sx={{
+            margin: "10px 0 0 0",
+            boxShadow:
+              "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+            borderRadius: "4px",
+          }}
           label="Content"
           rows={3}
+          variant="outlined"
           name="content"
           fullWidth
+          required
           multiline={true}
           color="secondary"
           value={formik.values.content}
@@ -96,10 +119,17 @@ export default function PostForm({ slug }: { slug: string }) {
           helperText={formik.errors.content}
           disabled={formik.isSubmitting}
         />
+        <Widget
+          systemDialog={true}
+          publicKey="298fc65a2986318fd270"
+          onChange={(info) => {
+            formik.setFieldValue("attachment", info.cdnUrl);
+          }}
+        />
         <Button
           sx={{
             float: "right",
-            backgroundColor: "rgb(239, 239, 239)",
+            backgroundColor: "rgb(239, 239, 239)!important",
             textTransform: "none",
             fontFamily: "Helvetica",
             fontSize: "1em",
@@ -109,14 +139,19 @@ export default function PostForm({ slug }: { slug: string }) {
             height: "30px",
             margin: "10px 0 0 0",
             "&:hover ": {
-              backgroundColor: "rgb(220, 220, 220) !important;",
+              backgroundColor: "#dcdcdc !important;",
             },
           }}
           type="submit"
           color="secondary"
           variant="contained"
         >
-          Save
+          {!formik.isSubmitting && <>Save</>}
+          {formik.isSubmitting && (
+            <span style={{ paddingRight: 2 }}>
+              <FontAwesomeIcon icon={faSpinner} spin />
+            </span>
+          )}
         </Button>
       </ThemeProvider>
     </form>

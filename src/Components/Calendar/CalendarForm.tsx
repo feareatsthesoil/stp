@@ -84,6 +84,9 @@ const CssTextField = withStyles({
         color: "black!important",
       },
     },
+    boxShadow:
+    "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+    borderRadius: "4px",
   },
 })(TextField);
 
@@ -267,6 +270,9 @@ export default function CalendarForm({
                   ".MuiFormLabel-colorError.Mui-focused": {
                     color: "#d32f2!important",
                   },
+                  boxShadow:
+                  "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+                  borderRadius: "4px",
                 }}
                 value={formik.values.starts_at}
                 onChange={(value) => formik.setFieldValue("starts_at", value)}
@@ -275,6 +281,14 @@ export default function CalendarForm({
               <div>
                 <FormHelperText
                   className="helperText"
+                  sx={{
+                    width: "100%",
+                    margin: "0px 0 0 0px!important",
+                    padding: "3px 0 0 15px!important",
+                    borderRadius: "0 0 4px 4px",
+                    boxShadow:
+                  "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+                  }}
                   error={!!formik.errors.starts_at}
                 >
                   {formik.errors.starts_at}
@@ -307,6 +321,12 @@ export default function CalendarForm({
                   ".MuiFormLabel-colorError": {
                     color: "#d32f2f!important",
                   },
+                  boxShadow:
+                  "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+                  borderRadius: "4px",
+                  "& .Mui-error fieldset": {
+                    boxShadow: "none!important",
+                  }
                 }}
                 value={formik.values.ends_at}
                 onChange={(value) => formik.setFieldValue("ends_at", value)}
