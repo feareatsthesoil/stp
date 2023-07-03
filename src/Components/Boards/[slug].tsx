@@ -7,6 +7,8 @@ import PostForm from "../Posts/PostForm";
 
 export default function BoardView({ slug }: { slug: string }) {
   const [board, setBoard] = useState<Boards>();
+  const [query, setQuery] = useState<string>("");
+
   useEffect(() => {
     getBoard(slug).then((data) => {
       setBoard(data);
@@ -18,11 +20,18 @@ export default function BoardView({ slug }: { slug: string }) {
       <div className="mt-[-18px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 p-6 text-sm font-bold sm:flex-row">
         <PostForm slug={slug as string} />
       </div>
-      <div className="flex w-[96vw] place-content-center border-[0] border-b border-solid border-slate-300 p-1 text-sm font-bold">
-        <ul className="font-lg flex [&>li]:pr-2">
-          <li>
-            <Link href="#">[Search]</Link>
-          </li>
+      <div className="flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 p-1 text-sm font-bold">
+        <div>
+          <input
+            type="text"
+            name="Search"
+            id="Search"
+            className={`block w-full rounded-sm border-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6`}
+            placeholder="Search"
+            onChange={(e) => setQuery(e.target.value)}
+          />
+        </div>
+        <ul className="font-lg flex self-center [&>li]:pl-2">
           <li>
             <Link href="#">[Catalog]</Link>
           </li>
@@ -31,7 +40,7 @@ export default function BoardView({ slug }: { slug: string }) {
           </li>
         </ul>
       </div>
-      <Posts slug={slug as string} />
+      <Posts slug={slug as string} query={query} />
     </>
   );
 }

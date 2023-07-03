@@ -1,15 +1,19 @@
-import { TextField } from "@mui/material";
 import { Post } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getPosts } from "../../utils/services";
 import Comments from "../Comments";
 
-export default function Posts(props: { slug: string }) {
+export default function Posts({
+  slug,
+  query,
+}: {
+  slug: string;
+  query: string;
+}) {
   const [posts, setPosts] = useState<Post[]>();
+  const [commentsLimit, setCommentsLimit] = useState<number>(3);
 
-  const [query, setQuery] = useState<string>();
-  const { slug } = props;
   useEffect(() => {
     getPosts(slug).then((resp) => {
       if (query) {
@@ -25,37 +29,35 @@ export default function Posts(props: { slug: string }) {
     });
   }, [slug, query]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 500) {
+        setCommentsLimit(2);
+      } else {
+        setCommentsLimit(3);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   if (!posts) return <>Loading...</>;
 
   return (
     <>
-      <TextField
-        onChange={(e) => {
-          setQuery(e.target.value);
-        }}
-        type="text"
-        placeholder="Search"
-        className="py-4"
-        sx={{
-          margin: "20px auto 20px 0",
-          "& fieldset": {
-            border: "1px solid black !important",
-            borderRadius: "4px",
-          },
-          "& input": {
-            fontFamily: "Helvetica",
-            fontSize: ".8em",
-            padding: "11px",
-            height: "10px",
-          },
-          "&::placeholder ": {
-            color: "#000!important",
-          },
-        }}
-      />
-      {posts?.map((post) => {
+      {posts?.map((post, index) => {
         return (
-          <div className="flex flex-row border-t border-solid border-slate-300 pt-2">
+          <div
+            className={`flex flex-row py-2 ${
+              index !== 0 ? "border-t border-solid border-slate-300" : ""
+            }`}
+          >
             <div className="basis-2/4">
               <time
                 dateTime={
@@ -85,13 +87,13 @@ export default function Posts(props: { slug: string }) {
                   </Link>
                 </h3>
                 <div
-                  className="text-md mb-5 w-full space-y-6 text-gray-500"
+                  className="text-md w-full space-y-6 pb-2 text-gray-500"
                   dangerouslySetInnerHTML={{ __html: post.content || "" }}
                 />
               </div>
             </div>
             <div className="basis-2/4">
-              <Comments id={post.id} />
+              <Comments id={post.id} limit={commentsLimit} />
             </div>
           </div>
         );

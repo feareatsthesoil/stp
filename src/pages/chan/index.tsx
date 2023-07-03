@@ -6,8 +6,8 @@ export default function BoardsIndexPage() {
   return (
     <div className="bg-[#F4F4FE]">
       <DefaultLayout boxClassName="!w-full">
-        <div className="mt-[-18px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-black p-6 text-sm font-bold sm:flex-row">
-          <p className="pb-1 sm:pb-0 sm:pr-4">Welcome to the Chan. Be nice!</p>
+        <div className="mt-[-18px] flex w-[96vw] flex-row place-content-center border-[0] border-b border-solid border-black p-6 text-sm font-bold">
+          <p className="">Welcome to the Chan. Be nice!</p>
           <div className="min-w-max"></div>
         </div>
         <div className="py-5">
