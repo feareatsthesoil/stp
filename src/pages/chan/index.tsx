@@ -10,9 +10,7 @@ export default function BoardsIndexPage() {
           <p className="">Welcome to the Chan. Be nice!</p>
           <div className="min-w-max"></div>
         </div>
-        <div className="py-5">
-          <BoardView slug="b" />
-        </div>
+        <BoardView slug="b" />
       </DefaultLayout>
     </div>
   );

@@ -120,10 +120,10 @@ export default function PostForm({ slug }: { slug: string }) {
           borderRadius: "4px",
           color: "#000",
           border: "1px solid #000",
-          height: "25px",
+          height: "28px",
           margin: "10px 0 0 0",
           "&:hover ": {
-            backgroundColor: "#dcdcdc !important;",
+            backgroundColor: "#dcdcdc!important;",
           },
         }}
         type="submit"
