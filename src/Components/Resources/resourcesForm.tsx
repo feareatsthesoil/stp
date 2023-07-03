@@ -1,10 +1,9 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    Button,
-    Unstable_Grid2 as Grid,
-    Stack,
-    TextField,
+  Button,
+  Unstable_Grid2 as Grid,
+  TextField,
 } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
@@ -49,9 +48,6 @@ const CssTextField = withStyles({
         color: "#000!important",
       },
     },
-    boxShadow:
-    "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-    borderRadius: "4px",
   },
 })(TextField);
 

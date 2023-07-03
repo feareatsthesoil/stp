@@ -1,20 +1,14 @@
-import React, { useContext } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
-
-import { useConfirm } from "material-ui-confirm";
-
-import { UserContext } from "../../Components/UserContext";
-import Calendar from "../../Components/Calendar";
-import DefaultLayout from "../../Components/Layouts/DefaultLayout";
-import Boards from "../../Components/Boards";
+import React, { useEffect } from "react";
 import BoardView from "../../Components/Boards/[slug]";
+import DefaultLayout from "../../Components/Layouts/DefaultLayout";
 
 export default function BoardsShow() {
-  const { loggedIn, isMember } = useContext(UserContext);
-  const confirm = useConfirm();
   const router = useRouter();
 
+  useEffect(() => {
+    router.push("/chan");
+  }, []);
   const {
     query: { slug, name },
   } = router;
@@ -22,13 +16,10 @@ export default function BoardsShow() {
   return (
     <div className="bg-[#F4F4FE]">
       <DefaultLayout boxClassName="!w-full">
-        <div className="w-[96vw] border-[0] mt-[-18px] p-6 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm sm:flex-row">
-          <p className="sm:pb-0 sm:pr-4 text-lg">/{slug}/</p>
-          {/* <div className="min-w-max"></div> */}
+        <div className="mt-[-18px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-black p-6 text-sm font-bold sm:flex-row">
+          <p className="text-lg sm:pb-0 sm:pr-4">/{slug}/</p>
         </div>
-        <div className="py-5">
-          <BoardView slug={slug as string}/>
-        </div>
+        <BoardView slug={slug as string} />
       </DefaultLayout>
     </div>
   );

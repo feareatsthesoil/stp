@@ -283,21 +283,22 @@ p {
 /* UploadCare */
 .uploadcare--widget__button.uploadcare--widget__button_type_open {
   color: #000;
-  text-decoration: underline;
   margin: 0 0 0 -10px;
+  outline: none !important;
+  text-decoration: underline;
 }
 
 .uploadcare--widget__button.uploadcare--widget__button_type_open:hover {
-  background-color: #F4F4FE;
+  background-color: #f4f4fe;
   cursor: pointer;
 }
 
-.uploadcare--widget__button.uploadcare--widget__button_type_open:active{
-  background-color: #F4F4FE;
+.uploadcare--widget__button.uploadcare--widget__button_type_open:active {
+  background-color: #f4f4fe;
 }
 
-.uploadcare--widget__button.uploadcare--widget__button_type_open:focus{
-  background-color: #F4F4FE;
+.uploadcare--widget__button.uploadcare--widget__button_type_open:focus {
+  background-color: #f4f4fe;
 }
 
 /* MEDIA QUERIES */

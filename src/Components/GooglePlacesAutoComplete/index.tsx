@@ -1,11 +1,11 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import parse from "autosuggest-highlight/parse";
 import { debounce } from "@mui/material/utils";
+import parse from "autosuggest-highlight/parse";
+import * as React from "react";
 
 function loadScript(src: string, position: HTMLElement | null, id: string) {
   if (!position) {
@@ -133,9 +133,6 @@ export default function GooglePlacesAutoComplete(props: {
         "& label.Mui-focused": {
           color: "#000",
         },
-        boxShadow:
-          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-        borderRadius: "4px",
       }}
       placeholder="Location"
       getOptionLabel={(option) =>

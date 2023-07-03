@@ -1,6 +1,5 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { PrismaClient } from "@prisma/client";
 import { withAuth } from "@clerk/nextjs/api";
+import { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../../../utils/prisma";
 
 async function postsIndex(
@@ -20,12 +19,22 @@ async function postsIndex(
       where: { boardId: board.id },
       orderBy: { createdAt: "desc" },
     });
+    let searchQuery = {};
+    if (req.query.q) {
+      searchQuery = {
+        ...searchQuery,
+        OR: [
+          { title: { contains: req.query.q, mode: "insensitive" } },
+          { content: { contains: req.query.q, mode: "insensitive" } },
+        ],
+      };
+    }
     res.setHeader("total-records", count.toString());
     res.setHeader("total-pages", (count / 10).toString());
     res.setHeader("current-page", pageNum.toString());
 
     const data = await prisma.post.findMany({
-      where: { boardId: board.id },
+      where: { boardId: board.id, ...searchQuery },
       take: 10,
       skip: (pageNum - 1) * 10,
       orderBy: { createdAt: "desc" },
@@ -38,7 +47,17 @@ async function postsIndex(
     const userId = req.auth?.userId ?? null;
     if (!userId) return res.status(401).json({ message: "Not logged in" });
 
-    await prisma.post.create({ data: { ...body, userId, boardId: board.id } });
+    console.log("Request body:", body); // Added logging here
+
+    try {
+      await prisma.post.create({
+        data: { ...body, userId, boardId: board.id },
+      });
+    } catch (error) {
+      console.error("Error while creating post:", error); // Log any error occurred during post creation
+      return res.status(500).json({ message: "Internal server error" });
+    }
+
     return res.status(201).json({ message: "Created" });
   } else {
     res.status(412).json({ message: "Invalid method" });

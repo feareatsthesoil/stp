@@ -1,4 +1,3 @@
-import { TextField } from "@mui/material";
 import { Boards } from "@prisma/client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
@@ -16,19 +15,19 @@ export default function BoardView({ slug }: { slug: string }) {
 
   return (
     <>
-      <div className="w-[96vw] border-[0] mt-[-18px] p-6 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm sm:flex-row">
+      <div className="mt-[-18px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 p-6 text-sm font-bold sm:flex-row">
         <PostForm slug={slug as string} />
       </div>
-      <div className="w-[96vw] border-[0] p-6 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm sm:flex-row">
-        <ul className="flex font-lg [&>li]:pr-2">
+      <div className="flex w-[96vw] place-content-center border-[0] border-b border-solid border-slate-300 p-1 text-sm font-bold">
+        <ul className="font-lg flex [&>li]:pr-2">
           <li>
-            <Link href="#"> Search</Link>
+            <Link href="#">[Search]</Link>
           </li>
           <li>
-            <Link href="#"> Catalog</Link>
+            <Link href="#">[Catalog]</Link>
           </li>
           <li>
-            <Link href="#"> Bottom</Link>
+            <Link href="#">[Bottom]</Link>
           </li>
         </ul>
       </div>
