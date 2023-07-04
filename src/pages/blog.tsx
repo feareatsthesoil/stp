@@ -32,7 +32,7 @@ export default function Blog() {
       helpers.resetForm();
       confirm({
         title: "We've sent you an email!",
-        description: "Click on link inside to verify",
+        description: "Click on link inside to verify.",
         hideCancelButton: true,
       });
     },

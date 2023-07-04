@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Comments from "../../../../Components/Comments";
 import CommentForm from "../../../../Components/Comments/CommentForm";
 import DefaultLayout from "../../../../Components/Layouts/DefaultLayout";
+import LikeButton from "../../../../Components/LikeButton";
 import { getBoard, getPost } from "../../../../utils/services";
 
 export default function PostViewPage() {
@@ -31,7 +32,7 @@ export default function PostViewPage() {
         <Link href={`/chan/${slug}`}>{board?.name}</Link> / {post.title}
       </h1>
       <p>{post.content}</p>
-
+      <LikeButton likeableId={post.id} likeableType={"post"} />
       <Comments key={version} id={Number(id)} />
       <CommentForm
         onComplete={() => setVersion((v) => v + 1)}

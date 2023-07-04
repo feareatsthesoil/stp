@@ -2,6 +2,7 @@ import { useUser } from "@clerk/clerk-react";
 import { Comment } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { getComments } from "../../utils/services";
+import LikeButton from "../LikeButton";
 
 export default function Comments({
   id,
@@ -64,6 +65,7 @@ export default function Comments({
                 {comment.content}
               </p>
             </div>
+            <LikeButton likeableId={comment.id} likeableType="comment" />
           </li>
         ))}
       </ul>

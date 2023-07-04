@@ -3,6 +3,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getPosts } from "../../utils/services";
 import Comments from "../Comments";
+import LikeButton from "../LikeButton";
 
 export default function Posts({
   slug,
@@ -92,6 +93,7 @@ export default function Posts({
                 />
               </div>
             </div>
+            <LikeButton likeableType="post" likeableId={post.id} />
             <div className="basis-2/4">
               <Comments id={post.id} limit={commentsLimit} />
             </div>
