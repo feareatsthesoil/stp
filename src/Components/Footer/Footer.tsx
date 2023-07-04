@@ -5,11 +5,15 @@ import { useRouter } from "next/router";
 const Footer = () => {
   const router = useRouter();
   const currentRoute = router.pathname;
+  const isChanRoute = currentRoute.startsWith("/chan");
 
   const links = [
     { href: "https://www.instagram.com/servingthepeople/", name: "Instagram" },
     { href: "https://twitter.com/stp_xyz", name: "Twitter" },
-    { href: "https://opensea.io/collection/seeds-luciensmith", name: "Opensea" },
+    {
+      href: "https://opensea.io/collection/seeds-luciensmith",
+      name: "Opensea",
+    },
     { href: "https://discord.gg/nhqyng5wQ9", name: "Discord" },
   ];
 
@@ -19,10 +23,12 @@ const Footer = () => {
         className={
           currentRoute === "/"
             ? "mt-auto"
-            : "w-[96vw] mt-auto border-[0] border-t border-solid border-black place-content-center "
+            : `mt-auto w-[96vw] place-content-center border-[0] border-t border-solid border-black ${
+                isChanRoute ? "border-slate-300" : ""
+              }`
         }
       >
-        <div className="mt-auto pt-2 pb-[1vh] w-[96vw] flex flex-row">
+        <div className="mt-auto flex w-[96vw] flex-row pb-[1vh] pt-2">
           <div className="hidden sm:flex sm:flex-col">
             <p>Copyright © 2023, by The STP Creative Foundation.</p>
             <p>
@@ -33,11 +39,13 @@ const Footer = () => {
               </Link>
             </p>
           </div>
-          <div className="mt-auto ml-auto flex flex-row">
+          <div className="ml-auto mt-auto flex flex-row">
             {links.map((link, index) => (
               <Link
                 href={link.href}
-                className={`pl-1 text-blue-600 border-[0] ${index !== links.length - 1 && "border-r-[1px] px-1"} border-solid border-black underline hover:text-indigo-600`}
+                className={`border-[0] pl-1 text-blue-600 ${
+                  index !== links.length - 1 && "border-r-[1px] px-1"
+                } border-solid border-black underline hover:text-indigo-600`}
                 target="webapp-tab"
                 key={link.name}
               >

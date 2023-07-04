@@ -9,18 +9,23 @@ const NavBar = () => {
   const user = useUser();
   const router = useRouter();
   const currentRoute = router.pathname;
+  const isChanRoute = currentRoute.startsWith("/chan");
 
   return (
-    <div className="w-[96vw] border-[0] my-5 p-5 border-t border-b border-solid border-black ">
+    <div
+      className={`my-5 w-[96vw] border-[0] border-b border-t border-solid border-black p-5 ${
+        isChanRoute ? "border-slate-300" : ""
+      }`}
+    >
       <nav>
-        <ul className="flex flex-row place-content-center flex-wrap">
+        <ul className="flex flex-row flex-wrap place-content-center">
           {nav.items.map(({ href, name }, index) => {
             const isLastItem =
               index === nav.items.length - 1 && !user.isSignedIn;
             return (
               <li
                 key={name}
-                className={`px-1 text-blue-600 border-[0] ${
+                className={`border-[0] px-1 text-blue-600 ${
                   !isLastItem && "border-r-[1px]"
                 } border-solid border-black underline hover:text-indigo-600`}
               >
@@ -45,7 +50,7 @@ const NavBar = () => {
             <li id="MobileLogin">
               <Link
                 href={"/login"}
-                className={`pl-1 border-l-[1px] h-0.5 border-solid border-black text-blue-600 underline hover:text-indigo-600 ${
+                className={`h-0.5 border-l-[1px] border-solid border-black pl-1 text-blue-600 underline hover:text-indigo-600 ${
                   currentRoute.startsWith("/login") ? "text-indigo-600" : css.a
                 }`}
               >

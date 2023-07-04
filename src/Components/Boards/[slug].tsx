@@ -17,7 +17,7 @@ export default function BoardView({ slug }: { slug: string }) {
 
   return (
     <>
-      <div className="mt-[-18px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 p-6 text-sm font-bold sm:flex-row">
+      <div className="flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 py-2 text-sm font-bold sm:flex-row">
         <PostForm slug={slug as string} />
       </div>
       <div className="flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 p-1 text-sm font-bold">

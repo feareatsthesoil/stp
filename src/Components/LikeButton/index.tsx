@@ -1,12 +1,12 @@
-import { faHeart as fullHeart } from "@fortawesome/free-solid-svg-icons";
 import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as fullHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@mui/material";
-import { useEffect, useState, useContext } from "react";
-import { getLikes, toggleLike } from "../../utils/services";
 import { useConfirm } from "material-ui-confirm";
 import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../Components/UserContext";
+import { getLikes, toggleLike } from "../../utils/services";
 
 export default function LikeButton({
   likeableId,
@@ -86,12 +86,12 @@ export default function LikeButton({
 
   return (
     <Button
-      className="h-min"
+      className="h-min self-center"
       style={{
-        maxWidth: "30px",
-        maxHeight: "30px",
-        minWidth: "30px",
-        minHeight: "30px",
+        maxWidth: "20px",
+        maxHeight: "20px",
+        minWidth: "20px",
+        minHeight: "20px",
       }}
       onClick={debouncedToggle}
       disabled={isUpdating}

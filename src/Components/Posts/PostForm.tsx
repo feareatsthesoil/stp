@@ -9,11 +9,24 @@ import React, { useContext } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { createPost } from "../../utils/services";
+import { Post } from "@prisma/client";
+import { useSnackbar } from "notistack";
+import * as LR from "@uploadcare/blocks";
 
-export default function PostForm({ slug }: { slug: string }) {
+LR.registerBlocks(LR);
+
+export default function PostForm({
+  slug,
+  post,
+}: {
+  slug: string;
+  post?: Post;
+}) {
   const { loggedIn } = useContext(UserContext);
   const confirm = useConfirm();
   const router = useRouter();
+  const { enqueueSnackbar } = useSnackbar();
+  const { id, userId, createdAt, updatedAt, ...rest } = post || {};
 
   const formik = useFormik({
     validationSchema: Yup.object({
@@ -25,16 +38,23 @@ export default function PostForm({ slug }: { slug: string }) {
         .max(1000, "Must be within 1000 characters."),
       attachment: Yup.string().url().nullable(),
     }),
-    initialValues: { title: "", content: "", attachment: null },
+    initialValues: { title: "", content: "", attachment: null, ...rest },
     onSubmit: async (values, helpers) => {
       const dataToSubmit = {
         ...values,
       };
-      await createPost(slug, dataToSubmit);
-      helpers.setSubmitting(false);
-      helpers.resetForm();
+      try {
+        await createPost(slug, dataToSubmit);
+        helpers.setSubmitting(false);
+        helpers.resetForm();
 
-      router.push("/chan/" + slug);
+        router.push("/chan/" + slug);
+      } catch (ex: any) {
+        enqueueSnackbar({
+          variant: "error",
+          message: ex.response?.data?.message || "Something went wrong",
+        });
+      }
     },
   });
 
@@ -88,7 +108,7 @@ export default function PostForm({ slug }: { slug: string }) {
             isDisabled ? "cursor-not-allowed" : ""
           }`}
           placeholder="Content"
-          value={formik.values.content}
+          value={formik.values.content ?? ""}
           onChange={formik.handleChange}
           disabled={isDisabled}
           {...(formik.errors.content && {
@@ -102,41 +122,27 @@ export default function PostForm({ slug }: { slug: string }) {
         )}
       </div>
       {loggedIn && (
-        <Widget
-          systemDialog={true}
-          publicKey="298fc65a2986318fd270"
-          onChange={(info) => {
-            formik.setFieldValue("attachment", info.cdnUrl);
-          }}
-        />
+        <div className="mb-[-40px] mt-2">
+          <lr-file-uploader-regular
+            css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+            ctx-name="my-uploader"
+            className="my-config"
+            publicKey="298fc65a2986318fd270"
+          ></lr-file-uploader-regular>
+        </div>
       )}
-      <Button
-        sx={{
-          float: "right",
-          backgroundColor: "rgb(239, 239, 239)!important",
-          textTransform: "none",
-          fontFamily: "Helvetica",
-          fontSize: ".9em",
-          borderRadius: "4px",
-          color: "#000",
-          border: "1px solid #000",
-          height: "28px",
-          margin: "10px 0 0 0",
-          "&:hover ": {
-            backgroundColor: "#dcdcdc!important;",
-          },
-        }}
+      <button
         type="submit"
-        color="secondary"
-        variant="contained"
+        color="rgb(239, 240, 240)"
+        className="w-15 float-right mt-2 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
       >
         {!formik.isSubmitting && <>Save</>}
         {formik.isSubmitting && (
-          <span style={{ paddingRight: 2 }}>
+          <span>
             <FontAwesomeIcon icon={faSpinner} spin />
           </span>
         )}
-      </Button>
+      </button>
     </form>
   );
 }

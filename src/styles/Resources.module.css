@@ -1,65 +1,69 @@
 .wrapper {
-    align-items: center;
+  align-items: center;
 }
 
 .wrapper h1 {
-    font-size: 1.3em;
-    font-weight: bold;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 
 .wrapper p {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .listWrapper {
-    padding: 0 0 20px 0;
+  padding: 0 0 20px 0;
 }
 
 .button {
-    background-color: rgb(239, 239, 239) !important;
-    border-radius: 4px !important;
-    border: 1px solid #000 !important;
-    color: #000 !important;
-    font-family: Arial, Helvetica, sans-serif !important;
-    font-size: .8em !important;
-    height: 30px;
-    margin: 10px 0 20px 0 !important;
-    text-transform: none !important;
+  background-color: rgb(239, 239, 239) !important;
+  border-radius: 4px !important;
+  border: 1px solid #000 !important;
+  color: #000 !important;
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 0.8em !important;
+  height: 30px;
+  margin: 10px 0 20px 0 !important;
+  text-transform: none !important;
 }
 
 .header {
-    font-weight: bold;
-    font-size: 1.15em;
+  font-weight: bold;
+  font-size: 1.15em;
 }
 
 .button:hover {
-    background-color: rgb(199, 199, 199) !important;
-    border: 1px solid #000;
+  background-color: rgb(199, 199, 199) !important;
+  border: 1px solid #000;
 }
 
 .button:active {
-    transform: translateY(4px);
-    transition: 60ms transform ease-in-out;
+  transform: translateY(4px);
+  transition: 60ms transform ease-in-out;
 }
 
 .edit {
-    margin: 3px 0 0 0;
+  margin: 3px 0 0 0;
 }
 
 .edit a {
-    color: #000;
-    text-decoration: underline #000;
+  color: #000;
+  text-decoration: none;
+}
+
+.edit a:hover {
+  text-decoration: underline #000;
 }
 
 .name {
-    display: flex;
-    text-align: left;
-    min-width: 350px;
-    margin: -10px 0 0 0 !important;
-    color: rgb(0, 71, 255);
+  display: flex;
+  text-align: left;
+  min-width: 350px;
+  margin: -10px 0 0 0 !important;
+  color: rgb(0, 71, 255);
 }
 
 .time {
-    color: #000000ab;
-    min-width: 240px;
+  color: #000000ab;
+  min-width: 240px;
 }

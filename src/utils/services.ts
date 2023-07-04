@@ -40,6 +40,13 @@ export const editPost = (
     .put<Post>(`/api/boards/${slug}/posts/${id}`, data)
     .then((response) => response.data);
 };
+
+export const deletePost = (slug: string, id: number) => {
+  return axios
+    .delete(`/api/boards/${slug}/posts/${id}`)
+    .then((response) => response.data);
+};
+
 export const getBoard = (slug: string) => {
   return axios
     .get<Boards>(`/api/boards/${slug}`)
