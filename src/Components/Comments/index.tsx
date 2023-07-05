@@ -51,8 +51,8 @@ export default function Comments({
               alt=""
               className="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50"
             />
-            <div className="flex-auto rounded-md p-2 ring-1 ring-inset ring-gray-200">
-            <Link href={`/chan/${slug}/posts/${postId}`}>
+            <div className="flex-grow rounded-md p-2 ring-1 ring-inset ring-gray-200">
+              <Link href={`/chan/${slug}/posts/${postId}`}>
                 <div className="flex justify-between gap-x-4">
                   <div className="py-0.5 text-xs leading-5 text-gray-500">
                     <span className="font-medium text-gray-900">
@@ -60,7 +60,15 @@ export default function Comments({
                         ? `${comment.user?.firstName} ${comment.user?.lastName}`
                         : "Anonymous"}
                     </span>{" "}
-                    commented
+                    commented&nbsp;
+                    {userId === comment.userId ? (
+                      <CommentDeleteButton
+                        className="self-center"
+                        postId={comment.postId}
+                        commentId={comment.id}
+                        onComplete={refresh}
+                      />
+                    ) : null}
                   </div>
                   <time
                     dateTime={
@@ -82,13 +90,6 @@ export default function Comments({
                   {comment.content}
                 </p>
               </Link>
-              {userId === comment.userId ? (
-                <CommentDeleteButton
-                  postId={comment.postId}
-                  commentId={comment.id}
-                  onComplete={refresh}
-                />
-              ) : null}
             </div>
           </li>
         ))}

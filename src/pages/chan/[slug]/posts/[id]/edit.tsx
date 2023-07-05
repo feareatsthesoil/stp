@@ -26,7 +26,14 @@ export default function PostEditPAge() {
   if (!post) return <DefaultLayout>Loading...</DefaultLayout>;
   return (
     <DefaultLayout>
-      {post.attachment && <img className="py-2 max-h-[500px]" src={post.attachment} />}
+      <p className="mb-2">
+        <Link className="hover:underline" href="/chan">
+          [Back]
+        </Link>
+      </p>
+      {post.attachment && (
+        <img className="max-h-[500px] pb-2" src={post.attachment} />
+      )}
       <PostForm post={post} slug={slug as string} />
     </DefaultLayout>
   );

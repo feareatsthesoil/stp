@@ -3,6 +3,7 @@ import { useConfirm } from "material-ui-confirm";
 import { useSnackbar } from "notistack";
 import { deleteComment } from "../../utils/services";
 import { useUser } from "@clerk/clerk-react";
+import Link from "next/link";
 
 export default function CommentDeleteButton(
   props: Omit<ButtonProps, "onClick"> & {
@@ -31,9 +32,13 @@ export default function CommentDeleteButton(
   return (
     <>
       {user && (
-        <Button color="error" {...rest} onClick={handleClick}>
-          Delete
-        </Button>
+        <Link
+          className="text-sm font-bold text-red-600 hover:underline"
+          href="javascript:void(0);"
+          onClick={handleClick}
+        >
+          [Delete]
+        </Link>
       )}
     </>
   );
