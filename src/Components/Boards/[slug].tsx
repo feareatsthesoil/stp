@@ -60,7 +60,7 @@ export default function BoardView({ slug }: { slug: string }) {
       <div className="flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 py-2 text-sm font-bold sm:flex-row">
         <PostForm slug={slug as string} />
       </div>
-      <div className="sticky top-0 z-50 flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] p-1 text-sm font-bold">
+      <div className="sticky top-0 z-50 flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-1 text-sm font-bold">
         <div>
           <input
             type="text"

@@ -16,7 +16,7 @@ export default function PostDeleteButton(
   const { user } = useUser();
 
   const handleClick = () => {
-    deletePost("<slug>", postId) // Replace <slug> with the appropriate board slug
+    deletePost("<slug>", postId)
       .then(() => {
         console.log("Completing onComplete action");
         onComplete && onComplete();
@@ -30,9 +30,14 @@ export default function PostDeleteButton(
   return (
     <>
       {user && (
-        <Button color="error" {...rest} onClick={handleClick}>
-          Delete
-        </Button>
+        <button
+          type="submit"
+          className="w-15 relative mb-2 mt-12 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+          {...rest}
+          onClick={handleClick}
+        >
+          Delete Post
+        </button>
       )}
     </>
   );

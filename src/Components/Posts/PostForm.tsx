@@ -1,17 +1,15 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "@mui/material";
-import { Widget } from "@uploadcare/react-widget";
+import * as LR from "@uploadcare/blocks";
 import { useFormik } from "formik";
 import { useConfirm } from "material-ui-confirm";
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import { useSnackbar } from "notistack";
+import React, { useContext, useEffect } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
-import { createPost } from "../../utils/services";
-import { Post } from "@prisma/client";
-import { useSnackbar } from "notistack";
-import * as LR from "@uploadcare/blocks";
+import { PostResponse } from "../../types";
+import { createPost, editPost } from "../../utils/services";
 
 LR.registerBlocks(LR);
 
@@ -20,14 +18,25 @@ export default function PostForm({
   post,
 }: {
   slug: string;
-  post?: Post;
+  post?: PostResponse;
 }) {
   const { loggedIn } = useContext(UserContext);
   const confirm = useConfirm();
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
-  const { id, userId, createdAt, updatedAt, ...rest } = post || {};
+  const { id, userId, createdAt, updatedAt, user, ...rest } = post || {};
 
+  const listener = (e: any) => {
+    if (e.detail.ctx === "post-uploader") {
+      const idx = e.detail.data.length - 1;
+      console.log("URL", e.detail.data[idx].cdnUrl);
+      formik.setFieldValue("attachment", e.detail.data[idx].cdnUrl);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("LR_UPLOAD_FINISH", listener);
+    return () => window.removeEventListener("LR_UPLOAD_FINISH", listener);
+  }, [listener]);
   const formik = useFormik({
     validationSchema: Yup.object({
       title: Yup.string()
@@ -44,7 +53,9 @@ export default function PostForm({
         ...values,
       };
       try {
-        await createPost(slug, dataToSubmit);
+        await (!post?.id
+          ? createPost(slug, dataToSubmit)
+          : editPost(slug, post.id, dataToSubmit));
         helpers.setSubmitting(false);
         helpers.resetForm();
 
@@ -78,8 +89,21 @@ export default function PostForm({
 
   const isDisabled = !loggedIn || formik.isSubmitting;
 
+  const attachment = formik.values.attachment;
   return (
     <form onSubmit={handleSubmitWithAuth}>
+      {attachment && (
+        <>
+          <img className="max-h-[500px] pb-2" src={attachment} />
+          <button
+            type="submit"
+            className="w-15 relative mb-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+            onClick={() => formik.setFieldValue("attachment", null)}
+          >
+            Delete Image
+          </button>
+        </>
+      )}
       <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-indigo-600 sm:min-w-[500px]">
         <input
           type="text"
@@ -100,6 +124,7 @@ export default function PostForm({
           </div>
         )}
       </div>
+
       <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-indigo-600">
         <textarea
           name="content"
@@ -125,12 +150,13 @@ export default function PostForm({
         <div className="mb-[-40px] mt-2">
           <lr-file-uploader-regular
             css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-            ctx-name="my-uploader"
-            className="my-config"
-            publicKey="298fc65a2986318fd270"
+            ctx-name="post-uploader"
+            class="my-config"
           ></lr-file-uploader-regular>
         </div>
       )}
+
+      <div className="my-config"></div>
       <button
         type="submit"
         color="rgb(239, 240, 240)"

@@ -1,12 +1,10 @@
 import { useUser } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
-import { Comment } from "@prisma/client";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { CommentResponse } from "../../types";
 import { getComments } from "../../utils/services";
 import CommentDeleteButton from "./CommentDeleteButton";
-import LikeButton from "../LikeButton";
-import Link from "next/link";
 
 export default function Comments({
   id,
@@ -36,7 +34,7 @@ export default function Comments({
 
   return (
     <>
-      <ul role="list" className="space-y-2">
+      <ul role="list" className="ml-[10px] space-y-2">
         {displayedComments.map((comment, index) => (
           <li className="relative flex gap-x-4" key={comment.id}>
             <div
@@ -51,7 +49,7 @@ export default function Comments({
               alt=""
               className="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50"
             />
-            <div className="flex-grow rounded-md p-2 ring-1 ring-inset ring-gray-200">
+            <div className="flex rounded-md p-2 ring-1 ring-inset ring-gray-200">
               <Link href={`/chan/${slug}/posts/${postId}`}>
                 <div className="flex justify-between gap-x-4">
                   <div className="py-0.5 text-xs leading-5 text-gray-500">

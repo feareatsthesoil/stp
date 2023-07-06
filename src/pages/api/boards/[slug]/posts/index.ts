@@ -22,11 +22,12 @@ async function postsIndex(
     });
     let searchQuery = {};
     if (req.query.q) {
+      const lowerCaseQuery = (req.query.q as string).toLowerCase();
       searchQuery = {
         ...searchQuery,
         OR: [
-          { title: { contains: req.query.q, mode: "insensitive" } },
-          { content: { contains: req.query.q, mode: "insensitive" } },
+          { title: { contains: lowerCaseQuery } },
+          { content: { contains: lowerCaseQuery } },
         ],
       };
     }
@@ -53,7 +54,7 @@ async function postsIndex(
             `Couldn't get user details for user ${userId}: `,
             error
           );
-          return post; // return post without user details
+          return post;
         }
       })
     );

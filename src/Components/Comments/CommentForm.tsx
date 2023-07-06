@@ -1,15 +1,13 @@
-import React, { useContext } from "react";
-import { useRouter } from "next/router";
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { Button, TextField } from "@mui/material";
-import { createComment } from "../../utils/services";
-import { Widget } from "@uploadcare/react-widget";
-import { useSnackbar } from "notistack";
-import { UserContext } from "../UserContext";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { useUser } from "@clerk/nextjs";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useFormik } from "formik";
+import { useRouter } from "next/router";
+import { useSnackbar } from "notistack";
+import React, { useContext } from "react";
+import * as Yup from "yup";
+import { createComment } from "../../utils/services";
+import { UserContext } from "../UserContext";
 
 export default function CommentForm({
   id,
@@ -49,7 +47,7 @@ export default function CommentForm({
         <img
           src={user.profileImageUrl}
           alt="Your profile photo"
-          className="relative mb-[-35px] mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
+          className="relative mb-[-35px] h-6 w-6 flex-none rounded-full bg-gray-50"
         />
       )}
       <div className="relative ml-10 mt-[11px] rounded-md px-3 pb-3 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-indigo-600">
@@ -73,7 +71,7 @@ export default function CommentForm({
           </div>
         )}
       </div>
-      <div className="mt-2 ml-10 mb-[-32px]">
+      <div className="mb-[-32px] ml-10 mt-2">
         <lr-file-uploader-regular
           css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
           ctx-name="my-uploader"

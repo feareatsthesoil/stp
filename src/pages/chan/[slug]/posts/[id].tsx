@@ -1,15 +1,16 @@
-import { useContext, useEffect, useState } from "react";
-import DefaultLayout from "../../../../Components/Layouts/DefaultLayout";
-import { PostResponse } from "../../../../types";
-import { UserContext } from "../../../../Components/UserContext";
-import { useRouter } from "next/router";
-import { getBoard, getPost } from "../../../../utils/services";
+import { useAuth } from "@clerk/nextjs";
+import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { Boards } from "@prisma/client";
+import { UploadcareSimpleAuthSchema, storeFile } from "@uploadcare/rest-client";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 import Comments from "../../../../Components/Comments";
 import CommentForm from "../../../../Components/Comments/CommentForm";
-import { UploadcareSimpleAuthSchema, storeFile } from "@uploadcare/rest-client";
-import { useAuth } from "@clerk/nextjs";
-import Link from "next/link";
+import DefaultLayout from "../../../../Components/Layouts/DefaultLayout";
+import { UserContext } from "../../../../Components/UserContext";
+import { PostResponse } from "../../../../types";
+import { getBoard, getPost } from "../../../../utils/services";
 
 const extractUUID = (url: string) => {
   const urlParts = url.split("/");
@@ -84,65 +85,106 @@ export default function PostViewPage() {
 
   return (
     <DefaultLayout>
-      <Link className="hover:underline" href="/chan">
-        [Back]
-      </Link>
-      <div className="flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
-        <img
-          src={post.user?.profileImageUrl || "/favicon.ico"}
-          alt=""
-          className="relative mr-2 h-6 w-6 flex-none rounded-full bg-gray-50"
-        />
-        <span className="self-center font-medium text-gray-900">
-          {userName}
-        </span>
-        <p className="self-center"> &nbsp;posted @&nbsp;</p>
-        <time
-          dateTime={
-            post.createdAt ? new Date(post.createdAt).toISOString() : ""
-          }
-          className="self-center text-gray-500"
-        >
-          {post.createdAt
-            ? new Date(post.createdAt).toLocaleString([], {
-                dateStyle: "short",
-                timeStyle: "short",
-              })
-            : ""}
-        </time>
+      <div className="ml-[-2vw] flex w-[96vw] justify-center border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] text-sm font-bold">
+        <h1 className="mb-4 text-lg font-semibold">{post.title}</h1>
       </div>
+      <div className="sticky top-0 z-50 ml-[-2vw] flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] text-sm font-bold">
+        <Link className="font-black hover:underline" href="/chan">
+          [Back]
+        </Link>
+      </div>
+
       <div className="mb-2">
-        <h1 className="text-lg font-semibold">{post.title}</h1>
         {post.attachment && (
           <>
-            <img className="max-h-[500px] pb-2" src={post.attachment} />
-            <ul className="t-3 flex  justify-center [&>li]:h-4 [&>li]:min-w-max [&>li]:self-center [&>li]:border-[0] [&>li]:border-r-[1px] [&>li]:border-solid [&>li]:border-black [&>li]:px-1 [&>li]:text-gray-600">
-              <li>
+            <img className="max-h-[500px] pb-2 pt-2" src={post.attachment} />
+            <ul className="t-3 mb-4 flex [&>li]:h-4 [&>li]:min-w-max [&>li]:self-center [&>li]:text-gray-600">
+              <li className="border-[0] border-r-[1px] border-solid border-black pr-1">
                 {uploadDetails[extractUUID(post.attachment)]?.width}
                 &nbsp;x&nbsp;
                 {uploadDetails[extractUUID(post.attachment)]?.height}&nbsp;
               </li>
-              <li>
+              <li className="border-[0] border-r-[1px] border-solid border-black px-1">
                 {uploadDetails[extractUUID(post.attachment)]?.size}
                 &nbsp;kb&nbsp;
               </li>
-              <li>{uploadDetails[extractUUID(post.attachment)]?.filename}</li>
+              <li className="px-1">
+                <a
+                  href={uploadDetails[extractUUID(post.attachment)]?.url}
+                  className="text-blue-600 underline hover:text-indigo-600"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {uploadDetails[extractUUID(post.attachment)]?.filename}
+                </a>
+              </li>
             </ul>
           </>
         )}
-        <p>{post.content}</p>
+        <p className="">{post.content}</p>
+        <div className="flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
+          <img
+            src={post.user?.profileImageUrl || "/favicon.ico"}
+            alt=""
+            className="relative mr-[24px] h-6 w-6 flex-none rounded-full bg-gray-50"
+          />
+          <span className="self-center font-medium text-gray-900">
+            {userName}
+          </span>
+          <p className="self-center"> &nbsp;posted @&nbsp;</p>
+          <time
+            dateTime={
+              post.createdAt ? new Date(post.createdAt).toISOString() : ""
+            }
+            className="self-center text-gray-500"
+          >
+            {post.createdAt
+              ? new Date(post.createdAt).toLocaleString([], {
+                  dateStyle: "short",
+                  timeStyle: "short",
+                })
+              : ""}
+          </time>
+        </div>
       </div>
-      <Comments
-        key={version}
-        id={Number(id)}
-        slug={stringSlug}
-        postId={post.id}
-      />
-      {loggedIn && (
+      <div className="ml-[-10px] pb-2">
+        <Comments
+          key={version}
+          id={Number(id)}
+          slug={stringSlug}
+          postId={post.id}
+        />
+      </div>
+      {loggedIn ? (
         <CommentForm
           onComplete={() => setVersion((v) => v + 1)}
           id={Number(id)}
         />
+      ) : (
+        <div className="mb-2 rounded-md bg-white p-4">
+          <div className="flex">
+            <div className="flex-shrink-0">
+              <InformationCircleIcon
+                className="h-5 w-5 text-[#646475]"
+                aria-hidden="true"
+              />
+            </div>
+            <div className="ml-3 flex-1 md:flex md:justify-between">
+              <p className="text-sm text-[#646475]">
+                Please <u>log in</u> or <u>create an account</u> to comment.
+              </p>
+              <p className="mt-3 text-sm md:ml-6 md:mt-0">
+                <a
+                  href="/login"
+                  className="whitespace-nowrap font-medium capitalize text-[#646475] hover:text-[#444451] "
+                >
+                  Log in / Sign up
+                  <span aria-hidden="true"> &rarr;</span>
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
       )}
     </DefaultLayout>
   );
