@@ -6,9 +6,7 @@ import DefaultLayout from "../../Components/Layouts/DefaultLayout";
 export default function BoardsShow() {
   const router = useRouter();
 
-  useEffect(() => {
-    router.push("/chan");
-  }, []);
+  useEffect(() => {}, []);
   const {
     query: { slug, name },
   } = router;
@@ -16,7 +14,7 @@ export default function BoardsShow() {
   return (
     <div className="bg-[#F4F4FE]">
       <DefaultLayout boxClassName="!w-full">
-        <div className="mt-[-18px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-black p-6 text-sm font-bold sm:flex-row">
+        <div className="mb-[18px] mt-[-18px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 p-6 text-sm font-bold sm:flex-row">
           <p className="text-lg sm:pb-0 sm:pr-4">/{slug}/</p>
         </div>
         <BoardView slug={slug as string} />

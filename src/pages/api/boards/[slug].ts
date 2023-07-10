@@ -11,7 +11,6 @@ export default async function resourcesIndex(req: NextApiRequest, res: NextApiRe
       where: {
         slug: {
           contains: (slug as string).toLowerCase(),
-          // mode: "insensitive",
         },
       },
     });

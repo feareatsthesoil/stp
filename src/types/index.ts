@@ -1,4 +1,4 @@
-import { Comment, Post } from "@prisma/client";
+import { Boards, Comment, Post } from "@prisma/client";
 
 export type CalendarEventType = {
   userId?: string;
@@ -72,7 +72,9 @@ export interface Resource {
 
 export type PostResponse = Post & {
   user?: { firstName: string; lastName: string; profileImageUrl: string };
+  board?: Boards;
 };
+
 export type CommentResponse = Comment & {
   user?: { firstName: string; lastName: string; profileImageUrl: string };
 };

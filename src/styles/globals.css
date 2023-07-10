@@ -1,6 +1,6 @@
-@import 'tailwindcss/base';
-@import 'tailwindcss/components';
-@import 'tailwindcss/utilities';
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 html,
 body,
@@ -313,6 +313,19 @@ p {
   --h-accent: 0;
   --s-accent: 0%;
   --l-accent: 0%;
+}
+
+.MuiTooltip-tooltip {
+  background-color: rgb(220, 220, 220) !important;
+  color: #4a4d50 !important;
+}
+
+.MuiTooltip-arrow {
+  color: rgb(220, 220, 220) !important;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
 
 /* MEDIA QUERIES */

@@ -37,6 +37,7 @@ export default function PostForm({
     window.addEventListener("LR_UPLOAD_FINISH", listener);
     return () => window.removeEventListener("LR_UPLOAD_FINISH", listener);
   }, [listener]);
+
   const formik = useFormik({
     validationSchema: Yup.object({
       title: Yup.string()
@@ -88,8 +89,8 @@ export default function PostForm({
   };
 
   const isDisabled = !loggedIn || formik.isSubmitting;
-
   const attachment = formik.values.attachment;
+
   return (
     <form onSubmit={handleSubmitWithAuth}>
       {attachment && (
@@ -104,7 +105,7 @@ export default function PostForm({
           </button>
         </>
       )}
-      <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-indigo-600 sm:min-w-[500px]">
+      <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 sm:min-w-[500px]">
         <input
           type="text"
           name="title"
@@ -125,7 +126,7 @@ export default function PostForm({
         )}
       </div>
 
-      <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 focus-within:ring-2 focus-within:ring-indigo-600">
+      <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 ">
         <textarea
           name="content"
           id="content"

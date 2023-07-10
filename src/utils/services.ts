@@ -1,14 +1,17 @@
 import { Boards, Comment, Post } from "@prisma/client";
 import axios from "axios";
+import { PostResponse } from "../types";
 
 export const getBoards = () => {
   return axios.get<Boards[]>("/api/boards").then((response) => response.data);
 };
 
-export const getPosts = (slug: string, q?: string) => {
+export const getPosts = (slug: string, q?: string, page: number = 1) => {
   return axios
-    .get<Post[]>(`/api/boards/${slug}/posts?${q ? `q=${q}` : ""}`)
-    .then((response) => response.data);
+    .get<PostResponse[]>(
+      `/api/boards/${slug}/posts?page=${page}${q ? `&q=${q}` : ""}`
+    )
+    .then((response) => response);
 };
 export const getPost = (slug: string, id: number) => {
   return axios
@@ -56,7 +59,7 @@ export const getBoard = (slug: string) => {
 export const getComments = (postId: number) => {
   return axios
     .get<Comment[]>(`/api/posts/${postId}/comments`)
-    .then((response) => response.data);
+    .then((response) => response);
 };
 
 export const deleteComment = (postId: number, commentId: number) => {

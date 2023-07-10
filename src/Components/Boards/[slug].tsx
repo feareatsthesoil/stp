@@ -1,20 +1,24 @@
+import { Tooltip } from "@mui/material";
 import { Boards } from "@prisma/client";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { getBoard } from "../../utils/services";
+import React, { useContext, useEffect, useState } from "react";
+import { getBoards } from "../../utils/services";
 import Posts from "../Posts";
 import PostForm from "../Posts/PostForm";
+import { UserContext } from "../UserContext";
+import { colors } from "./colors";
 
-export default function BoardView({ slug }: { slug: string }) {
-  const [board, setBoard] = useState<Boards>();
+export default function BoardView({ slug }: { slug?: string }) {
+  const [boards, setBoards] = useState<Boards[]>();
   const [query, setQuery] = useState<string>("");
   const [isCatalogView, setIsCatalogView] = useState<boolean>(false);
   const [catalogText, setCatalogText] = useState<string>("Catalog");
   const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
+  const { loggedIn } = useContext(UserContext);
 
   useEffect(() => {
-    getBoard(slug).then((data) => {
-      setBoard(data);
+    getBoards().then((data) => {
+      setBoards(data);
     });
   }, []);
 
@@ -57,8 +61,14 @@ export default function BoardView({ slug }: { slug: string }) {
 
   return (
     <>
-      <div className="flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 py-2 text-sm font-bold sm:flex-row">
-        <PostForm slug={slug as string} />
+      <div className="mt-[-10px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 pb-2 text-sm font-bold sm:flex-row">
+        {loggedIn ? (
+          <PostForm slug={slug as string} />
+        ) : (
+          <Link className="text-lg hover:underline" href="/login">
+            [Log In / Sign Up to Post]
+          </Link>
+        )}
       </div>
       <div className="sticky top-0 z-50 flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-1 text-sm font-bold">
         <div>
@@ -91,6 +101,65 @@ export default function BoardView({ slug }: { slug: string }) {
             </Link>
           </li>
         </ul>
+      </div>
+      <div className="px-xs py-sm scrollbar-hide top-xl sm:p-sm min-1 z-10 mt-2 flex w-full flex-row gap-1 overflow-x-auto overflow-y-hidden">
+        <Link href="/chan">
+          <button
+            className={`relative mb-2 h-7 min-w-max rounded-md bg-white px-2 font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:w-8 sm:text-xs`}
+          >
+            <svg
+              width="100%"
+              height="100%"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke-width="1.5"
+            >
+              <path
+                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M2 12H22"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+              <path
+                d="M12 2C14.5013 4.73835 15.9228 8.29203 16 12C15.9228 15.708 14.5013 19.2616 12 22C9.49872 19.2616 8.07725 15.708 8 12C8.07725 8.29203 9.49872 4.73835 12 2Z"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              ></path>
+            </svg>
+          </button>
+        </Link>
+        {boards?.map((board, index) => {
+          let color = colors[index % colors.length];
+          return (
+            <Tooltip
+              key={board.slug}
+              color="#cecee0"
+              title={<h1 className="text-[1.2em]">/{board.slug}</h1>}
+              arrow
+            >
+              <Link href={`/chan/${board.slug}`} passHref>
+                <button
+                  style={{
+                    backgroundColor: color,
+                  }}
+                  className={`w-15 relative mb-2 h-7 min-w-max rounded-md px-2 font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:text-xs`}
+                >
+                  {board.name}
+                </button>
+              </Link>
+            </Tooltip>
+          );
+        })}
       </div>
       <Posts
         slug={slug as string}

@@ -1,4 +1,3 @@
-import { useAuth } from "@clerk/nextjs";
 import { InformationCircleIcon } from "@heroicons/react/20/solid";
 import { Boards } from "@prisma/client";
 import { UploadcareSimpleAuthSchema, storeFile } from "@uploadcare/rest-client";
@@ -20,7 +19,6 @@ const extractUUID = (url: string) => {
 export default function PostViewPage() {
   const router = useRouter();
   const { id, slug } = router.query;
-  const { userId } = useAuth();
   const [post, setPost] = useState<PostResponse>();
   const { loggedIn } = useContext(UserContext);
   const [uploadDetails, setUploadDetails] = useState<{
@@ -37,6 +35,7 @@ export default function PostViewPage() {
   const [board, setBoard] = useState<Boards>();
   let stringSlug = Array.isArray(slug) ? slug[0] : slug;
   stringSlug = stringSlug || "defaultSlug";
+  const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
 
   const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
     publicKey: "298fc65a2986318fd270",
@@ -73,6 +72,39 @@ export default function PostViewPage() {
         }
       });
   }, [id]);
+
+  const handleScroll = () => {
+    const scrollTop =
+      document.documentElement.scrollTop || document.body.scrollTop;
+    const scrollHeight =
+      document.documentElement.scrollHeight || document.body.scrollHeight;
+    const windowHeight =
+      document.documentElement.clientHeight || window.innerHeight;
+    const reachedBottom = scrollTop + windowHeight >= scrollHeight;
+    setIsAtBottom(reachedBottom);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   useEffect(() => {
     if (slug) getBoard(slug as string).then((data) => setBoard(data));
   }, [slug]);
@@ -92,19 +124,29 @@ export default function PostViewPage() {
         <Link className="font-black hover:underline" href="/chan">
           [Back]
         </Link>
+        <Link
+          className="hover:underline"
+          href="javascript:void(0);"
+          onClick={isAtBottom ? scrollToTop : scrollToBottom}
+        >
+          {isAtBottom ? "[Top]" : "[Bottom]"}
+        </Link>
       </div>
 
       <div className="mb-2">
         {post.attachment && (
           <>
-            <img className="max-h-[500px] pb-2 pt-2" src={post.attachment} />
-            <ul className="t-3 mb-4 flex [&>li]:h-4 [&>li]:min-w-max [&>li]:self-center [&>li]:text-gray-600">
-              <li className="border-[0] border-r-[1px] border-solid border-black pr-1">
+            <img
+              className="max-h-[500px] pb-2 pt-[2vh]"
+              src={post.attachment}
+            />
+            <ul className="t-3 flex [&>li]:h-4 [&>li]:min-w-max [&>li]:self-center [&>li]:text-gray-600">
+              <li className="hidden border-[0] border-r-[1px] border-solid border-black pr-1 min-[450px]:block">
                 {uploadDetails[extractUUID(post.attachment)]?.width}
                 &nbsp;x&nbsp;
                 {uploadDetails[extractUUID(post.attachment)]?.height}&nbsp;
               </li>
-              <li className="border-[0] border-r-[1px] border-solid border-black px-1">
+              <li className="border-[0] border-r-[1px] border-solid border-black px-1 ">
                 {uploadDetails[extractUUID(post.attachment)]?.size}
                 &nbsp;kb&nbsp;
               </li>
@@ -121,34 +163,41 @@ export default function PostViewPage() {
             </ul>
           </>
         )}
-        <p className="">{post.content}</p>
-        <div className="flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
+        <p className="mt-[2vh]">{post.content}</p>
+        <div className="relative mt-4 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
+          <div className="absolute -bottom-2 left-0 top-0 flex w-6 justify-center">
+            <div className="w-px bg-slate-200" />
+          </div>
           <img
             src={post.user?.profileImageUrl || "/favicon.ico"}
             alt=""
-            className="relative mr-[24px] h-6 w-6 flex-none rounded-full bg-gray-50"
+            className="relative mt-[5px] h-6 w-6 flex-none rounded-full bg-gray-50"
           />
-          <span className="self-center font-medium text-gray-900">
-            {userName}
-          </span>
-          <p className="self-center"> &nbsp;posted @&nbsp;</p>
-          <time
-            dateTime={
-              post.createdAt ? new Date(post.createdAt).toISOString() : ""
-            }
-            className="self-center text-gray-500"
-          >
-            {post.createdAt
-              ? new Date(post.createdAt).toLocaleString([], {
-                  dateStyle: "short",
-                  timeStyle: "short",
-                })
-              : ""}
-          </time>
+          <div className="mb-[-2px] ml-4 flex rounded-md bg-[#cacee788] p-2">
+            <span className="self-center font-medium text-gray-900">
+              {userName}
+            </span>
+            <p className="self-center"> &nbsp;posted @&nbsp;</p>
+            <time
+              dateTime={
+                post.createdAt ? new Date(post.createdAt).toISOString() : ""
+              }
+              className="self-center text-gray-500"
+            >
+              {post.createdAt
+                ? new Date(post.createdAt).toLocaleString([], {
+                    dateStyle: "short",
+                    timeStyle: "short",
+                  })
+                : ""}
+            </time>
+          </div>
         </div>
       </div>
-      <div className="ml-[-10px] pb-2">
+      <div className="ml-[-10px]">
         <Comments
+          thread
+          reverseOrder
           key={version}
           id={Number(id)}
           slug={stringSlug}
@@ -178,7 +227,7 @@ export default function PostViewPage() {
                   href="/login"
                   className="whitespace-nowrap font-medium capitalize text-[#646475] hover:text-[#444451] "
                 >
-                  Log in / Sign up
+                  Log in / Sign Up
                   <span aria-hidden="true"> &rarr;</span>
                 </a>
               </p>

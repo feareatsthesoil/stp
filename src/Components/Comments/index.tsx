@@ -1,27 +1,39 @@
-import { useUser } from "@clerk/clerk-react";
 import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CommentResponse } from "../../types";
 import { getComments } from "../../utils/services";
+import { UserContext } from "../UserContext";
 import CommentDeleteButton from "./CommentDeleteButton";
 
-export default function Comments({
-  id,
-  limit,
-  slug,
-  postId,
-}: {
+interface CommentsProps {
   id: number;
   limit?: number;
   slug: string;
   postId: number;
-}) {
+  reverseOrder?: boolean;
+  thread?: boolean;
+  showMoreComments?: boolean;
+}
+
+export default function Comments({
+  id,
+  limit = 5,
+  slug,
+  postId,
+  reverseOrder = false,
+  thread = false,
+  showMoreComments = false,
+}: CommentsProps) {
   const { userId } = useAuth();
   const [comments, setComments] = useState<CommentResponse[]>();
-  const { user } = useUser();
+  const [count, setCount] = useState(-1);
+  const { loggedIn } = useContext(UserContext);
   const refresh = () => {
-    getComments(id).then((data) => setComments(data));
+    getComments(id).then(({ data, headers }) => {
+      setCount(Number(headers["total-records"]));
+      setComments(data);
+    });
   };
   useEffect(() => {
     refresh();
@@ -29,27 +41,34 @@ export default function Comments({
 
   if (!comments || comments.length === 0) return null;
 
-  const displayedComments = limit ? comments.slice(0, limit) : comments;
+  let displayedComments = limit ? comments.slice(0, limit) : comments;
+
+  if (reverseOrder) {
+    displayedComments = [...displayedComments].reverse();
+  }
+
   const lastCommentIndex = displayedComments.length - 1;
 
   return (
     <>
-      <ul role="list" className="ml-[10px] space-y-2">
+      <ul role="list" className="mb-2 ml-[10px] space-y-2">
         {displayedComments.map((comment, index) => (
           <li className="relative flex gap-x-4" key={comment.id}>
             <div
-              className={`${
-                index === lastCommentIndex ? "h-6" : "-bottom-6"
-              } absolute left-0 top-0 flex w-6 justify-center`}
+              className={`absolute left-0 top-0 flex w-6 justify-center ${
+                thread && loggedIn
+                  ? `-bottom-6`
+                  : `${index === lastCommentIndex ? "h-6" : "-bottom-6"} `
+              }`}
             >
               <div className="w-px bg-gray-200" />
             </div>
             <img
               src={comment.user?.profileImageUrl}
               alt=""
-              className="relative mt-3 h-6 w-6 flex-none rounded-full bg-gray-50"
+              className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
             />
-            <div className="flex rounded-md p-2 ring-1 ring-inset ring-gray-200">
+            <div className="flex rounded-md bg-[#cacee788] p-2">
               <Link href={`/chan/${slug}/posts/${postId}`}>
                 <div className="flex justify-between gap-x-4">
                   <div className="py-0.5 text-xs leading-5 text-gray-500">
@@ -84,7 +103,7 @@ export default function Comments({
                       : ""}
                   </time>
                 </div>
-                <p className="text-sm leading-6 text-gray-500">
+                <p className="font-sans text-sm leading-6 text-gray-500">
                   {comment.content}
                 </p>
               </Link>
@@ -92,6 +111,12 @@ export default function Comments({
           </li>
         ))}
       </ul>
+      {showMoreComments && count > limit && (
+        <div className="mb-2 ml-14 font-sans text-xs">
+          {count - limit} more comment
+          {count - limit > 1 ? "s" : ""}
+        </div>
+      )}
     </>
   );
 }
