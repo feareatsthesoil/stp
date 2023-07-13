@@ -42,7 +42,7 @@ export default function CommentForm({
 
   return (
     <form onSubmit={formik.handleSubmit}>
-      <div className="relative flex">
+      <div className="relative flex max-w-[500px]">
         <div className="absolute left-0 top-0 flex h-6 w-6 translate-y-[-8px] justify-center">
           <div className="w-px bg-slate-200" />
         </div>
@@ -55,7 +55,7 @@ export default function CommentForm({
           <textarea
             name="content"
             id="content"
-            className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+            className={`block w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
               formik.isSubmitting ? "cursor-not-allowed" : ""
             }`}
             placeholder="Comment"
@@ -73,14 +73,14 @@ export default function CommentForm({
           )}
         </div>
       </div>
-      <div className="my-2 flex justify-between">
-        <div className="ml-10">
+      <div className="my-2 flex max-w-[500px] justify-end">
+        {/* <div className="ml-10">
           <lr-file-uploader-regular
             css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
             ctx-name="post-uploader"
             class="my-config"
           ></lr-file-uploader-regular>
-        </div>
+        </div> */}
         <button
           type="submit"
           color="rgb(239, 240, 240)"

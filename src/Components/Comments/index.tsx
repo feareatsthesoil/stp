@@ -68,32 +68,24 @@ export default function Comments({
               alt=""
               className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
             />
-            <div className="flex rounded-md bg-[#cacee788] p-2">
-              <Link href={`/chan/${slug}/posts/${postId}`}>
-                <div className="flex justify-between gap-x-4">
-                  <div className="py-0.5 text-xs leading-5 text-gray-500">
-                    <span className="font-medium text-gray-900">
-                      {comment.user?.firstName || comment.user?.lastName
-                        ? `${comment.user?.firstName} ${comment.user?.lastName}`
-                        : "Anonymous"}
-                    </span>{" "}
-                    commented&nbsp;
-                    {userId === comment.userId ? (
-                      <CommentDeleteButton
-                        className="self-center"
-                        postId={comment.postId}
-                        commentId={comment.id}
-                        onComplete={refresh}
-                      />
-                    ) : null}
-                  </div>
+            <div className="flex-col rounded-md bg-[#dbddffa5] p-2">
+              <div className="flex justify-between gap-x-4">
+                <div className="flex py-0.5 text-xs leading-5 text-gray-900">
+                  <span className="font-sans font-medium">
+                    {comment.user?.firstName || comment.user?.lastName
+                      ? `${comment.user?.firstName} ${comment.user?.lastName}`
+                      : "Anonymous"}
+                  </span>{" "}
+                  <p className="ml-1 font-sans text-gray-500">
+                    commented @&nbsp;
+                  </p>
                   <time
                     dateTime={
                       comment.createdAt
                         ? new Date(comment.createdAt).toISOString()
                         : ""
                     }
-                    className="flex-none py-0.5 text-xs leading-5 text-gray-500"
+                    className="flex-none text-xs leading-5 text-gray-500"
                   >
                     {comment.createdAt
                       ? new Date(comment.createdAt).toLocaleString([], {
@@ -102,20 +94,33 @@ export default function Comments({
                         })
                       : ""}
                   </time>
+                  {userId === comment.userId ? (
+                    <CommentDeleteButton
+                      className="self-center"
+                      postId={comment.postId}
+                      commentId={comment.id}
+                      onComplete={refresh}
+                    />
+                  ) : null}
                 </div>
-                <p className="font-sans text-sm leading-6 text-gray-500">
-                  {comment.content}
-                </p>
-              </Link>
+              </div>
+              <p className="font-sans text-sm leading-6 text-gray-700">
+                {comment.content}
+              </p>
             </div>
           </li>
         ))}
       </ul>
       {showMoreComments && count > limit && (
-        <div className="mb-2 ml-14 font-sans text-xs">
-          {count - limit} more comment
-          {count - limit > 1 ? "s" : ""}
-        </div>
+        <Link
+          className="hover:underline"
+          href={`/chan/${slug}/posts/${postId}`}
+        >
+          <div className="mb-2 ml-14 font-sans text-xs">
+            {count - limit} more comment
+            {count - limit > 1 ? "s" : ""}
+          </div>
+        </Link>
       )}
     </>
   );

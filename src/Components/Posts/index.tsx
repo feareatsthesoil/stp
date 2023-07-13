@@ -1,11 +1,9 @@
 import { useAuth } from "@clerk/nextjs";
-import { Pagination } from "@mui/material";
 import { UploadcareSimpleAuthSchema, storeFile } from "@uploadcare/rest-client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PostResponse } from "../../types";
 import { getPosts } from "../../utils/services";
-import { colors } from "../Boards/colors";
 import Comments from "../Comments";
 
 interface Props {
@@ -103,14 +101,13 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
   return (
     <>
       <div
-        className={
+        className={`${
           isCatalogView
-            ? "grid-rows-10 grid grid-cols-1 gap-2 py-2 text-center min-[800px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[2000px]:grid-cols-4 min-[2600px]:grid-cols-5 min-[3200px]:grid-cols-6 min-[3800px]:grid-cols-7 min-[4400px]:grid-cols-8 min-[5000px]:grid-cols-9 min-[5600px]:grid-cols-10 min-[6200px]:grid-cols-11 min-[6800px]:grid-cols-12"
+            ? " grid-rows-10 grid grid-cols-1 gap-2 py-2 text-center min-[800px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[2000px]:grid-cols-4 min-[2600px]:grid-cols-5 min-[3200px]:grid-cols-6 min-[3800px]:grid-cols-7 min-[4400px]:grid-cols-8 min-[5000px]:grid-cols-9 min-[5600px]:grid-cols-10 min-[6200px]:grid-cols-11 min-[6800px]:grid-cols-12"
             : ""
-        }
+        }`}
       >
         {posts?.map((post, index) => {
-          let color = colors[index % colors.length];
           let postSlug = post.board?.slug;
           return (
             <div
@@ -120,7 +117,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                   : `pb-auto ${
                       index !== 0
                         ? "border-t border-solid border-slate-300"
-                        : ""
+                        : "mt-2 "
                     }`
               }flex w-full flex-col border-slate-300 pt-1 md:flex-row`}
             >
@@ -136,19 +133,22 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                         isCatalogView && "ml-2"
                       } relative mr-2 h-6 w-6 flex-none rounded-full bg-gray-50`}
                     />
-                    <span className="self-center font-medium text-gray-900">
+                    <span className="self-center font-sans font-medium text-gray-900">
                       {post.user?.firstName || post.user?.lastName
                         ? `${post.user?.firstName} ${post.user?.lastName}`
                         : "Anonymous"}
                     </span>
-                    <p className="self-center"> &nbsp;posted @&nbsp;</p>
+                    <p className="self-center font-sans">
+                      {" "}
+                      &nbsp;posted @&nbsp;
+                    </p>
                     <time
                       dateTime={
                         post.createdAt
                           ? new Date(post.createdAt).toISOString()
                           : ""
                       }
-                      className="self-center text-gray-500"
+                      className="mb-[-2px] self-center text-gray-500"
                     >
                       {post.createdAt
                         ? new Date(post.createdAt).toLocaleString([], {
@@ -160,9 +160,9 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                     <Link href={`/chan/${postSlug}`} passHref>
                       <button
                         style={{
-                          backgroundColor: color,
+                          backgroundColor: "#DBDDFF",
                         }}
-                        className={`w-15 relative ml-1 h-7 min-w-max rounded-md px-2 font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:text-xs`}
+                        className={`w-15 relative ml-1 h-7 min-w-max rounded-md px-2 font-sans text-sm font-normal text-black hover:opacity-80 sm:h-5 sm:text-xs`}
                       >
                         {post.board?.slug}
                       </button>
@@ -189,14 +189,14 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                     >
                       <h3
                         className={`${
-                          isCatalogView && "pb-2"
+                          isCatalogView ? "pb-2" : "pt-2"
                         } font-sans text-lg font-medium leading-5 text-gray-900 hover:underline`}
                       >
                         {post.title}
                       </h3>
                     </Link>
                     <div
-                      className={`text-md mb-1 py-1 font-sans text-gray-500 ${
+                      className={`text-md mb-1 mt-1 py-1 font-sans text-black ${
                         isCatalogView &&
                         `${post.attachment ? "hidden" : "px-2"}`
                       }`}
@@ -215,10 +215,10 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                                 className={`max-h-[96vh] pt-2 ${
                                   isCatalogView
                                     ? "max-h-[300px] max-w-[300px] self-center"
-                                    : ""
+                                    : "cursor-pointer"
                                 } ${
                                   expandedImages[post.id] ? "" : "max-w-[300px]"
-                                } cursor-pointer`}
+                                } `}
                                 src={post.attachment}
                                 onClick={() =>
                                   setExpandedImages((prevState) => ({
@@ -228,7 +228,11 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                                 }
                               />
 
-                              <ul className={`t-3 flex pb-2 pt-2`}>
+                              <ul
+                                className={`t-3 flex pb-2 pt-2 ${
+                                  isCatalogView ? "justify-center px-2" : ""
+                                }`}
+                              >
                                 <li className="h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs">
                                   {uploadDetails[post.id]?.width}&nbsp;x&nbsp;
                                   {uploadDetails[post.id]?.height}&nbsp;
@@ -271,13 +275,96 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
             </div>
           );
         })}
-        <Pagination
-          style={{ marginBottom: "10px" }}
-          page={currentPage}
-          count={totalPages}
-          onChange={(e, p) => setCurrentPage(p)}
-        />
       </div>
+      <nav
+        className={`${
+          isCatalogView
+            ? "float-left"
+            : "relative flex w-[96vw] items-center justify-between border-[0] border-t border-solid border-slate-300 px-4 py-3 sm:px-6"
+        }`}
+        aria-label="Pagination"
+      >
+        <div className="flex flex-1 justify-between sm:justify-end">
+          <a
+            href="#"
+            onClick={(e) => {
+              if (currentPage === 1) {
+                e.preventDefault();
+              } else {
+                setCurrentPage(currentPage - 1);
+              }
+            }}
+            className={` ${
+              currentPage === 1 && "cursor-not-allowed opacity-50"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="h-6 w-6"
+              onMouseEnter={(e) => (e.currentTarget.style.strokeWidth = "2")}
+              onMouseLeave={(e) => (e.currentTarget.style.strokeWidth = "1.5")}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </a>
+          {Array.from(Array(totalPages).keys()).map((_, index) => {
+            const pageNumber = index + 1;
+            return (
+              <a
+                key={pageNumber}
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setCurrentPage(pageNumber);
+                }}
+                className={`mx-2 self-center hover:font-bold ${
+                  currentPage === pageNumber && "underline "
+                }`}
+              >
+                {pageNumber}
+              </a>
+            );
+          })}
+          <a
+            href="#"
+            onClick={(e) => {
+              if (currentPage === totalPages) {
+                e.preventDefault();
+              } else {
+                setCurrentPage(currentPage + 1);
+              }
+            }}
+            className={`${
+              currentPage === totalPages && "cursor-not-allowed opacity-50"
+            }`}
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="h-6 w-6"
+              onMouseEnter={(e) => (e.currentTarget.style.strokeWidth = "2")}
+              onMouseLeave={(e) => (e.currentTarget.style.strokeWidth = "1.5")}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </a>
+        </div>
+      </nav>
     </>
   );
 }

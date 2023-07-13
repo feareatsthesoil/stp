@@ -47,7 +47,7 @@ const NavBar = () => {
             );
           })}
           {!user.isSignedIn && (
-            <li id="MobileLogin">
+            <li id="list-item min-[570px]:hidden">
               <Link
                 href={"/login"}
                 className={`h-0.5 border-l-[1px] border-solid border-black pl-1 text-blue-600 underline hover:text-indigo-600 ${

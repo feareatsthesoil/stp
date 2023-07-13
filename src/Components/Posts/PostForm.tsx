@@ -42,7 +42,7 @@ export default function PostForm({
     validationSchema: Yup.object({
       title: Yup.string()
         .required("Title is required")
-        .max(20, "Must be within 20 characters."),
+        .max(100, "Must be within 100 characters."),
       content: Yup.string()
         .required("Content is required")
         .max(1000, "Must be within 1000 characters."),
@@ -93,83 +93,92 @@ export default function PostForm({
 
   return (
     <form onSubmit={handleSubmitWithAuth}>
-      {attachment && (
-        <>
-          <img className="max-h-[500px] pb-2" src={attachment} />
+      <div className="flex flex-col">
+        {attachment && (
+          <>
+            <div className="m self-center">
+              <img
+                className="b-2 w-full max-w-[500px] self-center"
+                src={attachment}
+              />
+              <button
+                type="submit"
+                className="w-15 relative mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+                onClick={() => formik.setFieldValue("attachment", null)}
+              >
+                Delete Image
+              </button>
+            </div>
+          </>
+        )}
+        <div className="relative w-full min-w-[500px] max-w-[500px] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
+          <input
+            type="text"
+            name="title"
+            id="title"
+            className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+              isDisabled ? "cursor-not-allowed" : ""
+            }`}
+            placeholder="Title"
+            value={formik.values.title}
+            onChange={formik.handleChange}
+            disabled={isDisabled}
+            {...(formik.errors.title && { "aria-describedby": "title-error" })}
+          />
+          {formik.errors.title && (
+            <div className="pl-2 pt-1 text-xs text-red-500">
+              {formik.errors.title}
+            </div>
+          )}
+        </div>
+
+        <div className="relative w-full max-w-[500px] self-center rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 ">
+          <textarea
+            name="content"
+            id="content"
+            className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+              isDisabled ? "cursor-not-allowed" : ""
+            }`}
+            placeholder="Content"
+            value={formik.values.content ?? ""}
+            onChange={formik.handleChange}
+            disabled={isDisabled}
+            {...(formik.errors.content && {
+              "aria-describedby": "content-error",
+            })}
+          />
+          {formik.errors.content && (
+            <div className="pl-2 pt-1 text-xs text-red-500">
+              {formik.errors.content}
+            </div>
+          )}
+        </div>
+        <div className="w-full max-w-[500px] self-center">
+          {loggedIn && (
+            <div className="mb-[-40px] mt-2">
+              <lr-file-uploader-regular
+                css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+                ctx-name="post-uploader"
+                class="my-config"
+              ></lr-file-uploader-regular>
+            </div>
+          )}
+
+          <div className="my-config"></div>
           <button
             type="submit"
-            className="w-15 relative mb-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
-            onClick={() => formik.setFieldValue("attachment", null)}
+            color="rgb(239, 240, 240)"
+            className="w-15 float-right mt-2 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
           >
-            Delete Image
+            {!formik.isSubmitting && <>Save</>}
+            {formik.isSubmitting && (
+              <span>
+                <FontAwesomeIcon icon={faSpinner} spin />
+              </span>
+            )}
           </button>
-        </>
-      )}
-      <div className="relative rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 sm:min-w-[500px]">
-        <input
-          type="text"
-          name="title"
-          id="title"
-          className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
-            isDisabled ? "cursor-not-allowed" : ""
-          }`}
-          placeholder="Title"
-          value={formik.values.title}
-          onChange={formik.handleChange}
-          disabled={isDisabled}
-          {...(formik.errors.title && { "aria-describedby": "title-error" })}
-        />
-        {formik.errors.title && (
-          <div className="pl-2 pt-1 text-xs text-red-500">
-            {formik.errors.title}
-          </div>
-        )}
-      </div>
-
-      <div className="relative rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 ring-1 ring-inset ring-gray-300 focus-within:z-10 ">
-        <textarea
-          name="content"
-          id="content"
-          className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
-            isDisabled ? "cursor-not-allowed" : ""
-          }`}
-          placeholder="Content"
-          value={formik.values.content ?? ""}
-          onChange={formik.handleChange}
-          disabled={isDisabled}
-          {...(formik.errors.content && {
-            "aria-describedby": "content-error",
-          })}
-        />
-        {formik.errors.content && (
-          <div className="pl-2 pt-1 text-xs text-red-500">
-            {formik.errors.content}
-          </div>
-        )}
-      </div>
-      {loggedIn && (
-        <div className="mb-[-40px] mt-2">
-          <lr-file-uploader-regular
-            css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-            ctx-name="post-uploader"
-            class="my-config"
-          ></lr-file-uploader-regular>
         </div>
-      )}
-
-      <div className="my-config"></div>
-      <button
-        type="submit"
-        color="rgb(239, 240, 240)"
-        className="w-15 float-right mt-2 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
-      >
-        {!formik.isSubmitting && <>Save</>}
-        {formik.isSubmitting && (
-          <span>
-            <FontAwesomeIcon icon={faSpinner} spin />
-          </span>
-        )}
-      </button>
+      </div>
     </form>
   );
 }

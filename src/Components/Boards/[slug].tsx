@@ -59,13 +59,19 @@ export default function BoardView({ slug }: { slug?: string }) {
     };
   }, []);
 
+  let firstButtonActive = true;
+
+  if (boards) {
+    firstButtonActive = !boards.some((board) => slug === board.slug);
+  }
+
   return (
     <>
-      <div className="mt-[-10px] flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-slate-300 pb-2 text-sm font-bold sm:flex-row">
+      <div className="mt-[-10px] flex w-[96vw] flex-row place-content-center border-[0] border-b border-solid border-slate-300 pb-2 text-sm font-bold">
         {loggedIn ? (
           <PostForm slug={slug as string} />
         ) : (
-          <Link className="text-lg hover:underline" href="/login">
+          <Link className="text-md hover:underline" href="/login">
             [Log In / Sign Up to Post]
           </Link>
         )}
@@ -76,7 +82,7 @@ export default function BoardView({ slug }: { slug?: string }) {
             type="text"
             name="Search"
             id="Search"
-            className={`block w-full rounded-sm border-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6`}
+            className={`block w-full rounded-sm border-0 pl-2 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6`}
             placeholder="Search"
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -105,7 +111,9 @@ export default function BoardView({ slug }: { slug?: string }) {
       <div className="px-xs py-sm scrollbar-hide top-xl sm:p-sm min-1 z-10 mt-2 flex w-full flex-row gap-1 overflow-x-auto overflow-y-hidden">
         <Link href="/chan">
           <button
-            className={`relative mb-2 h-7 min-w-max rounded-md bg-white px-2 font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:w-8 sm:text-xs`}
+            className={`relative h-7 w-[35px] rounded-md bg-[#dbddffa5] px-2 py-[4px] font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:w-8 sm:py-[2px] sm:text-xs ${
+              firstButtonActive ? "bg-[#272fc756]" : ""
+            }`}
           >
             <svg
               width="100%"
@@ -140,6 +148,7 @@ export default function BoardView({ slug }: { slug?: string }) {
         </Link>
         {boards?.map((board, index) => {
           let color = colors[index % colors.length];
+          let isActive = slug === board.slug;
           return (
             <Tooltip
               key={board.slug}
@@ -149,10 +158,9 @@ export default function BoardView({ slug }: { slug?: string }) {
             >
               <Link href={`/chan/${board.slug}`} passHref>
                 <button
-                  style={{
-                    backgroundColor: color,
-                  }}
-                  className={`w-15 relative mb-2 h-7 min-w-max rounded-md px-2 font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:text-xs`}
+                  className={`w-15 relative h-7 w-max rounded-md px-2 font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:text-xs ${
+                    isActive ? "bg-[#272fc756]" : "bg-[#DBDDFF]"
+                  }`}
                 >
                   {board.name}
                 </button>

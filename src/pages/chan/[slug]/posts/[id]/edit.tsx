@@ -81,14 +81,18 @@ export default function PostEditPage() {
           </div>
         </div>
       )}
-      <PostForm post={post} slug={slug as string} />
-      <PostDeleteButton
-        postId={post.id}
-        sx={{ mt: 5 }}
-        onComplete={() => router.push("/chan")}
-      >
-        Delete Post
-      </PostDeleteButton>
+      <div className="flex flex-col">
+        <PostForm post={post} slug={slug as string} />
+        <div className="w-full max-w-[500px] self-center">
+          <PostDeleteButton
+            postId={post.id}
+            sx={{ mt: 5 }}
+            onComplete={() => router.push("/chan")}
+          >
+            Delete Post
+          </PostDeleteButton>
+        </div>
+      </div>
     </DefaultLayout>
   );
 }
