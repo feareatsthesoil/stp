@@ -42,7 +42,7 @@ export default function NextEvent() {
   );
 
   return (
-    <div className="w-[96vw] border-[0] mt-5 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
+    <div className="w-[96vw] border-[0] mt-4 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
       <Link
         href={data.htmlLink}
         target="_blank"

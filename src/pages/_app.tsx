@@ -12,7 +12,6 @@ import { MetaMaskConnector } from "wagmi/connectors/metaMask";
 import { WalletConnectConnector } from "wagmi/connectors/walletConnect";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { SideNavProvider } from "../Components/Nav/NavContext";
 import { RadioProvider } from "../Components/RadioContext";
 import { UserProvider } from "../Components/UserContext";
 import { store } from "../redux/store";
@@ -54,35 +53,33 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <>
       <WagmiConfig client={client}>
-        <SideNavProvider>
-          <SnackbarProvider>
-            <ConfirmProvider>
-              <Provider store={store}>
-                <RadioProvider>
-                  <LocalizationProvider dateAdapter={AdapterDayjs}>
-                    <ClerkProvider
-                      {...pageProps}
-                      publishableKey={
-                        process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
-                      }
-                    >
-                      <UserProvider>
-                        <Head>
-                          <meta
-                            name="viewport"
-                            content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
-                          />
-                          <title>Serving the People</title>
-                        </Head>
-                        <Component {...pageProps} />
-                      </UserProvider>
-                    </ClerkProvider>
-                  </LocalizationProvider>
-                </RadioProvider>
-              </Provider>
-            </ConfirmProvider>
-          </SnackbarProvider>
-        </SideNavProvider>
+        <SnackbarProvider>
+          <ConfirmProvider>
+            <Provider store={store}>
+              <RadioProvider>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <ClerkProvider
+                    {...pageProps}
+                    publishableKey={
+                      process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+                    }
+                  >
+                    <UserProvider>
+                      <Head>
+                        <meta
+                          name="viewport"
+                          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
+                        />
+                        <title>Serving the People</title>
+                      </Head>
+                      <Component {...pageProps} />
+                    </UserProvider>
+                  </ClerkProvider>
+                </LocalizationProvider>
+              </RadioProvider>
+            </Provider>
+          </ConfirmProvider>
+        </SnackbarProvider>
       </WagmiConfig>
     </>
   );

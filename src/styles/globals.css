@@ -151,10 +151,6 @@ p {
   line-height: 20px;
 }
 
-#MobileLogin {
-  display: none;
-}
-
 #hide {
   display: none;
 }
@@ -211,35 +207,13 @@ p {
   color: #000 !important;
 }
 
-/* MuiList */
-.MuiList-root li {
-  font-family: "Times New Roman", Times, serif;
-  background-color: #fff;
-}
-
-.MuiList-root li:hover {
-  background-color: rgba(25, 118, 210, 0.04);
-}
-
-.MuiList-root li.Mui-focusVisible {
-  background-color: rgba(25, 118, 210, 0.04);
-}
-
-.MuiList-root li.Mui-selected.Mui-focusVisible {
-  background-color: rgba(25, 118, 210, 0.04);
-}
-
-.MuiList-root li.Mui-selected:hover {
-  background-color: rgba(25, 118, 210, 0.04);
+/* MUI MenuItem */
+.MuiList-root {
+  font-family: Arial, Helvetica, sans-serif !important;
 }
 
 .MuiTouchRipple-root {
   color: #ffffff00;
-}
-
-.MuiList-root li.Mui-selected {
-  background-color: #fff;
-  font-weight: bold;
 }
 
 /* MuiAlert */
@@ -280,27 +254,17 @@ p {
   background-color: #00000000;
 }
 
+/* MuiTooltip */
+.MuiTooltip-tooltip {
+  background-color: rgb(220, 220, 220) !important;
+  color: #4a4d50 !important;
+}
+
+.MuiTooltip-arrow {
+  color: rgb(220, 220, 220) !important;
+}
+
 /* UploadCare */
-.uploadcare--widget__button.uploadcare--widget__button_type_open {
-  color: #000;
-  margin: 0 0 0 -10px;
-  outline: none !important;
-  text-decoration: underline;
-}
-
-.uploadcare--widget__button.uploadcare--widget__button_type_open:hover {
-  background-color: #f4f4fe;
-  cursor: pointer;
-}
-
-.uploadcare--widget__button.uploadcare--widget__button_type_open:active {
-  background-color: #f4f4fe;
-}
-
-.uploadcare--widget__button.uploadcare--widget__button_type_open:focus {
-  background-color: #f4f4fe;
-}
-
 .my-config {
   --cfg-pubkey: "298fc65a2986318fd270";
   --cfg-img-only: 0;
@@ -315,15 +279,7 @@ p {
   --l-accent: 0%;
 }
 
-.MuiTooltip-tooltip {
-  background-color: rgb(220, 220, 220) !important;
-  color: #4a4d50 !important;
-}
-
-.MuiTooltip-arrow {
-  color: rgb(220, 220, 220) !important;
-}
-
+/* Chan Scrollbar */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
@@ -332,11 +288,5 @@ p {
 @media (prefers-reduced-motion: no-preference) {
   :root {
     scroll-behavior: smooth;
-  }
-}
-
-@media screen and (min-width: 0px) and (max-width: 570px) {
-  #MobileLogin {
-    display: list-item;
   }
 }

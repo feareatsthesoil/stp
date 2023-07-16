@@ -1,13 +1,10 @@
-import { CSSProperties, useEffect, useRef, useState } from "react";
-
-import css from "../styles/Store.module.css";
-import { useSideNav } from "../Components/Nav/NavContext";
+import { useEffect, useRef } from "react";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import Nav from "../Components/Nav/Nav";
 
 export default function Store() {
-  const collectionDivTagRef = useRef<HTMLDivElement>(null)
+  const collectionDivTagRef = useRef<HTMLDivElement>(null);
   const scriptTag = `
     /*<![CDATA[*/
     (function () {
@@ -366,37 +363,39 @@ export default function Store() {
       }
     })();
 /*]]>*/
-    `
+    `;
   useEffect(() => {
+    const node = document.querySelector("#collection-component-1682823359416");
 
-    const node = document.querySelector("#collection-component-1682823359416")
-
-    const script = document.createElement("script")
-    script.id = "scriptShopify"
-    script.innerHTML = scriptTag
-    document.body.appendChild(script)
+    const script = document.createElement("script");
+    script.id = "scriptShopify";
+    script.innerHTML = scriptTag;
+    document.body.appendChild(script);
 
     const interval = setInterval(() => {
       if (node) {
-
         if (node.querySelectorAll("iframe").length >= 2)
-          node.querySelector("iframe")?.remove()
-
+          node.querySelector("iframe")?.remove();
       }
-    }, 300)
+    }, 300);
 
     return () => {
-      clearInterval(interval)
-    }
+      clearInterval(interval);
+    };
+  }, []);
 
-  }, [])
-
-  return <>
-    <div className={css.body}>
-      <Header />
-      <Nav />
-      <div className="px-[2vw] pb-5" ref={collectionDivTagRef} id='collection-component-1682823359416'></div>
-      <Footer />
-    </div>
-  </>
+  return (
+    <>
+      <div className="flex min-h-[100vh] flex-col items-center">
+        <Header />
+        <Nav />
+        <div
+          className="my-4 px-[2vw]"
+          ref={collectionDivTagRef}
+          id="collection-component-1682823359416"
+        ></div>
+        <Footer />
+      </div>
+    </>
+  );
 }

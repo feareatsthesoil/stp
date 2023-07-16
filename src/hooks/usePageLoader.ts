@@ -1,26 +1,25 @@
-import { useCallback, useEffect, useState } from "react"
-import { Router, useRouter } from "next/router"
+import { Router, useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
 
 export default function usePageLoader() {
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
   const onRouteChangeStart = useCallback(() => {
-    setLoading(true)
-  }, [])
+    setLoading(true);
+  }, []);
   const onRouteChangeStop = useCallback(() => {
-    setLoading(false)
-  }, [])
+    setLoading(false);
+  }, []);
   useEffect(() => {
-    Router.events.on("routeChangeStart", onRouteChangeStart)
-    Router.events.on("routeChangeComplete", onRouteChangeStop)
-    Router.events.on("routeChangeError", onRouteChangeStop)
+    Router.events.on("routeChangeStart", onRouteChangeStart);
+    Router.events.on("routeChangeComplete", onRouteChangeStop);
+    Router.events.on("routeChangeError", onRouteChangeStop);
     return () => {
-      Router.events.off("routeChangeStart", onRouteChangeStart)
-      Router.events.off("routeChangeComplete", onRouteChangeStop)
-      Router.events.off("routeChangeError", onRouteChangeStop)
+      Router.events.off("routeChangeStart", onRouteChangeStart);
+      Router.events.off("routeChangeComplete", onRouteChangeStop);
+      Router.events.off("routeChangeError", onRouteChangeStop);
+    };
+  }, []);
 
-    }
-  }, [])
-
-  return loading
+  return loading;
 }

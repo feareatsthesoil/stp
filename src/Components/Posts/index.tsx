@@ -35,7 +35,6 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     {}
   );
   const [totalPages, setTotalPages] = useState(0);
-
   const [currentPage, setCurrentPage] = useState(1);
 
   const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
@@ -43,9 +42,16 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     secretKey: "7fbd6a8d67fd36cf527c",
   });
 
-  useEffect(() => {
-    setLoading(true);
-  }, [currentPage]);
+  const formatFileSize = (fileSizeInBytes: number) => {
+    const sizes = ["B", "KB", "MB", "GB"];
+    let sizeIndex = 0;
+    while (fileSizeInBytes >= 1024 && sizeIndex < sizes.length - 1) {
+      fileSizeInBytes /= 1024;
+      sizeIndex++;
+    }
+    return `${fileSizeInBytes.toFixed(2)} ${sizes[sizeIndex]}`;
+  };
+
   const fetchPosts = async () => {
     try {
       const { data: fetchedPosts, headers } = await getPosts(
@@ -53,10 +59,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
         query,
         currentPage
       );
-
       const tpages = Number(headers["total-pages"]);
       setTotalPages(tpages);
-
       setPosts(fetchedPosts);
 
       for (let post of fetchedPosts) {
@@ -73,7 +77,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                 ...prevState,
                 [post.id]: {
                   filename: result.originalFilename,
-                  size: result.size.toString(),
+                  size: formatFileSize(result.size),
                   url: result.originalFileUrl,
                   height: data.height,
                   width: data.width,
@@ -91,41 +95,43 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
       setLoading(false);
     }
   };
+
   useEffect(() => {
-    console.error({ currentPage });
+    setLoading(true);
     fetchPosts();
   }, [slug, query, currentPage]);
+
   if (loading) return <div className="my-2">Loading...</div>;
   if (error) return <>Error: {error.message}</>;
   if (!posts.length) return <>No posts found</>;
+
   return (
     <>
       <div
         className={`${
           isCatalogView
-            ? " grid-rows-10 grid grid-cols-1 gap-2 py-2 text-center min-[800px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[2000px]:grid-cols-4 min-[2600px]:grid-cols-5 min-[3200px]:grid-cols-6 min-[3800px]:grid-cols-7 min-[4400px]:grid-cols-8 min-[5000px]:grid-cols-9 min-[5600px]:grid-cols-10 min-[6200px]:grid-cols-11 min-[6800px]:grid-cols-12"
-            : ""
+            ? "grid-rows-10 min-[1000px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[2000px]:grid-cols-4 min-[2600px]:grid-cols-5 min-[3200px]:grid-cols-6 min-[3800px]:grid-cols-7 min-[4400px]:grid-cols-8 min-[5000px]:grid-cols-9 min-[5600px]:grid-cols-10 min-[6200px]:grid-cols-11 min-[6800px]:grid-cols-12 grid grid-cols-1 gap-2 py-2 text-center"
+            : "mx-[1vw]"
         }`}
       >
         {posts?.map((post, index) => {
           let postSlug = post.board?.slug;
           return (
             <div
+              key={post.id}
               className={`${
                 isCatalogView
                   ? "border-x border-y border-solid border-slate-300"
-                  : `pb-auto ${
+                  : `pb-auto ml-[-1vw] ${
                       index !== 0
                         ? "border-t border-solid border-slate-300"
                         : "mt-2 "
                     }`
               }flex w-full flex-col border-slate-300 pt-1 md:flex-row`}
             >
-              <div className={`flex-col md:flex-col`}>
+              <div className="flex-col">
                 <div className="flex w-full flex-col">
-                  <div
-                    className={`flex min-w-max flex-row py-0.5 text-xs leading-5 text-gray-500`}
-                  >
+                  <div className="flex min-w-max flex-row py-0.5 text-xs leading-5 text-gray-500">
                     <img
                       src={post.user?.profileImageUrl || "/favicon.ico"}
                       alt=""
@@ -148,7 +154,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                           ? new Date(post.createdAt).toISOString()
                           : ""
                       }
-                      className="mb-[-2px] self-center text-gray-500"
+                      className="mb-[-1.5px] self-center text-gray-500"
                     >
                       {post.createdAt
                         ? new Date(post.createdAt).toLocaleString([], {
@@ -157,30 +163,38 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                           })
                         : ""}
                     </time>
-                    <Link href={`/chan/${postSlug}`} passHref>
-                      <button
-                        style={{
-                          backgroundColor: "#DBDDFF",
-                        }}
-                        className={`w-15 relative ml-1 h-7 min-w-max rounded-md px-2 font-sans text-sm font-normal text-black hover:opacity-80 sm:h-5 sm:text-xs`}
-                      >
-                        {post.board?.slug}
-                      </button>
-                    </Link>
-                    <Link
-                      href={`/chan/${postSlug}/posts/${post.id}`}
-                      className="ml-2 mr-1 self-center text-sm font-semibold text-black hover:underline"
-                    >
-                      [More]
-                    </Link>
-                    {userId === post.userId ? (
-                      <Link
-                        className="mr-1 self-center text-sm font-bold text-blue-600 hover:underline"
-                        href={`/chan/${postSlug}/posts/${post.id}/edit`}
-                      >
-                        [Edit]
+                    <div className="self-center">
+                      <Link href={`/chan/${postSlug}`} passHref>
+                        <button
+                          style={{
+                            backgroundColor: "#DBDDFF",
+                          }}
+                          className={`w-15 ml-1 h-7 self-center rounded-md px-2 font-sans text-sm font-normal text-black hover:opacity-80 sm:h-5 sm:text-xs`}
+                        >
+                          {post.board?.slug}
+                        </button>
                       </Link>
-                    ) : null}
+                      <Link href={`/chan/${postSlug}/posts/${post.id}`}>
+                        <button
+                          type="submit"
+                          color="rgb(239, 240, 240)"
+                          className="w-15 ml-1 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs"
+                        >
+                          More
+                        </button>
+                      </Link>
+                      {!isCatalogView && userId === post.userId ? (
+                        <Link href={`/chan/${postSlug}/posts/${post.id}/edit`}>
+                          <button
+                            type="submit"
+                            color="rgb(239, 240, 240)"
+                            className="w-15 ml-1 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs"
+                          >
+                            Edit
+                          </button>
+                        </Link>
+                      ) : null}
+                    </div>
                   </div>
                   <div className={`items-left flex flex-col`}>
                     <Link
@@ -207,14 +221,14 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                         isCatalogView ? "justify-center" : ""
                       }`}
                     >
-                      <p className="text-sm text-gray-700">
+                      <div className="text-center text-sm text-gray-700">
                         {post.attachment && (
                           <>
-                            <div className={`flex-col`}>
+                            <div className={`max=[450px]:w-[60vw] flex-col`}>
                               <img
                                 className={`max-h-[96vh] pt-2 ${
                                   isCatalogView
-                                    ? "max-h-[300px] max-w-[300px] self-center"
+                                    ? "max-[450px]:max-w-[80vw] max-h-[800px] max-w-[400px]"
                                     : "cursor-pointer"
                                 } ${
                                   expandedImages[post.id] ? "" : "max-w-[300px]"
@@ -227,20 +241,27 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                                   }))
                                 }
                               />
-
                               <ul
-                                className={`t-3 flex pb-2 pt-2 ${
+                                className={`t-3 relative flex pb-2 pt-2 ${
                                   isCatalogView ? "justify-center px-2" : ""
                                 }`}
                               >
-                                <li className="h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs">
+                                <li
+                                  className={`h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs ${
+                                    isCatalogView ? "max-[450px]:hidden" : ""
+                                  }`}
+                                >
                                   {uploadDetails[post.id]?.width}&nbsp;x&nbsp;
                                   {uploadDetails[post.id]?.height}&nbsp;
                                 </li>
-                                <li className="h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black px-1 text-xs">
-                                  {uploadDetails[post.id]?.size}&nbsp;kb&nbsp;
+                                <li
+                                  className={`h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black px-1 text-xs ${
+                                    isCatalogView ? "max-[450px]:hidden" : ""
+                                  }`}
+                                >
+                                  {uploadDetails[post.id]?.size}
                                 </li>
-                                <li className="h-4 min-w-max self-center px-1 text-xs">
+                                <li className="h-4 self-center overflow-x-auto overflow-y-hidden px-1 text-xs">
                                   <a
                                     href={uploadDetails[post.id]?.url}
                                     className="text-blue-600 underline hover:text-indigo-600"
@@ -254,7 +275,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                             </div>
                           </>
                         )}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -288,9 +309,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
           <a
             href="#"
             onClick={(e) => {
-              if (currentPage === 1) {
-                e.preventDefault();
-              } else {
+              e.preventDefault();
+              if (currentPage > 1) {
                 setCurrentPage(currentPage - 1);
               }
             }}
@@ -336,9 +356,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
           <a
             href="#"
             onClick={(e) => {
-              if (currentPage === totalPages) {
-                e.preventDefault();
-              } else {
+              e.preventDefault();
+              if (currentPage < totalPages) {
                 setCurrentPage(currentPage + 1);
               }
             }}

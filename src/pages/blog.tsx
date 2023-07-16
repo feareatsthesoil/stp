@@ -8,7 +8,6 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import * as Yup from "yup";
 import DefaultLayout from "../Components/Layouts/DefaultLayout";
-import css from "../styles/Blog.module.css";
 import { Post } from "../types/substack";
 
 const initialState = { email: "" };
@@ -50,9 +49,9 @@ export default function Blog() {
   return (
     <DefaultLayout>
       <div className="pb-5">
-        <p className="pb-6 font-bold">Subscribe to our blog!</p>
+        <p className="mt-4 pb-6 font-bold">Subscribe to our blog!</p>
         <form onSubmit={formik.handleSubmit}>
-          <div className={css.input}>
+          <div>
             <Grid container spacing={2}>
               <Grid className="pl-4 pr-2">
                 <TextField
@@ -117,41 +116,36 @@ export default function Blog() {
       {posts?.map((post) => {
         return (
           <>
-            <div className={css.wrapper}>
+            <div
+              className="min-w-[400px] max-w-[800px] max-[600px]:min-w-[200px]"
+              style={{
+                lineHeight: "25px",
+                fontFamily: "Arial, Helvetica, sans-serif",
+              }}
+            >
               <Link href={post.canonical_url} target="_blank">
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={4} sx={{ mb: 2 }}>
                     <div
-                      className={css.poster}
+                      className="h-[150px] w-[100%] min-w-[100px] max-w-[300px] max-[575px]:mb-[-25px] max-[575px]:h-[500px] max-[575px]:max-w-none"
                       style={{
                         backgroundImage: `url(${post.cover_image})`,
                         boxShadow:
-                        "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+                          "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
+                        backgroundRepeat: "no-repeat",
+                        backgroundPosition: "50%",
+                        backgroundSize: "cover",
+                        borderRadius: "4px",
                       }}
                     />
                   </Grid>
                   <Grid item xs={12} sm={8}>
-                    <div className={css.title}>{post.title}</div>
-                    <div className={css.subTitle}>{post.subtitle}</div>
-                    <div className={css.stats}>
-                      <ul>
-                        <li>
+                    <div className="font-bold">{post.title}</div>
+                    <div>{post.subtitle}</div>
+                    <div>
+                      <ul className="flex list-none text-[0.8em]">
+                        <li className="py-[10px] pr-[10px] uppercase">
                           <p className="mt-[-3px]"> {post.post_date}</p>
-                        </li>
-                        <li>
-                          <svg
-                            viewBox="0 0 30 24"
-                            height={13}
-                            fill="transparent"
-                            stroke="rgb(112, 112, 112)"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          >
-                            <path d="M20.42 4.58a5.4 5.4 0 00-7.65 0l-.77.78-.77-.78a5.4 5.4 0 00-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path>
-                          </svg>
-                          <div className={css.reaction}>
-                            <p className="mt-[-3px]">{post.reactions["❤"]}</p>
-                          </div>
                         </li>
                       </ul>
                     </div>
@@ -162,6 +156,17 @@ export default function Blog() {
           </>
         );
       })}
+      <p className="pb-4 font-sans">
+        See more at{" "}
+        <Link
+          target="webapp_tab"
+          className="text-blue-600 hover:text-indigo-600 hover:underline"
+          href="https://blog.stp.world"
+        >
+          blog.stp.world
+        </Link>
+        .
+      </p>
     </DefaultLayout>
   );
 }

@@ -60,7 +60,6 @@ export default function JoinButton() {
         },
       }}
       color="secondary"
-      variant="contained"
       onClick={handleClick}
     >
       {!loading && <>Join Now!</>}

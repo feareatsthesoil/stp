@@ -83,10 +83,9 @@ export default function PostEditPage() {
       )}
       <div className="flex flex-col">
         <PostForm post={post} slug={slug as string} />
-        <div className="w-full max-w-[500px] self-center">
+        <div className="w-full ml-[-12px] sm:ml-0 sm:self-center sm:max-w-[500px]">
           <PostDeleteButton
             postId={post.id}
-            sx={{ mt: 5 }}
             onComplete={() => router.push("/chan")}
           >
             Delete Post

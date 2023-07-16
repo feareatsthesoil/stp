@@ -4,9 +4,8 @@ import { useRouter } from "next/router";
 import React, { useContext } from "react";
 import DefaultLayout from "../Components/Layouts/DefaultLayout";
 import { UserContext } from "../Components/UserContext";
-import css from "../styles/Discussion.module.css";
 
-export default function Discussion() {
+export default function Community() {
   const { loggedIn, isMember } = useContext(UserContext);
   const confirm = useConfirm();
   const router = useRouter();
@@ -45,7 +44,7 @@ export default function Discussion() {
 
   return (
     <DefaultLayout>
-      <div className={css.wrapper}>
+      <div className="mt-4 max-w-[1005px] [&>h1]:text-[1.3em] [&>h1]:font-bold [&>p]:py-2">
         <h1>Whatsapp</h1>
         <p>
           Our Whatsapp group is where we vote on topics and discuss details
@@ -62,13 +61,12 @@ export default function Discussion() {
             border: "1px solid #000",
             height: "31.8px",
             padding: "0 8px",
-            margin: "0 0 40px 0",
+            margin: "0 0 2rem 0",
             "&:hover ": {
               backgroundColor: "rgb(220, 220, 220) !important;",
             },
           }}
           color="secondary"
-          variant="contained"
           onClick={whatsAppHandler}
         >
           Join the group
@@ -90,13 +88,12 @@ export default function Discussion() {
             border: "1px solid #000",
             height: "31.8px",
             padding: "0 8px",
-            margin: "0 0 40px 0",
+            margin: "0 0 2rem 0",
             "&:hover ": {
               backgroundColor: "rgb(220, 220, 220) !important;",
             },
           }}
           color="secondary"
-          variant="contained"
           onClick={discordHandler}
         >
           Join the Conversation
@@ -126,13 +123,12 @@ export default function Discussion() {
             border: "1px solid #000",
             height: "31.8px",
             padding: "0 8px",
-            margin: "0 0 40px 0",
+            margin: "0 0 1rem 0",
             "&:hover ": {
               backgroundColor: "rgb(220, 220, 220) !important;",
             },
           }}
           color="secondary"
-          variant="contained"
           onClick={urbitHandler}
         >
           Learn More

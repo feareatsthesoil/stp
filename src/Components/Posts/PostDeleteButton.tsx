@@ -32,7 +32,7 @@ export default function PostDeleteButton(
       {user && (
         <button
           type="submit"
-          className="w-15 relative mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+          className="w-15 relative h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
           {...rest}
           onClick={handleClick}
         >

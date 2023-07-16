@@ -1,18 +1,20 @@
-import React from "react"
-
-import css from "../styles/Radio.module.css"
-import DefaultLayoutCentered from "../Components/Layouts/DefaultLayoutCentered"
-import RadioPlayer from "../Components/RadioPlayer"
+import React from "react";
+import DefaultLayout from "../Components/Layouts/DefaultLayout";
+import RadioPlayer from "../Components/RadioPlayer";
 
 const Radio = () => {
   return (
-    <DefaultLayoutCentered>
-      <div className={css.wrapper}>
-        <h1 className="text-center">Now Playing</h1>
-        <RadioPlayer />
+    <DefaultLayout>
+      <div className="mb-5 flex h-[70vh] flex-col place-content-center">
+        <div>
+          <h1 className="text-center text-2xl font-bold smMobileX:hidden">
+            Now Playing
+          </h1>
+          <RadioPlayer />
+        </div>
       </div>
-    </DefaultLayoutCentered>
-  )
-}
+    </DefaultLayout>
+  );
+};
 
-export default Radio
+export default Radio;

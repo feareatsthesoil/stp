@@ -16,7 +16,6 @@ import dayjs from "dayjs";
 import { useFormik } from "formik";
 import { useSnackbar } from "notistack";
 import React from "react";
-import css from "src/styles/Form.module.css";
 import * as Yup from "yup";
 import { CalendarRow } from "../../types";
 import GooglePlacesAutoComplete from "../GooglePlacesAutoComplete";
@@ -62,6 +61,9 @@ const type = [
 
 const CssTextField = withStyles({
   root: {
+    "& label": {
+      color: "#000",
+    },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
         borderColor: "black",
@@ -168,10 +170,11 @@ export default function CalendarForm({
       if (after) after(response?.data?.createdEventId);
     },
   });
+
   formik.values.description.length === 300 ? (isMax = true) : (isMax = false);
 
   return (
-    <div className={css.wrapper}>
+    <div className="[&>div]:border-r-4">
       <form onSubmit={formik.handleSubmit}>
         <ThemeProvider theme={theme}>
           <Grid container spacing={2} sx={{ maxWidth: "sm" }}>
@@ -242,8 +245,11 @@ export default function CalendarForm({
               <DateTimePicker
                 label="Start Date/Time *"
                 disablePast
-                className={css.datePicker}
+                className="block w-[100%]"
                 sx={{
+                  "& label": {
+                    color: "black",
+                  },
                   "& label.Mui-focused": {
                     color: "black",
                   },
@@ -290,8 +296,11 @@ export default function CalendarForm({
               <DateTimePicker
                 label="End Date/Time"
                 disablePast
-                className={css.datePicker}
+                className="block w-[100%]"
                 sx={{
+                  "& label": {
+                    color: "black",
+                  },
                   "& label.Mui-focused": {
                     color: "black",
                   },
@@ -357,7 +366,6 @@ export default function CalendarForm({
                 name="description"
                 multiline
                 fullWidth
-                className={css.description}
                 id="mui-theme-provider-outlined-input"
                 variant="outlined"
                 color="secondary"
@@ -374,7 +382,9 @@ export default function CalendarForm({
               />
             </Grid>
             <Grid xs={12}>
-              <p className={clsx(isMax ? css.max : css.notMax, "mt-[-13px]")}>
+              <p
+                className={`mt-[-13px] ${clsx(isMax ? "text-[#d32f2f]" : "")}`}
+              >
                 {formik.values.description.length}/300
               </p>
               <Button
@@ -383,7 +393,7 @@ export default function CalendarForm({
                   backgroundColor: "rgb(239, 239, 239) !important",
                   textTransform: "none",
                   fontFamily: "Helvetica",
-                  fontSize: ".8em",
+                  fontSize: ".9em",
                   borderRadius: "4px",
                   color: "#000",
                   border: "1px solid #000",
@@ -398,7 +408,6 @@ export default function CalendarForm({
                 variant="contained"
                 disabled={formik.isSubmitting}
                 type={"submit"}
-                className={css.button}
               >
                 {!formik.isSubmitting && <>Save</>}
                 {formik.isSubmitting && (

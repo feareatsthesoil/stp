@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
-import css from "./Header.module.css";
 
 function Header() {
   const router = useRouter();
@@ -23,21 +22,23 @@ function Header() {
       : "#fff";
 
   return (
-    <div className={css.wrapper}>
+    <div className="flex content-center pt-[25px]">
       <Head>
         <meta name="theme-color" content={themeColor} />
       </Head>
-      <div className={css.logo}>
+      <div className="w-full text-center font-[Helvetica] text-[1.5rem] font-bold">
         <Link href={"/"}>
           <h1>SERVING the PEOPLE</h1>
         </Link>
       </div>
-      <div className={css.login}>
+      <div className="absolute right-[2vw]">
         {isSignedIn ? (
           <UserButton />
         ) : (
           <Link
-            className={currentRoute === "/login" ? css.active : css.idle}
+            className={`max-[570px]:hidden  ${
+              currentRoute === "/login" ? "font-bold" : ""
+            }`}
             href={"/login"}
           >
             Login

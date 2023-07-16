@@ -90,7 +90,6 @@ export default function VerifySeedButton() {
             },
           }}
           color="secondary"
-          variant="contained"
           onClick={onLoggedOutClick}
         >
           {!loading && <>Verify Seed</>}
@@ -118,7 +117,6 @@ export default function VerifySeedButton() {
               },
             }}
             color="secondary"
-            variant="contained"
             onClick={onVerifySeedClick}
           >
             Verify Seed
@@ -138,23 +136,17 @@ export default function VerifySeedButton() {
               border: "1px solid #000",
               height: "31.8px",
               padding: "0 8px",
-              boxShadow:
-                "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
             }}
             color="secondary"
             className="h-[30px]"
           >
             Connect Wallet
           </Menu.Button>
-          <Menu.Items className="absolute bottom-[calc(100%+10px)] flex flex-col gap-2 sm:bottom-[unset] sm:top-[calc(100%+10px)] w-[150px] p-[10px] right-0 bg-white rounded-[4px] ring-1 ring-black">
+          <Menu.Items className="absolute bottom-[calc(100%+10px)] right-0 flex w-[150px] flex-col gap-2 rounded-[4px] bg-white p-[10px] ring-1 ring-black sm:bottom-[unset] sm:top-[calc(100%+10px)]">
             {connectors.map((connector) => (
               <button
-                style={{
-                  boxShadow:
-                    "0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12)",
-                }}
                 key={connector.name}
-                className={clsx("w-full h-[30px]", {
+                className={clsx("h-[30px] w-full", {
                   "hidden sm:block":
                     connector?.name?.toLowerCase() === "metamask",
                 })}

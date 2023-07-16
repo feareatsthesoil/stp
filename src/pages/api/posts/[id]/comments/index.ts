@@ -2,6 +2,7 @@ import { clerkClient, withAuth } from "@clerk/clerk-sdk-node";
 import { NextApiRequest, NextApiResponse } from "next";
 import { checkComment } from "../../../../../utils/perspective";
 import { prisma } from "../../../../../utils/prisma";
+import { moderate } from "../../../../../utils/openai";
 
 async function getComments(
   req: NextApiRequest & { auth: { userId: string } },
@@ -42,13 +43,18 @@ async function getComments(
     const { userId } = req.auth;
     const { body } = req;
     if (!userId) return res.status(401).json({ message: "Not logged in" });
-    let perspectiveResponse = await checkComment(body.content!);
+    // let perspectiveResponse = await checkComment(body.content!);
 
-    if (
-      perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value > 0.7
-    ) {
-      return res.status(400).json({ message: "Too toxic" });
+    // if (
+    //   perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value > 0.7
+    // ) {
+    //   return res.status(400).json({ message: "Too toxic" });
+    // }
+    const result = await moderate(body.content!)
+    if(result.flagged){
+      return res.status(422).json({message: "Inappropriate comment"})
     }
+
     await prisma.comment.create({ data: { ...body, userId, postId: post.id } });
     return res.status(201).json({ message: "Created" });
   }

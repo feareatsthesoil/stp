@@ -1,7 +1,6 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
-
+import { createContext, ReactNode, useEffect, useState } from "react";
 import { DirectoryRow } from "../../types";
 
 interface UserMetadata {

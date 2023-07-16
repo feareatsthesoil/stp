@@ -5,11 +5,10 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
-import css from "src/styles/Submit.module.css";
 import CalendarForm from "../../../Components/Calendar/CalendarForm";
 import DeleteEventButton from "../../../Components/Calendar/DeleteEventButton";
 import AuthLayout from "../../../Components/Layouts/AuthLayout";
-import DefaultLayoutCentered from "../../../Components/Layouts/DefaultLayoutCentered";
+import DefaultLayout from "../../../Components/Layouts/DefaultLayout";
 import { UserContext } from "../../../Components/UserContext";
 import { CalendarRow } from "../../../types";
 
@@ -19,6 +18,8 @@ export default function CalendarEdit() {
   const router = useRouter();
   const { eventId } = router.query;
   const [data, setData] = useState<CalendarRow>();
+  const [windowWidth, setWindowWidth] = useState(0);
+
   useEffect(() => {
     if (!eventId) return () => {};
     axios.get("/api/calendar/" + eventId).then(({ data }) => {
@@ -26,18 +27,36 @@ export default function CalendarEdit() {
     });
   }, [eventId]);
 
-  if (!data) return <DefaultLayoutCentered>Loading...</DefaultLayoutCentered>;
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (!data) return <DefaultLayout>Loading...</DefaultLayout>;
   return (
     <AuthLayout>
-      <div className={css.wrapper}>
-        <div className={css.box}>
+      <div className="m-4 flex h-[70vh] flex-col place-content-center items-center">
+        <div className="pb-10 text-xl font-bold">
           <h1>Add to Calendar</h1>
         </div>
         {userData.isMember && (
           <CalendarForm data={data} after={() => router.push("/calendar")} />
         )}
-        {userId == data?.userId && (
-          <div className={css.delete}>
+        {userData.isMember && userId == data?.userId && (
+          <div
+            style={{
+              marginTop: "-57px",
+              marginLeft: windowWidth >= 665 ? "520px" : "calc(100% - 60px)",
+            }}
+          >
             <DeleteEventButton
               id={data.id}
               after={() => router.push("/calendar")}

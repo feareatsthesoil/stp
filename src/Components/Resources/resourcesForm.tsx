@@ -1,16 +1,11 @@
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  Button,
-  Unstable_Grid2 as Grid,
-  TextField,
-} from "@mui/material";
+import { Button, Unstable_Grid2 as Grid, TextField } from "@mui/material";
 import Autocomplete from "@mui/material/Autocomplete";
 import { withStyles } from "@mui/styles";
 import axios from "axios";
 import { useFormik } from "formik";
 import { useSnackbar } from "notistack";
-import css from "src/styles/Form.module.css";
 import * as Yup from "yup";
 import { Resource } from "../../types";
 import categories from "./categories.json";
@@ -25,6 +20,7 @@ const CssTextField = withStyles({
   root: {
     "& label": {
       color: "#000!important",
+      fontFamily: "Times New Roman",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
@@ -98,7 +94,7 @@ export default function ResourcesForm({
   });
 
   return (
-    <div className={css.wrapper}>
+    <div>
       <form onSubmit={formik.handleSubmit}>
         <Grid container spacing={2} sx={{ maxWidth: "sm" }}>
           <Grid xs={12} sm={6}>

@@ -34,8 +34,8 @@ export default function IndexPage() {
   };
 
   return (
-    <DefaultLayout boxClassName="!w-full">
-      <div className="w-[96vw] border-[0] mt-[-18px] p-5 border-b border-solid border-black place-content-center flex flex-col font-bold text-sm sm:flex-row">
+    <DefaultLayout>
+      <div className="flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-black p-5 text-sm font-bold sm:flex-row">
         <p className="pb-1 sm:pb-0 sm:pr-4">
           This calendar features events and activity submitted by the Serving
           the People community. All submissions are subject to review.
@@ -49,7 +49,7 @@ export default function IndexPage() {
             Submit to Calendar
           </Link>
           <Link
-            className="min-w-max text-blue-600 underline pl-4 hover:text-indigo-600"
+            className="min-w-max pl-4 text-blue-600 underline hover:text-indigo-600"
             href="https://calendar.google.com/calendar/u/1?cid=Y19lYmFlMTRjZDcyMDVhY2U3NDhjMjM3ZDU4MzFhNTlmY2FjNmJiOWFkZGZmYTM2YjIzNzEzNGZlMWE1ODI4YmUzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20"
             target="webapp-tab"
           >
@@ -57,7 +57,7 @@ export default function IndexPage() {
           </Link>
         </div>
       </div>
-      <div className="py-5">
+      <div className="my-4 justify-center sm:flex">
         <Calendar />
       </div>
     </DefaultLayout>

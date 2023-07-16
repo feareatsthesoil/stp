@@ -1,40 +1,42 @@
 import Image from "next/image";
 import React from "react";
 import homePic from "../../public/Images/home.jpg";
-import Address from "../Components/Address/address";
 import NextEvent from "../Components/Calendar/NextEvent";
 import Footer from "../Components/Footer/Footer";
 import Header from "../Components/Header/Header";
 import Nav from "../Components/Nav/Nav";
-import css from "../styles/Home.module.css";
 
 const Home: React.FC = () => {
   return (
-    <div className={css.body}>
+    <div className="relative flex min-h-[100vh] flex-col items-center">
       <Header />
-      <Address />
+      <div className="mb-[-7px] mt-3 text-center">
+        <p className="leading-3">83 Canal Street</p>
+        <p className="">New York, NY 10002</p>
+        <p className="text-[1.35em] leading-6">Official Website</p>
+      </div>
       <Nav />
       <Image
         placeholder="blur"
-        className={`${css.background} max-w-[1000px]`}
+        className="mt-4 w-[80vw] max-w-[1000px]"
         src={homePic}
         alt="SERVING the PEOPLE"
         quality={50}
       />
-      <div className="w-[96vw]">
-        <p className="pt-5 text-base text-center font-bold">
+      <div className="w-[96vw] max-w-[1000px]">
+        <p className="pt-3 text-center text-base font-bold">
           Community Photo Thompkins Square Park
         </p>
-        <p className="text-sm text-center font-bold">
+        <p className="text-center text-sm font-bold">
           Photo Credit:{" "}
           <a
-            className="text-blue-600 hover:text-indigo-600 underline"
+            className="text-blue-600 underline hover:text-indigo-600"
             href="https://www.instagram.com/graysorrenti/"
           >
             Gray Sorrenti
           </a>
         </p>
-        <p className="text-base px-[2vw] pt-5">
+        <p className="pt-4 text-base">
           Serving the People is a 501(c)(3) non-profit organization that assists
           artists and creators in making meaningful connections both online and
           in person. Established in 2017, STP has launched a number of
@@ -42,7 +44,7 @@ const Home: React.FC = () => {
           audiences, as well as finding opportunities for collaboration and
           support.
         </p>
-        <p className="text-base px-[2vw] pt-5">
+        <p className="max-w-[1000px] pt-4 text-base">
           Our organization hosts weekly in-person meetings led by artists,
           providing a space for creative collaboration and discussion. These
           meetings offer members the opportunity to connect and engage in
@@ -52,7 +54,7 @@ const Home: React.FC = () => {
         </p>
       </div>
       <NextEvent />
-      <Footer/>
+      <Footer />
     </div>
   );
 };

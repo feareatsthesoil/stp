@@ -78,8 +78,8 @@ export default function PostForm({
     if (!loggedIn) {
       await confirm({
         title: "Please log in",
-        description: "Please log in to submit to the chan.",
-        confirmationText: "Log in",
+        description: "Please log in or sign up to submit to the chan.",
+        confirmationText: "Continue",
       });
       router.push("/login?redirect_url=" + encodeURIComponent(router.pathname));
       return;
@@ -111,7 +111,7 @@ export default function PostForm({
             </div>
           </>
         )}
-        <div className="relative w-full min-w-[500px] max-w-[500px] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
+        <div className="relative w-[96vw] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 sm:w-[500px]">
           <input
             type="text"
             name="title"
@@ -132,7 +132,7 @@ export default function PostForm({
           )}
         </div>
 
-        <div className="relative w-full max-w-[500px] self-center rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 ">
+        <div className="relative w-[96vw] self-center rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 sm:w-[500px] ">
           <textarea
             name="content"
             id="content"
@@ -153,9 +153,9 @@ export default function PostForm({
             </div>
           )}
         </div>
-        <div className="w-full max-w-[500px] self-center">
+        <div className="my-2 flex w-[96vw] justify-between self-center sm:w-[500px]">
           {loggedIn && (
-            <div className="mb-[-40px] mt-2">
+            <div className="">
               <lr-file-uploader-regular
                 css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
                 ctx-name="post-uploader"
@@ -163,14 +163,14 @@ export default function PostForm({
               ></lr-file-uploader-regular>
             </div>
           )}
-
           <div className="my-config"></div>
           <button
             type="submit"
             color="rgb(239, 240, 240)"
-            className="w-15 float-right mt-2 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
+            className="w-15 float-right h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
           >
-            {!formik.isSubmitting && <>Save</>}
+            {!loggedIn && <>Log In / Sign Up</>}
+            {!formik.isSubmitting && loggedIn && <>Post</>}
             {formik.isSubmitting && (
               <span>
                 <FontAwesomeIcon icon={faSpinner} spin />

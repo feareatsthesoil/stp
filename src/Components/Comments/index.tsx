@@ -95,12 +95,14 @@ export default function Comments({
                       : ""}
                   </time>
                   {userId === comment.userId ? (
+                    <div className="ml-1">
                     <CommentDeleteButton
                       className="self-center"
                       postId={comment.postId}
                       commentId={comment.id}
                       onComplete={refresh}
                     />
+                    </div>
                   ) : null}
                 </div>
               </div>

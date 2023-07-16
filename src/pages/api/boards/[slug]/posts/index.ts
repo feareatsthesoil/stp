@@ -2,6 +2,7 @@ import { clerkClient, withAuth } from "@clerk/nextjs/api";
 import { NextApiRequest, NextApiResponse } from "next";
 import { checkComment } from "../../../../../utils/perspective";
 import { prisma } from "../../../../../utils/prisma";
+import { moderate } from "../../../../../utils/openai";
 
 async function postsIndex(
   req: NextApiRequest & { auth: { userId: string } },
@@ -78,20 +79,17 @@ async function postsIndex(
 
     const { userId } = req.auth;
     if (!userId) return res.status(401).json({ message: "Not logged in" });
-    let perspectiveResponse = await checkComment(body.content!);
-
-    if (
-      perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value > 0.7
-    ) {
-      return res.status(400).json({ message: "Too toxic" });
+    let result = await moderate(body.content!)
+    if(result.flagged){
+      return res.status(422).json({message: "Inappropriate comment"})
     }
-    perspectiveResponse = await checkComment(body.title!);
-
-    if (
-      perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value > 0.7
-    ) {
-      return res.status(400).json({ message: "Too toxic" });
+    
+    result = await moderate(body.title!)
+    if(result.flagged){
+      return res.status(422).json({message: "Inappropriate title"})
     }
+
+
     await prisma.post.create({
       data: { ...body, userId, boardId: board ? board.id : null },
     });
