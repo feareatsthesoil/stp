@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
-import { getBoards } from "../../utils/services";
+import { Tooltip } from "@mui/material";
 import { Boards } from "@prisma/client";
 import Link from "next/link";
-import { Tooltip } from "@mui/material";
+import { useEffect, useState } from "react";
+import { getBoards } from "../../utils/services";
 
 export default function BoardPills({ slug }: { slug?: string }) {
   const [boards, setBoards] = useState<Boards[]>();
