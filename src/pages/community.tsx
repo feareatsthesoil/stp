@@ -44,7 +44,7 @@ export default function Community() {
 
   return (
     <DefaultLayout>
-      <div className="mt-4 max-w-[1005px] [&>h1]:text-[1.3em] [&>h1]:font-bold [&>p]:py-2">
+      <div className="mt-4 max-w-[1005px] w-[80vw] [&>h1]:text-[1.3em] [&>h1]:font-bold [&>p]:py-2">
         <h1>Whatsapp</h1>
         <p>
           Our Whatsapp group is where we vote on topics and discuss details

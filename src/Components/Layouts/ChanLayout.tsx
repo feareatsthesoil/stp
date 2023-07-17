@@ -31,7 +31,7 @@ export default function ChanLayout(props: ChanLayoutProps) {
     <div className={css.body}>
       <Header />
       <NavBar />
-      <div className="flex w-[96vw] flex-row place-content-center border-[0] border-b border-solid border-slate-300 pt-2 text-sm font-bold">
+      <div className="flex w-[96vw] flex-row place-content-center border-[0] border-b border-solid border-slate-300 pb-2 pt-4 text-sm font-bold">
         <PostForm slug={slugToString} />
       </div>
       <BoardPills slug={String(slug!)} />

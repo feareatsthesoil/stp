@@ -102,15 +102,15 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
   }, [slug, query, currentPage]);
 
   if (loading) return <div className="my-2">Loading...</div>;
-  if (error) return <>Error: {error.message}</>;
-  if (!posts.length) return <>No posts found</>;
+  if (error) return <div className="my-2">Error: {error.message}</div>;
+  if (!posts.length) return <div className="my-2">No Posts Yet...</div>;
 
   return (
     <>
       <div
         className={`${
           isCatalogView
-            ? "grid-rows-10 min-[1000px]:grid-cols-2 min-[1400px]:grid-cols-3 min-[2000px]:grid-cols-4 min-[2600px]:grid-cols-5 min-[3200px]:grid-cols-6 min-[3800px]:grid-cols-7 min-[4400px]:grid-cols-8 min-[5000px]:grid-cols-9 min-[5600px]:grid-cols-10 min-[6200px]:grid-cols-11 min-[6800px]:grid-cols-12 grid grid-cols-1 gap-2 py-2 text-center"
+            ? "grid-rows-10 catCol10:-grid-cols-10 grid grid-cols-1 gap-2 py-2 text-center catCol2:grid-cols-2 catCol3:grid-cols-3 catCol4:grid-cols-4 catCol5:grid-cols-5 catCol6:grid-cols-6 catCol7:grid-cols-7 catCol8:grid-cols-8 catCol9:grid-cols-9 catCol11:grid-cols-11 catCol12:grid-cols-12"
             : "mx-[1vw]"
         }`}
       >
@@ -300,8 +300,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
       <nav
         className={`${
           isCatalogView
-            ? "float-left"
-            : "relative flex w-[96vw] items-center justify-between border-[0] border-t border-solid border-slate-300 px-4 py-3 sm:px-6"
+            ? "float-left mb-2"
+            : "relative flex w-[96vw] items-center justify-between border-[0] border-t border-solid border-slate-300 px-4 py-1 sm:px-6"
         }`}
         aria-label="Pagination"
       >
@@ -315,25 +315,36 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
               }
             }}
             className={` ${
-              currentPage === 1 && "cursor-not-allowed opacity-50"
+              currentPage === 1 &&
+              "mr-1 cursor-not-allowed self-center opacity-50"
             }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-6 w-6"
-              onMouseEnter={(e) => (e.currentTarget.style.strokeWidth = "2")}
-              onMouseLeave={(e) => (e.currentTarget.style.strokeWidth = "1.5")}
+            <button
+              type="submit"
+              color="rgb(239, 240, 240)"
+              className={`w-15 ml-0 mt-0 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:mt-1 sm:h-5 sm:text-xs ${
+                currentPage === 1 && "cursor-not-allowed"
+              } `}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15.75 19.5L8.25 12l7.5-7.5"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="h-5 w-5"
+                onMouseEnter={(e) => (e.currentTarget.style.strokeWidth = "2")}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.strokeWidth = "1.5")
+                }
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5L8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
           </a>
           {Array.from(Array(totalPages).keys()).map((_, index) => {
             const pageNumber = index + 1;
@@ -345,11 +356,19 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                   e.preventDefault();
                   setCurrentPage(pageNumber);
                 }}
-                className={`mx-2 self-center hover:font-bold ${
+                className={`mx-1 self-center hover:font-bold ${
                   currentPage === pageNumber && "underline "
                 }`}
               >
-                {pageNumber}
+                <button
+                  type="submit"
+                  color="rgb(239, 240, 240)"
+                  className={`w-15 h-7 self-center rounded-md px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs ${
+                    currentPage === pageNumber ? "bg-[#dedede]" : "bg-[#eff0f0]"
+                  }`}
+                >
+                  {pageNumber}
+                </button>
               </a>
             );
           })}
@@ -362,25 +381,36 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
               }
             }}
             className={`${
-              currentPage === totalPages && "cursor-not-allowed opacity-50"
+              currentPage === totalPages &&
+              "cursor-not-allowed self-center opacity-50"
             }`}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-6 w-6"
-              onMouseEnter={(e) => (e.currentTarget.style.strokeWidth = "2")}
-              onMouseLeave={(e) => (e.currentTarget.style.strokeWidth = "1.5")}
+            <button
+              type="submit"
+              color="rgb(239, 240, 240)"
+              className={`w-15 ml-1 mt-0 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:mt-1 sm:h-5 sm:text-xs ${
+                currentPage === totalPages && "cursor-not-allowed"
+              } `}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M8.25 4.5l7.5 7.5-7.5 7.5"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth={1.5}
+                stroke="currentColor"
+                className="h-5 w-5"
+                onMouseEnter={(e) => (e.currentTarget.style.strokeWidth = "2")}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.strokeWidth = "1.5")
+                }
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
           </a>
         </div>
       </nav>

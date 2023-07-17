@@ -8,9 +8,7 @@ export default function BoardsIndexPage() {
   return (
     <div className="bg-[#F4F4FE]">
       <ChanLayout>
-        <div className="ml-[2vw]">
           <BoardView slug="all" slugToPost="gc" />
-        </div>
       </ChanLayout>
     </div>
   );

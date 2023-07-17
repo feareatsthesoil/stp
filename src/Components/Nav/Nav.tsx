@@ -12,19 +12,19 @@ const NavBar = () => {
 
   return (
     <div
-      className={`mt-4 w-[96vw] border-[0] border-b border-t border-solid border-black p-5 ${
+      className={`mt-4 w-[96vw] border-[0] border-b border-t border-solid border-black p-3 ${
         isChanRoute ? "border-slate-300" : ""
       }`}
     >
       <nav>
         <ul className="flex flex-row flex-wrap place-content-center">
           {nav.items.map(({ href, name }, index) => {
-            const isFirstItem = index === 0;
+            const isLastItem = index === nav.items.length - 1;
             return (
               <li
                 key={name}
-                className={`border-[0] px-1 text-blue-600 ${
-                  !isFirstItem && "border-l-[1px]"
+                className={`my-1 border-[0] px-1 text-blue-600 ${
+                  !isLastItem && "border-r-[1px]"
                 } border-solid border-black underline hover:text-indigo-600`}
               >
                 <Link
@@ -45,7 +45,7 @@ const NavBar = () => {
             );
           })}
           {!user.isSignedIn && (
-            <li className="list-item min-[571px]:hidden">
+            <li className="my-1 hidden mdMobileX:list-item">
               <Link
                 href={"/login"}
                 className={`h-0.5 border-l-[1px] border-solid border-black pl-1 text-blue-600 underline hover:text-indigo-600 ${

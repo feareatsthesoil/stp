@@ -120,21 +120,32 @@ export default function PostViewPage() {
 
   return (
     <DefaultLayout>
-      <div className="sticky top-0 z-50 ml-[-2vw] mt-[-20px] flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] text-sm font-bold">
+      <div className="sticky top-0 z-50 flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-1 text-sm font-bold">
         <Link
           className="font-black hover:underline"
           href="javascript:void(0);"
           onClick={handleGoBack}
         >
-          [Back]
+          <button
+            type="submit"
+            color="rgb(239, 240, 240)"
+            className="w-15 ml-1 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs"
+          >
+            Back
+          </button>
         </Link>
-
         <Link
           className="hover:underline"
           href="javascript:void(0);"
           onClick={isAtBottom ? scrollToTop : scrollToBottom}
         >
-          {isAtBottom ? "[Top]" : "[Bottom]"}
+          <button
+            type="submit"
+            color="rgb(239, 240, 240)"
+            className="w-15 ml-1 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs"
+          >
+            {isAtBottom ? "Top" : "Bottom"}
+          </button>
         </Link>
       </div>
       <div className="mx-1 flex flex-col items-center text-center">
@@ -145,7 +156,7 @@ export default function PostViewPage() {
             <>
               <img className="max-h-[500px] pb-2 pt-4" src={post.attachment} />
               <ul className="t-3 flex [&>li]:h-4 [&>li]:min-w-max [&>li]:self-center [&>li]:text-gray-600">
-                <li className="hidden border-[0] border-r-[1px] border-solid border-black pr-1 min-[450px]:block">
+                <li className="min-[450px]:block hidden border-[0] border-r-[1px] border-solid border-black pr-1">
                   {uploadDetails[extractUUID(post.attachment)]?.width}
                   &nbsp;x&nbsp;
                   {uploadDetails[extractUUID(post.attachment)]?.height}&nbsp;
@@ -209,33 +220,10 @@ export default function PostViewPage() {
               postId={post.id}
             />
           </div>
-          {loggedIn ? (
-            <CommentForm
-              onComplete={() => setVersion((v) => v + 1)}
-              id={Number(id)}
-            />
-          ) : (
-            <div className="mb-2 rounded-md bg-white p-4">
-              <div className="flex">
-                <div className="flex-shrink-0">
-                </div>
-                <div className="ml-3 flex-1 md:flex md:justify-between">
-                  <p className="text-sm text-[#646475]">
-                    Please <u>log in</u> or <u>create an account</u> to comment.
-                  </p>
-                  <p className="mt-3 text-sm md:ml-6 md:mt-0">
-                    <a
-                      href="/login"
-                      className="whitespace-nowrap font-medium capitalize text-[#646475] hover:text-[#444451] "
-                    >
-                      Log in / Sign Up
-                      <span aria-hidden="true"> &rarr;</span>
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
+          <CommentForm
+            onComplete={() => setVersion((v) => v + 1)}
+            id={Number(id)}
+          />
         </div>
       </div>
     </DefaultLayout>

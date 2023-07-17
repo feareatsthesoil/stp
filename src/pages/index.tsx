@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   return (
     <div className="relative flex min-h-[100vh] flex-col items-center">
       <Header />
-      <div className="mb-[-7px] mt-3 text-center">
+      <div className="mt-4 text-center">
         <p className="leading-3">83 Canal Street</p>
         <p className="">New York, NY 10002</p>
         <p className="text-[1.35em] leading-6">Official Website</p>
@@ -18,12 +18,12 @@ const Home: React.FC = () => {
       <Nav />
       <Image
         placeholder="blur"
-        className="mt-4 w-[80vw] max-w-[1000px]"
+        className="mt-5 w-[80vw] max-w-[1000px]"
         src={homePic}
         alt="SERVING the PEOPLE"
         quality={50}
       />
-      <div className="w-[96vw] max-w-[1000px]">
+      <div className="w-[80vw] max-w-[1000px]">
         <p className="pt-3 text-center text-base font-bold">
           Community Photo Thompkins Square Park
         </p>
@@ -36,7 +36,7 @@ const Home: React.FC = () => {
             Gray Sorrenti
           </a>
         </p>
-        <p className="pt-4 text-base">
+        <p className="pt-2 text-base">
           Serving the People is a 501(c)(3) non-profit organization that assists
           artists and creators in making meaningful connections both online and
           in person. Established in 2017, STP has launched a number of

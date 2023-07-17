@@ -76,11 +76,6 @@ export default function PostForm({
     event.preventDefault();
 
     if (!loggedIn) {
-      await confirm({
-        title: "Please log in",
-        description: "Please log in or sign up to submit to the chan.",
-        confirmationText: "Continue",
-      });
       router.push("/login?redirect_url=" + encodeURIComponent(router.pathname));
       return;
     }

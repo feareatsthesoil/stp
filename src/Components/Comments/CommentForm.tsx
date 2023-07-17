@@ -1,4 +1,5 @@
 import { useUser } from "@clerk/nextjs";
+import { useRouter } from "next/router";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as LR from "@uploadcare/blocks";
@@ -18,6 +19,7 @@ export default function CommentForm({
   onComplete: () => void;
 }) {
   const { user } = useUser();
+  const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
   const formik = useFormik({
     validationSchema: Yup.object({
@@ -39,6 +41,21 @@ export default function CommentForm({
       }
     },
   });
+
+  const handleSubmitWithAuth = async (
+    event: React.FormEvent<HTMLFormElement>
+  ) => {
+    event.preventDefault();
+
+    if (!user) {
+      router.push("/login?redirect_url=" + encodeURIComponent(router.pathname));
+      return;
+    }
+
+    formik.handleSubmit(event);
+  };
+
+  const isDisabled = !user || formik.isSubmitting;
 
   return (
     <form onSubmit={formik.handleSubmit}>

@@ -60,45 +60,47 @@ export default function BoardView({
 
   return (
     <>
-      <div className="sticky top-0 z-50 mb-12 mt-[-1.25rem] flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] pb-2 text-sm font-bold sm:mt-[-.8rem] md:mb-9">
-        <div>
-          <input
-            type="text"
-            name="Search"
-            id="Search"
-            className={`block h-6 w-full rounded-sm border-0 pl-2 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6`}
-            placeholder="Search"
-            onChange={(e) => setQuery(e.target.value)}
-          />
+      <div className="w-[96vw]">
+        <div className="sticky top-0 z-50 sm:mb-9 mb-12 mt-[-1.75rem] flex justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] pb-2 pt-2 text-sm font-bold sm:mt-[-1.25rem]">
+          <div>
+            <input
+              type="text"
+              name="Search"
+              id="Search"
+              className=",md:leading-6 block h-6 w-full rounded-sm border-0 pl-2 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 md:text-sm"
+              placeholder="Search"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+          </div>
+          <ul className="font-lg flex self-center [&>li]:pl-2">
+            <li>
+              <button
+                type="submit"
+                color="rgb(239, 240, 240)"
+                className="w-15 ml-1 h-6 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
+                onClick={toggleCatalogView}
+              >
+                {catalogText}
+              </button>
+            </li>
+            <li>
+              <button
+                type="submit"
+                color="rgb(239, 240, 240)"
+                className="w-15 h-6 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
+                onClick={isAtBottom ? scrollToTop : scrollToBottom}
+              >
+                {isAtBottom ? "Top" : "Bottom"}
+              </button>
+            </li>
+          </ul>
         </div>
-        <ul className="font-lg flex self-center [&>li]:pl-2">
-          <li>
-            <button
-              type="submit"
-              color="rgb(239, 240, 240)"
-              className="w-15 ml-1 h-6 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
-              onClick={toggleCatalogView}
-            >
-              {catalogText}
-            </button>
-          </li>
-          <li>
-            <button
-              type="submit"
-              color="rgb(239, 240, 240)"
-              className="w-15 h-6 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
-              onClick={isAtBottom ? scrollToTop : scrollToBottom}
-            >
-              {isAtBottom ? "Top" : "Bottom"}
-            </button>
-          </li>
-        </ul>
+        <Posts
+          slug={slug as string}
+          query={query}
+          isCatalogView={isCatalogView}
+        />
       </div>
-      <Posts
-        slug={slug as string}
-        query={query}
-        isCatalogView={isCatalogView}
-      />
     </>
   );
 }

@@ -57,7 +57,7 @@ export default function IndexPage() {
           </Link>
         </div>
       </div>
-      <div className="my-4 justify-center sm:flex">
+      <div className="my-4 flex justify-center">
         <Calendar />
       </div>
     </DefaultLayout>

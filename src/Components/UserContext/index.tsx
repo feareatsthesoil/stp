@@ -32,7 +32,7 @@ export const UserProvider = (props: { children: ReactNode }) => {
 
   const loadData = () =>
     axios
-      .get("/api/directory/meta")
+      .get("/api/verify/meta")
       .then(({ data }) => {
         setMetadata(data);
         setLoggedIn(!!data.user);

@@ -31,12 +31,12 @@ function Header() {
           <h1>SERVING the PEOPLE</h1>
         </Link>
       </div>
-      <div className="absolute right-[2vw]">
+      <div className="absolute right-[2vw] self-center">
         {isSignedIn ? (
           <UserButton />
         ) : (
           <Link
-            className={`max-[570px]:hidden  ${
+            className={`mdMobileX:hidden  ${
               currentRoute === "/login" ? "font-bold" : ""
             }`}
             href={"/login"}

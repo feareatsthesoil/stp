@@ -16,9 +16,7 @@ export default function BoardsShow() {
   return (
     <div className="bg-[#F4F4FE]">
       <ChanLayout>
-        <div className="ml-[2vw]">
-          <BoardView slug={slug as string} />
-        </div>
+        <BoardView slug={slug as string} />
       </ChanLayout>
     </div>
   );
