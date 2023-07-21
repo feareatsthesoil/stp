@@ -4,7 +4,13 @@ import { Boards } from "@prisma/client";
 import Link from "next/link";
 import { Tooltip } from "@mui/material";
 
-export default function BoardPills({ slug }: { slug?: string }) {
+export default function BoardPills({
+  slug,
+  currentPath,
+}: {
+  slug?: string;
+  currentPath: string;
+}) {
   const [boards, setBoards] = useState<Boards[]>();
   useEffect(() => {
     getBoards().then((data) => {
@@ -17,7 +23,7 @@ export default function BoardPills({ slug }: { slug?: string }) {
       <Link href="/chan">
         <button
           className={`relative h-7 w-[35px] rounded-md px-2 py-[4px] font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:w-8 sm:py-[2px] sm:text-xs ${
-            slug === "all" ? "bg-[#272fc756]" : "bg-[#dbddffa5]"
+            currentPath === "/chan" ? "bg-[#272fc756]" : "bg-[#DBDDFF]"
           }`}
         >
           All

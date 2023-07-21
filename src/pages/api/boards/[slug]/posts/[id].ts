@@ -1,6 +1,6 @@
 import { clerkClient, withAuth } from "@clerk/nextjs/api";
 import { NextApiResponse } from "next";
-import { checkComment } from "../../../../../utils/perspective";
+import { moderate } from "../../../../../utils/openai";
 import { prisma } from "../../../../../utils/prisma";
 
 export async function postGet(req: any, res: NextApiResponse) {
@@ -17,29 +17,23 @@ export async function postGet(req: any, res: NextApiResponse) {
   } else if (req.method === "PUT") {
     const body = req.body;
 
-    let perspectiveResponse = await checkComment(body.content!);
+    let result = await moderate(body.content!);
 
-    console.log("Data", data.userId, "req", req.auth.userId);
-    if (!data.userId || req.auth.userId !== data.userId)
-      return res
-        .status(400)
-        .json({ message: "Invalid user. You can only edit your own post" });
-    if (
-      perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value > 0.7
-    ) {
-      return res.status(400).json({ message: "Too toxic" });
+    if (result.flagged) {
+      return res.status(400).json({ message: "Inappropriate comment" });
     }
-    perspectiveResponse = await checkComment(body.title!);
 
-    if (
-      perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value > 0.7
-    ) {
-      return res.status(400).json({ message: "Too toxic" });
+    result = await moderate(body.title!);
+
+    if (result.flagged) {
+      return res.status(400).json({ message: "Inappropriate title" });
     }
+
     const dataNew = await prisma.post.update({
       where: { id: data.id },
       data: { ...data, ...body },
     });
+
     return res.status(200).json(dataNew);
   } else if (req.method === "DELETE") {
     if (!data.userId || req.auth.userId !== data.userId)

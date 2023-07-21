@@ -164,12 +164,18 @@ export default function PostForm({
             color="rgb(239, 240, 240)"
             className="w-15 float-right h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
           >
-            {!loggedIn && <>Log In / Sign Up</>}
-            {!formik.isSubmitting && loggedIn && <>Post</>}
-            {formik.isSubmitting && (
-              <span>
+            {!formik.isSubmitting &&
+            loggedIn &&
+            router.pathname.endsWith("/edit") ? (
+              <>Save</>
+            ) : loggedIn ? (
+              !formik.isSubmitting ? (
+                <>Post</>
+              ) : (
                 <FontAwesomeIcon icon={faSpinner} spin />
-              </span>
+              )
+            ) : (
+              <>Log In / Sign Up</>
             )}
           </button>
         </div>

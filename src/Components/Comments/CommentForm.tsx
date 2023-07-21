@@ -8,6 +8,7 @@ import { useSnackbar } from "notistack";
 import React, { useContext } from "react";
 import * as Yup from "yup";
 import { createComment } from "../../utils/services";
+import { UserContext } from "../../Components/UserContext";
 
 LR.registerBlocks(LR);
 
@@ -21,9 +22,13 @@ export default function CommentForm({
   const { user } = useUser();
   const router = useRouter();
   const { enqueueSnackbar } = useSnackbar();
+  const { loggedIn } = useContext(UserContext);
+
   const formik = useFormik({
     validationSchema: Yup.object({
-      content: Yup.string().required("Content is required"),
+      content: Yup.string()
+        .required("Content is required")
+        .max(1000, "Must be within 1000 characters."),
     }),
     initialValues: { content: "" },
     onSubmit: async (values, helpers) => {
@@ -58,13 +63,13 @@ export default function CommentForm({
   const isDisabled = !user || formik.isSubmitting;
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <form onSubmit={handleSubmitWithAuth}>
       <div className="relative flex max-w-[500px]">
         <div className="absolute left-0 top-0 flex h-6 w-6 translate-y-[-8px] justify-center">
           <div className="w-px bg-slate-200" />
         </div>
         <img
-          src={user?.profileImageUrl}
+          src={user?.profileImageUrl || "/favicon.ico"}
           alt="Your profile photo"
           className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
         />
@@ -72,13 +77,13 @@ export default function CommentForm({
           <textarea
             name="content"
             id="content"
-            className={`block w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
-              formik.isSubmitting ? "cursor-not-allowed" : ""
+            className={`block w-full h-auto rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+              isDisabled ? "cursor-not-allowed" : ""
             }`}
             placeholder="Comment"
             value={formik.values.content ?? ""}
             onChange={formik.handleChange}
-            disabled={formik.isSubmitting}
+            disabled={isDisabled}
             {...(formik.errors.content && {
               "aria-describedby": "content-error",
             })}
@@ -90,20 +95,14 @@ export default function CommentForm({
           )}
         </div>
       </div>
-      <div className="my-2 flex max-w-[500px] justify-end">
-        {/* <div className="ml-10">
-          <lr-file-uploader-regular
-            css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-            ctx-name="post-uploader"
-            class="my-config"
-          ></lr-file-uploader-regular>
-        </div> */}
+      <div className="mt-2 flex max-w-[500px] justify-end">
         <button
           type="submit"
           color="rgb(239, 240, 240)"
           className="w-15 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
         >
-          {!formik.isSubmitting && <>Save</>}
+          {!loggedIn && <>Log In / Sign Up</>}
+          {!formik.isSubmitting && loggedIn && <>Reply</>}
           {formik.isSubmitting && (
             <span>
               <FontAwesomeIcon icon={faSpinner} spin />

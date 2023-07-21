@@ -1,6 +1,5 @@
 import { clerkClient, withAuth } from "@clerk/nextjs/api";
 import { NextApiRequest, NextApiResponse } from "next";
-import { checkComment } from "../../../../../utils/perspective";
 import { prisma } from "../../../../../utils/prisma";
 import { moderate } from "../../../../../utils/openai";
 
@@ -79,16 +78,15 @@ async function postsIndex(
 
     const { userId } = req.auth;
     if (!userId) return res.status(401).json({ message: "Not logged in" });
-    let result = await moderate(body.content!)
-    if(result.flagged){
-      return res.status(422).json({message: "Inappropriate comment"})
-    }
-    
-    result = await moderate(body.title!)
-    if(result.flagged){
-      return res.status(422).json({message: "Inappropriate title"})
+    let result = await moderate(body.content!);
+    if (result.flagged) {
+      return res.status(422).json({ message: "Inappropriate comment" });
     }
 
+    result = await moderate(body.title!);
+    if (result.flagged) {
+      return res.status(422).json({ message: "Inappropriate title" });
+    }
 
     await prisma.post.create({
       data: { ...body, userId, boardId: board ? board.id : null },

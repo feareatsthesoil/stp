@@ -5,6 +5,7 @@ import DefaultLayout from "../../../../../Components/Layouts/DefaultLayout";
 import PostDeleteButton from "../../../../../Components/Posts/PostDeleteButton";
 import PostForm from "../../../../../Components/Posts/PostForm";
 import { getBoard, getPost } from "../../../../../utils/services";
+import Link from "next/link";
 
 export default function PostEditPage() {
   const router = useRouter();
@@ -34,24 +35,36 @@ export default function PostEditPage() {
   };
 
   const handleYes = () => {
-    router.push("/chan");
+    router.back();
   };
 
   const handleNo = () => {
     setShowCookieBanner(false);
   };
 
-  if (!post) return <DefaultLayout>Loading...</DefaultLayout>;
+  if (!post)
+    return (
+      <DefaultLayout>
+        <p className="my-2">Loading...</p>
+      </DefaultLayout>
+    );
 
   return (
     <DefaultLayout>
-      <p className="mb-2">
-        <a
-          className="font-bold hover:cursor-pointer hover:underline"
+      <p className="my-2">
+        <Link
+          className="font-black hover:underline"
+          href="javascript:void(0);"
           onClick={handleBackClick}
         >
-          [Back]
-        </a>
+          <button
+            type="submit"
+            color="rgb(239, 240, 240)"
+            className="w-15 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs"
+          >
+            Back
+          </button>
+        </Link>
       </p>
       {showCookieBanner && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
@@ -83,7 +96,7 @@ export default function PostEditPage() {
       )}
       <div className="flex flex-col">
         <PostForm post={post} slug={slug as string} />
-        <div className="w-full ml-[-12px] sm:ml-0 sm:self-center sm:max-w-[500px]">
+        <div className="mb-2 w-full sm:ml-0 sm:max-w-[500px] sm:self-center">
           <PostDeleteButton
             postId={post.id}
             onComplete={() => router.push("/chan")}

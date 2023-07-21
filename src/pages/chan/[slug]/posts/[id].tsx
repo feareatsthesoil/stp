@@ -9,6 +9,7 @@ import DefaultLayout from "../../../../Components/Layouts/DefaultLayout";
 import { UserContext } from "../../../../Components/UserContext";
 import { PostResponse } from "../../../../types";
 import { getBoard, getPost } from "../../../../utils/services";
+import { useAuth } from "@clerk/nextjs";
 
 const extractUUID = (url: string) => {
   const urlParts = url.split("/");
@@ -16,10 +17,11 @@ const extractUUID = (url: string) => {
 };
 
 export default function PostViewPage() {
+  const { userId } = useAuth();
   const router = useRouter();
   const { id, slug } = router.query;
   const [post, setPost] = useState<PostResponse>();
-  const { loggedIn } = useContext(UserContext);
+  // const { loggedIn } = useContext(UserContext);
   const [uploadDetails, setUploadDetails] = useState<{
     [key: string]: {
       filename: string;
@@ -41,6 +43,16 @@ export default function PostViewPage() {
     secretKey: "7fbd6a8d67fd36cf527c",
   });
 
+  const formatFileSize = (fileSizeInBytes: number) => {
+    const sizes = ["B", "KB", "MB", "GB"];
+    let sizeIndex = 0;
+    while (fileSizeInBytes >= 1024 && sizeIndex < sizes.length - 1) {
+      fileSizeInBytes /= 1024;
+      sizeIndex++;
+    }
+    return `${fileSizeInBytes.toFixed(2)} ${sizes[sizeIndex]}`;
+  };
+
   useEffect(() => {
     if (id)
       getPost(slug as string, Number(id) as number).then((data) => {
@@ -50,13 +62,17 @@ export default function PostViewPage() {
           storeFile({ uuid }, { authSchema: uploadcareSimpleAuthSchema }).then(
             (result) => {
               fetch(`https://ucarecdn.com/${uuid}/-/json/`)
-                .then((response) => response.json())
+                .then((response) => response.text())
+                .then((text) => {
+                  console.log(text);
+                  return JSON.parse(text);
+                })
                 .then((data) => {
                   setUploadDetails((prevState) => ({
                     ...prevState,
                     [uuid]: {
                       filename: result.originalFilename,
-                      size: result.size.toString(),
+                      size: formatFileSize(result.size),
                       url: result.originalFileUrl || "",
                       height: data.height.toString(),
                       width: data.width.toString(),
@@ -111,12 +127,19 @@ export default function PostViewPage() {
   useEffect(() => {
     if (slug) getBoard(slug as string).then((data) => setBoard(data));
   }, [slug]);
-  if (!post) return <DefaultLayout>Loading...</DefaultLayout>;
+  if (!post)
+    return (
+      <DefaultLayout>
+        <p className="my-2">Loading...</p>
+      </DefaultLayout>
+    );
 
   const userName =
     post.user?.firstName || post.user?.lastName
       ? `${post.user?.firstName} ${post.user?.lastName}`
       : "Anonymous";
+
+  let postSlug = post.board?.slug;
 
   return (
     <DefaultLayout>
@@ -134,6 +157,17 @@ export default function PostViewPage() {
             Back
           </button>
         </Link>
+        {userId === post.userId ? (
+          <Link href={`/chan/${postSlug}/posts/${post.id}/edit`}>
+            <button
+              type="submit"
+              color="rgb(239, 240, 240)"
+              className="w-15 ml-1 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs"
+            >
+              Edit
+            </button>
+          </Link>
+        ) : null}
         <Link
           className="hover:underline"
           href="javascript:void(0);"
@@ -155,20 +189,19 @@ export default function PostViewPage() {
           {post.attachment && (
             <>
               <img className="max-h-[500px] pb-2 pt-4" src={post.attachment} />
-              <ul className="t-3 flex [&>li]:h-4 [&>li]:min-w-max [&>li]:self-center [&>li]:text-gray-600">
-                <li className="min-[450px]:block hidden border-[0] border-r-[1px] border-solid border-black pr-1">
+              <ul className="scrollbar-hide flex w-full flex-row overflow-x-auto overflow-y-hidden [&>li]:h-4 [&>li]:self-center [&>li]:text-gray-600">
+                <li className="border-[0] border-r-[1px] border-solid border-black pr-1">
                   {uploadDetails[extractUUID(post.attachment)]?.width}
                   &nbsp;x&nbsp;
                   {uploadDetails[extractUUID(post.attachment)]?.height}&nbsp;
                 </li>
-                <li className="border-[0] border-r-[1px] border-solid border-black px-1 ">
+                <li className="border-[0] border-r-[1px] border-solid border-black px-1">
                   {uploadDetails[extractUUID(post.attachment)]?.size}
-                  &nbsp;kb&nbsp;
                 </li>
                 <li className="px-1">
                   <a
                     href={uploadDetails[extractUUID(post.attachment)]?.url}
-                    className="overflow-x- text-blue-600 underline hover:text-indigo-600"
+                    className="text-blue-600 underline hover:text-indigo-600"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -187,11 +220,11 @@ export default function PostViewPage() {
               alt=""
               className="relative mt-[5px] h-6 w-6 flex-none rounded-full bg-gray-50"
             />
-            <div className="mb-[-2px] ml-4 flex rounded-md bg-[#dbddffa5] p-2">
-              <span className="self-center font-sans font-medium text-gray-900">
+            <div className="mb-[-2px] ml-4 flex overflow-auto rounded-md bg-[#dbddffa5] p-2">
+              <span className="min-w-max self-center font-sans font-medium text-gray-900">
                 {userName}
               </span>
-              <p className="self-center font-sans text-gray-500">
+              <p className="min-w-max self-center font-sans text-gray-500">
                 {" "}
                 &nbsp;posted @&nbsp;
               </p>
@@ -199,7 +232,7 @@ export default function PostViewPage() {
                 dateTime={
                   post.createdAt ? new Date(post.createdAt).toISOString() : ""
                 }
-                className="self-center text-gray-500"
+                className="min-w-max self-center text-gray-500"
               >
                 {post.createdAt
                   ? new Date(post.createdAt).toLocaleString([], {
@@ -212,7 +245,7 @@ export default function PostViewPage() {
           </div>
           <div className="ml-[-10px] mt-2 text-left">
             <Comments
-              thread
+              thread={true}
               reverseOrder
               key={version}
               id={Number(id)}

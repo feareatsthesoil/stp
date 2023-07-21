@@ -7,7 +7,7 @@ import ChanLayout from "../../Components/Layouts/ChanLayout";
 export default function BoardsIndexPage() {
   return (
     <div className="bg-[#F4F4FE]">
-      <ChanLayout>
+      <ChanLayout >
           <BoardView slug="all" slugToPost="gc" />
       </ChanLayout>
     </div>
