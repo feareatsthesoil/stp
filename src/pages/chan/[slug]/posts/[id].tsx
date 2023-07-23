@@ -184,8 +184,8 @@ export default function PostViewPage() {
       </div>
       <div className="mx-1 flex flex-col items-center text-center">
         <div className="mb-2 max-w-[80vw]">
-          <h1 className="mt-4 text-lg font-bold">{post.title}</h1>
-          <p className="mt-2">{post.content}</p>
+          <h1 className="mt-4 font-sans text-lg font-bold">{post.title}</h1>
+          <p className="mt-2 font-sans">{post.content}</p>
           {post.attachment && (
             <>
               <img className="max-h-[500px] pb-2 pt-4" src={post.attachment} />
