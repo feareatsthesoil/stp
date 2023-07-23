@@ -38,8 +38,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
-    publicKey: "298fc65a2986318fd270",
-    secretKey: "7fbd6a8d67fd36cf527c",
+    publicKey: process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY!,
+    secretKey: process.env.NEXT_PUBLIC_UPLOADCARE_SECRET_KEY!,
   });
 
   const formatFileSize = (fileSizeInBytes: number) => {
