@@ -10,10 +10,24 @@ import { UserContext } from "../../../../Components/UserContext";
 import { PostResponse } from "../../../../types";
 import { getBoard, getPost } from "../../../../utils/services";
 import { useAuth } from "@clerk/nextjs";
+import React from "react";
 
 const extractUUID = (url: string) => {
   const urlParts = url.split("/");
   return urlParts[urlParts.length - 2];
+};
+
+const linkify = (text: string): string => {
+  const linkRegex = /<a href=".+">(.+)<\/a>/g;
+
+  if (linkRegex.test(text)) {
+    return text;
+  }
+
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, function (url: string): string {
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-indigo-500">${url}</a>`;
+  });
 };
 
 export default function PostViewPage() {
@@ -21,7 +35,6 @@ export default function PostViewPage() {
   const router = useRouter();
   const { id, slug } = router.query;
   const [post, setPost] = useState<PostResponse>();
-  // const { loggedIn } = useContext(UserContext);
   const [uploadDetails, setUploadDetails] = useState<{
     [key: string]: {
       filename: string;
@@ -141,6 +154,8 @@ export default function PostViewPage() {
 
   let postSlug = post.board?.slug;
 
+  const postContent = post ? linkify(post?.content ?? "") : "";
+
   return (
     <DefaultLayout>
       <div className="sticky top-0 z-50 flex w-[96vw] justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-1 text-sm font-bold">
@@ -185,7 +200,10 @@ export default function PostViewPage() {
       <div className="mx-1 flex flex-col items-center text-center">
         <div className="mb-2 max-w-[80vw]">
           <h1 className="mt-4 font-sans text-lg font-bold">{post.title}</h1>
-          <p className="mt-2 font-sans">{post.content}</p>
+          <div
+            className="scrollbar-hide mt-2 overflow-x-auto overflow-y-hidden font-sans"
+            dangerouslySetInnerHTML={{ __html: postContent }}
+          />
           {post.attachment && (
             <>
               <img className="max-h-[500px] pb-2 pt-4" src={post.attachment} />
