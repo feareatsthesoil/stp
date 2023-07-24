@@ -52,6 +52,23 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     return `${fileSizeInBytes.toFixed(2)} ${sizes[sizeIndex]}`;
   };
 
+  const linkify = (text: string | null): string => {
+    if (text === null) {
+      return "";
+    }
+
+    const linkRegex = /<a href=".+">(.+)<\/a>/g;
+
+    if (linkRegex.test(text)) {
+      return text;
+    }
+
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text.replace(urlRegex, function (url: string): string {
+      return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-indigo-600">${url}</a>`;
+    });
+  };
+
   const fetchPosts = async () => {
     try {
       const { data: fetchedPosts, headers } = await getPosts(
@@ -61,6 +78,11 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
       );
       const tpages = Number(headers["total-pages"]);
       setTotalPages(tpages);
+
+      for (let post of fetchedPosts) {
+        post.content = linkify(post.content);
+      }
+
       setPosts(fetchedPosts);
 
       for (let post of fetchedPosts) {
@@ -214,7 +236,9 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                         isCatalogView &&
                         `${post.attachment ? "hidden" : "px-2"}`
                       }`}
-                      dangerouslySetInnerHTML={{ __html: post.content || "" }}
+                      dangerouslySetInnerHTML={{
+                        __html: linkify(post.content || ""),
+                      }}
                     />
                     <div
                       className={`flex ${

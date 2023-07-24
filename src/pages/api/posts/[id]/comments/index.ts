@@ -43,16 +43,9 @@ async function getComments(
     const { userId } = req.auth;
     const { body } = req;
     if (!userId) return res.status(401).json({ message: "Not logged in" });
-    // let perspectiveResponse = await checkComment(body.content!);
-
-    // if (
-    //   perspectiveResponse.data.attributeScores.TOXICITY.summaryScore.value > 0.7
-    // ) {
-    //   return res.status(400).json({ message: "Too toxic" });
-    // }
-    const result = await moderate(body.content!)
-    if(result.flagged){
-      return res.status(422).json({message: "Inappropriate comment"})
+    const result = await moderate(body.content!);
+    if (result.flagged) {
+      return res.status(422).json({ message: "Inappropriate comment" });
     }
 
     await prisma.comment.create({ data: { ...body, userId, postId: post.id } });
