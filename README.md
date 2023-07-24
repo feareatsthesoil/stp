@@ -4,6 +4,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Required Environment Variables
 
+##
+
 ### Chan Environment Variables
 
 ### UPLOADCARE
@@ -18,6 +20,8 @@ NEXT_PUBLIC_UPLOADCARE_SECRET_KEY
 ```
 OPEN_API_KEY
 ```
+
+##
 
 ### Membership code
 ```
