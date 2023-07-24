@@ -22,11 +22,11 @@ export default function BoardPills({
     <div className="px-xs py-sm scrollbar-hide top-xl sm:p-sm min-1 z-20  flex w-[96%] translate-y-[3rem] flex-row gap-1 overflow-x-auto overflow-y-hidden md:translate-y-[3rem] ">
       <Link href="/chan">
         <button
-          className={`relative h-7 w-[35px] rounded-md px-2 py-[4px] font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:w-8 sm:py-[2px] sm:text-xs ${
+          className={`relative h-7 w-[100px] rounded-md px-2 py-[4px] font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:w-[90px] sm:py-[2px] sm:text-xs ${
             currentPath === "/chan" ? "bg-[#272fc756]" : "bg-[#DBDDFF]"
           }`}
         >
-          All
+          All Channels
         </button>
       </Link>
       {boards?.map((board, index) => {

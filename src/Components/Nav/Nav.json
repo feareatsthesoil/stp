@@ -13,16 +13,8 @@
       "name": "Calendar"
     },
     {
-      "href": "/community",
-      "name": "Community"
-    },
-    {
       "href": "/chan",
-      "name": "Chan"
-    },
-    {
-      "href": "/links",
-      "name": "Links"
+      "name": "Discussion"
     },
     {
       "href": "/membership",

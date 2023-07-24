@@ -57,13 +57,21 @@ export default function PostViewPage() {
   });
 
   const formatFileSize = (fileSizeInBytes: number) => {
-    const sizes = ["B", "KB", "MB", "GB"];
+    const sizes = ["B", "KB", "MB", "GB", "TB"];
     let sizeIndex = 0;
     while (fileSizeInBytes >= 1024 && sizeIndex < sizes.length - 1) {
       fileSizeInBytes /= 1024;
       sizeIndex++;
     }
-    return `${fileSizeInBytes.toFixed(2)} ${sizes[sizeIndex]}`;
+
+    const formattedSize = `${fileSizeInBytes.toFixed(2)} ${sizes[sizeIndex]}`;
+
+    console.log(
+      `formatFileSize input: ${
+        fileSizeInBytes * Math.pow(1024, sizeIndex)
+      }, output: ${formattedSize}`
+    );
+    return formattedSize;
   };
 
   useEffect(() => {
@@ -205,15 +213,18 @@ export default function PostViewPage() {
             dangerouslySetInnerHTML={{ __html: postContent }}
           />
           {post.attachment && (
-            <>
-              <img className="max-h-[500px] pb-2 pt-4" src={post.attachment} />
-              <ul className="scrollbar-hide flex w-full flex-row overflow-x-auto overflow-y-hidden [&>li]:h-4 [&>li]:self-center [&>li]:text-gray-600">
+            <div className="flex flex-col items-center">
+              <img
+                className="max-h-[500px] w-min pb-2 pt-4"
+                src={post.attachment}
+              />
+              <ul className="scrollbar-hide flex max-w-[80vw]  flex-row overflow-x-auto overflow-y-hidden [&>li]:h-4 [&>li]:self-center [&>li]:text-gray-600">
                 <li className="border-[0] border-r-[1px] border-solid border-black pr-1">
                   {uploadDetails[extractUUID(post.attachment)]?.width}
                   &nbsp;x&nbsp;
                   {uploadDetails[extractUUID(post.attachment)]?.height}&nbsp;
                 </li>
-                <li className="border-[0] border-r-[1px] border-solid border-black px-1">
+                <li className="min-w-max border-[0] border-r-[1px] border-solid border-black px-1">
                   {uploadDetails[extractUUID(post.attachment)]?.size}
                 </li>
                 <li className="px-1">
@@ -227,7 +238,7 @@ export default function PostViewPage() {
                   </a>
                 </li>
               </ul>
-            </>
+            </div>
           )}
           <div className="relative mt-4 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
             <div className="absolute -bottom-2 left-0 top-0 flex w-6 justify-center">
