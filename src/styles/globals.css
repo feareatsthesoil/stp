@@ -266,7 +266,7 @@ p {
 
 /* UploadCare */
 .my-config {
-  --cfg-pubkey: "298fc65a2986318fd270";
+  --cfg-pubkey: "80ec42ccf1ed30596b92";
   --cfg-img-only: 0;
   --cfg-multiple: 1;
   --cfg-max-local-file-size-bytes: 2147483648;
