@@ -127,29 +127,30 @@ export default function VerifySeedButton() {
         <Menu as="div" className="relative">
           <Menu.Button
             style={{
-              backgroundColor: "rgb(239, 239, 239) !important",
               textTransform: "none",
               fontFamily: "Helvetica",
               fontSize: ".8em",
               borderRadius: "4px",
-              color: "#000",
               border: "1px solid #000",
               height: "31.8px",
               padding: "0 8px",
             }}
             color="secondary"
-            className="h-[30px]"
+            className="h-[30px] bg-[#efefef]"
           >
             Connect Wallet
           </Menu.Button>
-          <Menu.Items className="absolute bottom-[calc(100%+10px)] right-0 flex w-[150px] flex-col gap-2 rounded-[4px] bg-white p-[10px] ring-1 ring-black sm:bottom-[unset] sm:top-[calc(100%+10px)]">
+          <Menu.Items className="absolute bottom-[calc(100%+10px)] right-0 flex w-[150px] flex-col gap-2 rounded-[4px] bg-[#efefef] p-[10px] ring-1 ring-black sm:bottom-[unset] sm:top-[calc(100%+10px)]">
             {connectors.map((connector) => (
               <button
                 key={connector.name}
-                className={clsx("h-[30px] w-full", {
-                  "hidden sm:block":
-                    connector?.name?.toLowerCase() === "metamask",
-                })}
+                className={clsx(
+                  "h-[30px] w-full rounded-sm font-sans text-sm ring-1 ring-black hover:bg-[#d6d6d6]",
+                  {
+                    "hidden sm:block":
+                      connector?.name?.toLowerCase() === "metamask",
+                  }
+                )}
                 onClick={() => connect({ connector })}
               >
                 {connector.name}

@@ -25,9 +25,13 @@ const linkify = (text: string): string => {
   }
 
   const urlRegex = /(https?:\/\/[^\s]+)/g;
-  return text.replace(urlRegex, function (url: string): string {
+  let linkedText = text.replace(urlRegex, function (url: string): string {
     return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-indigo-500">${url}</a>`;
   });
+
+  linkedText = linkedText.replace(/\n/g, "<br />");
+
+  return linkedText;
 };
 
 export default function PostViewPage() {
@@ -50,6 +54,7 @@ export default function PostViewPage() {
   let stringSlug = Array.isArray(slug) ? slug[0] : slug;
   stringSlug = stringSlug || "defaultSlug";
   const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
+  const [isAttachmentInfoVisible, setIsAttachmentInfoVisible] = useState(true);
 
   const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
     publicKey: process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY!,
@@ -160,6 +165,10 @@ export default function PostViewPage() {
       ? `${post.user?.firstName} ${post.user?.lastName}`
       : "Anonymous";
 
+  const handleImageClick = () => {
+    setIsAttachmentInfoVisible(!isAttachmentInfoVisible);
+  };
+
   let postSlug = post.board?.slug;
 
   const postContent = post ? linkify(post?.content ?? "") : "";
@@ -215,32 +224,37 @@ export default function PostViewPage() {
           {post.attachment && (
             <div className="flex flex-col items-center">
               <img
-                className="max-h-[500px] w-min pb-2 pt-4"
+                className={`w-[${
+                  isAttachmentInfoVisible ? "600px" : "150px"
+                }] pb-2 pt-4 hover:cursor-pointer`}
                 src={post.attachment}
+                onClick={handleImageClick}
               />
-              <ul className="scrollbar-hide flex max-w-[80vw]  flex-row overflow-x-auto overflow-y-hidden [&>li]:h-4 [&>li]:self-center [&>li]:text-gray-600">
-                <li className="border-[0] border-r-[1px] border-solid border-black pr-1">
-                  {uploadDetails[extractUUID(post.attachment)]?.width}
-                  &nbsp;x&nbsp;
-                  {uploadDetails[extractUUID(post.attachment)]?.height}&nbsp;
-                </li>
-                <li className="min-w-max border-[0] border-r-[1px] border-solid border-black px-1">
-                  {uploadDetails[extractUUID(post.attachment)]?.size}
-                </li>
-                <li className="px-1">
-                  <a
-                    href={uploadDetails[extractUUID(post.attachment)]?.url}
-                    className="text-blue-600 underline hover:text-indigo-600"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {uploadDetails[extractUUID(post.attachment)]?.filename}
-                  </a>
-                </li>
-              </ul>
+              {isAttachmentInfoVisible && (
+                <ul className="scrollbar-hide mt-4 flex max-w-[80vw]  flex-row overflow-x-auto overflow-y-hidden [&>li]:h-4 [&>li]:self-center [&>li]:text-gray-600">
+                  <li className="border-[0] border-r-[1px] border-solid border-black pr-1">
+                    {uploadDetails[extractUUID(post.attachment)]?.width}
+                    &nbsp;x&nbsp;
+                    {uploadDetails[extractUUID(post.attachment)]?.height}&nbsp;
+                  </li>
+                  <li className="min-w-max border-[0] border-r-[1px] border-solid border-black px-1">
+                    {uploadDetails[extractUUID(post.attachment)]?.size}
+                  </li>
+                  <li className="px-1">
+                    <a
+                      href={uploadDetails[extractUUID(post.attachment)]?.url}
+                      className="text-blue-600 underline hover:text-indigo-600"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {uploadDetails[extractUUID(post.attachment)]?.filename}
+                    </a>
+                  </li>
+                </ul>
+              )}
             </div>
           )}
-          <div className="relative mt-4 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
+          <div className="relative mt-8 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
             <div className="absolute -bottom-2 left-0 top-0 flex w-6 justify-center">
               <div className="w-px bg-slate-200" />
             </div>

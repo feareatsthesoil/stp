@@ -64,9 +64,13 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     }
 
     const urlRegex = /(https?:\/\/[^\s]+)/g;
-    return text.replace(urlRegex, function (url: string): string {
+    text = text.replace(urlRegex, function (url: string): string {
       return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-indigo-600">${url}</a>`;
     });
+
+    text = text.replace(/\n/g, "<br/>");
+
+    return text;
   };
 
   const fetchPosts = async () => {
@@ -225,7 +229,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                     >
                       <h3
                         className={`${
-                          isCatalogView ? "pb-2" : "pt-2"
+                          isCatalogView ? "px-2 pb-2" : "pt-2"
                         } scrollbar-hide overflow-x-auto overflow-y-hidden font-sans text-lg font-medium leading-5 text-gray-900 hover:underline`}
                       >
                         {post.title}
@@ -252,7 +256,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                               <img
                                 className={`max-h-[96vh] pt-2 ${
                                   isCatalogView
-                                    ? "max-h-[800px] max-w-[400px] mdMobileX:max-w-[80vw]"
+                                    ? "max-h-[800px] max-w-[400px] pb-2 mdMobileX:max-w-[80vw]"
                                     : "cursor-pointer"
                                 } ${
                                   expandedImages[post.id] ? "" : "max-w-[300px]"
@@ -265,37 +269,37 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                                   }))
                                 }
                               />
-                              <ul
-                                className={`scrollbar-hide flex w-fit max-w-[95vw] flex-row overflow-x-auto pb-2 pt-2 ${
-                                  isCatalogView ? "justify-center px-2" : ""
-                                }`}
-                              >
-                                <li
-                                  className={`h-4 w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs mdMobileX:hidden ${
-                                    isCatalogView ? "max-[450px]:hidden" : ""
-                                  }`}
+                              {!isCatalogView && (
+                                <ul
+                                  className={`scrollbar-hide flex w-fit max-w-[95vw] flex-row overflow-x-auto pb-2 pt-2`}
                                 >
-                                  {uploadDetails[post.id]?.width}&nbsp;x&nbsp;
-                                  {uploadDetails[post.id]?.height}&nbsp;
-                                </li>
-                                <li
-                                  className={`h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black px-1 text-xs mdMobileX:hidden ${
-                                    isCatalogView ? "max-[450px]:hidden" : ""
-                                  }`}
-                                >
-                                  {uploadDetails[post.id]?.size}
-                                </li>
-                                <li className="h-4 w-max self-center px-1 text-xs mdMobileX:px-0">
-                                  <a
-                                    href={uploadDetails[post.id]?.url}
-                                    className="text-blue-600 underline hover:text-indigo-600"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
+                                  <li
+                                    className={`h-4 w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs mdMobileX:hidden ${
+                                      isCatalogView ? "max-[450px]:hidden" : ""
+                                    }`}
                                   >
-                                    {uploadDetails[post.id]?.filename}
-                                  </a>
-                                </li>
-                              </ul>
+                                    {uploadDetails[post.id]?.width}&nbsp;x&nbsp;
+                                    {uploadDetails[post.id]?.height}&nbsp;
+                                  </li>
+                                  <li
+                                    className={`h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black px-1 text-xs mdMobileX:hidden ${
+                                      isCatalogView ? "max-[450px]:hidden" : ""
+                                    }`}
+                                  >
+                                    {uploadDetails[post.id]?.size}
+                                  </li>
+                                  <li className="h-4 self-center px-1 text-xs mdMobileX:px-0">
+                                    <a
+                                      href={uploadDetails[post.id]?.url}
+                                      className="text-blue-600 underline hover:text-indigo-600"
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                    >
+                                      {uploadDetails[post.id]?.filename}
+                                    </a>
+                                  </li>
+                                </ul>
+                              )}
                             </div>
                           </>
                         )}
