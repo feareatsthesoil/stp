@@ -105,7 +105,7 @@ export default function CommentForm({
               <div className="ml-1 text-sm leading-6">
                 <label
                   htmlFor="comments"
-                  className="font-sans text-xs font-medium text-gray-900"
+                  className="font-sans text-xs font-medium text-[#767676]"
                 >
                   Anonymous
                 </label>
