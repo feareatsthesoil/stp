@@ -25,7 +25,7 @@ export default function CommentForm({
     validationSchema: Yup.object({
       content: Yup.string()
         .required("Content is required")
-        .max(1000, "Must be within 1000 characters."),
+        .max(500, "Must be within 500 characters."),
     }),
     initialValues: { content: "", anon: false },
     onSubmit: async (values, { setSubmitting, resetForm }) => {
@@ -85,7 +85,7 @@ export default function CommentForm({
             })}
           />
           {formik.errors.content && (
-            <div className="pl-2 pt-1 text-xs text-red-500">
+            <div className="pl-2 pt-1 font-sans text-xs font-bold text-red-500">
               {formik.errors.content}
             </div>
           )}
