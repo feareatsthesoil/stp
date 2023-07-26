@@ -55,7 +55,6 @@ export const loadResources = (): AppThunk => async (dispatch) => {
 }
 
 export const deleteResource = (id: string | number): AppThunk => async (dispatch) => {
-    console.log(id);
     await axios.delete(`/api/resources/${id}`)
     dispatch(deleted(id))
 }

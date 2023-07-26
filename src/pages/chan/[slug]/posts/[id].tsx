@@ -101,7 +101,6 @@ export default function PostViewPage() {
               fetch(`https://ucarecdn.com/${uuid}/-/json/`)
                 .then((response) => response.text())
                 .then((text) => {
-                  console.log(text);
                   return JSON.parse(text);
                 })
                 .then((data) => {
