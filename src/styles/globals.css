@@ -164,48 +164,7 @@ p {
   font-family: Helvetica;
 }
 
-/* MuiForm */
-.MuiFormHelperText-root.Mui-error p {
-  margin-left: 14px !important;
-}
-
-.helperText {
-  margin-left: 14px !important;
-}
-
-.MuiAutocomplete-option {
-  font-family: "Times New Roman", Times, serif;
-}
-
-.MuiAutocomplete-noOptions {
-  font-family: "Times New Roman", Times, serif !important;
-}
-
-.MuiAutocomplete-option.Mui-focused {
-  background-color: rgba(25, 118, 210, 0.04) !important;
-}
-
-/* MuiBox */
-.MuiAlertTitle-root {
-  font-family: "Times New Roman", Times, serif !important;
-}
-
-.MuiAlert-standard {
-  background-color: rgba(25, 118, 210, 0.04) !important;
-  color: #000 !important;
-}
-
-.MuiAlert-standard a {
-  color: #000;
-}
-
-.MuiAlert-standard a:visited {
-  color: #000;
-}
-
-.MuiAlert-icon {
-  color: #000 !important;
-}
+/* SnackBar Alert */
 
 .notistack-MuiContent {
   font-family: "Helvetica" !important;
@@ -221,10 +180,6 @@ p {
 }
 
 /* MuiAlert */
-.MuiDialog-paper {
-  border-radius: 4px !important;
-}
-
 .MuiDialogContent-root p {
   letter-spacing: -0.03em !important;
   font-family: "Times New Roman", Times, serif !important;
@@ -269,7 +224,7 @@ p {
 
 /* UploadCare */
 .my-config {
-  --cfg-pubkey: "579fd2ae8b0e7e34c79a";
+  --cfg-pubkey: "298fc65a2986318fd270";
   --cfg-img-only: 0;
   --cfg-multiple: 1;
   --cfg-max-local-file-size-bytes: 2147483648;

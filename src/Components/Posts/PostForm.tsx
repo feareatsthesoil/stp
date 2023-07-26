@@ -169,22 +169,12 @@ export default function PostForm({
               />
 
               <div className="ml-1  text-sm leading-6">
-                <Tooltip
-                  color="#cecee0"
-                  title={
-                    <h1 className="text-[1.2em]">
-                      {`Anon mode... stay cryptic  :)`}
-                    </h1>
-                  }
-                  arrow
+                <label
+                  htmlFor="comments"
+                  className="font-sans text-xs font-medium text-[#767676]"
                 >
-                  <label
-                    htmlFor="comments"
-                    className="font-sans text-xs font-medium text-[#767676]"
-                  >
-                    Anonymous
-                  </label>
-                </Tooltip>
+                  Anonymous
+                </label>
               </div>
             </div>
           )}
