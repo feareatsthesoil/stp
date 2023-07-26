@@ -5,7 +5,6 @@ import { prisma } from "../../../utils/prisma";
 
 async function resourceSubmit(req: any, res: NextApiResponse) {
     const { id } = req.query
-    console.log("ID:", id);
     try {
         const { body } = req
         const { userId } = req.auth

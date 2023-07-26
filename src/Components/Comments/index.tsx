@@ -37,7 +37,6 @@ export default function Comments({
   };
   useEffect(() => {
     getComments(id).then(({ data, headers }) => {
-      console.log("Comments data:", data);
       setCount(Number(headers["total-records"]));
       setComments(data);
     });

@@ -56,7 +56,6 @@ export default function PostForm({
       ...rest,
     },
     onSubmit: async (values, helpers) => {
-      console.log(values);
       const dataToSubmit = {
         ...values,
       };
