@@ -8,6 +8,7 @@ import React, { useContext } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { createComment } from "../../utils/services";
+import { Tooltip } from "@mui/material";
 
 export default function CommentForm({
   id,
@@ -103,12 +104,22 @@ export default function CommentForm({
               />
 
               <div className="ml-1 text-sm leading-6">
-                <label
-                  htmlFor="comments"
-                  className="font-sans text-xs font-medium text-[#767676]"
+                <Tooltip
+                  color="#cecee0"
+                  title={
+                    <h1 className="text-[1.2em]">
+                      {`Anon mode... stay cryptic  :)`}
+                    </h1>
+                  }
+                  arrow
                 >
-                  Anonymous
-                </label>
+                  <label
+                    htmlFor="comments"
+                    className="font-sans text-xs font-medium text-[#767676]"
+                  >
+                    Anonymous
+                  </label>
+                </Tooltip>
               </div>
             </div>
           )}

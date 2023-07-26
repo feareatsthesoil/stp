@@ -10,6 +10,7 @@ import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { PostResponse } from "../../types";
 import { createPost, editPost } from "../../utils/services";
+import { Tooltip } from "@mui/material";
 
 LR.registerBlocks(LR);
 
@@ -56,6 +57,7 @@ export default function PostForm({
       ...rest,
     },
     onSubmit: async (values, helpers) => {
+      console.log(values);
       const dataToSubmit = {
         ...values,
       };
@@ -166,13 +168,23 @@ export default function PostForm({
                 }}
               />
 
-              <div className="ml-1 text-sm leading-6">
-                <label
-                  htmlFor="comments"
-                  className="font-sans text-xs font-medium text-[#767676]"
+              <div className="ml-1  text-sm leading-6">
+                <Tooltip
+                  color="#cecee0"
+                  title={
+                    <h1 className="text-[1.2em]">
+                      {`Anon mode... stay cryptic  :)`}
+                    </h1>
+                  }
+                  arrow
                 >
-                  Anonymous
-                </label>
+                  <label
+                    htmlFor="comments"
+                    className="font-sans text-xs font-medium text-[#767676]"
+                  >
+                    Anonymous
+                  </label>
+                </Tooltip>
               </div>
             </div>
           )}
