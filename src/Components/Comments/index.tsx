@@ -37,6 +37,7 @@ export default function Comments({
   };
   useEffect(() => {
     getComments(id).then(({ data, headers }) => {
+      console.log("Comments data:", data);
       setCount(Number(headers["total-records"]));
       setComments(data);
     });
@@ -44,10 +45,11 @@ export default function Comments({
 
   if (!comments || comments.length === 0) return null;
 
-  const displayedComments = (limit ? comments.slice(0, limit) : comments)
-    .slice()
-    .reverse()
-    .filter(() => reverseOrder);
+  let displayedComments = limit ? comments.slice(0, limit) : comments;
+
+  if (reverseOrder) {
+    displayedComments = displayedComments.reverse();
+  }
 
   const lastCommentIndex = displayedComments.length - 1;
 
