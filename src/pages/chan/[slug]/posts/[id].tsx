@@ -2,11 +2,10 @@ import { Boards } from "@prisma/client";
 import { UploadcareSimpleAuthSchema, storeFile } from "@uploadcare/rest-client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Comments from "../../../../Components/Comments";
 import CommentForm from "../../../../Components/Comments/CommentForm";
 import DefaultLayout from "../../../../Components/Layouts/DefaultLayout";
-import { UserContext } from "../../../../Components/UserContext";
 import { PostResponse } from "../../../../types";
 import { getBoard, getPost } from "../../../../utils/services";
 import { useAuth } from "@clerk/nextjs";
@@ -78,6 +77,18 @@ export default function PostViewPage() {
     );
     return formattedSize;
   };
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setPost(undefined);
+    };
+
+    window.addEventListener("popstate", handleRouteChange);
+
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange);
+    };
+  }, []);
 
   useEffect(() => {
     if (id)
@@ -160,11 +171,6 @@ export default function PostViewPage() {
       </DefaultLayout>
     );
 
-  const userName =
-    post.user?.firstName || post.user?.lastName
-      ? `${post.user?.firstName} ${post.user?.lastName}`
-      : "Anonymous";
-
   const handleImageClick = () => {
     setIsAttachmentInfoVisible(!isAttachmentInfoVisible);
   };
@@ -189,7 +195,7 @@ export default function PostViewPage() {
             Back
           </button>
         </Link>
-        {userId === post.userId ? (
+        {post.isAuthor ? (
           <Link href={`/chan/${postSlug}/posts/${post.id}/edit`}>
             <button
               type="submit"
@@ -265,7 +271,9 @@ export default function PostViewPage() {
             />
             <div className="mb-[-2px] ml-4 flex overflow-auto rounded-md bg-[#dbddffa5] p-2">
               <span className="min-w-max self-center font-sans font-medium text-gray-900">
-                {userName}
+                {post.user?.firstName || post.user?.lastName
+                  ? `${post.user?.firstName} ${post.user?.lastName}`
+                  : "Anonymous"}
               </span>
               <p className="min-w-max self-center font-sans text-gray-500">
                 {" "}

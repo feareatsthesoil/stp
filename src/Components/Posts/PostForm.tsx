@@ -48,8 +48,15 @@ export default function PostForm({
         .max(1000, "Must be within 1000 characters."),
       attachment: Yup.string().url().nullable(),
     }),
-    initialValues: { title: "", content: "", attachment: null, ...rest },
+    initialValues: {
+      title: "",
+      content: "",
+      attachment: null,
+      anon: false,
+      ...rest,
+    },
     onSubmit: async (values, helpers) => {
+      console.log(values);
       const dataToSubmit = {
         ...values,
       };
@@ -147,16 +154,41 @@ export default function PostForm({
               {formik.errors.content}
             </div>
           )}
+          {loggedIn && (
+            <div className="ml-auto mr-2 mt-1 flex h-6 items-center">
+              <input
+                id="anon"
+                name="anon"
+                type="checkbox"
+                className="h-4 w-4 rounded text-indigo-600 ring-red-300 focus:ring-indigo-600"
+                checked={formik.values.anon || false}
+                onChange={(e) => {
+                  formik.setFieldValue("anon", e.target.checked);
+                }}
+              />
+
+              <div className="ml-1 text-sm leading-6">
+                <label
+                  htmlFor="comments"
+                  className="font-sans text-xs font-medium text-gray-900"
+                >
+                  Anonymous
+                </label>
+              </div>
+            </div>
+          )}
         </div>
         <div className="my-2 flex w-[96vw] justify-between self-center sm:w-[500px]">
           {loggedIn && (
-            <div className="">
-              <lr-file-uploader-regular
-                css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-                ctx-name="post-uploader"
-                class="my-config"
-              ></lr-file-uploader-regular>
-            </div>
+            <>
+              <div className="">
+                <lr-file-uploader-regular
+                  css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+                  ctx-name="post-uploader"
+                  class="my-config"
+                ></lr-file-uploader-regular>
+              </div>
+            </>
           )}
           <div className="my-config"></div>
           <button

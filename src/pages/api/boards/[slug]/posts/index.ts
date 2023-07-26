@@ -1,6 +1,6 @@
 import { clerkClient, withAuth } from "@clerk/nextjs/api";
 import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../../../../utils/prisma";
+import { Boards, prisma } from "../../../../../utils/prisma";
 import { moderate } from "../../../../../utils/openai";
 
 async function postsIndex(
@@ -44,6 +44,25 @@ async function postsIndex(
       skip: (pageNum - 1) * 10,
       orderBy: { createdAt: "desc" },
     });
+
+    interface PostData {
+      id: number;
+      title: string;
+      content: string | null;
+      attachment: string | null;
+      boardId: number;
+      createdAt: Date;
+      updatedAt: Date;
+      anon: boolean | null;
+      isAuthor: boolean;
+      board: Boards;
+      user?: {
+        firstName: string | null;
+        lastName: string | null;
+        profileImageUrl: string;
+      };
+    }
+
     const datareturned = await Promise.all(
       data.map(async (post) => {
         const userId = post.userId;
@@ -53,11 +72,29 @@ async function postsIndex(
           const board = await prisma.boards.findFirstOrThrow({
             where: { id: post.boardId },
           });
-          return {
-            ...post,
-            user: { firstName, lastName, profileImageUrl },
+          let postData: PostData = {
+            id: post.id,
+            title: post.title,
+            content: post.content,
+            attachment: post.attachment,
+            boardId: post.boardId,
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt,
+            anon: post.anon,
+            isAuthor: req.auth.userId === userId,
             board,
           };
+
+          if (!post.anon) {
+            const user = await clerkClient.users.getUser(userId);
+            const { firstName, lastName, profileImageUrl } = user;
+            postData = {
+              ...postData,
+              user: { firstName, lastName, profileImageUrl },
+            };
+          }
+
+          return postData;
         } catch (error) {
           console.error(
             `Couldn't get user details for user ${userId}: `,
@@ -67,7 +104,6 @@ async function postsIndex(
         }
       })
     );
-
     res.setHeader("total-records", count.toString());
     res.setHeader("total-pages", Math.ceil(count / 10).toString());
     res.setHeader("current-page", pageNum.toString());
@@ -75,7 +111,6 @@ async function postsIndex(
     return res.status(200).json(datareturned);
   } else if (req.method === "POST") {
     const { body } = req;
-
     const { userId } = req.auth;
     if (!userId) return res.status(401).json({ message: "Not logged in" });
     let result = await moderate(body.content!);
@@ -89,7 +124,12 @@ async function postsIndex(
     }
 
     await prisma.post.create({
-      data: { ...body, userId, boardId: board ? board.id : null },
+      data: {
+        ...body,
+        anon: body.anon,
+        userId,
+        boardId: board ? board.id : null,
+      },
     });
 
     return res.status(201).json({ message: "Created" });

@@ -1,20 +1,17 @@
 import { useUser } from "@clerk/nextjs";
-import { useRouter } from "next/router";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as LR from "@uploadcare/blocks";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import React, { useContext } from "react";
 import * as Yup from "yup";
-import { createComment } from "../../utils/services";
 import { UserContext } from "../../Components/UserContext";
-
-LR.registerBlocks(LR);
+import { createComment } from "../../utils/services";
 
 export default function CommentForm({
   id,
-  onComplete = () => {},
+  onComplete,
 }: {
   id: number;
   onComplete: () => void;
@@ -30,13 +27,12 @@ export default function CommentForm({
         .required("Content is required")
         .max(1000, "Must be within 1000 characters."),
     }),
-    initialValues: { content: "" },
-    onSubmit: async (values, helpers) => {
-      const dataToSubmit = { ...values };
+    initialValues: { content: "", anon: false },
+    onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        await createComment(id, dataToSubmit);
-        helpers.setSubmitting(false);
-        helpers.resetForm();
+        await createComment(id, values);
+        setSubmitting(false);
+        resetForm();
         onComplete();
       } catch (ex: any) {
         enqueueSnackbar({
@@ -73,11 +69,11 @@ export default function CommentForm({
           alt="Your profile photo"
           className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
         />
-        <div className="relative ml-[17px] w-full rounded-md px-3 pb-3 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10  ">
+        <div className="relative ml-[17px] w-full rounded-md px-3 pb-2 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10  ">
           <textarea
             name="content"
             id="content"
-            className={`block w-full h-auto rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+            className={`block h-auto w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
               isDisabled ? "cursor-not-allowed" : ""
             }`}
             placeholder="Comment"
@@ -91,6 +87,29 @@ export default function CommentForm({
           {formik.errors.content && (
             <div className="pl-2 pt-1 text-xs text-red-500">
               {formik.errors.content}
+            </div>
+          )}
+          {loggedIn && (
+            <div className="mt-1 flex h-6 items-center">
+              <input
+                id="anon"
+                name="anon"
+                type="checkbox"
+                className=""
+                checked={formik.values.anon || false}
+                onChange={(e) => {
+                  formik.setFieldValue("anon", e.target.checked);
+                }}
+              />
+
+              <div className="ml-1 text-sm leading-6">
+                <label
+                  htmlFor="comments"
+                  className="font-sans text-xs font-medium text-gray-900"
+                >
+                  Anonymous
+                </label>
+              </div>
             </div>
           )}
         </div>

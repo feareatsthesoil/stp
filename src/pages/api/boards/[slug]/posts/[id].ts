@@ -8,14 +8,25 @@ export async function postGet(req: any, res: NextApiResponse) {
     where: { id: Number(req.query.id) },
   });
   if (req.method === "GET") {
-    const user = await clerkClient.users.getUser(data.userId);
-    const { firstName, lastName, profileImageUrl } = user;
-
-    return res
-      .status(200)
-      .json({ ...data, user: { firstName, lastName, profileImageUrl } });
+    let postData: any = {
+      id: data.id,
+      title: data.title,
+      content: data.content,
+      attachment: data.attachment,
+      boardId: data.boardId,
+      createdAt: data.createdAt,
+      updatedAt: data.updatedAt,
+      anon: data.anon,
+      isAuthor: req.auth.userId === data.userId,
+    };
+    if (!data.anon) {
+      const user = await clerkClient.users.getUser(data.userId);
+      const { firstName, lastName, profileImageUrl } = user;
+      postData.user = { firstName, lastName, profileImageUrl };
+    }
+    return res.status(200).json(postData);
   } else if (req.method === "PUT") {
-    const body = req.body;
+    const { isAuthor, ...body } = req.body;
 
     let result = await moderate(body.content!);
 
@@ -31,7 +42,7 @@ export async function postGet(req: any, res: NextApiResponse) {
 
     const dataNew = await prisma.post.update({
       where: { id: data.id },
-      data: { ...data, ...body },
+      data: { ...body },
     });
 
     return res.status(200).json(dataNew);

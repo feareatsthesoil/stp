@@ -207,6 +207,10 @@ p {
   color: #000 !important;
 }
 
+.notistack-MuiContent {
+  font-family: "Helvetica" !important;
+}
+
 /* MUI MenuItem */
 .MuiList-root {
   font-family: Arial, Helvetica, sans-serif !important;
@@ -222,7 +226,6 @@ p {
 }
 
 .MuiDialogContent-root p {
-  font-family: "Times New Roman", Times, serif !important;
   letter-spacing: -0.03em !important;
   font-family: "Times New Roman", Times, serif !important;
   color: #000 !important;

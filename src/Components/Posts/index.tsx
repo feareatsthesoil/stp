@@ -209,7 +209,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                           Reply
                         </button>
                       </Link>
-                      {!isCatalogView && userId === post.userId ? (
+                      {!isCatalogView && post.isAuthor ? (
                         <Link href={`/chan/${postSlug}/posts/${post.id}/edit`}>
                           <button
                             type="submit"
