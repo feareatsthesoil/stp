@@ -1,8 +1,11 @@
+import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CommentResponse } from "../../types";
 import { getComments } from "../../utils/services";
+import { UserContext } from "../UserContext";
 import CommentDeleteButton from "./CommentDeleteButton";
+import linkify from "../../utils/linkify";
 
 interface CommentsProps {
   id: number;
@@ -25,8 +28,10 @@ export default function Comments({
   showMoreComments = false,
   homeComments = false,
 }: CommentsProps) {
+  const { userId } = useAuth();
   const [comments, setComments] = useState<CommentResponse[]>();
   const [count, setCount] = useState(-1);
+  const { loggedIn } = useContext(UserContext);
   const refresh = () => {
     getComments(id).then(({ data, headers }) => {
       setCount(Number(headers["total-records"]));
@@ -107,12 +112,19 @@ export default function Comments({
                   ) : null}
                 </div>
               </div>
-              <p className="overflow-x-auto font-sans text-sm leading-6 text-gray-700">
-                {homeComments && comment.content
-                  ? comment.content.split(" ").slice(0, 250).join(" ") +
-                    (comment.content.split(" ").length > 250 ? "..." : "")
-                  : comment.content}
-              </p>
+              <p
+                className="overflow-x-auto font-sans text-sm leading-6 text-gray-700"
+                dangerouslySetInnerHTML={{
+                  __html:
+                    homeComments && comment.content
+                      ? linkify(
+                          comment.content?.split(" ").slice(0, 250).join(" ") ||
+                            ""
+                        ) +
+                        (comment.content?.split(" ").length > 250 ? "..." : "")
+                      : linkify(comment.content || ""),
+                }}
+              ></p>
             </div>
           </li>
         ))}

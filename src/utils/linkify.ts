@@ -6,7 +6,7 @@ const linkify = (text: string): string => {
   }
   const urlRegex = /(https?:\/\/[^\s]+)/g;
   let linkedText = text.replace(urlRegex, function (url: string): string {
-    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-500 hover:text-indigo-500">${url}</a>`;
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-indigo-600">${url}</a>`;
   });
   linkedText = linkedText.replace(/\n/g, "<br />");
 
