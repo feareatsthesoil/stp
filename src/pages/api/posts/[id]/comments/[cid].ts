@@ -12,6 +12,21 @@ async function commentShow(
 
   if (req.method === "DELETE") {
     await prisma.comment.delete({ where: { id: data.id } });
+    const post = await prisma.post.findFirst({ where: { id: data.postId } });
+    if (post) {
+      const latestComment = await prisma.comment.findFirst({
+        where: { postId: post.id },
+        orderBy: { createdAt: "desc" },
+      });
+      const updatedDate = latestComment
+        ? latestComment.createdAt
+        : post.createdAt;
+
+      await prisma.post.update({
+        where: { id: data.postId },
+        data: { lastCommentedAt: updatedDate },
+      });
+    }
     return res.status(200).json(data);
   }
 }

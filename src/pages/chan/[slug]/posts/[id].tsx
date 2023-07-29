@@ -95,7 +95,7 @@ export default function PostViewPage() {
   };
 
   // Data processing
-  const postSlug = board?.slug;
+  const postSlug = board?.slug || "all";
   const postContent = linkify(post?.content ?? "");
   const formatBytes = (bytes: number, decimals = 2) => {
     if (bytes === 0) return "0 Bytes";
