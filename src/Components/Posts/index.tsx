@@ -1,4 +1,3 @@
-import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PostResponse } from "../../types";
@@ -13,7 +12,6 @@ interface Props {
 }
 
 export default function Posts({ slug, query, isCatalogView }: Props) {
-  const { userId } = useAuth();
   const [posts, setPosts] = useState<PostResponse[]>([]);
   const [uploadDetails, setUploadDetails] = useState<{
     [key: string]: {
@@ -189,7 +187,10 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                       </h3>
                     </Link>
                     <div
-                      className={`text-md scrollbar-hide mb-1 mt-1 overflow-x-auto overflow-y-hidden py-1 font-sans text-black ${
+                      style={
+                        isCatalogView ? {} : { width: "calc(100vw - 2rem)" }
+                      }
+                      className={`text-md scrollbar-hide mb-1 mt-1 max-h-[500px] overflow-x-auto overflow-y-hidden py-1 font-sans text-black ${
                         isCatalogView &&
                         `${post.attachment ? "hidden" : "px-2"}`
                       }`}
@@ -271,6 +272,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                         slug={slug}
                         postId={post.id}
                         limit={3}
+                        homeComments={true}
                       />
                     </div>
                   </div>

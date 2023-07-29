@@ -60,7 +60,7 @@ export default function PostForm({
         .max(100, "Must be within 100 characters."),
       content: Yup.string()
         .required("Content is required")
-        .max(1000, "Must be within 1000 characters."),
+        .max(25000, "Must be within 25,000 characters."),
       attachment: Yup.string().url().nullable(),
     }),
     initialValues: {

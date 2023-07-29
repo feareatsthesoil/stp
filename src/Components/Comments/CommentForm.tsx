@@ -26,7 +26,7 @@ export default function CommentForm({
     validationSchema: Yup.object({
       content: Yup.string()
         .required("Content is required")
-        .max(500, "Must be within 500 characters."),
+        .max(10000, "Must be within 10000 characters."),
     }),
     initialValues: { content: "", anon: false },
     onSubmit: async (values, { setSubmitting, resetForm }) => {
