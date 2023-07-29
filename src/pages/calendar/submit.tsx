@@ -18,7 +18,6 @@ export default function CalendarSubmit() {
         {userData.isMember && (
           <CalendarForm
             after={(eventId) => {
-              console.log("event id ", eventId);
               router.push(`/calendar/${eventId || ""}`);
             }}
             profile={false}

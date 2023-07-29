@@ -35,7 +35,7 @@ export default function IndexPage() {
 
   return (
     <DefaultLayout>
-      <div className="flex w-[96vw] flex-col place-content-center border-[0] border-b border-solid border-black p-5 text-sm font-bold sm:flex-row">
+      <div className="flex flex-col place-content-center border-[0] border-b border-solid border-black p-5 text-sm font-bold sm:flex-row">
         <p className="pb-1 sm:pb-0 sm:pr-4">
           This calendar features events and activity submitted by the Serving
           the People community. All submissions are subject to review.

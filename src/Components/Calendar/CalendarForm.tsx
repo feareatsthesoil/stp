@@ -63,6 +63,7 @@ const CssTextField = withStyles({
   root: {
     "& label": {
       color: "#000",
+      fontFamily: "Times New Roman !important",
     },
     "& .MuiOutlinedInput-root": {
       "& fieldset": {
@@ -205,6 +206,7 @@ export default function CalendarForm({
                 error={!!formik.errors.type}
                 helperText={formik.errors.type}
                 disabled={formik.isSubmitting}
+                style={{ fontFamily: "Times New Roman !important" }}
               >
                 {type.map((option) => (
                   <MenuItem key={option.value} value={option.value}>
@@ -248,6 +250,7 @@ export default function CalendarForm({
                 className="block w-[100%]"
                 sx={{
                   "& label": {
+                    fontFamily: "Times New Roman",
                     color: "black",
                   },
                   "& label.Mui-focused": {
@@ -299,6 +302,7 @@ export default function CalendarForm({
                 className="block w-[100%]"
                 sx={{
                   "& label": {
+                    fontFamily: "Times New Roman",
                     color: "black",
                   },
                   "& label.Mui-focused": {

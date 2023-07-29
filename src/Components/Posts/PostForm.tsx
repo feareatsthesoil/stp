@@ -5,12 +5,11 @@ import { useFormik } from "formik";
 import { useConfirm } from "material-ui-confirm";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { PostResponse } from "../../types";
 import { createPost, editPost } from "../../utils/services";
-import { Tooltip } from "@mui/material";
 
 LR.registerBlocks(LR);
 
@@ -27,11 +26,26 @@ export default function PostForm({
   const { enqueueSnackbar } = useSnackbar();
   const { id, userId, createdAt, updatedAt, user, ...rest } = post || {};
 
+  const [uploadDetails, setUploadDetails] = useState<{
+    filename: string;
+    size: string;
+    height: string;
+    width: string;
+    url: string;
+  }>();
+
   const listener = (e: any) => {
     if (e.detail.ctx === "post-uploader") {
       const idx = e.detail.data.length - 1;
-      console.log("URL", e.detail.data[idx].cdnUrl);
-      formik.setFieldValue("attachment", e.detail.data[idx].cdnUrl);
+      const data = e.detail.data[idx];
+      formik.setFieldValue("attachment", data.cdnUrl);
+      setUploadDetails({
+        filename: data.name,
+        height: data.imageInfo.height,
+        width: data.imageInfo.width,
+        url: data.cdnUrl,
+        size: data.size,
+      });
     }
   };
   useEffect(() => {
@@ -57,9 +71,9 @@ export default function PostForm({
       ...rest,
     },
     onSubmit: async (values, helpers) => {
-      console.log(values);
       const dataToSubmit = {
         ...values,
+        uploadDetails: uploadDetails,
       };
       try {
         await (!post?.id
@@ -96,10 +110,10 @@ export default function PostForm({
 
   return (
     <form onSubmit={handleSubmitWithAuth}>
-      <div className="flex flex-col">
+      <div className="flex flex-col" style={{ width: "calc(100vw - 2rem)" }}>
         {attachment && (
           <>
-            <div className="m self-center">
+            <div className="self-center">
               <img
                 className="b-2 w-full max-w-[500px] self-center"
                 src={attachment}
@@ -114,7 +128,7 @@ export default function PostForm({
             </div>
           </>
         )}
-        <div className="relative w-[96vw] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 sm:w-[500px]">
+        <div className="relative w-full max-w-[500px] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
           <input
             type="text"
             name="title"
@@ -135,7 +149,7 @@ export default function PostForm({
           )}
         </div>
 
-        <div className="relative w-[96vw] self-center rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 sm:w-[500px] ">
+        <div className="relative w-full max-w-[500px] self-center rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
           <textarea
             name="content"
             id="content"
@@ -155,31 +169,30 @@ export default function PostForm({
               {formik.errors.content}
             </div>
           )}
-          {loggedIn && (
-            <div className="ml-auto mr-2 mt-1 flex h-6 items-center">
-              <input
-                id="anon"
-                name="anon"
-                type="checkbox"
-                className="h-4 w-4 rounded text-indigo-600 ring-red-300 focus:ring-indigo-600"
-                checked={formik.values.anon || false}
-                onChange={(e) => {
-                  formik.setFieldValue("anon", e.target.checked);
-                }}
-              />
+          <div className="ml-auto mr-2 mt-1 flex h-6 items-center">
+            <input
+              id="anon"
+              name="anon"
+              type="checkbox"
+              className="h-4 w-4 rounded text-indigo-600 ring-red-300 hover:cursor-pointer focus:ring-indigo-600"
+              disabled={loggedIn ? false : true}
+              checked={formik.values.anon || false}
+              onChange={(e) => {
+                formik.setFieldValue("anon", e.target.checked);
+              }}
+            />
 
-              <div className="ml-1  text-sm leading-6">
-                <label
-                  htmlFor="comments"
-                  className="font-sans text-xs font-medium text-[#767676]"
-                >
-                  Anonymous
-                </label>
-              </div>
+            <div className="ml-1 text-sm leading-6">
+              <label
+                htmlFor="comments"
+                className="font-sans text-xs font-medium text-[#767676]"
+              >
+                Anonymous
+              </label>
             </div>
-          )}
+          </div>
         </div>
-        <div className="my-2 flex w-[96vw] justify-between self-center sm:w-[500px]">
+        <div className="my-2 flex w-full max-w-[500px] justify-between self-center">
           {loggedIn && (
             <>
               <div className="">

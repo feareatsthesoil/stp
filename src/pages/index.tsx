@@ -8,22 +8,22 @@ import Nav from "../Components/Nav/Nav";
 
 const Home: React.FC = () => {
   return (
-    <div className="relative flex min-h-[100vh] flex-col items-center">
+    <div className="relative mx-4 flex min-h-[100svh] flex-col items-center">
+      <Nav />
       <Header />
-      <div className="mt-4 text-center">
+      <div className="mt-2 text-center">
         <p className="leading-3">83 Canal Street</p>
         <p className="">New York, NY 10002</p>
         <p className="text-[1.35em] leading-6">Official Website</p>
       </div>
-      <Nav />
       <Image
         placeholder="blur"
-        className="mt-5 w-[80vw] max-w-[1000px]"
+        className="mt-4 w-full max-w-[1000px]"
         src={homePic}
         alt="SERVING the PEOPLE"
         quality={50}
       />
-      <div className="w-[80vw] max-w-[1000px]">
+      <div className="w-full max-w-[1000px]">
         <p className="pt-3 text-center text-base font-bold">
           Community Photo Thompkins Square Park
         </p>

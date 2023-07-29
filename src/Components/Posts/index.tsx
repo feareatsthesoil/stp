@@ -1,21 +1,16 @@
 import { useAuth } from "@clerk/nextjs";
-import { UploadcareSimpleAuthSchema, storeFile } from "@uploadcare/rest-client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PostResponse } from "../../types";
-import { getPosts } from "../../utils/services";
+import { getPost, getPosts } from "../../utils/services";
 import Comments from "../Comments";
+import linkify from "../../utils/linkify";
 
 interface Props {
   slug: string;
   query: string;
   isCatalogView: boolean;
 }
-
-const extractUUID = (url: string) => {
-  const urlParts = url.split("/");
-  return urlParts[urlParts.length - 2];
-};
 
 export default function Posts({ slug, query, isCatalogView }: Props) {
   const { userId } = useAuth();
@@ -37,83 +32,29 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const uploadcareSimpleAuthSchema = new UploadcareSimpleAuthSchema({
-    publicKey: process.env.NEXT_PUBLIC_UPLOADCARE_PUBLIC_KEY!,
-    secretKey: process.env.NEXT_PUBLIC_UPLOADCARE_SECRET_KEY!,
-  });
-
-  const formatFileSize = (fileSizeInBytes: number) => {
-    const sizes = ["B", "KB", "MB", "GB"];
-    let sizeIndex = 0;
-    while (fileSizeInBytes >= 1024 && sizeIndex < sizes.length - 1) {
-      fileSizeInBytes /= 1024;
-      sizeIndex++;
-    }
-    return `${fileSizeInBytes.toFixed(2)} ${sizes[sizeIndex]}`;
-  };
-
-  const linkify = (text: string | null): string => {
-    if (text === null) {
-      return "";
-    }
-
-    const linkRegex = /<a href=".+">(.+)<\/a>/g;
-
-    if (linkRegex.test(text)) {
-      return text;
-    }
-
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    text = text.replace(urlRegex, function (url: string): string {
-      return `<a href="${url}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:text-indigo-600">${url}</a>`;
-    });
-
-    text = text.replace(/\n/g, "<br/>");
-
-    return text;
-  };
-
   const fetchPosts = async () => {
     try {
-      const { data: fetchedPosts, headers } = await getPosts(
-        slug,
-        query,
-        currentPage
-      );
-      const tpages = Number(headers["total-pages"]);
-      setTotalPages(tpages);
+      if (slug) {
+        const { data: fetchedPosts, headers } = await getPosts(
+          slug,
+          query,
+          currentPage
+        );
+        const tpages = Number(headers["total-pages"]);
+        setTotalPages(tpages);
 
-      for (let post of fetchedPosts) {
-        post.content = linkify(post.content);
-      }
-
-      setPosts(fetchedPosts);
-
-      for (let post of fetchedPosts) {
-        if (post.attachment) {
-          const uuid = extractUUID(post.attachment);
-          const result = await storeFile(
-            { uuid },
-            { authSchema: uploadcareSimpleAuthSchema }
-          );
-          fetch(`https://ucarecdn.com/${uuid}/-/json/`)
-            .then((response) => response.json())
-            .then((data) => {
-              setUploadDetails((prevState) => ({
-                ...prevState,
-                [post.id]: {
-                  filename: result.originalFilename,
-                  size: formatFileSize(result.size),
-                  url: result.originalFileUrl,
-                  height: data.height,
-                  width: data.width,
-                },
-              }));
-            })
-            .catch((error) =>
-              console.error("Error fetching upload details:", error)
-            );
+        for (let post of fetchedPosts) {
+          post.content = linkify(post.content || "");
+          if (post.attachment) {
+            const fetchedPost = await getPost(slug, post.id);
+            setUploadDetails((prevState) => ({
+              ...prevState,
+              [post.id]: fetchedPost.uploadDetails,
+            }));
+          }
         }
+
+        setPosts(fetchedPosts);
       }
       setLoading(false);
     } catch (error) {
@@ -126,6 +67,18 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     setLoading(true);
     fetchPosts();
   }, [slug, query, currentPage]);
+
+  const formatBytes = (bytes: number, decimals = 2) => {
+    if (bytes === 0) return "0 Bytes";
+
+    const k = 1024;
+    const dm = decimals < 0 ? 0 : decimals;
+    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+  };
 
   if (loading) return <div className="my-2">Loading...</div>;
   if (error) return <div className="my-2">Error: {error.message}</div>;
@@ -286,7 +239,9 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                                       isCatalogView ? "max-[450px]:hidden" : ""
                                     }`}
                                   >
-                                    {uploadDetails[post.id]?.size}
+                                    {formatBytes(
+                                      parseInt(uploadDetails[post.id]?.size)
+                                    )}
                                   </li>
                                   <li className="h-4 self-center px-1 text-xs mdMobileX:px-0">
                                     <a
@@ -309,7 +264,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                 </div>
                 {isCatalogView ? null : (
                   <div className={`mt-1 w-full`}>
-                    <div className={` scrollbar-hide ml-[-10px] overflow-auto`}>
+                    <div className={`scrollbar-hide ml-[-10px] overflow-auto`}>
                       <Comments
                         showMoreComments={true}
                         id={post.id}

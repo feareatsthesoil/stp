@@ -128,6 +128,7 @@ export default function GooglePlacesAutoComplete(props: {
           borderColor: "#000!important",
         },
         "& label": {
+          fontFamily: "Times New Roman !important",
           color: "#000",
         },
         "& label.Mui-focused": {

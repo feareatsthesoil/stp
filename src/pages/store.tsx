@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import Footer from "../Components/Footer/Footer";
-import Header from "../Components/Header/Header";
 import Nav from "../Components/Nav/Nav";
 
 export default function Store() {
@@ -46,7 +45,6 @@ export default function Store() {
       "product": {
         "styles": {
           "product": {
-
             "@media (min-width: 601px)": {
               "text-align": "center",
               "max-width": "400px",
@@ -386,11 +384,10 @@ export default function Store() {
 
   return (
     <>
-      <div className="flex min-h-[100vh] flex-col items-center">
-        <Header />
+      <div className="flex mx-4 min-h-[100vh] flex-col items-center">
         <Nav />
         <div
-          className="my-4 px-[2vw]"
+          className="my-4 "
           ref={collectionDivTagRef}
           id="collection-component-1682823359416"
         ></div>

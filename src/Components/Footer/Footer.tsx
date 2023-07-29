@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import Head from "next/head";
 
 const Footer = () => {
   const router = useRouter();
-  const currentRoute = router.pathname;
+  const currentRoute = router.asPath;
   const isChanRoute = currentRoute.startsWith("/chan");
 
   const links = [
@@ -17,19 +18,36 @@ const Footer = () => {
     { href: "https://discord.gg/nhqyng5wQ9", name: "Discord" },
   ];
 
+  useEffect(() => {
+    const previousBodyBackgroundColor = document.body.style.backgroundColor;
+    if (isChanRoute) {
+      document.body.style.backgroundColor = "#F4F4FE";
+    }
+
+    return () => {
+      document.body.style.backgroundColor = previousBodyBackgroundColor;
+    };
+  }, [router.asPath]);
+
+  const themeColor = currentRoute.startsWith("/chan") ? "#F4F4FE" : "#FFF";
+
   return (
     <>
       <div
-        className={
+        className={`mt-auto ${
           currentRoute === "/"
-            ? "mt-auto"
-            : `mt-auto w-[96vw] place-content-center border-[0] border-t border-solid border-black ${
+            ? "w-full"
+            : `w-full place-content-center border-[0] border-t border-solid border-black ${
                 isChanRoute ? "border-slate-300" : ""
               }`
         }
+`}
       >
-        <div className="mt-auto flex w-[96vw] flex-row pb-[1vh] pt-2">
-          <div className="hidden sm:flex sm:flex-col">
+        <Head>
+          <meta name="theme-color" content={themeColor} />
+        </Head>
+        <div className="mt-auto flex flex-row pb-3 pt-2">
+          <div className="footerMobileX:hidden flex flex-col">
             <p>Copyright © 2023, by The STP Creative Foundation.</p>
             <p>
               All rights reserved. Send comments, suggestions, and/or problems

@@ -1,4 +1,4 @@
-import { useUser } from "@clerk/nextjs";
+import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
@@ -12,12 +12,18 @@ const NavBar = () => {
 
   return (
     <div
-      className={`mt-4 w-[96vw] border-[0] border-b border-t border-solid border-black p-3 ${
+      className={`mt-4 flex w-full flex-row justify-center border-[0] border-b border-t border-solid border-black p-3 ${
         isChanRoute ? "border-slate-300" : ""
       }`}
     >
       <nav>
-        <ul className="flex flex-row flex-wrap place-content-center">
+        <ul
+          className={`float-left flex flex-row place-content-center ${
+            user.isSignedIn
+              ? "w-[72vw] overflow-x-scroll mdMobileX:place-content-start"
+              : "w-[96vw] flex-wrap"
+          }`}
+        >
           {nav.items.map(({ href, name }, index) => {
             const isLastItem = index === nav.items.length - 1;
             return (
@@ -45,10 +51,10 @@ const NavBar = () => {
             );
           })}
           {!user.isSignedIn && (
-            <li className="my-1 hidden mdMobileX:list-item">
+            <li className="my-1">
               <Link
                 href={"/login"}
-                className={`h-0.5 border-l-[1px] border-solid border-black pl-1 text-blue-600 underline hover:text-indigo-600 ${
+                className={`h-0.5 border-l-[1px] border-solid border-black pl-1 text-blue-600 underline hover:text-indigo-600 navMobileX:border-none ${
                   currentRoute.startsWith("/login") ? "text-indigo-600" : ""
                 }`}
               >
@@ -58,6 +64,15 @@ const NavBar = () => {
           )}
         </ul>
       </nav>
+      {user.isSignedIn && (
+        <div
+          className={` ${
+            currentRoute === "/" ? "right-0" : "right-4"
+          } absolute mt-[-0.1rem]`}
+        >
+          <UserButton />
+        </div>
+      )}
     </div>
   );
 };

@@ -61,6 +61,7 @@ async function postsIndex(
         lastName: string | null;
         profileImageUrl: string;
       };
+      uploadDetails: {} | null;
     }
 
     const datareturned = await Promise.all(
@@ -68,7 +69,7 @@ async function postsIndex(
         const userId = post.userId;
         try {
           const user = await clerkClient.users.getUser(userId);
-          const { firstName, lastName, profileImageUrl } = user;
+          // const { firstName, lastName, profileImageUrl } = user;
           const board = await prisma.boards.findFirstOrThrow({
             where: { id: post.boardId },
           });
@@ -81,6 +82,7 @@ async function postsIndex(
             createdAt: post.createdAt,
             updatedAt: post.updatedAt,
             anon: post.anon,
+            uploadDetails: post.uploadDetails,
             isAuthor: req.auth.userId === userId,
             board,
           };
@@ -126,7 +128,6 @@ async function postsIndex(
     await prisma.post.create({
       data: {
         ...body,
-        anon: body.anon,
         userId,
         boardId: board ? board.id : null,
       },

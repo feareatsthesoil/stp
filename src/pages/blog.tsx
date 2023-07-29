@@ -48,7 +48,7 @@ export default function Blog() {
 
   return (
     <DefaultLayout>
-      <div className="w-[80vw] max-w-[1000px] lg:w-auto">
+      <div className="w-full max-w-[1000px]">
         <p className="mb-2 mt-4 font-bold">Subscribe to our blog!</p>
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-4 flex space-x-2">
@@ -110,7 +110,7 @@ export default function Blog() {
           return (
             <>
               <div
-                className=" max-w-[800px]"
+                className="max-w-[800px]"
                 style={{
                   lineHeight: "25px",
                   fontFamily: "Arial, Helvetica, sans-serif",
@@ -120,7 +120,7 @@ export default function Blog() {
                   <Grid container>
                     <Grid item xs={12} sm={4}>
                       <div
-                        className="mr-4 mt-4  mdMobileX:mr-0 h-[150px] min-w-[100px] smMuiMobileX:h-[60vh]"
+                        className="mr-4 mt-4 h-[150px] min-w-[100px] mdMobileX:mr-0 smMuiMobileX:h-[60vh] max-h-[500px]"
                         style={{
                           backgroundImage: `url(${post.cover_image})`,
                           boxShadow:
@@ -133,9 +133,7 @@ export default function Blog() {
                       />
                     </Grid>
                     <Grid item xs={12} sm={8}>
-                      <div className="mt-2 font-bold">
-                        {post.title}
-                      </div>
+                      <div className="mt-2 font-bold">{post.title}</div>
                       <div>{post.subtitle}</div>
                       <div>
                         <ul className="flex list-none text-[0.8em]">

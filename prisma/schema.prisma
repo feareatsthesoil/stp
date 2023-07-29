@@ -92,6 +92,7 @@ model Post {
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
   anon Boolean @default(false)
+  uploadDetails Json?
 }
 
 model Comment {

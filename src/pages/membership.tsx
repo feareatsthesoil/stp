@@ -16,7 +16,7 @@ const Membership = () => {
   return (
     <DefaultLayout>
       <div className="center my-4 flex flex-col [&>div]:flex [&>div]:max-w-[1000px] [&>div]:flex-col">
-        <div className="w-[80vw]">
+        <div className="w-full">
           <div>
             <h1 className="text-xl font-bold">Welcome!</h1>
             <p className="pt-2">

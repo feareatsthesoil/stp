@@ -5,9 +5,11 @@ module.exports = {
     extend: {
       screens: {
         smMobileY: { raw: "(max-height: 600px)" },
+        navMobileX: { raw: "(min-width: 368px) and (max-width: 409px)" },
         smMobileX: { raw: "(max-width: 375px)" },
         mdMobileX: { raw: "(max-width: 570px)" },
         smMuiMobileX: { raw: "(max-width: 599px)" },
+        footerMobileX: { raw: "(max-width: 780px)" },
         catCol2: { raw: "(min-width: 1000px)" },
         catCol3: { raw: "(min-width: 1400px)" },
         catCol4: { raw: "(min-width: 2000px)" },

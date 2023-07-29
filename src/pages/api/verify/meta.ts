@@ -4,7 +4,14 @@ import { prisma } from "../../../utils/prisma";
 
 async function meta(req: any, res: NextApiResponse) {
   const { userId } = req.auth;
-  if (!userId) return res.status(401).json({ message: "Not logged in" });
+
+  if (!userId) {
+    return res.status(200).json({
+      message: "Not logged in",
+      isMember: false,
+    });
+  }
+
   const profile = await prisma.contacts.findFirst({
     where: { userId: userId ?? "Non existent user", profile: true },
   });

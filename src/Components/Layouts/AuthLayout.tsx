@@ -6,7 +6,6 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import Loader from "../Loader";
 import NavBar from "../Nav/Nav";
-import css from "./DefaultLayout.module.css";
 
 export default function AuthLayout(props: { children: ReactNode }) {
   const { isSignedIn, isLoaded } = useUser();
@@ -26,10 +25,10 @@ export default function AuthLayout(props: { children: ReactNode }) {
   if (!isLoaded) return <></>;
   if (!isSignedIn)
     return (
-      <div className={css.body}>
+      <div className={`flex min-h-[100svh] flex-col items-center`}>
         <Header />
         <NavBar />
-        <div className={css.box}>
+        <div className="w-[96vw] px-[2vw]">
           <SignIn routing="virtual" afterSignInUrl={router.asPath} />
         </div>
         <Footer />
@@ -37,10 +36,10 @@ export default function AuthLayout(props: { children: ReactNode }) {
     );
 
   return (
-    <div className={css.body}>
+    <div className={`flex min-h-[100svh] flex-col items-center`}>
       <Header />
       <NavBar />
-      <div className={css.box}>
+      <div className="w-[96vw] px-[2vw]">
         {loading && <Loader />}
         {!loading && props.children}
       </div>

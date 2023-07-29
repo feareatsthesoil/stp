@@ -8,6 +8,7 @@ import React, { useContext } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { createComment } from "../../utils/services";
+import { Tooltip } from "@mui/material";
 
 export default function CommentForm({
   id,
@@ -89,29 +90,28 @@ export default function CommentForm({
               {formik.errors.content}
             </div>
           )}
-          {loggedIn && (
-            <div className="mt-1 flex h-6 items-center">
-              <input
-                id="anon"
-                name="anon"
-                type="checkbox"
-                className=""
-                checked={formik.values.anon || false}
-                onChange={(e) => {
-                  formik.setFieldValue("anon", e.target.checked);
-                }}
-              />
+          <div className="mt-1 flex h-6 items-center">
+            <input
+              id="anon"
+              name="anon"
+              type="checkbox"
+              disabled={loggedIn ? false : true}
+              className="hover:cursor-pointer"
+              checked={formik.values.anon || false}
+              onChange={(e) => {
+                formik.setFieldValue("anon", e.target.checked);
+              }}
+            />
 
-              <div className="ml-1 text-sm leading-6">
-                <label
-                  htmlFor="comments"
-                  className="font-sans text-xs font-medium text-[#767676]"
-                >
-                  Anonymous
-                </label>
-              </div>
+            <div className="ml-1 text-sm leading-6">
+              <label
+                htmlFor="comments"
+                className="font-sans text-xs font-medium text-[#767676]"
+              >
+                Anonymous
+              </label>
             </div>
-          )}
+          </div>
         </div>
       </div>
       <div className="mt-2 flex max-w-[500px] justify-end">

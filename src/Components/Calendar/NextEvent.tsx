@@ -9,20 +9,20 @@ export default function NextEvent() {
 
   useEffect(() => {
     if (error) {
-      const retryTimeout = setTimeout(() => mutate("/api/calendar/next"), 200); // Retry after 0.2 seconds
+      const retryTimeout = setTimeout(() => mutate("/api/calendar/next"), 200);
       return () => clearTimeout(retryTimeout);
     }
   }, [error]);
 
   if (error)
     return (
-      <div className="w-[96vw] border-[0] mt-5 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
+      <div className="mt-5 flex w-full flex-row place-content-center border-[0] border-b border-t border-solid border-black p-5 text-sm font-bold ">
         Error loading data
       </div>
     );
   if (!data)
     return (
-      <div className="w-[96vw] border-[0] mt-5 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
+      <div className="mt-5 flex w-full flex-row place-content-center border-[0] border-b border-t border-solid border-black p-5 text-sm font-bold ">
         Loading...
       </div>
     );
@@ -42,14 +42,14 @@ export default function NextEvent() {
   );
 
   return (
-    <div className="w-[96vw] border-[0] mt-4 p-5 border-t border-b border-solid border-black place-content-center flex flex-row font-bold text-sm ">
+    <div className="mt-4 flex w-full flex-row place-content-center border-[0] border-b border-t border-solid border-black p-5 text-sm font-bold ">
       <Link
         href={data.htmlLink}
         target="_blank"
         rel="noreferrer"
         className="flex hover:text-slate-600"
       >
-        <p className="pr-1 min-w-max">Upcoming:</p>
+        <p className="min-w-max pr-1">Upcoming:</p>
         <div>
           <h2>
             {data.summary}
@@ -58,7 +58,7 @@ export default function NextEvent() {
                 {" "}
                 at:{" "}
                 <Link
-                  className="text-blue-600 hover:text-indigo-600 underline"
+                  className="text-blue-600 underline hover:text-indigo-600"
                   href={`http://google.com/maps/search/${data.location}`}
                   target="_blank"
                   rel="noreferrer"
