@@ -1,11 +1,9 @@
-import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CommentResponse } from "../../types";
-import { getComments } from "../../utils/services";
-import { UserContext } from "../UserContext";
-import CommentDeleteButton from "./CommentDeleteButton";
 import linkify from "../../utils/linkify";
+import { getComments } from "../../utils/services";
+import CommentDeleteButton from "./CommentDeleteButton";
 
 interface CommentsProps {
   id: number;
@@ -28,10 +26,8 @@ export default function Comments({
   showMoreComments = false,
   homeComments = false,
 }: CommentsProps) {
-  const { userId } = useAuth();
   const [comments, setComments] = useState<CommentResponse[]>();
   const [count, setCount] = useState(-1);
-  const { loggedIn } = useContext(UserContext);
   const refresh = () => {
     getComments(id).then(({ data, headers }) => {
       setCount(Number(headers["total-records"]));

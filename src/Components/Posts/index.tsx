@@ -146,7 +146,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                           style={{
                             backgroundColor: "#DBDDFF",
                           }}
-                          className={`w-15 ml-1 h-7 self-center rounded-md px-2 font-sans text-sm font-normal text-black hover:opacity-80 sm:h-5 sm:text-xs`}
+                          className={`w-15 ml-1 h-7 self-center rounded-md px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:h-5 sm:text-xs`}
                         >
                           {post.board?.slug}
                         </button>

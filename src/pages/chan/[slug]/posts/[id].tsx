@@ -155,7 +155,16 @@ export default function PostViewPage() {
         </div>
         <div className="mx-1 flex flex-col items-center text-center">
           <div className="mb-2 max-w-[1000px]">
-            <h1 className="mt-4 font-sans text-lg font-bold">{post.title}</h1>
+            <h1 className="mt-4 font-sans text-lg font-bold">
+              {post.title}{" "}
+              <Link href={`/chan/${postSlug}`} passHref>
+                <button
+                  className={`w-15 ml-1 h-7 self-center rounded-md bg-[#DBDDFF] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:h-5 sm:text-xs`}
+                >
+                  {postSlug}
+                </button>
+              </Link>
+            </h1>
             <div
               className="scrollbar-hide mt-2 overflow-x-auto overflow-y-hidden font-sans"
               dangerouslySetInnerHTML={{ __html: postContent }}

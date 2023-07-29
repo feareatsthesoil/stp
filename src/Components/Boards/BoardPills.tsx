@@ -17,7 +17,9 @@ const BoardPills = React.memo(function ({
       <Link href="/chan">
         <button
           className={`relative h-7 w-[100px] rounded-md px-2 py-[4px] font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:w-[90px] sm:py-[2px] sm:text-xs ${
-            currentPath === "/chan" ? "bg-[#272fc756]" : "bg-[#DBDDFF]"
+            currentPath === "/chan"
+              ? "bg-[#272fc756] text-[#1d205e]"
+              : "bg-[#DBDDFF] text-[#1d205e]"
           }`}
         >
           All Channels
@@ -35,7 +37,9 @@ const BoardPills = React.memo(function ({
             <Link href={`/chan/${board.slug}`} passHref>
               <button
                 className={`w-15 relative h-7 w-max rounded-md px-2 font-sans text-sm font-normal hover:opacity-80 sm:h-5 sm:text-xs ${
-                  isActive ? "bg-[#272fc756]" : "bg-[#DBDDFF]"
+                  isActive
+                    ? "bg-[#272fc756] text-[#1d205e]"
+                    : "bg-[#DBDDFF] text-[#1d205e]"
                 }`}
               >
                 {board.name}
