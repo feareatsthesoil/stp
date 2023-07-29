@@ -1,7 +1,8 @@
-import { clerkClient, withAuth } from "@clerk/nextjs/api";
+import { withAuth } from "@clerk/nextjs/api";
 import { NextApiResponse } from "next";
 import { moderate } from "../../../../../utils/openai";
 import { prisma } from "../../../../../utils/prisma";
+import { getUserData } from "../../../../../utils/userData";
 
 export async function postGet(req: any, res: NextApiResponse) {
   const data = await prisma.post.findFirstOrThrow({
@@ -21,8 +22,8 @@ export async function postGet(req: any, res: NextApiResponse) {
       isAuthor: req.auth.userId === data.userId,
     };
     if (!data.anon) {
-      const user = await clerkClient.users.getUser(data.userId);
-      const { firstName, lastName, profileImageUrl } = user;
+      const user = await getUserData(data.userId);
+      const { firstName, lastName, profileImageUrl } = user || {};
       postData.user = { firstName, lastName, profileImageUrl };
     }
     return res.status(200).json(postData);

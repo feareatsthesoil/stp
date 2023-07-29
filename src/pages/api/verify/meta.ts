@@ -1,6 +1,7 @@
+import { withAuth } from "@clerk/nextjs/api";
 import { NextApiResponse } from "next";
-import { withAuth, clerkClient } from "@clerk/nextjs/api";
 import { prisma } from "../../../utils/prisma";
+import { getUserData } from "../../../utils/userData";
 
 async function meta(req: any, res: NextApiResponse) {
   const { userId } = req.auth;
@@ -18,13 +19,13 @@ async function meta(req: any, res: NextApiResponse) {
   const purchase = await prisma.purchases.findFirst({
     where: { userId: userId, expiryDate: { gte: new Date() } },
   });
-  const user = await clerkClient.users.getUser(userId);
+  const user = await getUserData(userId);
 
-  const isEdu = user.emailAddresses.some((record) =>
+  const isEdu = user?.emailAddresses.some((record) =>
     record.emailAddress.endsWith(".edu")
   );
 
-  const isStp = user.emailAddresses.some((record) =>
+  const isStp = user?.emailAddresses.some((record) =>
     record.emailAddress.endsWith("@stp.world")
   );
 
@@ -34,8 +35,8 @@ async function meta(req: any, res: NextApiResponse) {
     message: "Queried succesfully",
     user: userId,
     isEdu,
-    isSeedHolder: user.unsafeMetadata.isSeedHolder,
-    isMember: purchase || isEdu || isStp || user.unsafeMetadata.isSeedHolder,
+    isSeedHolder: user?.unsafeMetadata.isSeedHolder,
+    isMember: purchase || isEdu || isStp || user?.unsafeMetadata.isSeedHolder,
   });
 }
 export default withAuth(meta);

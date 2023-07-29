@@ -93,6 +93,7 @@ model Post {
   updatedAt  DateTime @updatedAt
   anon Boolean @default(false)
   uploadDetails Json?
+  lastCommentedAt DateTime @default(now())
 }
 
 model Comment {
@@ -111,6 +112,14 @@ model Like{
   likeableId Int
   likeableType String
   userId String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model UserDataCache{
+  id Int @id @default(autoincrement())
+  userId String
+  data Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

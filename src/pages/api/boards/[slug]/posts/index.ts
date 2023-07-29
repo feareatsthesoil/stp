@@ -1,7 +1,8 @@
-import { clerkClient, withAuth } from "@clerk/nextjs/api";
+import { withAuth } from "@clerk/nextjs/api";
 import { NextApiRequest, NextApiResponse } from "next";
-import { Boards, prisma } from "../../../../../utils/prisma";
 import { moderate } from "../../../../../utils/openai";
+import { Boards, prisma } from "../../../../../utils/prisma";
+import { getUserData } from "../../../../../utils/userData";
 
 async function postsIndex(
   req: NextApiRequest & { auth: { userId: string } },
@@ -36,13 +37,13 @@ async function postsIndex(
 
     const count = await prisma.post.count({
       where,
-      orderBy: { createdAt: "desc" },
+      orderBy: { lastCommentedAt: "desc" },
     });
     const data = await prisma.post.findMany({
       where,
       take: 10,
       skip: (pageNum - 1) * 10,
-      orderBy: { createdAt: "desc" },
+      orderBy: { lastCommentedAt: "desc" },
     });
 
     interface PostData {
@@ -68,8 +69,7 @@ async function postsIndex(
       data.map(async (post) => {
         const userId = post.userId;
         try {
-          const user = await clerkClient.users.getUser(userId);
-          // const { firstName, lastName, profileImageUrl } = user;
+          const user = await getUserData(userId);
           const board = await prisma.boards.findFirstOrThrow({
             where: { id: post.boardId },
           });
@@ -88,7 +88,7 @@ async function postsIndex(
           };
 
           if (!post.anon) {
-            const user = await clerkClient.users.getUser(userId);
+            const user = await getUserData(userId);
             const { firstName, lastName, profileImageUrl } = user;
             postData = {
               ...postData,

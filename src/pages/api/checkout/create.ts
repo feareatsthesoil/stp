@@ -1,6 +1,7 @@
-import { withAuth, clerkClient } from "@clerk/nextjs/api";
+import { withAuth } from "@clerk/nextjs/api";
 import { NextApiResponse } from "next";
 import { prisma } from "../../../utils/prisma";
+import { getUserData } from "../../../utils/userData";
 
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
@@ -15,7 +16,7 @@ async function checkoutCreate(req: any, res: NextApiResponse) {
   if (sessionExisting) {
     return res.status(400).json({ message: "already purchased membership" });
   }
-  const user = await clerkClient.users.getUser(userId);
+  const user = await getUserData(userId)!;
 
   const primaryEmailId = user.primaryEmailAddressId;
   const session = await stripe.checkout.sessions.create({

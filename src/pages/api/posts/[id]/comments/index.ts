@@ -1,7 +1,8 @@
-import { clerkClient, withAuth } from "@clerk/clerk-sdk-node";
+import { withAuth } from "@clerk/clerk-sdk-node";
 import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../../../../utils/prisma";
 import { moderate } from "../../../../../utils/openai";
+import { prisma } from "../../../../../utils/prisma";
+import { getUserData } from "../../../../../utils/userData";
 
 async function getComments(
   req: NextApiRequest & { auth: { userId: string } },
@@ -28,8 +29,9 @@ async function getComments(
         let user = null;
 
         if (!anon) {
-          const { firstName, lastName, profileImageUrl } =
-            await clerkClient.users.getUser(userId);
+          const { firstName, lastName, profileImageUrl } = await getUserData(
+            userId
+          );
           user = { firstName, lastName, profileImageUrl };
         }
 
@@ -54,12 +56,16 @@ async function getComments(
       return res.status(422).json({ message: "Inappropriate comment" });
     }
 
-    await prisma.comment.create({
+    const commentRow = await prisma.comment.create({
       data: {
         ...body,
         userId,
         postId: post.id,
       },
+    });
+    await prisma.post.update({
+      where: { id: post.id },
+      data: { lastCommentedAt: commentRow.createdAt },
     });
 
     return res.status(201).json({ message: "Created" });
