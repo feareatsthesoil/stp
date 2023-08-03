@@ -87,6 +87,7 @@ model Post {
   title      String
   content    String?  @db.MediumText
   attachment String?
+  attachments Json?
   boardId    Int
   userId     String
   createdAt  DateTime @default(now())
@@ -100,6 +101,7 @@ model Comment {
   id         Int      @id @default(autoincrement())
   content    String?  @db.MediumText
   attachment String?
+  attachments Json?
   postId     Int
   userId     String
   createdAt  DateTime @default(now())

@@ -12,7 +12,7 @@ const NavBar = () => {
 
   return (
     <div
-      className={`flex w-full flex-row justify-center border-[0] border-b  border-solid border-black p-3 ${
+      className={`mt-0 flex w-full flex-row justify-center border-[0] border-b  border-solid border-black p-3 ${
         isChanRoute ? "border-slate-300" : ""
       }`}
     >

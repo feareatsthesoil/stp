@@ -4,11 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { createComment } from "../../utils/services";
-import { Tooltip } from "@mui/material";
+import * as LR from "@uploadcare/blocks";
+
+LR.registerBlocks(LR);
 
 export default function CommentForm({
   id,
@@ -26,9 +28,10 @@ export default function CommentForm({
     validationSchema: Yup.object({
       content: Yup.string()
         .required("Content is required")
-        .max(10000, "Must be within 10000 characters."),
+        .max(10000, "Must be within 10,000 characters."),
+      attachments: Yup.array().of(Yup.object()),
     }),
-    initialValues: { content: "", anon: false },
+    initialValues: { content: "", anon: false, attachments: [] as any[] },
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
         await createComment(id, values);
@@ -43,7 +46,28 @@ export default function CommentForm({
       }
     },
   });
+  const { attachments } = formik.values;
+  const listener = (e: any) => {
+    console.log(e);
+    const attachmentsNew = [...formik.values.attachments];
+    if (e.detail.ctx === "comment-uploader") {
+      const idx = e.detail.data.length - 1;
+      const data = e.detail.data[idx];
+      attachmentsNew.push({
+        filename: data.name,
+        height: data.imageInfo.height,
+        width: data.imageInfo.width,
+        url: data.cdnUrl,
+        size: data.size,
+      });
 
+      formik.setFieldValue("attachments", attachmentsNew);
+    }
+  };
+  useEffect(() => {
+    window.addEventListener("LR_UPLOAD_FINISH", listener);
+    return () => window.removeEventListener("LR_UPLOAD_FINISH", listener);
+  }, [listener]);
   const handleSubmitWithAuth = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -114,11 +138,24 @@ export default function CommentForm({
           </div>
         </div>
       </div>
-      <div className="mt-2 flex max-w-[500px] justify-end">
+      <div className="float-left my-2 flex w-full max-w-[500px] justify-between">
+        <>
+          {loggedIn && (
+            <div className="ml-10">
+              <lr-file-uploader-regular
+                css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+                ctx-name="comment-uploader"
+                class="my-config"
+              ></lr-file-uploader-regular>
+            </div>
+          )}
+        </>
         <button
           type="submit"
           color="rgb(239, 240, 240)"
-          className="w-15 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
+          className={`w-15 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] ${
+            !loggedIn && "ml-10"
+          }`}
         >
           {!loggedIn && <>Log In / Sign Up</>}
           {!formik.isSubmitting && loggedIn && <>Reply</>}
@@ -129,6 +166,31 @@ export default function CommentForm({
           )}
         </button>
       </div>
+      {attachments &&
+        attachments.map((attachment, index) => {
+          return (
+            <>
+              <div className="self-center">
+                <img
+                  className="w-full max-w-[500px] self-center"
+                  src={attachment.url}
+                />
+                <button
+                  type="submit"
+                  className="w-15 relative float-right mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+                  onClick={() => {
+                    formik.setFieldValue("attachments", [
+                      ...(formik.values.attachments as any[]).slice(0, index),
+                      ...(formik.values.attachments as any[]).slice(index + 1),
+                    ]);
+                  }}
+                >
+                  Delete Image
+                </button>
+              </div>
+            </>
+          );
+        })}
     </form>
   );
 }

@@ -8,6 +8,7 @@ import DefaultLayout from "../../../../Components/Layouts/DefaultLayout";
 import { PostResponse } from "../../../../types";
 import linkify from "../../../../utils/linkify";
 import { getBoard, getPost } from "../../../../utils/services";
+import PostAttachmentViewer from "../../../../Components/Posts/PostAttachmentViewer";
 
 export default function PostViewPage() {
   const router = useRouter();
@@ -30,24 +31,21 @@ export default function PostViewPage() {
 
   const [version, setVersion] = useState(1);
 
-  // Fetch post and upload details
   useEffect(() => {
     if (id) {
-      getPost(slug as string, Number(id) as number).then((data) => {
-        setPost(data);
+      getPost(slug as string, Number(id) as number).then((data: any) => {
+        setPost(data as PostResponse);
         setUploadDetails(data?.uploadDetails! as any);
       });
     }
   }, [id]);
 
-  // Fetch board details
   useEffect(() => {
     if (slug) {
       getBoard(slug as string).then((data) => setBoard(data));
     }
   }, [slug]);
 
-  // Handle scroll events
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop =
@@ -66,7 +64,6 @@ export default function PostViewPage() {
     };
   }, []);
 
-  // Loading state
   if (!post) {
     return (
       <DefaultLayout>
@@ -75,7 +72,6 @@ export default function PostViewPage() {
     );
   }
 
-  // Helper functions
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -94,7 +90,6 @@ export default function PostViewPage() {
     setIsAttachmentInfoVisible(!isAttachmentInfoVisible);
   };
 
-  // Data processing
   const postSlug = board?.slug || "all";
   const postContent = linkify(post?.content ?? "");
   const formatBytes = (bytes: number, decimals = 2) => {
@@ -169,51 +164,11 @@ export default function PostViewPage() {
               className="scrollbar-hide mt-2 overflow-x-auto overflow-y-hidden font-sans"
               dangerouslySetInnerHTML={{ __html: postContent }}
             />
-            {post.attachment && (
-              <div className="flex flex-col items-center">
-                <img
-                  className={`${
-                    isAttachmentInfoVisible ? "max-h-[50vh]" : "hidden"
-                  }  pb-2 pt-4 hover:cursor-pointer`}
-                  src={post.attachment}
-                  onClick={handleImageClick}
-                />
-                {isAttachmentInfoVisible && uploadDetails && (
-                  <ul className="scrollbar-hide mt-1 flex max-w-[80vw]  flex-row overflow-x-auto overflow-y-hidden mdMobileX:text-xs [&>li]:h-4 [&>li]:self-center [&>li]:text-gray-600">
-                    <li className="border-[0] border-r-[1px] border-solid border-black pr-1">
-                      {uploadDetails?.width}
-                      &nbsp;x&nbsp;
-                      {uploadDetails?.height}
-                      &nbsp;
-                    </li>
-                    <li className="min-w-max border-[0] border-r-[1px] border-solid border-black px-1">
-                      {formatBytes(parseInt(uploadDetails?.size))}
-                    </li>
-                    <li className="px-1">
-                      <a
-                        href={uploadDetails?.url}
-                        className="text-blue-600 underline hover:text-indigo-600"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {uploadDetails?.filename}
-                      </a>
-                    </li>
-                  </ul>
-                )}
-              </div>
-            )}
-            {!isAttachmentInfoVisible && uploadDetails && (
-              <div className="mt-2">
-                <Link
-                  href="#"
-                  onClick={handleImageClick}
-                  className="hover:underline"
-                >
-                  [Show Image]
-                </Link>
-              </div>
-            )}
+            <PostAttachmentViewer
+              attachments={post.attachments}
+              isCatalogView={false}
+              showExpand={false}
+            />
             <div className="relative mt-8 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
               <div className="absolute -bottom-2 left-0 top-0 flex w-6 justify-center">
                 <div className="w-px bg-slate-200" />

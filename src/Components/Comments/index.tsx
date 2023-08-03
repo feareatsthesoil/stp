@@ -4,6 +4,7 @@ import { CommentResponse } from "../../types";
 import linkify from "../../utils/linkify";
 import { getComments } from "../../utils/services";
 import CommentDeleteButton from "./CommentDeleteButton";
+import CommentAttachmentViewer from "./CommentAttachmentViewer";
 
 interface CommentsProps {
   id: number;
@@ -28,6 +29,7 @@ export default function Comments({
 }: CommentsProps) {
   const [comments, setComments] = useState<CommentResponse[]>();
   const [count, setCount] = useState(-1);
+  const [showAll, setShowAll] = useState(false);
   const refresh = () => {
     getComments(id).then(({ data, headers }) => {
       setCount(Number(headers["total-records"]));
@@ -54,76 +56,92 @@ export default function Comments({
   return (
     <>
       <ul role="list" className="mb-2 ml-[10px] space-y-2">
-        {displayedComments.map((comment, index) => (
-          <li className="relative flex gap-x-4" key={comment.id}>
-            <div
-              className={`absolute left-0 top-0 flex w-6 justify-center ${
-                thread
-                  ? `-bottom-6`
-                  : `${index === lastCommentIndex ? "h-6" : "-bottom-6"} `
-              }`}
-            >
-              <div className="w-px bg-gray-200" />
-            </div>
-            <img
-              src={comment.user?.profileImageUrl || "/favicon.ico"}
-              alt=""
-              className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
-            />
-            <div className="flex-col rounded-md bg-[#dbddffa5] p-2">
-              <div className="flex justify-between">
-                <div className="scrollbar-hide flex overflow-x-auto py-0.5 text-xs leading-5 text-gray-900">
-                  <span className="mr-1 truncate font-sans font-medium">
-                    {comment.user?.firstName || comment.user?.lastName
-                      ? `${comment.user?.firstName} ${comment.user?.lastName}`
-                      : "Anonymous"}
-                  </span>{" "}
-                  <p className="min-w-max font-sans text-gray-500">
-                    commented @&nbsp;
-                  </p>
-                  <time
-                    dateTime={
-                      comment.createdAt
-                        ? new Date(comment.createdAt).toISOString()
-                        : ""
-                    }
-                    className="flex-none text-xs leading-5 text-gray-500"
-                  >
-                    {comment.createdAt
-                      ? new Date(comment.createdAt).toLocaleString([], {
-                          dateStyle: "short",
-                          timeStyle: "short",
-                        })
-                      : ""}
-                  </time>
-                  {comment.isAuthor ? (
-                    <div className="ml-1 min-w-max">
-                      <CommentDeleteButton
-                        className="self-center"
-                        postId={comment.postId}
-                        commentId={comment.id}
-                        onComplete={refresh}
-                      />
-                    </div>
-                  ) : null}
-                </div>
+        {displayedComments.map((comment, index) => {
+          const attachments = comment.attachments as any[];
+          const visibleAttachments = attachments
+            ? showAll
+              ? attachments
+              : [attachments[0]]
+            : [];
+
+          return (
+            <li className="relative flex gap-x-4" key={comment.id}>
+              <div
+                className={`absolute left-0 top-0 flex w-6 justify-center ${
+                  thread
+                    ? `-bottom-6`
+                    : `${index === lastCommentIndex ? "h-6" : "-bottom-6"} `
+                }`}
+              >
+                <div className="w-px bg-gray-200" />
               </div>
-              <p
-                className="overflow-x-auto font-sans text-sm leading-6 text-gray-700"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    homeComments && comment.content
-                      ? linkify(
-                          comment.content?.split(" ").slice(0, 250).join(" ") ||
-                            ""
-                        ) +
-                        (comment.content?.split(" ").length > 250 ? "..." : "")
-                      : linkify(comment.content || ""),
-                }}
-              ></p>
-            </div>
-          </li>
-        ))}
+              <img
+                src={comment.user?.profileImageUrl || "/favicon.ico"}
+                alt=""
+                className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
+              />
+              <div className="flex-col rounded-md bg-[#dbddffa5] p-2">
+                <div className="flex justify-between">
+                  <div className="scrollbar-hide flex overflow-x-auto py-0.5 text-xs leading-5 text-gray-900">
+                    <span className="mr-1 truncate font-sans font-medium">
+                      {comment.user?.firstName || comment.user?.lastName
+                        ? `${comment.user?.firstName} ${comment.user?.lastName}`
+                        : "Anonymous"}
+                    </span>{" "}
+                    <p className="min-w-max font-sans text-gray-500">
+                      commented @&nbsp;
+                    </p>
+                    <time
+                      dateTime={
+                        comment.createdAt
+                          ? new Date(comment.createdAt).toISOString()
+                          : ""
+                      }
+                      className="flex-none text-xs leading-5 text-gray-500"
+                    >
+                      {comment.createdAt
+                        ? new Date(comment.createdAt).toLocaleString([], {
+                            dateStyle: "short",
+                            timeStyle: "short",
+                          })
+                        : ""}
+                    </time>
+                    {comment.isAuthor ? (
+                      <div className="ml-1 min-w-max">
+                        <CommentDeleteButton
+                          className="self-center"
+                          postId={comment.postId}
+                          commentId={comment.id}
+                          onComplete={refresh}
+                        />
+                      </div>
+                    ) : null}
+                  </div>
+                </div>
+                <p
+                  className="overflow-x-auto font-sans text-sm leading-6 text-gray-700"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      homeComments && comment.content
+                        ? linkify(
+                            comment.content
+                              ?.split(" ")
+                              .slice(0, 250)
+                              .join(" ") || ""
+                          ) +
+                          (comment.content?.split(" ").length > 250
+                            ? "..."
+                            : "")
+                        : linkify(comment.content || ""),
+                  }}
+                ></p>
+                <CommentAttachmentViewer
+                  attachments={comment.attachments as any[]}
+                />
+              </div>
+            </li>
+          );
+        })}
       </ul>
       {showMoreComments && count > limit && (
         <Link

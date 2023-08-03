@@ -1,11 +1,11 @@
-import { Boards } from "@prisma/client";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import BoardSearch from "../../Components/Boards/BoardSearch";
+import { getBoards } from "../../utils/services";
 import BoardView from "../../Components/Boards/BoardView";
 import ChanLayout from "../../Components/Layouts/ChanLayout";
-import { getBoards } from "../../utils/services";
+import BoardSearch from "../../Components/Boards/BoardSearch";
+import { useRouter } from "next/router";
 import BoardPills from "./BoardPills";
+import { Boards } from "@prisma/client";
 
 export default function BoardComponent() {
   const router = useRouter();

@@ -23,7 +23,7 @@ export const createPost = (
   data: {
     content: string | null;
     title: string | null;
-    attachment: string | null;
+    attachments: any[];
   }
 ) => {
   return axios
@@ -36,7 +36,7 @@ export const editPost = (
   data: {
     content: string | null;
     title: string | null;
-    attachment: string | null;
+    attachments: any[];
   }
 ) => {
   return axios

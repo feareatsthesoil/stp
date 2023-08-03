@@ -1,7 +1,7 @@
-import { withAuth } from "@clerk/nextjs/api";
+import { clerkClient, withAuth } from "@clerk/nextjs/api";
 import { NextApiRequest, NextApiResponse } from "next";
-import { moderate } from "../../../../../utils/openai";
 import { Boards, prisma } from "../../../../../utils/prisma";
+import { moderate } from "../../../../../utils/openai";
 import { getUserData } from "../../../../../utils/userData";
 
 async function postsIndex(
@@ -50,7 +50,7 @@ async function postsIndex(
       id: number;
       title: string;
       content: string | null;
-      attachment: string | null;
+      attachments: any[];
       boardId: number;
       createdAt: Date;
       updatedAt: Date;
@@ -70,6 +70,7 @@ async function postsIndex(
         const userId = post.userId;
         try {
           const user = await getUserData(userId);
+          // const { firstName, lastName, profileImageUrl } = user;
           const board = await prisma.boards.findFirstOrThrow({
             where: { id: post.boardId },
           });
@@ -77,7 +78,7 @@ async function postsIndex(
             id: post.id,
             title: post.title,
             content: post.content,
-            attachment: post.attachment,
+            attachments: post.attachments as any[],
             boardId: post.boardId,
             createdAt: post.createdAt,
             updatedAt: post.updatedAt,

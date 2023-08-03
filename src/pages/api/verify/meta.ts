@@ -1,5 +1,5 @@
-import { withAuth } from "@clerk/nextjs/api";
 import { NextApiResponse } from "next";
+import { withAuth, clerkClient } from "@clerk/nextjs/api";
 import { prisma } from "../../../utils/prisma";
 import { getUserData } from "../../../utils/userData";
 

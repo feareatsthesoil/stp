@@ -41,7 +41,6 @@ export default function CommentDeleteButton(
       {user && (
         <button
           type="submit"
-          color="rgb(239, 240, 240)"
           className="w-15 ml-1 h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs"
           onClick={handleClick}
         >

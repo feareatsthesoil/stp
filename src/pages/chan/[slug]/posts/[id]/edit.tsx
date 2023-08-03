@@ -6,19 +6,28 @@ import DefaultLayout from "../../../../../Components/Layouts/DefaultLayout";
 import PostDeleteButton from "../../../../../Components/Posts/PostDeleteButton";
 import PostForm from "../../../../../Components/Posts/PostForm";
 import { getBoard, getPost } from "../../../../../utils/services";
+import { PostResponse } from "../../../../../types";
 
 export default function PostEditPage() {
   const router = useRouter();
   const { id, slug } = router.query;
 
-  const [post, setPost] = useState<Post>();
+  const [post, setPost] = useState<PostResponse | undefined>();
   const [board, setBoard] = useState<Boards>();
   const [showCookieBanner, setShowCookieBanner] = useState(false);
 
   useEffect(() => {
     if (id) {
       getPost(slug as string, Number(id) as number).then((data) => {
-        setPost(data);
+        // Create a new object that conforms to the PostResponse type
+        const postResponse: PostResponse = {
+          ...data,
+          user: undefined,
+          board: undefined,
+          attachments: Array.isArray(data.attachments) ? data.attachments : [],
+          isAuthor: undefined,
+        };
+        setPost(postResponse);
       });
     }
   }, [id]);

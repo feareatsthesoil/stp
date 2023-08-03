@@ -4,6 +4,7 @@ import { PostResponse } from "../../types";
 import { getPost, getPosts } from "../../utils/services";
 import Comments from "../Comments";
 import linkify from "../../utils/linkify";
+import PostAttachmentViewer from "./PostAttachmentViewer";
 
 interface Props {
   slug: string;
@@ -43,7 +44,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
 
         for (let post of fetchedPosts) {
           post.content = linkify(post.content || "");
-          if (post.attachment) {
+          if (post.attachments) {
             const fetchedPost = await getPost(slug, post.id);
             setUploadDetails((prevState) => ({
               ...prevState,
@@ -174,25 +175,20 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                     </div>
                   </div>
                   <div className={`items-left flex flex-col`}>
-                    <Link
-                      className="pt-1"
-                      href={`/chan/${slug}/posts/${post.id}`}
+                    <h3
+                      className={`${
+                        isCatalogView ? "px-2 pb-2" : "pt-2"
+                      } scrollbar-hide overflow-x-auto overflow-y-hidden font-sans text-lg font-medium leading-5 text-gray-900`}
                     >
-                      <h3
-                        className={`${
-                          isCatalogView ? "px-2 pb-2" : "pt-2"
-                        } scrollbar-hide overflow-x-auto overflow-y-hidden font-sans text-lg font-medium leading-5 text-gray-900 hover:underline`}
-                      >
-                        {post.title}
-                      </h3>
-                    </Link>
+                      {post.title}
+                    </h3>
                     <div
                       style={
                         isCatalogView ? {} : { width: "calc(100vw - 2rem)" }
                       }
                       className={`text-md scrollbar-hide mb-1 mt-1 max-h-[500px] overflow-x-auto overflow-y-hidden py-1 font-sans text-black ${
                         isCatalogView &&
-                        `${post.attachment ? "hidden" : "px-2"}`
+                        `${post.attachments?.length > 0 ? "hidden" : "px-2"}`
                       }`}
                       dangerouslySetInnerHTML={{
                         __html: linkify(post.content || ""),
@@ -204,61 +200,10 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                       }`}
                     >
                       <div className="text-center text-sm text-gray-700">
-                        {post.attachment && (
-                          <>
-                            <div className={`flex-col`}>
-                              <img
-                                className={`max-h-[96vh] pt-2 ${
-                                  isCatalogView
-                                    ? "max-h-[800px] max-w-[400px] pb-2 mdMobileX:max-w-[80vw]"
-                                    : "cursor-pointer"
-                                } ${
-                                  expandedImages[post.id] ? "" : "max-w-[300px]"
-                                } `}
-                                src={post.attachment}
-                                onClick={() =>
-                                  setExpandedImages((prevState) => ({
-                                    ...prevState,
-                                    [post.id]: !prevState[post.id],
-                                  }))
-                                }
-                              />
-                              {!isCatalogView && (
-                                <ul
-                                  className={`scrollbar-hide flex w-fit max-w-[95vw] flex-row overflow-x-auto pb-2 pt-2`}
-                                >
-                                  <li
-                                    className={`h-4 w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs mdMobileX:hidden ${
-                                      isCatalogView ? "max-[450px]:hidden" : ""
-                                    }`}
-                                  >
-                                    {uploadDetails[post.id]?.width}&nbsp;x&nbsp;
-                                    {uploadDetails[post.id]?.height}&nbsp;
-                                  </li>
-                                  <li
-                                    className={`h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black px-1 text-xs mdMobileX:hidden ${
-                                      isCatalogView ? "max-[450px]:hidden" : ""
-                                    }`}
-                                  >
-                                    {formatBytes(
-                                      parseInt(uploadDetails[post.id]?.size)
-                                    )}
-                                  </li>
-                                  <li className="h-4 self-center px-1 text-xs mdMobileX:px-0">
-                                    <a
-                                      href={uploadDetails[post.id]?.url}
-                                      className="text-blue-600 underline hover:text-indigo-600"
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      {uploadDetails[post.id]?.filename}
-                                    </a>
-                                  </li>
-                                </ul>
-                              )}
-                            </div>
-                          </>
-                        )}
+                        <PostAttachmentViewer
+                          attachments={post.attachments}
+                          isCatalogView={isCatalogView}
+                        />
                       </div>
                     </div>
                   </div>

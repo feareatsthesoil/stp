@@ -73,6 +73,7 @@ export interface Resource {
 export type PostResponse = Post & {
   user?: { firstName: string; lastName: string; profileImageUrl: string };
   board?: Boards;
+  attachments: any[];
   isAuthor?: Boolean;
 };
 

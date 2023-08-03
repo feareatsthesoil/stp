@@ -1,4 +1,4 @@
-import { withAuth } from "@clerk/nextjs/api";
+import { clerkClient, withAuth } from "@clerk/nextjs/api";
 import { NextApiResponse } from "next";
 import { moderate } from "../../../../../utils/openai";
 import { prisma } from "../../../../../utils/prisma";
@@ -13,7 +13,7 @@ export async function postGet(req: any, res: NextApiResponse) {
       id: data.id,
       title: data.title,
       content: data.content,
-      attachment: data.attachment,
+      attachments: data.attachments,
       boardId: data.boardId,
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,

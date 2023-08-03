@@ -134,18 +134,22 @@ export default function VerifySeedButton() {
               border: "1px solid #000",
               height: "31.8px",
               padding: "0 8px",
+              transition: "0.2s",
             }}
             color="secondary"
-            className="h-[30px] bg-[#efefef]"
+            className="h-[30px] bg-[#efefef] hover:bg-[#d6d6d6]"
           >
             Connect Wallet
           </Menu.Button>
-          <Menu.Items className="absolute bottom-[calc(100%+10px)] right-0 flex w-[150px] flex-col gap-2 rounded-[4px] bg-[#efefef] p-[10px] ring-1 ring-black sm:bottom-[unset] sm:top-[calc(100%+10px)]">
+          <Menu.Items className="absolute bottom-[calc(100%+10px)] right-0 flex w-[150px] flex-col gap-2 rounded-[4px] bg-[#fff] p-[10px] ring-1 ring-black sm:bottom-[unset] sm:top-[calc(100%+10px)]">
             {connectors.map((connector) => (
               <button
                 key={connector.name}
+                style={{
+                  transition: "0.2s",
+                }}
                 className={clsx(
-                  "h-[30px] w-full rounded-sm font-sans text-sm ring-1 ring-black hover:bg-[#d6d6d6]",
+                  "h-[30px] w-full rounded-sm bg-[#efefef] font-sans text-sm ring-1 ring-black hover:bg-[#d6d6d6]",
                   {
                     "hidden sm:block":
                       connector?.name?.toLowerCase() === "metamask",

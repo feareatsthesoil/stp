@@ -34,18 +34,22 @@ export default function PostForm({
     url: string;
   }>();
 
+  const MAX_UPLOADS = 10;
   const listener = (e: any) => {
+    console.log(e);
+    const attachmentsNew = [...formik.values.attachments];
     if (e.detail.ctx === "post-uploader") {
       const idx = e.detail.data.length - 1;
       const data = e.detail.data[idx];
-      formik.setFieldValue("attachment", data.cdnUrl);
-      setUploadDetails({
+      attachmentsNew.push({
         filename: data.name,
         height: data.imageInfo.height,
         width: data.imageInfo.width,
         url: data.cdnUrl,
         size: data.size,
       });
+
+      formik.setFieldValue("attachments", attachmentsNew);
     }
   };
   useEffect(() => {
@@ -61,12 +65,12 @@ export default function PostForm({
       content: Yup.string()
         .required("Content is required")
         .max(25000, "Must be within 25,000 characters."),
-      attachment: Yup.string().url().nullable(),
+      attachments: Yup.array().of(Yup.object()),
     }),
     initialValues: {
       title: "",
       content: "",
-      attachment: null,
+      attachments: [],
       anon: false,
       ...rest,
     },
@@ -106,28 +110,38 @@ export default function PostForm({
   };
 
   const isDisabled = !loggedIn || formik.isSubmitting;
-  const attachment = formik.values.attachment;
+  const attachments = formik.values.attachments;
 
   return (
     <form onSubmit={handleSubmitWithAuth}>
       <div className="flex flex-col" style={{ width: "calc(100vw - 2rem)" }}>
-        {attachment && (
-          <>
-            <div className="self-center">
-              <img
-                className="b-2 w-full max-w-[500px] self-center"
-                src={attachment}
-              />
-              <button
-                type="submit"
-                className="w-15 relative mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
-                onClick={() => formik.setFieldValue("attachment", null)}
-              >
-                Delete Image
-              </button>
-            </div>
-          </>
-        )}
+        {attachments &&
+          attachments.map((attachment, index) => {
+            return (
+              <>
+                <div className="self-center">
+                  <img
+                    className="b-2 w-full max-w-[500px] self-center"
+                    src={attachment.url}
+                  />
+                  <button
+                    type="submit"
+                    className="w-15 relative mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+                    onClick={() => {
+                      formik.setFieldValue("attachments", [
+                        ...(formik.values.attachments as any[]).slice(0, index),
+                        ...(formik.values.attachments as any[]).slice(
+                          index + 1
+                        ),
+                      ]);
+                    }}
+                  >
+                    Delete Image
+                  </button>
+                </div>
+              </>
+            );
+          })}
         <div className="relative w-full max-w-[500px] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
           <input
             type="text"
@@ -193,7 +207,7 @@ export default function PostForm({
           </div>
         </div>
         <div className="my-2 flex w-full max-w-[500px] justify-between self-center">
-          {loggedIn && (
+          {loggedIn && formik.values.attachments?.length < 4 && (
             <>
               <div className="">
                 <lr-file-uploader-regular
@@ -203,6 +217,9 @@ export default function PostForm({
                 ></lr-file-uploader-regular>
               </div>
             </>
+          )}
+          {formik.values.attachments?.length >= MAX_UPLOADS && (
+            <>Limit reached</>
           )}
           <div className="my-config"></div>
           <button
