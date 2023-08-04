@@ -56,16 +56,11 @@ export default function PostAttachmentViewer({
                   style={{
                     maxWidth: expandedImages.includes(index)
                       ? postView
-                        ? "1000px"
+                        ? "calc(100vw - 3rem)"
                         : isCatalogView
                         ? "300px"
                         : "calc(100vw - 2rem)"
                       : "300px",
-                    width: expandedImages.includes(index)
-                      ? postView
-                        ? "calc(100vw - 3rem)"
-                        : ""
-                      : "",
                   }}
                   className={`max-h-[60vh] mdMobileX:max-h-[70vh] ${
                     isCatalogView
