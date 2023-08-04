@@ -15,7 +15,7 @@ export const getPosts = (slug: string, q?: string, page: number = 1) => {
 };
 export const getPost = (slug: string, id: number) => {
   return axios
-    .get<Post>(`/api/boards/${slug}/posts/${id}`)
+    .get<PostResponse>(`/api/boards/${slug}/posts/${id}`)
     .then((response) => response.data);
 };
 export const createPost = (

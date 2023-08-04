@@ -55,7 +55,7 @@ export default function Comments({
 
   return (
     <>
-      <ul role="list" className="mb-2 ml-[10px] space-y-2">
+      <ul role="list" className="mb-2 ml-[10px] w-fit space-y-2">
         {displayedComments.map((comment, index) => {
           const attachments = comment.attachments as any[];
           const visibleAttachments = attachments
@@ -82,7 +82,7 @@ export default function Comments({
               />
               <div className="flex-col rounded-md bg-[#dbddffa5] p-2">
                 <div className="flex justify-between">
-                  <div className="scrollbar-hide flex overflow-x-auto py-0.5 text-xs leading-5 text-gray-900">
+                  <div className="scrollbar-hide flex overflow-x-auto text-xs leading-5 text-gray-900">
                     <span className="mr-1 truncate font-sans font-medium">
                       {comment.user?.firstName || comment.user?.lastName
                         ? `${comment.user?.firstName} ${comment.user?.lastName}`

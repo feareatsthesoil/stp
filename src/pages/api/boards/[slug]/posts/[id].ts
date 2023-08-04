@@ -1,4 +1,4 @@
-import { clerkClient, withAuth } from "@clerk/nextjs/api";
+import { withAuth } from "@clerk/nextjs/api";
 import { NextApiResponse } from "next";
 import { moderate } from "../../../../../utils/openai";
 import { prisma } from "../../../../../utils/prisma";

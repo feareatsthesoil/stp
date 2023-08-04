@@ -12,22 +12,14 @@ export default function PostEditPage() {
   const router = useRouter();
   const { id, slug } = router.query;
 
-  const [post, setPost] = useState<PostResponse | undefined>();
+  const [post, setPost] = useState<PostResponse>();
   const [board, setBoard] = useState<Boards>();
   const [showCookieBanner, setShowCookieBanner] = useState(false);
 
   useEffect(() => {
     if (id) {
       getPost(slug as string, Number(id) as number).then((data) => {
-        // Create a new object that conforms to the PostResponse type
-        const postResponse: PostResponse = {
-          ...data,
-          user: undefined,
-          board: undefined,
-          attachments: Array.isArray(data.attachments) ? data.attachments : [],
-          isAuthor: undefined,
-        };
-        setPost(postResponse);
+        setPost(data);
       });
     }
   }, [id]);

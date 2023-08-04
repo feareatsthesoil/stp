@@ -1,4 +1,4 @@
-import { clerkClient, withAuth } from "@clerk/nextjs/api";
+import { withAuth } from "@clerk/nextjs/api";
 import { NextApiRequest, NextApiResponse } from "next";
 import { Boards, prisma } from "../../../../../utils/prisma";
 import { moderate } from "../../../../../utils/openai";
@@ -70,7 +70,6 @@ async function postsIndex(
         const userId = post.userId;
         try {
           const user = await getUserData(userId);
-          // const { firstName, lastName, profileImageUrl } = user;
           const board = await prisma.boards.findFirstOrThrow({
             where: { id: post.boardId },
           });

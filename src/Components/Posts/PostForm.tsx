@@ -195,7 +195,6 @@ export default function PostForm({
                 formik.setFieldValue("anon", e.target.checked);
               }}
             />
-
             <div className="ml-1 text-sm leading-6">
               <label
                 htmlFor="comments"

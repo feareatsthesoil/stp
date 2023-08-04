@@ -27,14 +27,13 @@ export default function PostViewPage() {
   } | null>();
 
   const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
-  const [isAttachmentInfoVisible, setIsAttachmentInfoVisible] = useState(true);
 
   const [version, setVersion] = useState(1);
 
   useEffect(() => {
     if (id) {
-      getPost(slug as string, Number(id) as number).then((data: any) => {
-        setPost(data as PostResponse);
+      getPost(slug as string, Number(id) as number).then((data) => {
+        setPost(data);
         setUploadDetails(data?.uploadDetails! as any);
       });
     }
@@ -86,23 +85,8 @@ export default function PostViewPage() {
     });
   };
 
-  const handleImageClick = () => {
-    setIsAttachmentInfoVisible(!isAttachmentInfoVisible);
-  };
-
   const postSlug = board?.slug || "all";
   const postContent = linkify(post?.content ?? "");
-  const formatBytes = (bytes: number, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
-
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-  };
 
   return (
     <div className="bg-[#F4F4FE]">
@@ -164,12 +148,14 @@ export default function PostViewPage() {
               className="scrollbar-hide mt-2 overflow-x-auto overflow-y-hidden font-sans"
               dangerouslySetInnerHTML={{ __html: postContent }}
             />
-            <PostAttachmentViewer
-              attachments={post.attachments}
-              isCatalogView={false}
-              showExpand={false}
-            />
-            <div className="relative mt-8 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
+            <div className="mt-4 flex flex-col items-center">
+              <PostAttachmentViewer
+                isCatalogView={false}
+                attachments={post.attachments}
+                postView={true}
+              />
+            </div>
+            <div className="relative mt-4 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
               <div className="absolute -bottom-2 left-0 top-0 flex w-6 justify-center">
                 <div className="w-px bg-slate-200" />
               </div>

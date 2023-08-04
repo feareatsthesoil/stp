@@ -45,14 +45,14 @@ const BoardSearch = React.memo(function ({
 
   return (
     <>
-      <div className="w-full">
-        <div className="sticky top-0 z-50 flex justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-2 text-sm font-bold">
+      <div className="sticky top-0 z-50 w-full">
+        <div className="z-50 flex justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-2 text-sm font-bold">
           <div>
             <input
               type="text"
               name="Search"
               id="Search"
-              className=",md:leading-6 block h-6 w-full rounded-sm border-0 pl-2 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 md:text-sm"
+              className="block h-6 w-full rounded-sm border-0 pl-2 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 md:text-sm md:leading-6"
               placeholder="Search"
               onChange={(e) => setQuery(e.target.value)}
             />

@@ -177,8 +177,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                   <div className={`items-left flex flex-col`}>
                     <h3
                       className={`${
-                        isCatalogView ? "px-2 pb-2" : "pt-2"
-                      } scrollbar-hide overflow-x-auto overflow-y-hidden font-sans text-lg font-medium leading-5 text-gray-900`}
+                        isCatalogView && "px-2"
+                      } scrollbar-hide overflow-x-auto overflow-y-hidden pt-2 font-sans text-lg font-medium leading-5 text-gray-900`}
                     >
                       {post.title}
                     </h3>
@@ -186,7 +186,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                       style={
                         isCatalogView ? {} : { width: "calc(100vw - 2rem)" }
                       }
-                      className={`text-md scrollbar-hide mb-1 mt-1 max-h-[500px] overflow-x-auto overflow-y-hidden py-1 font-sans text-black ${
+                      className={`text-md scrollbar-hide mt-1 max-h-[500px] overflow-x-auto overflow-y-hidden font-sans text-black ${
                         isCatalogView &&
                         `${post.attachments?.length > 0 ? "hidden" : "px-2"}`
                       }`}
@@ -199,7 +199,11 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                         isCatalogView ? "justify-center" : ""
                       }`}
                     >
-                      <div className="text-center text-sm text-gray-700">
+                      <div
+                        className={`text-center text-sm text-gray-700 ${
+                          post.attachments?.length > 0 && "mt-2"
+                        } ${isCatalogView && "mt-2"}`}
+                      >
                         <PostAttachmentViewer
                           attachments={post.attachments}
                           isCatalogView={isCatalogView}

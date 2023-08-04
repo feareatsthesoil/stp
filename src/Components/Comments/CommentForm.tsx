@@ -84,100 +84,102 @@ export default function CommentForm({
   const isDisabled = !user || formik.isSubmitting;
 
   return (
-    <form onSubmit={handleSubmitWithAuth}>
-      <div className="relative flex max-w-[500px]">
-        <div className="absolute left-0 top-0 flex h-6 w-6 translate-y-[-8px] justify-center">
-          <div className="w-px bg-slate-200" />
-        </div>
-        <img
-          src={user?.profileImageUrl || "/favicon.ico"}
-          alt="Your profile photo"
-          className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
-        />
-        <div className="relative ml-[17px] w-full rounded-md px-3 pb-2 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10  ">
-          <textarea
-            name="content"
-            id="content"
-            className={`block h-auto w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
-              isDisabled ? "cursor-not-allowed" : ""
-            }`}
-            placeholder="Comment"
-            value={formik.values.content ?? ""}
-            onChange={formik.handleChange}
-            disabled={isDisabled}
-            {...(formik.errors.content && {
-              "aria-describedby": "content-error",
-            })}
+    <>
+      <form onSubmit={handleSubmitWithAuth}>
+        <div className="relative flex max-w-[500px]">
+          <div className="absolute left-0 top-0 flex h-6 w-6 translate-y-[-8px] justify-center">
+            <div className="w-px bg-slate-200" />
+          </div>
+          <img
+            src={user?.profileImageUrl || "/favicon.ico"}
+            alt="Your profile photo"
+            className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
           />
-          {formik.errors.content && (
-            <div className="pl-2 pt-1 font-sans text-xs font-bold text-red-500">
-              {formik.errors.content}
-            </div>
-          )}
-          <div className="mt-1 flex h-6 items-center">
-            <input
-              id="anon"
-              name="anon"
-              type="checkbox"
-              disabled={loggedIn ? false : true}
-              className="hover:cursor-pointer"
-              checked={formik.values.anon || false}
-              onChange={(e) => {
-                formik.setFieldValue("anon", e.target.checked);
-              }}
+          <div className="relative ml-[17px] w-full rounded-md px-3 pb-2 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10  ">
+            <textarea
+              name="content"
+              id="content"
+              className={`block h-auto w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+                isDisabled ? "cursor-not-allowed" : ""
+              }`}
+              placeholder="Comment"
+              value={formik.values.content ?? ""}
+              onChange={formik.handleChange}
+              disabled={isDisabled}
+              {...(formik.errors.content && {
+                "aria-describedby": "content-error",
+              })}
             />
+            {formik.errors.content && (
+              <div className="pl-2 pt-1 font-sans text-xs font-bold text-red-500">
+                {formik.errors.content}
+              </div>
+            )}
+            <div className="mt-1 flex h-6 items-center">
+              <input
+                id="anon"
+                name="anon"
+                type="checkbox"
+                disabled={loggedIn ? false : true}
+                className="hover:cursor-pointer"
+                checked={formik.values.anon || false}
+                onChange={(e) => {
+                  formik.setFieldValue("anon", e.target.checked);
+                }}
+              />
 
-            <div className="ml-1 text-sm leading-6">
-              <label
-                htmlFor="comments"
-                className="font-sans text-xs font-medium text-[#767676]"
-              >
-                Anonymous
-              </label>
+              <div className="ml-1 text-sm leading-6">
+                <label
+                  htmlFor="comments"
+                  className="font-sans text-xs font-medium text-[#767676]"
+                >
+                  Anonymous
+                </label>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div className="float-left my-2 flex w-full max-w-[500px] justify-between">
-        <>
-          {loggedIn && (
-            <div className="ml-10">
-              <lr-file-uploader-regular
-                css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-                ctx-name="comment-uploader"
-                class="my-config"
-              ></lr-file-uploader-regular>
-            </div>
-          )}
-        </>
-        <button
-          type="submit"
-          color="rgb(239, 240, 240)"
-          className={`w-15 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] ${
-            !loggedIn && "ml-10"
-          }`}
-        >
-          {!loggedIn && <>Log In / Sign Up</>}
-          {!formik.isSubmitting && loggedIn && <>Reply</>}
-          {formik.isSubmitting && (
-            <span>
-              <FontAwesomeIcon icon={faSpinner} spin />
-            </span>
-          )}
-        </button>
-      </div>
+        <div className="float-left my-2 flex w-full max-w-[500px] justify-between">
+          <>
+            {loggedIn && (
+              <div className="ml-10">
+                <lr-file-uploader-regular
+                  css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+                  ctx-name="comment-uploader"
+                  class="my-config"
+                ></lr-file-uploader-regular>
+              </div>
+            )}
+          </>
+          <button
+            type="submit"
+            color="rgb(239, 240, 240)"
+            className={`w-15 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] ${
+              !loggedIn && "ml-10"
+            }`}
+          >
+            {!loggedIn && <>Log In / Sign Up</>}
+            {!formik.isSubmitting && loggedIn && <>Reply</>}
+            {formik.isSubmitting && (
+              <span>
+                <FontAwesomeIcon icon={faSpinner} spin />
+              </span>
+            )}
+          </button>
+        </div>
+      </form>
       {attachments &&
         attachments.map((attachment, index) => {
           return (
             <>
-              <div className="self-center">
+              <div className="w-max self-center">
                 <img
                   className="w-full max-w-[500px] self-center"
                   src={attachment.url}
                 />
                 <button
                   type="submit"
-                  className="w-15 relative float-right mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+                  className="w-15 relative mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
                   onClick={() => {
                     formik.setFieldValue("attachments", [
                       ...(formik.values.attachments as any[]).slice(0, index),
@@ -191,6 +193,6 @@ export default function CommentForm({
             </>
           );
         })}
-    </form>
+    </>
   );
 }
