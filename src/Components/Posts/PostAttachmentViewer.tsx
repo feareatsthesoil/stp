@@ -54,7 +54,6 @@ export default function PostAttachmentViewer({
               >
                 <img
                   style={{
-                    maxHeight: "60vh",
                     maxWidth: expandedImages.includes(index)
                       ? postView
                         ? "1000px"
@@ -68,7 +67,7 @@ export default function PostAttachmentViewer({
                         : ""
                       : "",
                   }}
-                  className={`max-h-[96vh] ${
+                  className={`max-h-[60vh] mdMobileX:max-h-[70vh] ${
                     isCatalogView
                       ? "max-h-[800px] max-w-[400px] pb-2 mdMobileX:max-w-[80vw]"
                       : ""
@@ -126,39 +125,6 @@ export default function PostAttachmentViewer({
                     )}
                   </button>
                 )}
-              </div>
-              <div>
-                {/* {!isCatalogView && (
-                  <ul
-                    className={`scrollbar-hide flex w-fit max-w-[95vw] flex-row overflow-x-auto pt-2`}
-                  >
-                    <li
-                      className={`h-4 w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs mdMobileX:hidden ${
-                        isCatalogView ? "max-[450px]:hidden" : ""
-                      }`}
-                    >
-                      {attachment.width}&nbsp;x&nbsp;
-                      {attachment?.height}&nbsp;
-                    </li>
-                    <li
-                      className={`h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black px-1 text-xs mdMobileX:hidden ${
-                        isCatalogView ? "max-[450px]:hidden" : ""
-                      }`}
-                    >
-                      {formatBytes(parseInt(attachment.size))}
-                    </li>
-                    <li className="h-4 self-center px-1 text-xs mdMobileX:px-0">
-                      <a
-                        href={attachment?.url}
-                        className="text-blue-600 underline hover:text-indigo-600"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {attachment.filename}
-                      </a>
-                    </li>
-                  </ul>
-                )} */}
               </div>
             </div>
           ))}
