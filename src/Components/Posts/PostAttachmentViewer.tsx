@@ -31,7 +31,7 @@ export default function PostAttachmentViewer({
 
     return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
   };
-  const visibleAttachments = Array.isArray(attachments)
+  const visibleAttachments = attachments
     ? showAll
       ? attachments
       : attachments.slice(0, 1)
@@ -71,6 +71,7 @@ export default function PostAttachmentViewer({
                       : ""
                   } 
                   ${expandedImages.includes(index) ? (postView ? "w" : "") : ""}
+                  ${attachments?.length === 1 && "mb-1"}
                   `}
                   src={attachment.url}
                 />
@@ -124,7 +125,7 @@ export default function PostAttachmentViewer({
                 )}
               </div>
               <div>
-                {!isCatalogView && (
+                {/* {!isCatalogView && (
                   <ul
                     className={`scrollbar-hide flex w-fit max-w-[95vw] flex-row overflow-x-auto pt-2`}
                   >
@@ -154,7 +155,7 @@ export default function PostAttachmentViewer({
                       </a>
                     </li>
                   </ul>
-                )}
+                )} */}
               </div>
             </div>
           ))}

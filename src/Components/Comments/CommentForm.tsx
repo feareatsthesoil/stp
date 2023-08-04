@@ -46,6 +46,8 @@ export default function CommentForm({
       }
     },
   });
+
+  const MAX_UPLOADS = 10;
   const { attachments } = formik.values;
   const listener = (e: any) => {
     console.log(e);
@@ -68,6 +70,7 @@ export default function CommentForm({
     window.addEventListener("LR_UPLOAD_FINISH", listener);
     return () => window.removeEventListener("LR_UPLOAD_FINISH", listener);
   }, [listener]);
+
   const handleSubmitWithAuth = async (
     event: React.FormEvent<HTMLFormElement>
   ) => {
@@ -140,17 +143,18 @@ export default function CommentForm({
           </div>
         </div>
         <div className="float-left my-2 flex w-full max-w-[500px] justify-between">
-          <>
-            {loggedIn && (
-              <div className="ml-10">
-                <lr-file-uploader-regular
-                  css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-                  ctx-name="comment-uploader"
-                  class="my-config"
-                ></lr-file-uploader-regular>
-              </div>
-            )}
-          </>
+          {loggedIn && formik.values.attachments?.length < MAX_UPLOADS && (
+            <div className="ml-10">
+              <lr-file-uploader-regular
+                css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+                ctx-name="comment-uploader"
+                class="my-config"
+              ></lr-file-uploader-regular>
+            </div>
+          )}
+          {formik.values.attachments?.length >= MAX_UPLOADS && (
+            <p className="font-sans text-sm text-red-600">Limit reached</p>
+          )}
           <button
             type="submit"
             color="rgb(239, 240, 240)"

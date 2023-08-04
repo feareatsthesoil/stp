@@ -206,7 +206,7 @@ export default function PostForm({
           </div>
         </div>
         <div className="my-2 flex w-full max-w-[500px] justify-between self-center">
-          {loggedIn && formik.values.attachments?.length < 4 && (
+          {loggedIn && formik.values.attachments?.length < MAX_UPLOADS && (
             <>
               <div className="">
                 <lr-file-uploader-regular
@@ -218,7 +218,7 @@ export default function PostForm({
             </>
           )}
           {formik.values.attachments?.length >= MAX_UPLOADS && (
-            <>Limit reached</>
+            <p className="font-sans text-sm text-red-600">Limit reached</p>
           )}
           <div className="my-config"></div>
           <button

@@ -125,7 +125,7 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
                   </button>
                 )}
               </div>
-              <div>
+              {/* <div>
                 <ul
                   className={`scrollbar-hide flex w-fit max-w-[95vw] flex-row overflow-x-auto pt-2`}
                 >
@@ -150,7 +150,7 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> */}
             </div>
           ) : null;
         })}
