@@ -101,7 +101,11 @@ export default function CommentForm({
             <div className="w-px bg-slate-200" />
           </div>
           <img
-            src={user?.profileImageUrl || "/favicon.ico"}
+            src={
+              formik.values.anon
+                ? "/favicon.ico"
+                : user?.profileImageUrl || "/favicon.ico"
+            }
             alt="Your profile photo"
             onError={(e) => {
               (e.target as HTMLImageElement).onerror = null;
