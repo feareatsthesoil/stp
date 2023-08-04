@@ -54,9 +54,12 @@ export default function PostAttachmentViewer({
               >
                 <img
                   style={{
+                    maxHeight: "60vh",
                     maxWidth: expandedImages.includes(index)
                       ? postView
                         ? "1000px"
+                        : isCatalogView
+                        ? "300px"
                         : "calc(100vw - 2rem)"
                       : "300px",
                     width: expandedImages.includes(index)

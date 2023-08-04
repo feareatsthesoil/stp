@@ -53,17 +53,24 @@ export default function CommentForm({
     console.log(e);
     const attachmentsNew = [...formik.values.attachments];
     if (e.detail.ctx === "comment-uploader") {
-      const idx = e.detail.data.length - 1;
-      const data = e.detail.data[idx];
-      attachmentsNew.push({
-        filename: data.name,
-        height: data.imageInfo.height,
-        width: data.imageInfo.width,
-        url: data.cdnUrl,
-        size: data.size,
-      });
+      for (
+        let idx = 0;
+        idx < e.detail.data.length && attachmentsNew.length < MAX_UPLOADS;
+        idx++
+      ) {
+        const data = e.detail.data[idx];
+        attachmentsNew.push({
+          filename: data.name,
+          height: data.imageInfo.height,
+          width: data.imageInfo.width,
+          url: data.cdnUrl,
+          size: data.size,
+        });
+      }
 
       formik.setFieldValue("attachments", attachmentsNew);
+      const dataOutput = document.querySelector("lr-data-output");
+      (dataOutput as any).uploadCollection.clearAll();
     }
   };
   useEffect(() => {
@@ -96,6 +103,10 @@ export default function CommentForm({
           <img
             src={user?.profileImageUrl || "/favicon.ico"}
             alt="Your profile photo"
+            onError={(e) => {
+              (e.target as HTMLImageElement).onerror = null;
+              (e.target as HTMLImageElement).src = "/favicon.ico";
+            }}
             className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
           />
           <div className="relative ml-[17px] w-full rounded-md px-3 pb-2 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10  ">
@@ -150,10 +161,16 @@ export default function CommentForm({
                 ctx-name="comment-uploader"
                 class="my-config"
               ></lr-file-uploader-regular>
+              <lr-data-output
+                id="data-output"
+                ctx-name="comment-uploader"
+              ></lr-data-output>
             </div>
           )}
           {formik.values.attachments?.length >= MAX_UPLOADS && (
-            <p className="font-sans text-sm text-red-600">Limit reached</p>
+            <p className="ml-10 font-sans text-sm text-red-600">
+              Upload limit reached
+            </p>
           )}
           <button
             type="submit"

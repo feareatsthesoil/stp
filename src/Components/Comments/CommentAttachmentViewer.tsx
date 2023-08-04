@@ -37,18 +37,6 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
     }
   };
 
-  const formatBytes = (bytes: number, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
-
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-  };
-
   const visibleAttachments = attachments
     ? showAll
       ? attachments
@@ -125,32 +113,6 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
                   </button>
                 )}
               </div>
-              {/* <div>
-                <ul
-                  className={`scrollbar-hide flex w-fit max-w-[95vw] flex-row overflow-x-auto pt-2`}
-                >
-                  <li
-                    className={`h-4 w-max self-center border-[0] border-r-[1px] border-solid border-black pr-1 text-xs mdMobileX:hidden`}
-                  >
-                    {attachment.width}&nbsp;x&nbsp;{attachment?.height}&nbsp;
-                  </li>
-                  <li
-                    className={`h-4 min-w-max self-center border-[0] border-r-[1px] border-solid border-black px-1 text-xs mdMobileX:hidden`}
-                  >
-                    {formatBytes(parseInt(attachment.size))}
-                  </li>
-                  <li className="h-4 w-max self-center px-1 text-xs mdMobileX:px-0">
-                    <a
-                      href={attachment?.url}
-                      className="text-blue-600 underline hover:text-indigo-600"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {attachment.filename}
-                    </a>
-                  </li>
-                </ul>
-              </div> */}
             </div>
           ) : null;
         })}

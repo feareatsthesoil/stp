@@ -112,7 +112,11 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                   <div className="scrollbar-hide flex w-full flex-row overflow-x-auto py-0.5 text-xs leading-5 text-gray-500 ">
                     <img
                       src={post.user?.profileImageUrl || "/favicon.ico"}
-                      alt=""
+                      alt="User profile img"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).onerror = null;
+                        (e.target as HTMLImageElement).src = "/favicon.ico";
+                      }}
                       className={`${
                         isCatalogView && "ml-2"
                       } relative mr-2 h-6 w-6 flex-none rounded-full bg-gray-50`}

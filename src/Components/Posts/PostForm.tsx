@@ -39,22 +39,32 @@ export default function PostForm({
     console.log(e);
     const attachmentsNew = [...formik.values.attachments];
     if (e.detail.ctx === "post-uploader") {
-      const idx = e.detail.data.length - 1;
-      const data = e.detail.data[idx];
-      attachmentsNew.push({
-        filename: data.name,
-        height: data.imageInfo.height,
-        width: data.imageInfo.width,
-        url: data.cdnUrl,
-        size: data.size,
-      });
-
+      for (
+        let idx = 0;
+        idx < e.detail.data.length && attachmentsNew.length < MAX_UPLOADS;
+        idx++
+      ) {
+        const data = e.detail.data[idx];
+        attachmentsNew.push({
+          filename: data.name,
+          height: data.imageInfo.height,
+          width: data.imageInfo.width,
+          url: data.cdnUrl,
+          size: data.size,
+        });
+      }
       formik.setFieldValue("attachments", attachmentsNew);
+      const dataOutput = document.querySelector("lr-data-output");
+      (dataOutput as any).uploadCollection.clearAll();
     }
   };
+
   useEffect(() => {
     window.addEventListener("LR_UPLOAD_FINISH", listener);
-    return () => window.removeEventListener("LR_UPLOAD_FINISH", listener);
+
+    return () => {
+      window.removeEventListener("LR_UPLOAD_FINISH", listener);
+    };
   }, [listener]);
 
   const formik = useFormik({
@@ -214,11 +224,15 @@ export default function PostForm({
                   ctx-name="post-uploader"
                   class="my-config"
                 ></lr-file-uploader-regular>
+                <lr-data-output
+                  id="data-output"
+                  ctx-name="post-uploader"
+                ></lr-data-output>
               </div>
             </>
           )}
           {formik.values.attachments?.length >= MAX_UPLOADS && (
-            <p className="font-sans text-sm text-red-600">Limit reached</p>
+            <p className="font-sans text-sm text-red-600">Upload limit reached</p>
           )}
           <div className="my-config"></div>
           <button

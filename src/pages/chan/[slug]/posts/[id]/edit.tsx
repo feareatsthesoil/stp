@@ -71,10 +71,10 @@ export default function PostEditPage() {
         {showCookieBanner && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div className="w-min-full rounded-xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10">
-              <p className="text-center text-lg font-bold leading-6 text-gray-900">
+              <p className="text-center text-lg font-sans font-bold leading-6 text-gray-900">
                 Are you sure you want to leave?
               </p>
-              <p className="text-center text-sm font-bold leading-6 text-gray-500">
+              <p className="text-center font-sans text-sm font-bold leading-6 text-gray-500">
                 Remember to save changes.
               </p>
               <div className="flex place-content-center gap-x-2">

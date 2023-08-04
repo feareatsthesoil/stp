@@ -161,7 +161,11 @@ export default function PostViewPage() {
               </div>
               <img
                 src={post.user?.profileImageUrl || "/favicon.ico"}
-                alt=""
+                alt="User profile img"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).onerror = null;
+                  (e.target as HTMLImageElement).src = "/favicon.ico";
+                }}
                 className="relative mt-[5px] h-6 w-6 flex-none rounded-full bg-gray-50"
               />
               <div className="mb-[-2px] ml-4 flex overflow-auto rounded-md bg-[#dbddffa5] p-2">

@@ -77,7 +77,11 @@ export default function Comments({
               </div>
               <img
                 src={comment.user?.profileImageUrl || "/favicon.ico"}
-                alt=""
+                alt="User profile img"
+                onError={(e) => {
+                  (e.target as HTMLImageElement).onerror = null; 
+                  (e.target as HTMLImageElement).src="/favicon.ico"
+                }}
                 className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
               />
               <div className="flex-col rounded-md bg-[#dbddffa5] p-2">
