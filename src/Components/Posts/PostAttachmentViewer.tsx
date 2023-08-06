@@ -11,6 +11,7 @@ export default function PostAttachmentViewer({
 }) {
   const [showAll, setShowAll] = useState(false);
   const [expandedImages, setExpandedImages] = useState<number[]>([]);
+  const screenWidth = window.innerWidth;
 
   const toggleExpanded = (index: number) => {
     if (expandedImages.includes(index)) {
@@ -56,11 +57,11 @@ export default function PostAttachmentViewer({
                   style={{
                     maxWidth: expandedImages.includes(index)
                       ? postView
-                        ? "calc(100vw - 3rem)"
+                        ? "calc(100vw - 2.4rem)"
                         : isCatalogView
                         ? "300px"
                         : "calc(100vw - 2rem)"
-                      : "300px",
+                      : postView ? screenWidth < 570 ? "70vw" : "300px" : "300px",
                   }}
                   className={`max-h-[60vh] mdMobileX:max-h-[70vh] ${
                     isCatalogView

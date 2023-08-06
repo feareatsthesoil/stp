@@ -11,6 +11,7 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   const [expandedImages, setExpandedImages] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 570);
+  const screenWidth = window.innerWidth;
 
   useEffect(() => {
     const handleResize = () => {
@@ -59,6 +60,8 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
                   style={{
                     maxWidth: expandedImages.includes(index)
                       ? "calc(100vw - 5.5rem)"
+                      : screenWidth < 570
+                      ? "70vw"
                       : "300px",
                   }}
                   className="max-h-[50vh]"

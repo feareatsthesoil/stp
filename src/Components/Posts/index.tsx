@@ -67,18 +67,6 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     fetchPosts();
   }, [slug, query, currentPage]);
 
-  const formatBytes = (bytes: number, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
-
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-  };
-
   if (loading) return <div className="my-2">Loading...</div>;
   if (error) return <div className="my-2">Error: {error.message}</div>;
   if (!posts.length) return <div className="my-2">No Posts Yet...</div>;
@@ -115,7 +103,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                       alt="User profile img"
                       onError={(e) => {
                         (e.target as HTMLImageElement).onerror = null;
-                        (e.target as HTMLImageElement).src = "/favicon.ico";
+                        (e.target as HTMLImageElement).src =
+                          "https://ucarecdn.com/8c962272-5ea0-425a-851a-8b834177ea26/";
                       }}
                       className={`${
                         isCatalogView && "ml-2"

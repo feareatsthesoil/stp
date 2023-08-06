@@ -34,6 +34,15 @@ export default function PostForm({
     url: string;
   }>();
 
+  function autoResizeTextarea(event: any) {
+      event.target.style.height = "inherit";
+      const computed = window.getComputedStyle(event.target);
+      const border =
+        parseInt(computed.getPropertyValue("border-top-width"), 10) +
+        parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+      event.target.style.height = `${event.target.scrollHeight + border}px`;
+  }
+
   const MAX_UPLOADS = 10;
   const listener = (e: any) => {
     console.log(e);
@@ -121,17 +130,33 @@ export default function PostForm({
 
   const isDisabled = !loggedIn || formik.isSubmitting;
   const attachments = formik.values.attachments;
+  const [message, setMessage] = React.useState("");
 
   return (
-    <form onSubmit={handleSubmitWithAuth}>
-      <div className="flex flex-col" style={{ width: "calc(100vw - 2rem)" }}>
-        {attachments &&
-          attachments.map((attachment, index) => {
-            return (
-              <>
-                <div className="self-center">
+    <>
+      <form
+        onSubmit={handleSubmitWithAuth}
+        onClick={() => setMessage("Form clicked")}
+      >
+        {message && (
+          <div className="flex w-full justify-center">
+            <div className="relative mb-4 items-center gap-x-2 rounded-md px-2.5 py-2 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
+              <p className="inline-block">Posting to:</p>
+              <button
+                className={`ml-2 inline-block h-7 w-max cursor-default rounded-md bg-[#272fc756] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:h-5 sm:text-xs`}
+              >
+                {slug}
+              </button>
+            </div>
+          </div>
+        )}
+        {attachments && attachments?.length > 0 && (
+          <div className="flex w-full flex-col items-center">
+            <div className="relative mb-4 flex flex-row flex-wrap place-content-center gap-x-2 self-center rounded-md px-3 pb-0.5 pt-3 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 mdMobileX:flex-col">
+              {attachments.map((attachment, index) => (
+                <div className="self-center" key={index}>
                   <img
-                    className="b-2 w-full max-w-[500px] self-center"
+                    className="max-h-[60vh] w-full max-w-[500px] self-center"
                     src={attachment.url}
                   />
                   <button
@@ -149,113 +174,120 @@ export default function PostForm({
                     Delete Image
                   </button>
                 </div>
-              </>
-            );
-          })}
-        <div className="relative w-full max-w-[500px] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
-          <input
-            type="text"
-            name="title"
-            id="title"
-            className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
-              isDisabled ? "cursor-not-allowed" : ""
-            }`}
-            placeholder="Title"
-            value={formik.values.title}
-            onChange={formik.handleChange}
-            disabled={isDisabled}
-            {...(formik.errors.title && { "aria-describedby": "title-error" })}
-          />
-          {formik.errors.title && (
-            <div className="pl-2 pt-1 text-xs text-red-500">
-              {formik.errors.title}
-            </div>
-          )}
-        </div>
-
-        <div className="relative w-full max-w-[500px] self-center rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
-          <textarea
-            name="content"
-            id="content"
-            className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
-              isDisabled ? "cursor-not-allowed" : ""
-            }`}
-            placeholder="Content"
-            value={formik.values.content ?? ""}
-            onChange={formik.handleChange}
-            disabled={isDisabled}
-            {...(formik.errors.content && {
-              "aria-describedby": "content-error",
-            })}
-          />
-          {formik.errors.content && (
-            <div className="pl-2 pt-1 text-xs text-red-500">
-              {formik.errors.content}
-            </div>
-          )}
-          <div className="ml-auto mr-2 mt-1 flex h-6 items-center">
-            <input
-              id="anon"
-              name="anon"
-              type="checkbox"
-              className="h-4 w-4 rounded text-indigo-600 ring-red-300 hover:cursor-pointer focus:ring-indigo-600"
-              disabled={loggedIn ? false : true}
-              checked={formik.values.anon || false}
-              onChange={(e) => {
-                formik.setFieldValue("anon", e.target.checked);
-              }}
-            />
-            <div className="ml-1 text-sm leading-6">
-              <label
-                htmlFor="comments"
-                className="font-sans text-xs font-medium text-[#767676]"
-              >
-                Anonymous
-              </label>
+              ))}
             </div>
           </div>
-        </div>
-        <div className="my-2 flex w-full max-w-[500px] justify-between self-center">
-          {loggedIn && formik.values.attachments?.length < MAX_UPLOADS && (
-            <>
-              <div className="">
-                <lr-file-uploader-regular
-                  css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
-                  ctx-name="post-uploader"
-                  class="my-config"
-                ></lr-file-uploader-regular>
-                <lr-data-output
-                  id="data-output"
-                  ctx-name="post-uploader"
-                ></lr-data-output>
+        )}
+        <div className="flex flex-col" style={{ width: "calc(100vw - 2rem)" }}>
+          <div className="relative w-full max-w-[500px] self-center rounded-md rounded-b-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
+            <input
+              type="text"
+              name="title"
+              id="title"
+              className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+                isDisabled ? "cursor-not-allowed" : ""
+              }`}
+              placeholder="Title"
+              value={formik.values.title}
+              onChange={formik.handleChange}
+              disabled={isDisabled}
+              {...(formik.errors.title && {
+                "aria-describedby": "title-error",
+              })}
+            />
+            {formik.errors.title && (
+              <div className="pl-2 pt-1 text-xs text-red-500">
+                {formik.errors.title}
               </div>
-            </>
-          )}
-          {formik.values.attachments?.length >= MAX_UPLOADS && (
-            <p className="font-sans text-sm text-red-600">Upload limit reached</p>
-          )}
-          <div className="my-config"></div>
-          <button
-            type="submit"
-            color="rgb(239, 240, 240)"
-            className="w-15 float-right h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
-          >
-            {!formik.isSubmitting &&
-            loggedIn &&
-            router.pathname.endsWith("/edit") ? (
-              <>Save</>
-            ) : loggedIn ? (
-              !formik.isSubmitting ? (
-                <>Post</>
-              ) : (
-                <FontAwesomeIcon icon={faSpinner} spin />
-              )
-            ) : (
-              <>Log In / Sign Up</>
             )}
-          </button>
+          </div>
+          <div className="relative w-full max-w-[500px] self-center rounded-md rounded-t-none px-3 pb-1.5 pt-2.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
+            <textarea
+              name="content"
+              id="content"
+              className={`block w-full rounded-sm border-0 p-0 pl-2 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+                isDisabled ? "cursor-not-allowed" : ""
+              }`}
+              onInput={autoResizeTextarea}
+              placeholder="Content"
+              value={formik.values.content ?? ""}
+              onChange={formik.handleChange}
+              disabled={isDisabled}
+              {...(formik.errors.content && {
+                "aria-describedby": "content-error",
+              })}
+            />
+            {formik.errors.content && (
+              <div className="pl-2 pt-1 text-xs text-red-500">
+                {formik.errors.content}
+              </div>
+            )}
+            <div className="ml-auto mr-2 mt-1 flex h-6 items-center">
+              <input
+                id="anon"
+                name="anon"
+                type="checkbox"
+                className="h-4 w-4 rounded text-indigo-600 ring-red-300 hover:cursor-pointer focus:ring-indigo-600"
+                disabled={loggedIn ? false : true}
+                checked={formik.values.anon || false}
+                onChange={(e) => {
+                  formik.setFieldValue("anon", e.target.checked);
+                }}
+              />
+              <div className="ml-1 text-sm leading-6">
+                <label
+                  htmlFor="comments"
+                  className="font-sans text-xs font-medium text-[#767676]"
+                >
+                  Anonymous
+                </label>
+              </div>
+            </div>
+          </div>
+          <div className="my-2 flex w-full max-w-[500px] justify-between self-center">
+            {loggedIn && formik.values.attachments?.length < MAX_UPLOADS && (
+              <>
+                <div className="">
+                  <lr-file-uploader-regular
+                    css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
+                    ctx-name="post-uploader"
+                    class="my-config"
+                  ></lr-file-uploader-regular>
+                  <lr-data-output
+                    id="data-output"
+                    ctx-name="post-uploader"
+                  ></lr-data-output>
+                </div>
+              </>
+            )}
+            {formik.values.attachments?.length >= MAX_UPLOADS && (
+              <p className="font-sans text-sm text-red-600">
+                Upload limit reached
+              </p>
+            )}
+            <div className="my-config"></div>
+            <button
+              type="submit"
+              color="rgb(239, 240, 240)"
+              className="w-15 float-right h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
+            >
+              {!formik.isSubmitting &&
+              loggedIn &&
+              router.pathname.endsWith("/edit") ? (
+                <>Save</>
+              ) : loggedIn ? (
+                !formik.isSubmitting ? (
+                  <>Post</>
+                ) : (
+                  <FontAwesomeIcon icon={faSpinner} spin />
+                )
+              ) : (
+                <>Log In / Sign Up</>
+              )}
+            </button>
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </>
   );
 }

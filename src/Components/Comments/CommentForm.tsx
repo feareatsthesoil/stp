@@ -47,6 +47,15 @@ export default function CommentForm({
     },
   });
 
+  function autoResizeTextarea(event: any) {
+    event.target.style.height = "inherit";
+    const computed = window.getComputedStyle(event.target);
+    const border =
+      parseInt(computed.getPropertyValue("border-top-width"), 10) +
+      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+    event.target.style.height = `${event.target.scrollHeight + border}px`;
+  }
+
   const MAX_UPLOADS = 10;
   const { attachments } = formik.values;
   const listener = (e: any) => {
@@ -109,7 +118,7 @@ export default function CommentForm({
             alt="Your profile photo"
             onError={(e) => {
               (e.target as HTMLImageElement).onerror = null;
-              (e.target as HTMLImageElement).src = "/favicon.ico";
+              (e.target as HTMLImageElement).src = "https://ucarecdn.com/8c962272-5ea0-425a-851a-8b834177ea26/";
             }}
             className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
           />
@@ -117,11 +126,12 @@ export default function CommentForm({
             <textarea
               name="content"
               id="content"
-              className={`block h-auto w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6 ${
+              className={`block h-auto w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans font-bold text-gray-900 placeholder:text-gray-400 focus:ring-0 text-sm sm:leading-6 ${
                 isDisabled ? "cursor-not-allowed" : ""
               }`}
               placeholder="Comment"
               value={formik.values.content ?? ""}
+              onInput={autoResizeTextarea}
               onChange={formik.handleChange}
               disabled={isDisabled}
               {...(formik.errors.content && {
@@ -193,18 +203,18 @@ export default function CommentForm({
           </button>
         </div>
       </form>
-      {attachments &&
-        attachments.map((attachment, index) => {
-          return (
-            <>
-              <div className="w-max self-center">
+      {attachments && attachments?.length > 0 && (
+        <div className="flex w-full flex-col items-center">
+          <div className="relative mb-2 mt-2 flex w-fit flex-row flex-wrap place-content-center gap-x-2 self-center rounded-md px-3 pb-0.5 pt-3 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 mdMobileX:flex-col">
+            {attachments.map((attachment, index) => (
+              <div className="self-center" key={index}>
                 <img
-                  className="w-full max-w-[500px] self-center"
+                  className="max-h-[60vh] w-full max-w-[500px] self-center"
                   src={attachment.url}
                 />
                 <button
                   type="submit"
-                  className="w-15 relative mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
+                  className="w-15 relative float-left mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
                   onClick={() => {
                     formik.setFieldValue("attachments", [
                       ...(formik.values.attachments as any[]).slice(0, index),
@@ -215,9 +225,10 @@ export default function CommentForm({
                   Delete Image
                 </button>
               </div>
-            </>
-          );
-        })}
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 }

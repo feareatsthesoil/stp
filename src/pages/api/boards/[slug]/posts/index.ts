@@ -41,8 +41,8 @@ async function postsIndex(
     });
     const data = await prisma.post.findMany({
       where,
-      take: 10,
-      skip: (pageNum - 1) * 10,
+      take: 15,
+      skip: (pageNum - 1) * 15,
       orderBy: { lastCommentedAt: "desc" },
     });
 
