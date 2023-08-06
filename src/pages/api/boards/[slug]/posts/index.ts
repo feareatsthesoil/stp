@@ -107,7 +107,7 @@ async function postsIndex(
       })
     );
     res.setHeader("total-records", count.toString());
-    res.setHeader("total-pages", Math.ceil(count / 10).toString());
+    res.setHeader("total-pages", Math.ceil(count / 15).toString());
     res.setHeader("current-page", pageNum.toString());
 
     return res.status(200).json(datareturned);
