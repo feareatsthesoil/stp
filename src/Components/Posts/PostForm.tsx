@@ -35,12 +35,12 @@ export default function PostForm({
   }>();
 
   function autoResizeTextarea(event: any) {
-      event.target.style.height = "inherit";
-      const computed = window.getComputedStyle(event.target);
-      const border =
-        parseInt(computed.getPropertyValue("border-top-width"), 10) +
-        parseInt(computed.getPropertyValue("border-bottom-width"), 10);
-      event.target.style.height = `${event.target.scrollHeight + border}px`;
+    event.target.style.height = "inherit";
+    const computed = window.getComputedStyle(event.target);
+    const border =
+      parseInt(computed.getPropertyValue("border-top-width"), 10) +
+      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+    event.target.style.height = `${event.target.scrollHeight + border}px`;
   }
 
   const MAX_UPLOADS = 10;
@@ -138,7 +138,7 @@ export default function PostForm({
         onSubmit={handleSubmitWithAuth}
         onClick={() => setMessage("Form clicked")}
       >
-        {message && (
+        {message && loggedIn && (
           <div className="flex w-full justify-center">
             <div className="relative mb-4 items-center gap-x-2 rounded-md px-2.5 py-2 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
               <p className="inline-block">Posting to:</p>
