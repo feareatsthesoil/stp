@@ -145,9 +145,13 @@ export default function PostViewPage() {
               </Link>
             </h1>
             <div
-              className="scrollbar-hide mt-2 overflow-x-auto overflow-y-hidden font-sans"
+              className="scrollbar-hide white-space-nowrap word-wrap break-word overflow-wrap break-word mt-2 overflow-x-auto overflow-y-hidden font-sans"
+              style={{
+                maxWidth: "calc(100vw - 3rem)",
+              }}
               dangerouslySetInnerHTML={{ __html: postContent }}
             />
+
             <div className="mt-4 flex flex-col items-center">
               <PostAttachmentViewer
                 isCatalogView={false}

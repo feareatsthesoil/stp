@@ -140,10 +140,10 @@ export default function PostForm({
       >
         {message && loggedIn && (
           <div className="flex w-full justify-center">
-            <div className="relative mb-4 items-center gap-x-2 rounded-md px-2.5 py-2 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
+            <div className="relative mb-2 items-center gap-x-2 rounded-md px-2.5 py-1.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
               <p className="inline-block">Posting to:</p>
               <button
-                className={`ml-2 inline-block h-7 w-max cursor-default rounded-md bg-[#272fc756] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:h-5 sm:text-xs`}
+                className={`ml-2 inline-block h-6 w-max cursor-default rounded-md bg-[#272fc756] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:h-5 sm:text-xs`}
               >
                 {slug}
               </button>
@@ -152,7 +152,7 @@ export default function PostForm({
         )}
         {attachments && attachments?.length > 0 && (
           <div className="flex w-full flex-col items-center">
-            <div className="relative mb-4 flex flex-row flex-wrap place-content-center gap-x-2 self-center rounded-md px-3 pb-0.5 pt-3 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 mdMobileX:flex-col">
+            <div className="relative mb-2 flex flex-row flex-wrap place-content-center gap-x-2 self-center rounded-md px-3 pb-0.5 pt-3 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 mdMobileX:flex-col">
               {attachments.map((attachment, index) => (
                 <div className="self-center" key={index}>
                   <img
