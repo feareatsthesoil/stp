@@ -5,9 +5,13 @@ import { prisma } from "../../../../../utils/prisma";
 import { getUserData } from "../../../../../utils/userData";
 
 export async function postGet(req: any, res: NextApiResponse) {
+  const { id } = req.query;
+  const { userId } = req.auth;
+
   const data = await prisma.post.findFirstOrThrow({
-    where: { id: Number(req.query.id) },
+    where: { id: Number(id) },
   });
+
   if (req.method === "GET") {
     let postData: any = {
       id: data.id,
@@ -28,6 +32,12 @@ export async function postGet(req: any, res: NextApiResponse) {
     }
     return res.status(200).json(postData);
   } else if (req.method === "PUT") {
+    if (userId !== data.userId) {
+      return res
+        .status(400)
+        .json({ message: "You are not authorized to do this" });
+    }
+
     const { isAuthor, ...body } = req.body;
 
     let result = await moderate(body.content!);
@@ -49,10 +59,11 @@ export async function postGet(req: any, res: NextApiResponse) {
 
     return res.status(200).json(dataNew);
   } else if (req.method === "DELETE") {
-    if (!data.userId || req.auth.userId !== data.userId)
+    if (userId !== data.userId) {
       return res
         .status(400)
-        .json({ message: "Invalid user. You can only delete your own post" });
+        .json({ message: "You are not authorized to do this" });
+    }
     await prisma.post.delete({ where: { id: Number(req.query.id) } });
     return res.status(200).json({ message: "Deleted" });
   }

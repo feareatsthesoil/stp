@@ -1,19 +1,23 @@
 import { Boards, Post } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import DefaultLayout from "../../../../../Components/Layouts/DefaultLayout";
 import PostDeleteButton from "../../../../../Components/Posts/PostDeleteButton";
 import PostForm from "../../../../../Components/Posts/PostForm";
 import { getBoard, getPost } from "../../../../../utils/services";
 import { PostResponse } from "../../../../../types";
+import { useAuth } from "@clerk/nextjs"; // Import useAuth
+import { UserContext } from "../../../../../Components/UserContext"; // Assuming the path is similar
 
 export default function PostEditPage() {
+  const { userId } = useAuth(); // Get the current user's ID
+  const userData = useContext(UserContext); // Use context to get user data
   const router = useRouter();
   const { id, slug } = router.query;
-
   const [post, setPost] = useState<PostResponse>();
   const [board, setBoard] = useState<Boards>();
+  const [isLoading, setIsLoading] = useState(true);
   const [showCookieBanner, setShowCookieBanner] = useState(false);
 
   useEffect(() => {
@@ -30,6 +34,15 @@ export default function PostEditPage() {
     }
   }, [slug]);
 
+  useEffect(() => {
+    if (id) {
+      getPost(slug as string, Number(id) as number).then((data) => {
+        setPost(data);
+        setIsLoading(false); // Set loading to false after data is fetched
+      });
+    }
+  }, [id]);
+
   const handleBackClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     setShowCookieBanner(true);
@@ -43,13 +56,46 @@ export default function PostEditPage() {
     setShowCookieBanner(false);
   };
 
-  if (!post)
+  if (isLoading) {
     return (
       <DefaultLayout>
         <p className="my-2">Loading...</p>
       </DefaultLayout>
     );
-
+  }
+  
+  if (!post || post.userId !== userId)
+    return (
+      <DefaultLayout>
+        <div className="h-full place-content-center">
+          <div className="mt-4 border-l-4 border-yellow-400 bg-yellow-50 p-4">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="#f3ce49"
+                  className="h-6 w-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z"
+                  />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="font-sans text-sm text-yellow-700">
+                  You do not have permission to edit this post.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </DefaultLayout>
+    );
   return (
     <div className="bg-[#F4F4FE]">
       <DefaultLayout>
@@ -71,7 +117,7 @@ export default function PostEditPage() {
         {showCookieBanner && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
             <div className="w-min-full rounded-xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10">
-              <p className="text-center text-lg font-sans font-bold leading-6 text-gray-900">
+              <p className="text-center font-sans text-lg font-bold leading-6 text-gray-900">
                 Are you sure you want to leave?
               </p>
               <p className="text-center font-sans text-sm font-bold leading-6 text-gray-500">

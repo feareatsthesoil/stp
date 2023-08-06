@@ -108,7 +108,7 @@ export default function PostViewPage() {
             </button>
           </Link>
           {post.isAuthor ? (
-            <Link href={`/chan/${postSlug}/posts/${post.id}/edit`}>
+            <Link href={`/chan/${postSlug}/post/${post.id}/edit`}>
               <button
                 type="submit"
                 color="rgb(239, 240, 240)"

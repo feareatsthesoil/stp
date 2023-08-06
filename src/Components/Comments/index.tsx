@@ -150,7 +150,7 @@ export default function Comments({
       {showMoreComments && count > limit && (
         <Link
           className="hover:underline"
-          href={`/chan/${slug}/posts/${postId}`}
+          href={`/chan/${slug}/post/${postId}`}
         >
           <div className="mb-2 ml-14 font-sans text-xs">
             {count - limit} more comment

@@ -145,7 +145,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                           {post.board?.slug}
                         </button>
                       </Link>
-                      <Link href={`/chan/${postSlug}/posts/${post.id}`}>
+                      <Link href={`/chan/${postSlug}/post/${post.id}`}>
                         <button
                           type="submit"
                           color="rgb(239, 240, 240)"
@@ -155,7 +155,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                         </button>
                       </Link>
                       {!isCatalogView && post.isAuthor ? (
-                        <Link href={`/chan/${postSlug}/posts/${post.id}/edit`}>
+                        <Link href={`/chan/${postSlug}/post/${post.id}/edit`}>
                           <button
                             type="submit"
                             color="rgb(239, 240, 240)"
