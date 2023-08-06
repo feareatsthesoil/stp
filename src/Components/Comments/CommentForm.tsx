@@ -105,7 +105,7 @@ export default function CommentForm({
   return (
     <>
       <form onSubmit={handleSubmitWithAuth}>
-        <div className="relative flex max-w-[500px]">
+        <div className="relative flex max-w-[1000px]">
           <div className="absolute left-0 top-0 flex h-6 w-6 translate-y-[-8px] justify-center">
             <div className="w-px bg-slate-200" />
           </div>
@@ -118,7 +118,8 @@ export default function CommentForm({
             alt="Your profile photo"
             onError={(e) => {
               (e.target as HTMLImageElement).onerror = null;
-              (e.target as HTMLImageElement).src = "https://ucarecdn.com/8c962272-5ea0-425a-851a-8b834177ea26/";
+              (e.target as HTMLImageElement).src =
+                "https://ucarecdn.com/8c962272-5ea0-425a-851a-8b834177ea26/";
             }}
             className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
           />
@@ -126,7 +127,7 @@ export default function CommentForm({
             <textarea
               name="content"
               id="content"
-              className={`block h-auto w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans font-bold text-gray-900 placeholder:text-gray-400 focus:ring-0 text-sm sm:leading-6 ${
+              className={`block h-auto w-full rounded-sm border-0 p-0 pl-2 pt-1 font-sans text-sm font-bold text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:leading-6 ${
                 isDisabled ? "cursor-not-allowed" : ""
               }`}
               placeholder="Comment"
