@@ -15,7 +15,7 @@ import { publicProvider } from "wagmi/providers/public";
 import { RadioProvider } from "../Components/RadioContext";
 import { UserProvider } from "../Components/UserContext";
 import { store } from "../redux/store";
-// import "../styles/globals.css";
+import "../styles/globals.css";
 
 const { provider, webSocketProvider } = configureChains(
   [mainnet],
