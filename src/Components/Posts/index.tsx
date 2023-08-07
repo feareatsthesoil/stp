@@ -168,13 +168,15 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                     </div>
                   </div>
                   <div className={`items-left flex flex-col`}>
-                    <h3
-                      className={`${
-                        isCatalogView && "px-2"
-                      } scrollbar-hide overflow-x-auto overflow-y-hidden pt-2 font-sans text-lg font-medium leading-5 text-gray-900`}
-                    >
-                      {post.title}
-                    </h3>
+                    <Link href={`/chan/${postSlug}/post/${post.id}`}>
+                      <h3
+                        className={`${
+                          isCatalogView && "px-2"
+                        } scrollbar-hide overflow-x-auto overflow-y-hidden pt-2 font-sans text-lg font-medium leading-5 text-gray-900`}
+                      >
+                        {post.title}
+                      </h3>
+                    </Link>
                     <div
                       style={
                         isCatalogView ? {} : { width: "calc(100vw - 2rem)" }
