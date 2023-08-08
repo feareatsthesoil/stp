@@ -46,25 +46,26 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
 
   return (
     <>
-      <div className="flex flex-row flex-wrap gap-2 pt-1 mdMobileX:flex-col">
+      <div className="flex max-w-[900px] flex-row flex-wrap gap-2 pt-1 mdMobileX:flex-col">
         {visibleAttachments.map((attachment, index) => {
           return attachment ? (
             <div className="flex flex-col">
               <div
                 key={index}
-                className="relative flex w-max flex-col"
+                className="relative flex flex-col"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(-1)}
               >
                 <img
                   style={{
+                    width: expandedImages.includes(index) ? "100%" : "",
                     maxWidth: expandedImages.includes(index)
-                      ? "calc(100vw - 5.5rem)"
+                      ? "900px"
                       : screenWidth < 570
                       ? "70vw"
                       : "300px",
                   }}
-                  className="max-h-[50vh]"
+                  className="max-h-[60vh]"
                   src={attachment.url}
                 />
                 {!isMobile && hoveredIndex === index && (

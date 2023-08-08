@@ -208,7 +208,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                   </div>
                 </div>
                 {isCatalogView ? null : (
-                  <div className={`mt-1 w-full`}>
+                  <div className={`mt-2 w-full`}>
                     <div className={`scrollbar-hide ml-[-10px] overflow-auto`}>
                       <Comments
                         showMoreComments={true}
