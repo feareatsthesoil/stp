@@ -10,7 +10,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({}) => {
       <div className="overflow-hidden">
         <DefaultLayout>
           <div
-            className="ml-8 mt-3 flex h-max w-screen flex-col items-start catCol2:items-center"
+            className="ml-8 mt-3 flex h-max w-screen flex-col items-start"
             style={{ maxWidth: "1000px" }}
           >
             <button className="my-1 h-6 w-[50%] animate-pulse cursor-default rounded-md bg-[#fff] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:text-xs" />
