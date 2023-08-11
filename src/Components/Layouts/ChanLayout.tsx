@@ -30,7 +30,7 @@ export default function ChanLayout(props: ChanLayoutProps) {
   const {
     query: { slug },
   } = router;
-  const slugToString = Array.isArray(slug) ? slug[0] : slug || "all";
+  const slugToString = Array.isArray(slug) ? slug[0] : slug || "gc";
 
   return (
     <div
