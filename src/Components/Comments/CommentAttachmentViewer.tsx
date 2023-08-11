@@ -45,7 +45,11 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
 
   return (
     <>
-      <div className="flex flex-row flex-wrap justify-center gap-2 pt-1 mdMobileX:flex-col">
+      <div
+        className={`flex flex-row flex-wrap gap-2 pt-1 mdMobileX:flex-col ${
+          attachments?.length < 2 ? "" : "justify-center"
+        }`}
+      >
         {visibleAttachments.map((attachment, index) => {
           return attachment ? (
             <div className="relative flex flex-col" key={index}>
