@@ -3,9 +3,8 @@ import { useRouter } from "next/router";
 import { ReactNode, useEffect, useState } from "react";
 import usePageLoader from "../../hooks/usePageLoader";
 import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
 import Loader from "../Loader";
-import NavBar from "../Nav/Nav";
+import Nav from "../Nav/Nav";
 
 export default function AuthLayout(props: { children: ReactNode }) {
   const { isSignedIn, isLoaded } = useUser();
@@ -25,10 +24,9 @@ export default function AuthLayout(props: { children: ReactNode }) {
   if (!isLoaded) return <></>;
   if (!isSignedIn)
     return (
-      <div className={`flex min-h-[100svh] flex-col items-center`}>
-        <Header />
-        <NavBar />
-        <div className="w-[96vw] px-[2vw]">
+      <div className="mx-4 flex min-h-[100svh] flex-col items-center">
+        <Nav />
+        <div>
           <SignIn routing="virtual" afterSignInUrl={router.asPath} />
         </div>
         <Footer />
@@ -36,10 +34,9 @@ export default function AuthLayout(props: { children: ReactNode }) {
     );
 
   return (
-    <div className={`flex min-h-[100svh] flex-col items-center`}>
-      <Header />
-      <NavBar />
-      <div className="w-[96vw] px-[2vw]">
+    <div className="mx-4 flex min-h-[100svh] flex-col items-center">
+      <Nav />
+      <div className="">
         {loading && <Loader />}
         {!loading && props.children}
       </div>

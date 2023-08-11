@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { PostResponse } from "../../types";
-import { getPost, getPosts } from "../../utils/services";
-import Comments from "../Comments";
 import linkify from "../../utils/linkify";
+import { getPosts } from "../../utils/services";
+import Comments from "../Comments";
 import PostAttachmentViewer from "./PostAttachmentViewer";
+import { LoadingState } from "./PostsLoadingState";
 
 interface Props {
   slug: string;
@@ -14,24 +15,28 @@ interface Props {
 
 export default function Posts({ slug, query, isCatalogView }: Props) {
   const [posts, setPosts] = useState<PostResponse[]>([]);
-  const [uploadDetails, setUploadDetails] = useState<{
-    [key: string]: {
-      filename: string;
-      size: string;
-      height: string;
-      width: string;
-      url: string;
-    };
-  }>({});
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
-  const [expandedImages, setExpandedImages] = useState<Record<string, boolean>>(
-    {}
-  );
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const [showLoaderComponents, setShowLoaderComponents] =
+    useState<boolean>(false);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchPosts();
+  }, [slug, query, currentPage]);
+
+  useEffect(() => {
+    setLoading(true);
+    fetchPosts();
+  }, [slug, query, currentPage]);
 
   const fetchPosts = async () => {
+    const timer = setTimeout(() => {
+      setShowLoaderComponents(true);
+    }, 200);
+
     try {
       if (slug) {
         const { data: fetchedPosts, headers } = await getPosts(
@@ -44,30 +49,25 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
 
         for (let post of fetchedPosts) {
           post.content = linkify(post.content || "");
-          if (post.attachments) {
-            const fetchedPost = await getPost(slug, post.id);
-            setUploadDetails((prevState) => ({
-              ...prevState,
-              [post.id]: fetchedPost.uploadDetails,
-            }));
-          }
         }
-
         setPosts(fetchedPosts);
+        setLoading(false);
       }
-      setLoading(false);
     } catch (error) {
       setError(error);
       setLoading(false);
     }
+
+    clearTimeout(timer);
   };
 
-  useEffect(() => {
-    setLoading(true);
-    fetchPosts();
-  }, [slug, query, currentPage]);
-
-  if (loading) return <div className="my-2">Loading...</div>;
+  if (loading)
+    return (
+      <LoadingState
+        showComponents={showLoaderComponents}
+        isCatalogView={isCatalogView}
+      />
+    );
   if (error) return <div className="my-2">Error: {error.message}</div>;
   if (!posts.length) return <div className="my-2">No Posts Yet...</div>;
 
@@ -171,8 +171,8 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                     <Link href={`/chan/${postSlug}/post/${post.id}`}>
                       <h3
                         className={`${
-                          isCatalogView && "px-2"
-                        } scrollbar-hide overflow-x-auto overflow-y-hidden pt-2 font-sans text-lg font-medium leading-5 text-gray-900`}
+                          isCatalogView ? "px-2" : ""
+                        } scrollbar-hide overflow-x-auto overflow-y-hidden pt-2  font-sans text-lg font-bold leading-5 text-gray-900`}
                       >
                         {post.title}
                       </h3>
@@ -181,10 +181,11 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                       style={
                         isCatalogView ? {} : { width: "calc(100vw - 2rem)" }
                       }
-                      className={`text-md scrollbar-hide mt-1 max-h-[500px] overflow-x-auto overflow-y-hidden font-sans text-black ${
-                        isCatalogView &&
-                        `${post.attachments?.length > 0 ? "hidden" : "px-2"}`
-                      }`}
+                      className={`text-md scrollbar-hide mt-1 max-h-[500px] overflow-x-auto overflow-y-hidden font-sans text-black ${`${
+                        post.attachments?.length > 0
+                          ? isCatalogView && "hidden"
+                          : ""
+                      }`}`}
                       dangerouslySetInnerHTML={{
                         __html: linkify(post.content || ""),
                       }}
@@ -209,7 +210,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                 </div>
                 {isCatalogView ? null : (
                   <div className={`mt-2 w-full`}>
-                    <div className={`scrollbar-hide ml-[-10px] overflow-auto`}>
+                    <div className={`scrollbar-hide overflow-auto`}>
                       <Comments
                         showMoreComments={true}
                         id={post.id}

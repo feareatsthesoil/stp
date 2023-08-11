@@ -11,29 +11,28 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   const [expandedImages, setExpandedImages] = useState<number[]>([]);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 570);
-  const screenWidth = window.innerWidth;
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth <= 570) {
-        setIsMobile(true);
-        setExpandedImages([]);
-      } else {
-        setIsMobile(false);
-      }
+      const mobileView = window.innerWidth <= 570;
+      setIsMobile(mobileView);
     };
 
     window.addEventListener("resize", handleResize);
 
+    handleResize();
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [attachments]);
 
   const toggleExpanded = (index: number) => {
-    if (!isMobile && expandedImages.includes(index)) {
+    if (isMobile) return;
+
+    if (expandedImages.includes(index)) {
       setExpandedImages(expandedImages.filter((i) => i !== index));
-    } else if (!isMobile) {
+    } else {
       setExpandedImages([...expandedImages, index]);
     }
   };
@@ -46,29 +45,37 @@ const CommentAttachmentViewer: React.FC<CommentAttachmentViewerProps> = ({
 
   return (
     <>
-      <div className="flex max-w-[900px] flex-row flex-wrap gap-2 pt-1 mdMobileX:flex-col">
+      <div className="flex flex-row flex-wrap justify-center gap-2 pt-1 mdMobileX:flex-col">
         {visibleAttachments.map((attachment, index) => {
           return attachment ? (
-            <div className="flex flex-col">
+            <div className="relative flex flex-col" key={index}>
               <div
-                key={index}
                 className="relative flex flex-col"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(-1)}
               >
-                <img
+                <div
                   style={{
-                    width: expandedImages.includes(index) ? "100%" : "",
+                    overflow: "hidden",
                     maxWidth: expandedImages.includes(index)
-                      ? "900px"
-                      : screenWidth < 570
-                      ? "70vw"
+                      ? "1000px"
+                      : isMobile
+                      ? "100%"
                       : "300px",
+                    width: expandedImages.includes(index) ? "100%" : "",
                   }}
-                  className="max-h-[60vh]"
-                  src={attachment.url}
-                />
-                {!isMobile && hoveredIndex === index && (
+                >
+                  <img
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto",
+                      display: "block",
+                    }}
+                    className="max-h-[60vh]"
+                    src={attachment.url}
+                  />
+                </div>
+                {hoveredIndex === index && !isMobile && (
                   <button
                     onClick={() => toggleExpanded(index)}
                     className="absolute right-1 top-1 rounded-md bg-[#eff0f0] p-1"

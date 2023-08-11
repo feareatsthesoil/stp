@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import css from "./CalendarEvent.module.css";
 
 export default function Map({ address }: { address: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -34,5 +33,11 @@ export default function Map({ address }: { address: string }) {
     }
     effect();
   }, [ref]);
-  return <div className={css.map} ref={ref} id="map" />;
+  return (
+    <div
+      className="h-[50vw] max-h-[500px] min-h-[250px] w-[50vw] min-w-[250px] max-w-[500px]"
+      ref={ref}
+      id="map"
+    />
+  );
 }

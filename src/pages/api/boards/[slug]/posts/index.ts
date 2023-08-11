@@ -112,6 +112,10 @@ async function postsIndex(
 
     return res.status(200).json(datareturned);
   } else if (req.method === "POST") {
+    if (slug === "all") {
+      res.writeHead(302, { Location: "/chan/gc" });
+      return res.end();
+    }
     const { body } = req;
     const { userId } = req.auth;
     if (!userId) return res.status(401).json({ message: "Not logged in" });

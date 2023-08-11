@@ -10,6 +10,13 @@ const BoardSearch = React.memo(function ({
   toggleCatalogView: () => void;
 }) {
   const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
+  const [isRunningInWebView, setIsRunningInWebView] = useState(false);
+
+  useEffect(() => {
+    if (navigator.userAgent.includes("MyAppWebView")) {
+      setIsRunningInWebView(true);
+    }
+  }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -25,27 +32,26 @@ const BoardSearch = React.memo(function ({
     });
   };
 
-  const handleScroll = () => {
-    const scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop;
-    const scrollHeight =
-      document.documentElement.scrollHeight || document.body.scrollHeight;
-    const windowHeight =
-      document.documentElement.clientHeight || window.innerHeight;
-    const reachedBottom = scrollTop + windowHeight >= scrollHeight;
-    setIsAtBottom(reachedBottom);
-  };
-
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+      const threshold = 50;
+      const reachedBottom =
+        scrollTop + windowHeight + threshold >= scrollHeight;
+      setIsAtBottom(reachedBottom);
     };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      <div className="sticky top-0 z-50 w-full">
+      <div
+        className={`top-0 z-50 w-full ${isRunningInWebView ? "" : "sticky"}`}
+      >
         <div className="z-50 flex justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-2 text-sm font-bold">
           <div>
             <input

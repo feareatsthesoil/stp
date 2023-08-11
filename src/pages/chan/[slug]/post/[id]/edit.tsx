@@ -1,4 +1,4 @@
-import { Boards, Post } from "@prisma/client";
+import { Boards } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect, useState, useContext } from "react";
@@ -7,12 +7,8 @@ import PostDeleteButton from "../../../../../Components/Posts/PostDeleteButton";
 import PostForm from "../../../../../Components/Posts/PostForm";
 import { getBoard, getPost } from "../../../../../utils/services";
 import { PostResponse } from "../../../../../types";
-import { useAuth } from "@clerk/nextjs";
-import { UserContext } from "../../../../../Components/UserContext";
 
 export default function PostEditPage() {
-  const { userId } = useAuth();
-  const userData = useContext(UserContext);
   const router = useRouter();
   const { id, slug } = router.query;
   const [post, setPost] = useState<PostResponse | null>(null);
@@ -60,8 +56,6 @@ export default function PostEditPage() {
       </DefaultLayout>
     );
   }
-
-  console.log(post.userId, userId);
 
   return (
     <div className="bg-[#F4F4FE]">
@@ -112,7 +106,7 @@ export default function PostEditPage() {
               </div>
             )}
             <div className="flex flex-col">
-              <PostForm post={post} slug={slug as string} />
+              <PostForm post={post} slug={slug as string} edit={true} />
               <div className="mb-2 w-full max-w-[500px] self-center">
                 <PostDeleteButton
                   postId={post.id}

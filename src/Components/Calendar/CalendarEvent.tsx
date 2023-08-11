@@ -1,11 +1,10 @@
 import { useAuth } from "@clerk/nextjs";
 import { Wrapper } from "@googlemaps/react-wrapper";
-import { Button, Link } from "@mui/material";
 import { google } from "calendar-link";
 import moment from "moment";
+import Link from "next/link";
 import { CalendarEventType } from "../../types/index";
 import SocialLinks from "../SocialLinks/SocialLinks";
-import css from "./CalendarEvent.module.css";
 import Map from "./Map";
 
 export function CalendarEventComponent(params: {
@@ -15,11 +14,11 @@ export function CalendarEventComponent(params: {
   const { userId } = useAuth();
 
   return (
-    <div className={css.wrapper}>
-      <h1>{row.name}</h1>
-      <div className={css.info}>
-        {row.address && <p>{row.address}</p>}
-        <p>
+    <div className="mt-4 flex flex-col gap-y-2">
+      <div className=" overflow-hidden">
+        <h1 className="text-lg font-bold">{row.name}</h1>
+        {row.address && <p className="">{row.address}</p>}
+        <div className="">
           {moment(row.starts_at).format("MMMM DD, YYYY")}
           &nbsp;
           {moment(row.starts_at).format("hh:mm A")}
@@ -31,42 +30,20 @@ export function CalendarEventComponent(params: {
               {moment(row.ends_at).format("hh:mm A")}
             </>
           )}
-        </p>
-        {row.description && <p>{row.description}</p>}
+        </div>
+        {row.description && <p className="mt-2">{row.description}</p>}
         {row.website && (
-          <p>
-            <Link
-              target="webapp-tab"
-              href={row.website}
-              sx={{
-                color: "#0047ff",
-              }}
-            >
-              {row.website}
-            </Link>
-          </p>
+          <Link
+            target="webapp-tab"
+            href={row.website}
+            className="text-blue-600 underline"
+          >
+            {row.website}
+          </Link>
         )}
         {row.email && <p>Contact: {row.email}</p>}
-        <div className={css.buttonWrapper}>
-          <Button
-            sx={{
-              float: "right",
-              backgroundColor: "rgb(239, 239, 239)",
-              textTransform: "none",
-              fontFamily: "Helvetica",
-              fontWeight: "normal!important",
-              fontSize: ".9em!important",
-              borderRadius: "4px",
-              color: "#000",
-              border: "1px solid #000",
-              height: "31.8px!important",
-              margin: "5px 10px 5px 1px",
-              "&:hover ": {
-                backgroundColor: "rgb(220, 220, 220) !important;",
-              },
-            }}
-            color="secondary"
-            variant="contained"
+        <div className="mt-3 flex gap-x-2">
+          <Link
             href={google({
               title: row.name,
               description: row.description,
@@ -76,70 +53,34 @@ export function CalendarEventComponent(params: {
             target="_blank"
             rel="noreferrer"
           >
-            Add to calendar
-          </Button>
+            <button className="h-8 rounded-md border border-solid border-black bg-[#efefef] px-2 font-sans text-sm hover:bg-[#dcdcdc]">
+              Add to calendar
+            </button>
+          </Link>
           {row.address && (
-            <Button
-              sx={{
-                float: "right",
-                backgroundColor: "rgb(239, 239, 239)",
-                textTransform: "none",
-                fontFamily: "Helvetica",
-                fontWeight: "normal!important",
-                fontSize: ".9em!important",
-                borderRadius: "4px",
-                color: "#000",
-                border: "1px solid #000",
-                height: "31.8px!important",
-                margin: "5px 160px 20px 0",
-                "&:hover ": {
-                  backgroundColor: "rgb(220, 220, 220) !important;",
-                },
-              }}
-              color="secondary"
-              variant="contained"
-              href={`http://google.com/maps/search/${row.address}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Open in map
-            </Button>
+            <>
+              <Link
+                href={`http://google.com/maps/search/${row.address}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <button className="h-8 rounded-md border border-solid border-black bg-[#efefef] px-2 font-sans text-sm hover:bg-[#dcdcdc]">
+                  Open in map
+                </button>
+              </Link>
+            </>
           )}
           {userId === row.userId ? (
-            <Link
-              sx={{ textDecoration: "none!important" }}
-              className={css.editLink}
-              href={`/calendar/${row.id}/edit`}
-            >
-              <Button
-                sx={{
-                  float: "right",
-                  backgroundColor: "rgb(239, 239, 239)!important",
-                  textTransform: "none",
-                  fontFamily: "Helvetica",
-                  fontSize: ".9em",
-                  borderRadius: "4px",
-                  color: "#000",
-                  border: "1px solid #000",
-                  height: "31.8px",
-                  margin: "5px 0 20px 0",
-                  "&:hover ": {
-                    backgroundColor: "#dcdcdc !important;",
-                  },
-                  
-                }}
-                type="submit"
-                color="secondary"
-                variant="contained"
-              >
+            <Link href={`/calendar/${row.id}/edit`}>
+              <button className="h-8 rounded-md border border-solid border-black bg-[#efefef] px-2 font-sans text-sm hover:bg-[#dcdcdc]">
                 Edit
-              </Button>
+              </button>
             </Link>
           ) : null}
         </div>
       </div>
       {row.address && (
-        <div className={css.map}>
+        <div>
           <Wrapper apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY!}>
             <Map address={row.address} />
           </Wrapper>

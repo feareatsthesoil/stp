@@ -235,7 +235,7 @@ p {
   --cfg-max-local-file-size-bytes: 5000000;
   --cfg-use-cloud-image-editor: 1;
   --cfg-source-list: "local, url, camera, gdrive, instagram";
-  --cfg-remove-copyright: 1;
+  --cfg-remove-copyright: 0;
   --darkmode: 0;
   --h-accent: 0;
   --s-accent: 0%;

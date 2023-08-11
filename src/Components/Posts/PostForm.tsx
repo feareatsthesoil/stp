@@ -16,9 +16,11 @@ LR.registerBlocks(LR);
 export default function PostForm({
   slug,
   post,
+  edit = false,
 }: {
   slug: string;
   post?: PostResponse;
+  edit?: boolean;
 }) {
   const { loggedIn } = useContext(UserContext);
   const confirm = useConfirm();
@@ -44,6 +46,7 @@ export default function PostForm({
   }
 
   const MAX_UPLOADS = 10;
+
   const listener = (e: any) => {
     console.log(e);
     const attachmentsNew = [...formik.values.attachments];
@@ -138,7 +141,7 @@ export default function PostForm({
         onSubmit={handleSubmitWithAuth}
         onClick={() => setMessage("Form clicked")}
       >
-        {message && loggedIn && (
+        {message && loggedIn && !edit && (
           <div className="flex w-full justify-center">
             <div className="relative mb-2 items-center gap-x-2 rounded-md px-2.5 py-1.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
               <p className="inline-block">Posting to:</p>

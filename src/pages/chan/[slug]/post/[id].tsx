@@ -9,12 +9,12 @@ import { PostResponse } from "../../../../types";
 import linkify from "../../../../utils/linkify";
 import { getBoard, getPost } from "../../../../utils/services";
 import PostAttachmentViewer from "../../../../Components/Posts/PostAttachmentViewer";
+import { LoadingState } from "../../../../Components/Posts/PostLoadingState";
 
 export default function PostViewPage() {
   const router = useRouter();
   const { id, slug } = router.query;
   const stringSlug = Array.isArray(slug) ? slug[0] : slug || "defaultSlug";
-
   const [post, setPost] = useState<PostResponse>();
   const [board, setBoard] = useState<Boards>();
 
@@ -38,37 +38,25 @@ export default function PostViewPage() {
       });
     }
   }, [id]);
-
-  useEffect(() => {
-    if (slug) {
-      getBoard(slug as string).then((data) => setBoard(data));
-    }
-  }, [slug]);
-
   useEffect(() => {
     const handleScroll = () => {
-      const scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop;
-      const scrollHeight =
-        document.documentElement.scrollHeight || document.body.scrollHeight;
-      const windowHeight =
-        document.documentElement.clientHeight || window.innerHeight;
-      const reachedBottom = scrollTop + windowHeight >= scrollHeight;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+
+      const threshold = 100;
+
+      const reachedBottom =
+        scrollTop + windowHeight + threshold >= scrollHeight;
       setIsAtBottom(reachedBottom);
     };
 
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   if (!post) {
-    return (
-      <DefaultLayout>
-        <p className="my-2">Loading...</p>
-      </DefaultLayout>
-    );
+    return <LoadingState />;
   }
 
   const scrollToTop = () => {
@@ -85,7 +73,7 @@ export default function PostViewPage() {
     });
   };
 
-  const postSlug = board?.slug || "all";
+  const postSlug = board?.slug || "gc";
   const postContent = linkify(post?.content ?? "");
 
   return (
@@ -132,34 +120,38 @@ export default function PostViewPage() {
             </button>
           </Link>
         </div>
-        <div className="mx-1 flex flex-col items-center text-center">
+        <div
+          className="flex flex-col items-center text-left "
+          style={{ width: "calc(100vw - 2rem)" }}
+        >
           <div className="mb-2 max-w-[1000px]">
             <h1 className="mt-4 font-sans text-lg font-bold">
               {post.title}{" "}
               <Link href={`/chan/${postSlug}`} passHref>
                 <button
-                  className={`w-15 ml-1 h-7 self-center rounded-md bg-[#DBDDFF] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:h-5 sm:text-xs`}
+                  className={`w-15 ml-1 h-7 self-center rounded-md bg-[#DBDDFF] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80`}
                 >
                   {postSlug}
                 </button>
               </Link>
             </h1>
             <div
-              className="scrollbar-hide white-space-nowrap word-wrap break-word overflow-wrap break-word mt-2 overflow-x-auto overflow-y-hidden font-sans"
+              className="scrollbar-hide white-space-nowrap word-wrap break-word overflow-wrap break-word mt-1 overflow-x-auto overflow-y-hidden text-left font-sans "
               style={{
-                maxWidth: "calc(100vw - 3rem)",
+                maxWidth: "calc(100vw - 2rem)",
               }}
               dangerouslySetInnerHTML={{ __html: postContent }}
             />
-
-            <div className="mt-4 flex flex-col items-center">
-              <PostAttachmentViewer
-                isCatalogView={false}
-                attachments={post.attachments}
-                postView={true}
-              />
-            </div>
-            <div className="relative mt-4 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
+            {post.attachments.length > 0 && (
+              <div className={`items-left mt-4 flex flex-col `}>
+                <PostAttachmentViewer
+                  isCatalogView={false}
+                  attachments={post.attachments}
+                  postView={true}
+                />
+              </div>
+            )}
+            <div className="relative mt-3 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
               <div className="absolute -bottom-2 left-0 top-0 flex w-6 justify-center">
                 <div className="w-px bg-slate-200" />
               </div>
@@ -173,7 +165,7 @@ export default function PostViewPage() {
                 }}
                 className="relative mt-[5px] h-6 w-6 flex-none rounded-full bg-gray-50"
               />
-              <div className="mb-[-2px] ml-4 flex overflow-auto rounded-md bg-[#dbddffa5] p-2">
+              <div className="mb-[-0.1rem] ml-4 flex overflow-auto rounded-md bg-[#dbddffa5] p-2">
                 <span className="min-w-max self-center font-sans font-medium text-gray-900">
                   {post.user?.firstName || post.user?.lastName
                     ? `${post.user?.firstName} ${post.user?.lastName}`
@@ -198,7 +190,7 @@ export default function PostViewPage() {
                 </time>
               </div>
             </div>
-            <div className="ml-[-10px] mt-2 text-left">
+            <div className="mt-2 text-left">
               <Comments
                 thread={true}
                 reverseOrder

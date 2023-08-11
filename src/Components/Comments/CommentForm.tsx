@@ -1,6 +1,7 @@
 import { useUser } from "@clerk/nextjs";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import * as LR from "@uploadcare/blocks";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
@@ -8,7 +9,6 @@ import React, { useContext, useEffect } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { createComment } from "../../utils/services";
-import * as LR from "@uploadcare/blocks";
 
 LR.registerBlocks(LR);
 
@@ -24,6 +24,15 @@ export default function CommentForm({
   const { enqueueSnackbar } = useSnackbar();
   const { loggedIn } = useContext(UserContext);
 
+  function autoResizeTextarea(event: any) {
+    event.target.style.height = "inherit";
+    const computed = window.getComputedStyle(event.target);
+    const border =
+      parseInt(computed.getPropertyValue("border-top-width"), 10) +
+      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
+    event.target.style.height = `${event.target.scrollHeight + border}px`;
+  }
+
   const formik = useFormik({
     validationSchema: Yup.object({
       content: Yup.string()
@@ -33,6 +42,10 @@ export default function CommentForm({
     }),
     initialValues: { content: "", anon: false, attachments: [] as any[] },
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      if (router.query.slug === "all") {
+        router.push("/gc");
+        return;
+      }
       try {
         await createComment(id, values);
         setSubmitting(false);
@@ -47,19 +60,9 @@ export default function CommentForm({
     },
   });
 
-  function autoResizeTextarea(event: any) {
-    event.target.style.height = "inherit";
-    const computed = window.getComputedStyle(event.target);
-    const border =
-      parseInt(computed.getPropertyValue("border-top-width"), 10) +
-      parseInt(computed.getPropertyValue("border-bottom-width"), 10);
-    event.target.style.height = `${event.target.scrollHeight + border}px`;
-  }
-
   const MAX_UPLOADS = 10;
-  const { attachments } = formik.values;
+
   const listener = (e: any) => {
-    console.log(e);
     const attachmentsNew = [...formik.values.attachments];
     if (e.detail.ctx === "comment-uploader") {
       for (
@@ -70,8 +73,8 @@ export default function CommentForm({
         const data = e.detail.data[idx];
         attachmentsNew.push({
           filename: data.name,
-          height: data.imageInfo.height,
-          width: data.imageInfo.width,
+          height: data.imageInfo?.height,
+          width: data.imageInfo?.width,
           url: data.cdnUrl,
           size: data.size,
         });
@@ -82,6 +85,7 @@ export default function CommentForm({
       (dataOutput as any).uploadCollection.clearAll();
     }
   };
+
   useEffect(() => {
     window.addEventListener("LR_UPLOAD_FINISH", listener);
     return () => window.removeEventListener("LR_UPLOAD_FINISH", listener);
@@ -123,7 +127,7 @@ export default function CommentForm({
             }}
             className="relative mt-2 h-6 w-6 flex-none rounded-full bg-gray-50"
           />
-          <div className="relative ml-[17px] w-full rounded-md px-3 pb-2 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10  ">
+          <div className="relative ml-4 w-full rounded-md px-3 pb-2 pt-3 ring-1 ring-inset ring-gray-300 focus-within:z-10  ">
             <textarea
               name="content"
               id="content"
@@ -150,7 +154,7 @@ export default function CommentForm({
                 name="anon"
                 type="checkbox"
                 disabled={loggedIn ? false : true}
-                className="hover:cursor-pointer"
+                className={`hover:cursor-pointer `}
                 checked={formik.values.anon || false}
                 onChange={(e) => {
                   formik.setFieldValue("anon", e.target.checked);
@@ -168,7 +172,11 @@ export default function CommentForm({
             </div>
           </div>
         </div>
-        <div className="float-left my-2 flex w-full max-w-[1000px] justify-between">
+        <div
+          className={`my-2 flex w-full max-w-[1000px] ${
+            loggedIn ? "justify-between" : "justify-end"
+          }`}
+        >
           {loggedIn && formik.values.attachments?.length < MAX_UPLOADS && (
             <div className="ml-10">
               <lr-file-uploader-regular
@@ -183,16 +191,16 @@ export default function CommentForm({
             </div>
           )}
           {formik.values.attachments?.length >= MAX_UPLOADS && (
-            <p className="ml-10 font-sans text-sm text-red-600">
-              Upload limit reached
-            </p>
+            <button
+              type="submit"
+              className="w-15 float-right ml-10 h-8 cursor-not-allowed rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50]"
+            >
+              10/10 Uploads
+            </button>
           )}
           <button
             type="submit"
-            color="rgb(239, 240, 240)"
-            className={`w-15 h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] ${
-              !loggedIn && "ml-10"
-            }`}
+            className="w-15 float-right h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
           >
             {!loggedIn && <>Log In / Sign Up</>}
             {!formik.isSubmitting && loggedIn && <>Reply</>}
@@ -204,14 +212,23 @@ export default function CommentForm({
           </button>
         </div>
       </form>
-      {attachments && attachments?.length > 0 && (
-        <div className="flex w-full flex-col items-center">
-          <div className="relative mb-2 mt-2 flex w-fit flex-row flex-wrap place-content-center gap-x-2 self-center rounded-md px-3 pb-0.5 pt-3 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 mdMobileX:flex-col">
-            {attachments.map((attachment, index) => (
-              <div className="self-center" key={index}>
+      {formik.values.attachments && formik.values.attachments.length > 0 && (
+        <div className="flex flex-col items-center">
+          <div className="relative mb-2 mt-2 flex flex-row flex-wrap place-content-center gap-x-2 self-center rounded-md px-3 pb-0.5 pt-3 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 mdMobileX:flex-col">
+            {formik.values.attachments.map((attachment, index) => (
+              <div
+                className="self-center"
+                style={{ maxWidth: "100%" }}
+                key={index}
+              >
                 <img
-                  className="max-h-[60vh] w-full max-w-[1000px] self-center"
+                  className="max-h-[60vh] self-center"
                   src={attachment.url}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                    display: "block",
+                  }}
                 />
                 <button
                   type="submit"

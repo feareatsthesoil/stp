@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function PostAttachmentViewer({
   attachments,
@@ -11,7 +11,23 @@ export default function PostAttachmentViewer({
 }) {
   const [showAll, setShowAll] = useState(false);
   const [expandedImages, setExpandedImages] = useState<number[]>([]);
-  const screenWidth = window.innerWidth;
+  const [hover, setHover] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 570);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const mobileView = window.innerWidth <= 570;
+      setIsMobile(mobileView);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [attachments]);
 
   const toggleExpanded = (index: number) => {
     if (expandedImages.includes(index)) {
@@ -20,18 +36,7 @@ export default function PostAttachmentViewer({
       setExpandedImages([...expandedImages, index]);
     }
   };
-  const [hover, setHover] = useState<number | null>(null);
-  const formatBytes = (bytes: number, decimals = 2) => {
-    if (bytes === 0) return "0 Bytes";
 
-    const k = 1024;
-    const dm = decimals < 0 ? 0 : decimals;
-    const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
-  };
   const visibleAttachments = attachments
     ? showAll
       ? attachments
@@ -42,42 +47,42 @@ export default function PostAttachmentViewer({
     <>
       {visibleAttachments && (
         <div
-          className={`flex  flex-wrap gap-2 ${
+          className={`flex flex-wrap gap-2 ${
             isCatalogView ? "mx-2 flex-col" : "flex-row"
           }`}
         >
           {visibleAttachments.map((attachment: any, index: number) => (
             <div className="flex flex-col">
               <div
-                className="relative flex w-max flex-col"
+                className="relative flex flex-col"
                 onMouseEnter={() => setHover(index)}
                 onMouseLeave={() => setHover(null)}
               >
-                <img
+                <div
                   style={{
+                    overflow: "hidden",
                     maxWidth: expandedImages.includes(index)
-                      ? postView
-                        ? "calc(100vw - 2.5rem)"
-                        : isCatalogView
-                        ? "300px"
-                        : "calc(100vw - 2rem)"
-                      : postView
-                      ? screenWidth < 570
-                        ? "70vw"
-                        : "300px"
+                      ? "100%"
+                      : isMobile && !isCatalogView
+                      ? "100%"
                       : "300px",
+                    width: expandedImages.includes(index) ? "100%" : "",
                   }}
-                  className={`max-h-[60vh] mdMobileX:max-h-[70vh] ${
-                    isCatalogView
-                      ? "max-h-[800px] max-w-[400px] pb-2 mdMobileX:max-w-[80vw]"
-                      : ""
-                  } 
-                  ${expandedImages.includes(index) ? (postView ? "w" : "") : ""}
-                  ${attachments?.length === 1 && "mb-1"}
+                >
+                  <img
+                    style={{
+                      maxWidth: "100%",
+                      height: "auto",
+                      display: "block",
+                    }}
+                    className={`${
+                      isCatalogView ? "max-h-[800px] max-w-[400px] pb-2" : ""
+                    } ${isMobile ? "max-h-[80vh]" : "max-h-[60vh]"}
                   `}
-                  src={attachment.url}
-                />
-                {hover === index && !isCatalogView && (
+                    src={`${attachment.url}`}
+                  />
+                </div>
+                {hover === index && !isCatalogView && !isMobile && (
                   <button
                     onClick={() => toggleExpanded(index)}
                     className="absolute right-1 top-1 rounded-md bg-[#eff0f0] p-1"
@@ -132,10 +137,9 @@ export default function PostAttachmentViewer({
       )}
       {attachments?.length > 1 && !showAll && (
         <button
-          className={`w-15 ml-1
-          h-7 self-center rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs ${
-            isCatalogView ? "mb-2 " : "mb-1 mt-2"
-          }`}
+          className={`w-15 ml-1 h-7 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs ${
+            isCatalogView ? "mb-2 " : "mt-2"
+          } ${postView ? "self-start " : "self-center"}`}
           onClick={() => setShowAll(true)}
         >
           Show {attachments.length - 1} more images
@@ -143,10 +147,9 @@ export default function PostAttachmentViewer({
       )}
       {attachments?.length > 1 && showAll && (
         <button
-          className={`w-15
-        mb-1 mt-1 h-7 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs ${
-          !postView && " float-left"
-        } ${isCatalogView ? "mb-2 ml-2" : "mt-2"}`}
+          className={`w-15 mt-1 h-7 self-start rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6] sm:h-5 sm:text-xs ${
+            !postView && "float-left"
+          } ${isCatalogView ? "mb-2 ml-2" : "mt-2"}`}
           onClick={() => setShowAll(false)}
         >
           Show Less
