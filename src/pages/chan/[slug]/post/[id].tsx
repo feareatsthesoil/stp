@@ -60,6 +60,7 @@ export default function PostViewPage() {
   const postSlug = board?.slug || "gc";
   const postContent = linkify(post?.content ?? "");
 
+  console.log(post.attachments.length);
   return (
     <div className="bg-[#F4F4FE]">
       <DefaultLayout>
@@ -126,7 +127,7 @@ export default function PostViewPage() {
               }}
               dangerouslySetInnerHTML={{ __html: postContent }}
             />
-            {post.attachments.length > 0 && (
+            {post.attachments.length ? (
               <div className={`items-left mt-4 flex flex-col `}>
                 <PostAttachmentViewer
                   isCatalogView={false}
@@ -134,6 +135,8 @@ export default function PostViewPage() {
                   postView={true}
                 />
               </div>
+            ) : (
+              ""
             )}
             <div className="relative mt-3 flex flex-row py-0.5 pt-2 text-xs leading-5 text-gray-500">
               <div className="absolute -bottom-2 left-0 top-0 flex w-6 justify-center">
