@@ -44,7 +44,7 @@ export default function BoardComponent() {
           boards={boards}
         />
         <BoardView
-          slug={slug ? (slug as string) : "gc"}
+          slug={slug ? (slug as string) : "all"}
           slugToPost="gc"
           query={query}
           isCatalogView={isCatalogView}
