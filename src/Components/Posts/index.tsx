@@ -27,11 +27,6 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     fetchPosts();
   }, [slug, query, currentPage]);
 
-  useEffect(() => {
-    setLoading(true);
-    fetchPosts();
-  }, [slug, query, currentPage]);
-
   const fetchPosts = async () => {
     const timer = setTimeout(() => {
       setShowLoaderComponents(true);

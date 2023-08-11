@@ -17,35 +17,27 @@ export default function PostViewPage() {
   const stringSlug = Array.isArray(slug) ? slug[0] : slug || "defaultSlug";
   const [post, setPost] = useState<PostResponse>();
   const [board, setBoard] = useState<Boards>();
-
-  const [uploadDetails, setUploadDetails] = useState<{
-    filename: string;
-    size: string;
-    height: string;
-    width: string;
-    url: string;
-  } | null>();
-
   const [isAtBottom, setIsAtBottom] = useState<boolean>(false);
-
   const [version, setVersion] = useState(1);
 
   useEffect(() => {
+    if (slug) {
+      getBoard(slug as string).then(setBoard);
+    }
+  }, [slug]);
+
+  useEffect(() => {
     if (id) {
-      getPost(slug as string, Number(id) as number).then((data) => {
-        setPost(data);
-        setUploadDetails(data?.uploadDetails! as any);
-      });
+      getPost(slug as string, Number(id) as number).then(setPost);
     }
   }, [id]);
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollTop = window.scrollY || document.documentElement.scrollTop;
       const scrollHeight = document.documentElement.scrollHeight;
       const windowHeight = window.innerHeight;
-
-      const threshold = 100;
-
+      const threshold = 50;
       const reachedBottom =
         scrollTop + windowHeight + threshold >= scrollHeight;
       setIsAtBottom(reachedBottom);
@@ -59,20 +51,12 @@ export default function PostViewPage() {
     return <LoadingState />;
   }
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
-
-  const scrollToBottom = () => {
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollToBottom = () =>
     window.scrollTo({
       top: document.documentElement.scrollHeight,
       behavior: "smooth",
     });
-  };
-
   const postSlug = board?.slug || "gc";
   const postContent = linkify(post?.content ?? "");
 
