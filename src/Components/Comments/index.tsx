@@ -114,7 +114,10 @@ export default function Comments({
                   ) : null}
                 </div>
               </div>
-              <div className="overflow-x-auto">
+              <div
+                className="overflow-x-auto"
+                style={{ maxWidth: "calc(100vw - 5.5rem)" }}
+              >
                 <p
                   className="font-sans text-sm leading-6 text-gray-700"
                   dangerouslySetInnerHTML={{
