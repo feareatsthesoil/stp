@@ -28,14 +28,6 @@ export default function PostForm({
   const { enqueueSnackbar } = useSnackbar();
   const { id, userId, createdAt, updatedAt, user, ...rest } = post || {};
 
-  const [uploadDetails, setUploadDetails] = useState<{
-    filename: string;
-    size: string;
-    height: string;
-    width: string;
-    url: string;
-  }>();
-
   function autoResizeTextarea(event: any) {
     event.target.style.height = "inherit";
     const computed = window.getComputedStyle(event.target);
@@ -48,7 +40,7 @@ export default function PostForm({
   const MAX_UPLOADS = 10;
 
   const listener = (e: any) => {
-    console.log(e);
+    // console.log(e);
     const attachmentsNew = [...formik.values.attachments];
     if (e.detail.ctx === "post-uploader") {
       for (
@@ -59,11 +51,14 @@ export default function PostForm({
         const data = e.detail.data[idx];
         attachmentsNew.push({
           filename: data.name,
-          height: data.imageInfo.height,
-          width: data.imageInfo.width,
+          height: data.imageInfo?.height,
+          width: data.imageInfo?.width,
           url: data.cdnUrl,
           size: data.size,
+          isImage: data.isImage,
+          mimeType: data.mimeType,
         });
+        // console.log(data);
       }
       formik.setFieldValue("attachments", attachmentsNew);
       const dataOutput = document.querySelector("lr-data-output");
@@ -99,7 +94,6 @@ export default function PostForm({
     onSubmit: async (values, helpers) => {
       const dataToSubmit = {
         ...values,
-        uploadDetails: uploadDetails,
       };
       try {
         await (!post?.id
@@ -158,10 +152,24 @@ export default function PostForm({
             <div className="relative mb-2 flex flex-row flex-wrap place-content-center gap-x-2 self-center rounded-md px-3 pb-0.5 pt-3 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10 mdMobileX:flex-col">
               {attachments.map((attachment, index) => (
                 <div className="self-center" key={index}>
-                  <img
-                    className="max-h-[60vh] w-full max-w-[500px] self-center"
-                    src={attachment.url}
-                  />
+                  {attachment.isImage ? (
+                    <img
+                      className="max-h-[60vh] w-full max-w-[500px] self-center"
+                      src={attachment.url}
+                    />
+                  ) : attachment.mimeType?.startsWith("video") ? (
+                    <video
+                      className="max-h-[60vh] w-full max-w-[500px]"
+                      controls
+                      src={attachment.url}
+                    />
+                  ) : attachment.mimeType?.startsWith("audio") ? (
+                    <audio
+                      className="w-min-max"
+                      controls
+                      src={attachment.url}
+                    />
+                  ) : null}
                   <button
                     type="submit"
                     className="w-15 relative mb-2 mt-2 h-8 rounded-md bg-red-200 px-2 font-sans text-sm font-normal text-red-500 hover:bg-red-300 hover:text-red-600"
@@ -174,7 +182,7 @@ export default function PostForm({
                       ]);
                     }}
                   >
-                    Delete Image
+                    Delete
                   </button>
                 </div>
               ))}
@@ -255,6 +263,7 @@ export default function PostForm({
                     css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
                     ctx-name="post-uploader"
                     class="my-config"
+                    showEmptyList={true}
                   ></lr-file-uploader-regular>
                   <lr-data-output
                     id="data-output"
