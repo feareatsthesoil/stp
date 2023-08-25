@@ -10,6 +10,7 @@ import linkify from "../../../../utils/linkify";
 import { getBoard, getPost } from "../../../../utils/services";
 import PostAttachmentViewer from "../../../../Components/Posts/PostAttachmentViewer";
 import { LoadingState } from "../../../../Components/Posts/PostLoadingState";
+import Head from "next/head";
 
 export default function PostViewPage() {
   const router = useRouter();
@@ -64,8 +65,17 @@ export default function PostViewPage() {
     console.log(post.attachments.length);
   }
 
+  const firstImageUrl = post?.attachments?.find(
+    (attachment) => attachment.isImage
+  )?.url;
+
   return (
     <div className="bg-[#F4F4FE]">
+      <Head>
+        <meta property="og:title" content={post?.title} />
+        <meta property="og:description" content={post?.content || ""} />
+        {firstImageUrl && <meta property="og:image" content={firstImageUrl} />}
+      </Head>
       <DefaultLayout>
         <div
           className="sticky top-0 z-50 flex justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-1 text-sm font-bold"
