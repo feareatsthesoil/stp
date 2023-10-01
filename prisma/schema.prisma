@@ -83,45 +83,43 @@ model Boards {
 }
 
 model Post {
-  id         Int      @id @default(autoincrement())
-  title      String
-  content    String?  @db.MediumText
-  attachment String?
-  attachments Json?
-  boardId    Int
-  userId     String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  anon Boolean @default(false)
-  uploadDetails Json?
+  id              Int      @id @default(autoincrement())
+  title           String
+  content         String?  @db.MediumText
+  boardId         Int
+  userId          String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  anon            Boolean  @default(false)
   lastCommentedAt DateTime @default(now())
+  attachments     Json?
 }
 
 model Comment {
-  id         Int      @id @default(autoincrement())
-  content    String?  @db.MediumText
-  attachment String?
+  id          Int      @id @default(autoincrement())
+  content     String?  @db.MediumText
+  attachment  String?
+  postId      Int
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  anon        Boolean  @default(false)
   attachments Json?
-  postId     Int
-  userId     String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  anon Boolean @default(false)
 }
 
-model Like{
-  id Int @id @default(autoincrement())
-  likeableId Int
+model Like {
+  id           Int      @id @default(autoincrement())
+  likeableId   Int
   likeableType String
-  userId String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  userId       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
-model UserDataCache{
-  id Int @id @default(autoincrement())
-  userId String
-  data Json
+model UserDataCache {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  data      Json
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

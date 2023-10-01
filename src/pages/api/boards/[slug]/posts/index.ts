@@ -62,7 +62,6 @@ async function postsIndex(
         lastName: string | null;
         profileImageUrl: string;
       };
-      uploadDetails: {} | null;
     }
 
     const datareturned = await Promise.all(
@@ -82,7 +81,6 @@ async function postsIndex(
             createdAt: post.createdAt,
             updatedAt: post.updatedAt,
             anon: post.anon,
-            uploadDetails: post.uploadDetails,
             isAuthor: req.auth.userId === userId,
             board,
           };

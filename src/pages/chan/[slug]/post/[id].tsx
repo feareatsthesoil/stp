@@ -72,8 +72,9 @@ export default function PostViewPage() {
   return (
     <div className="bg-[#F4F4FE]">
       <Head>
-        <meta property="og:title" content={post?.title} />
-        <meta property="og:description" content={post?.content || ""} />
+        <title>${post.title}</title>
+        <meta property="title" content={post?.title} />
+        <meta property="description" content={post?.content || ""} />
         {firstImageUrl && <meta property="og:image" content={firstImageUrl} />}
       </Head>
       <DefaultLayout>

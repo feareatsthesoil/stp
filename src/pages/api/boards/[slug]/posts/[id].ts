@@ -22,7 +22,6 @@ export async function postGet(req: any, res: NextApiResponse) {
       createdAt: data.createdAt,
       updatedAt: data.updatedAt,
       anon: data.anon,
-      uploadDetails: data.uploadDetails,
       isAuthor: req.auth.userId === data.userId,
     };
     if (!data.anon) {
