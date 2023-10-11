@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from "react";
 
 export default function usePageLoader() {
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
   const onRouteChangeStart = useCallback(() => {
     setLoading(true);
   }, []);

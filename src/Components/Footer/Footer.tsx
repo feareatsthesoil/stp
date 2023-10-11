@@ -1,12 +1,12 @@
+"use client";
 import React, { useEffect } from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Head from "next/head";
+import { usePathname } from "next/navigation";
 
 const Footer = () => {
-  const router = useRouter();
-  const currentRoute = router.asPath;
-  const isChanRoute = currentRoute.startsWith("/chan");
+  const pathname = usePathname();
+  const isChanRoute = pathname.startsWith("/chan");
 
   const links = [
     { href: "https://www.instagram.com/servingthepeople/", name: "Instagram" },
@@ -27,27 +27,21 @@ const Footer = () => {
     return () => {
       document.body.style.backgroundColor = previousBodyBackgroundColor;
     };
-  }, [router.asPath]);
+  }, [pathname]);
 
-  const themeColor = currentRoute.startsWith("/chan") ? "#F4F4FE" : "#FFF";
+  const themeColor = pathname.startsWith("/chan") ? "#F4F4FE" : "#FFF";
 
   return (
     <>
       <div
-        className={`mt-auto ${
-          currentRoute === "/"
-            ? "w-full"
-            : `w-full place-content-center border-[0] border-t border-solid border-black ${
-                isChanRoute ? "border-slate-300" : ""
-              }`
-        }
-`}
+        className={`mt-auto w-full place-content-center border-[0] border-t border-solid  
+        ${isChanRoute ? "border-slate-300" : "border-black"}`}
       >
         <Head>
           <meta name="theme-color" content={themeColor} />
         </Head>
         <div className="mt-auto flex flex-row pb-3 pt-2">
-          <div className="footerMobileX:hidden flex flex-col">
+          <div className="flex flex-col footerMobileX:hidden">
             <p>Copyright © 2023, by The STP Creative Foundation.</p>
             <p>
               All rights reserved. Send comments, suggestions, and/or problems

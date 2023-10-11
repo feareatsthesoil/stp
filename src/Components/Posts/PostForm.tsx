@@ -1,15 +1,18 @@
+"use client";
+
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as LR from "@uploadcare/blocks";
 import { useFormik } from "formik";
 import { useConfirm } from "material-ui-confirm";
-import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
 import React, { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { UserContext } from "../../Components/UserContext";
 import { PostResponse } from "../../types";
 import { createPost, editPost } from "../../utils/services";
+import { usePathname, useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 LR.registerBlocks(LR);
 
@@ -22,9 +25,10 @@ export default function PostForm({
   post?: PostResponse;
   edit?: boolean;
 }) {
-  const { loggedIn } = useContext(UserContext);
+  const { isSignedIn } = useUser();
   const confirm = useConfirm();
   const router = useRouter();
+  const pathname = usePathname();
   const { enqueueSnackbar } = useSnackbar();
   const { id, userId, createdAt, updatedAt, user, ...rest } = post || {};
 
@@ -117,15 +121,15 @@ export default function PostForm({
   ) => {
     event.preventDefault();
 
-    if (!loggedIn) {
-      router.push("/login?redirect_url=" + encodeURIComponent(router.pathname));
+    if (!isSignedIn) {
+      router.push("/login?redirect_url=" + encodeURIComponent(pathname));
       return;
     }
 
     formik.handleSubmit(event);
   };
 
-  const isDisabled = !loggedIn || formik.isSubmitting;
+  const isDisabled = !isSignedIn || formik.isSubmitting;
   const attachments = formik.values.attachments;
   const [message, setMessage] = React.useState("");
 
@@ -135,7 +139,7 @@ export default function PostForm({
         onSubmit={handleSubmitWithAuth}
         onClick={() => setMessage("Form clicked")}
       >
-        {message && loggedIn && !edit && (
+        {message && isSignedIn && !edit && (
           <div className="flex w-full justify-center">
             <div className="relative mb-2 items-center gap-x-2 rounded-md px-2.5 py-1.5 font-sans ring-1 ring-inset ring-gray-300 focus-within:z-10">
               <p className="inline-block">Posting to:</p>
@@ -239,7 +243,7 @@ export default function PostForm({
                 name="anon"
                 type="checkbox"
                 className="h-4 w-4 rounded text-indigo-600 ring-red-300 hover:cursor-pointer focus:ring-indigo-600"
-                disabled={loggedIn ? false : true}
+                disabled={isSignedIn ? false : true}
                 checked={formik.values.anon || false}
                 onChange={(e) => {
                   formik.setFieldValue("anon", e.target.checked);
@@ -256,19 +260,22 @@ export default function PostForm({
             </div>
           </div>
           <div className="my-2 flex w-full max-w-[500px] justify-between self-center">
-            {loggedIn && formik.values.attachments?.length < MAX_UPLOADS && (
+            {isSignedIn && formik.values.attachments?.length < MAX_UPLOADS && (
               <>
                 <div className="">
+                  {/* @ts-ignore */}
                   <lr-file-uploader-regular
                     css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
                     ctx-name="post-uploader"
                     class="my-config"
                     showEmptyList={true}
-                  ></lr-file-uploader-regular>
-                  <lr-data-output
-                    id="data-output"
-                    ctx-name="post-uploader"
-                  ></lr-data-output>
+                  >
+                    {/* @ts-ignore */}
+                  </lr-file-uploader-regular>
+                  {/* @ts-ignore */}
+                  <lr-data-output id="data-output" ctx-name="post-uploader">
+                    {/* @ts-ignore */}
+                  </lr-data-output>
                 </div>
               </>
             )}
@@ -284,10 +291,10 @@ export default function PostForm({
               className="w-15 float-right h-8 rounded-md bg-[#eff0f0] px-2 font-sans text-sm font-normal text-[#4a4d50] hover:bg-[#e5e6e6]"
             >
               {!formik.isSubmitting &&
-              loggedIn &&
-              router.pathname.endsWith("/edit") ? (
+              isSignedIn &&
+              pathname.endsWith("/edit") ? (
                 <>Save</>
-              ) : loggedIn ? (
+              ) : isSignedIn ? (
                 !formik.isSubmitting ? (
                   <>Post</>
                 ) : (

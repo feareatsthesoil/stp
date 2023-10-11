@@ -1,3 +1,1 @@
-export default function PostView({id} : {id: number}){
-
-}
+export default function PostView({ id }: { id: number }) {}

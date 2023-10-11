@@ -1,14 +1,18 @@
+"use client";
 import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
-import nav from "../Nav/Nav.json";
+import React, { useContext } from "react";
+import nav from "./Nav.json";
+import { usePathname } from "next/navigation";
+import { UserContext } from "../UserContext";
+import usePageLoader from "@/hooks/usePageLoader";
 
 const NavBar = () => {
   const user = useUser();
-  const router = useRouter();
-  const currentRoute = router.pathname;
+  const currentRoute = usePathname();
   const isChanRoute = currentRoute.startsWith("/chan");
+  const { initialized } = useContext(UserContext);
+  const loading = usePageLoader() || !initialized;
 
   return (
     <div
@@ -65,12 +69,10 @@ const NavBar = () => {
         </ul>
       </nav>
       {user.isSignedIn && (
-        <div
-          className={` ${
-            currentRoute === "/" ? "right-0" : "right-4"
-          } absolute mt-[-0.1rem]`}
-        >
-          <UserButton />
+        <div className="absolute right-4 mt-[-0.1rem]">
+          <UserButton
+            afterSignOutUrl={`${process.env.NEXT_PUBLIC_API_URL}/login`}
+          />
         </div>
       )}
     </div>

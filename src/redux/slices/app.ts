@@ -1,11 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {}
+const initialState = {};
 export const appSlice = createSlice({
-    initialState,
-    name: "app",
-    reducers: {
-    }
-})
+  initialState,
+  name: "app",
+  reducers: {},
+});
 
-export default appSlice.reducer
+export default appSlice.reducer;

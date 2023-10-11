@@ -1,20 +1,24 @@
+"use client";
+
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@mui/material";
 import axios from "axios";
 import { useConfirm } from "material-ui-confirm";
-import { useRouter } from "next/router";
 import { useContext, useState } from "react";
 import { UserContext } from "../UserContext";
+import { useRouter } from "next/navigation";
+import { useUser } from "@clerk/nextjs";
 
 export default function JoinButton() {
   const { loggedIn } = useContext(UserContext);
+  const { isSignedIn } = useUser();
   const [loading, setLoading] = useState(false);
   const confirm = useConfirm();
   const router = useRouter();
 
   const handleClick = () => {
-    if (!loggedIn) {
+    if (!isSignedIn) {
       return confirm({
         title: "Please log in",
         description: "Please log in before purchasing a membership.",

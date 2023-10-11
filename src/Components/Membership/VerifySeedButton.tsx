@@ -1,3 +1,5 @@
+"use client";
+
 import { useUser } from "@clerk/nextjs";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,10 +9,10 @@ import axios from "axios";
 import { clsx } from "clsx";
 import { utils } from "ethers";
 import { useConfirm } from "material-ui-confirm";
-import { useRouter } from "next/router";
 import { useCallback, useContext, useState } from "react";
 import { useAccount, useConnect, useSigner } from "wagmi";
 import { UserContext } from "../UserContext";
+import { useRouter } from "next/navigation";
 
 function shortAddress(address: string): string {
   if (utils.isAddress(address)) {
@@ -30,9 +32,10 @@ export default function VerifySeedButton() {
   const { address } = useAccount();
   const { connect, connectors } = useConnect();
   const { data: signer } = useSigner();
-  const { loggedIn, refresh } = useContext(UserContext);
+  const { refresh } = useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const confirm = useConfirm();
+  const { isSignedIn } = useUser();
   const router = useRouter();
 
   const onLoggedOutClick = useCallback(() => {
@@ -73,7 +76,7 @@ export default function VerifySeedButton() {
   }, [signer, user, refresh]);
   return (
     <>
-      {!loggedIn && (
+      {!isSignedIn && (
         <Button
           sx={{
             backgroundColor: "rgb(239, 239, 239) !important",
@@ -96,7 +99,7 @@ export default function VerifySeedButton() {
           {loading && <FontAwesomeIcon icon={faSpinner} spin />}
         </Button>
       )}
-      {loggedIn && address && (
+      {isSignedIn && address && (
         <div className="flex items-center gap-2">
           <span className="text-xs">{shortAddress(address)}</span>
           <Button
@@ -123,7 +126,7 @@ export default function VerifySeedButton() {
           </Button>
         </div>
       )}
-      {loggedIn && !address && (
+      {isSignedIn && !address && (
         <Menu as="div" className="relative">
           <Menu.Button
             style={{

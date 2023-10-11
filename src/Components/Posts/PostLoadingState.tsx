@@ -1,5 +1,3 @@
-import DefaultLayout from "../Layouts/DefaultLayout";
-
 interface LoadingStateProps {}
 
 const buttonWidths = ["30%", "50%", "40%"];
@@ -8,7 +6,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({}) => {
   return (
     <>
       <div className="overflow-hidden">
-        <DefaultLayout>
+        <div className="mx-4 flex min-h-[100svh] flex-col items-center">
           <div className="items-left mt-4 flex w-[100%] flex-col">
             <button className="my-1 h-6 w-[80%] animate-pulse cursor-default rounded-md bg-[#fff] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:text-xs" />
             <button className="my-1 h-6 w-[50%] animate-pulse cursor-default rounded-md bg-[#fff] px-2 font-sans text-sm font-normal text-[#1d205e] hover:opacity-80 sm:text-xs" />
@@ -50,7 +48,7 @@ export const LoadingState: React.FC<LoadingStateProps> = ({}) => {
               })}
             </ul>
           </div>
-        </DefaultLayout>
+        </div>
       </div>
     </>
   );

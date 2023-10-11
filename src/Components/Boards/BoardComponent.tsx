@@ -1,14 +1,16 @@
+"use client";
+
 import React, { useEffect, useState } from "react";
-import { getBoards } from "../../utils/services";
-import BoardView from "../../Components/Boards/BoardView";
-import ChanLayout from "../../Components/Layouts/ChanLayout";
 import BoardSearch from "../../Components/Boards/BoardSearch";
-import { useRouter } from "next/router";
 import BoardPills from "./BoardPills";
 import { Boards } from "@prisma/client";
+import { getBoards } from "@/utils/services";
+import BoardView from "./BoardView";
+import { useParams, usePathname } from "next/navigation";
 
 export default function BoardComponent() {
-  const router = useRouter();
+  const { slug } = useParams();
+  const pathname = usePathname();
   const [query, setQuery] = useState<string>("");
   const [isCatalogView, setIsCatalogView] = useState<boolean>(false);
   const [catalogText, setCatalogText] = useState<string>("Catalog");
@@ -26,30 +28,22 @@ export default function BoardComponent() {
       setBoards(sortedBoards);
     });
   }, []);
-  const {
-    query: { slug, name },
-  } = router;
+  console.log("slug", slug, pathname);
 
   return (
     <div className="bg-[#F4F4FE]">
-      <ChanLayout>
-        <BoardSearch
-          catalogText={catalogText}
-          setQuery={setQuery}
-          toggleCatalogView={toggleCatalogView}
-        />
-        <BoardPills
-          slug={String(slug!)}
-          currentPath={router.asPath}
-          boards={boards}
-        />
-        <BoardView
-          slug={slug ? (slug as string) : "all"}
-          slugToPost="gc"
-          query={query}
-          isCatalogView={isCatalogView}
-        />
-      </ChanLayout>
+      <BoardSearch
+        catalogText={catalogText}
+        setQuery={setQuery}
+        toggleCatalogView={toggleCatalogView}
+      />
+      <BoardPills slug={String(slug!)} currentPath={pathname} boards={boards} />
+      <BoardView
+        slug={slug ? (slug as string) : "all"}
+        slugToPost="gc"
+        query={query}
+        isCatalogView={isCatalogView}
+      />
     </div>
   );
 }

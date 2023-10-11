@@ -3,7 +3,7 @@ import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as LR from "@uploadcare/blocks";
 import { useFormik } from "formik";
-import { useRouter } from "next/router";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { useSnackbar } from "notistack";
 import React, { useContext, useEffect } from "react";
 import * as Yup from "yup";
@@ -21,6 +21,8 @@ export default function CommentForm({
 }) {
   const { user } = useUser();
   const router = useRouter();
+  const pathname = usePathname();
+  const { slug } = useParams();
   const { enqueueSnackbar } = useSnackbar();
   const { loggedIn } = useContext(UserContext);
 
@@ -42,7 +44,7 @@ export default function CommentForm({
     }),
     initialValues: { content: "", anon: false, attachments: [] as any[] },
     onSubmit: async (values, { setSubmitting, resetForm }) => {
-      if (router.query.slug === "all") {
+      if (slug === "all") {
         router.push("/gc");
         return;
       }
@@ -97,7 +99,7 @@ export default function CommentForm({
     event.preventDefault();
 
     if (!user) {
-      router.push("/login?redirect_url=" + encodeURIComponent(router.pathname));
+      router.push("/login?redirect_url=" + encodeURIComponent(pathname));
       return;
     }
 
@@ -179,15 +181,18 @@ export default function CommentForm({
         >
           {loggedIn && formik.values.attachments?.length < MAX_UPLOADS && (
             <div className="ml-10">
+              {/* @ts-ignore */}
               <lr-file-uploader-regular
                 css-src="https://esm.sh/@uploadcare/blocks@0.22.13/web/file-uploader-regular.min.css"
                 ctx-name="comment-uploader"
                 class="my-config"
-              ></lr-file-uploader-regular>
-              <lr-data-output
-                id="data-output"
-                ctx-name="comment-uploader"
-              ></lr-data-output>
+              >
+                {/* @ts-ignore */}
+              </lr-file-uploader-regular>
+              {/* @ts-ignore */}
+              <lr-data-output id="data-output" ctx-name="comment-uploader">
+                {/* @ts-ignore */}
+              </lr-data-output>
             </div>
           )}
           {formik.values.attachments?.length >= MAX_UPLOADS && (

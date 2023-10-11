@@ -8,9 +8,10 @@ export default function PostDeleteButton(
   props: Omit<ButtonProps, "onClick"> & {
     onComplete?: () => void;
     postId: number;
+    slug: string;
   }
 ) {
-  const { onComplete, postId, ...rest } = props;
+  const { onComplete, postId, slug, ...rest } = props;
   const { enqueueSnackbar } = useSnackbar();
   const { user } = useUser();
   const [showConfirmDialog, setShowConfirmDialog] = useState(false);
@@ -20,7 +21,7 @@ export default function PostDeleteButton(
   };
 
   const handleDelete = () => {
-    deletePost("<slug>", postId)
+    deletePost(slug, postId)
       .then(() => {
         console.log("Completing onComplete action");
         onComplete && onComplete();

@@ -9,20 +9,12 @@
       "name": "Blog"
     },
     {
-      "href": "/calendar",
-      "name": "Calendar"
-    },
-    {
       "href": "/chan",
       "name": "Channels"
     },
     {
       "href": "/membership",
       "name": "Support"
-    },
-    {
-      "href": "/radio",
-      "name": "Radio"
     },
     {
       "href": "/store",

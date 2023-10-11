@@ -1,7 +1,9 @@
+"use client";
+
+import { DirectoryRow } from "@/types";
 import { useAuth } from "@clerk/nextjs";
 import axios from "axios";
 import { createContext, ReactNode, useEffect, useState } from "react";
-import { DirectoryRow } from "../../types";
 
 interface UserMetadata {
   profile?: DirectoryRow;
@@ -28,7 +30,7 @@ export const UserProvider = (props: { children: ReactNode }) => {
   const [initialized, setInitialized] = useState(false);
 
   const [metadata, setMetadata] = useState<UserMetadata | {}>();
-  const auth = useAuth();
+  const { isSignedIn } = useAuth();
 
   const loadData = () =>
     axios
@@ -49,11 +51,12 @@ export const UserProvider = (props: { children: ReactNode }) => {
     setLoggedIn(false);
     setMetadata({});
     loadData();
-  }, [auth.isSignedIn]);
+  }, [isSignedIn]);
   useEffect(() => {}, []);
   const refresh = () => {
     return loadData();
   };
+  console.log("loggedIn", loggedIn);
   return (
     <UserContext.Provider
       value={{ ...metadata, initialized, loggedIn, refresh }}
