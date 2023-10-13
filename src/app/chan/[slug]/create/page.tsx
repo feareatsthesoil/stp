@@ -1,6 +1,6 @@
 "use client";
 
-import PostForm from "@/Components/Posts/PostForm";
+import PostForm from "@/components/chan/posts/PostForm";
 import { useParams } from "next/navigation";
 import React, { useContext } from "react";
 

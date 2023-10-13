@@ -6,11 +6,11 @@ import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import { PostResponse } from "@/types";
 import { getBoard, getPost } from "@/utils/services";
-import { LoadingState } from "@/Components/Posts/PostsLoadingState";
+import { LoadingState } from "@/components/chan/posts/PostsLoadingState";
 import linkify from "@/utils/linkify";
-import CommentForm from "@/Components/Comments/CommentForm";
-import Comments from "@/Components/Comments";
-import PostAttachmentViewer from "@/Components/Posts/PostAttachmentViewer";
+import CommentForm from "@/components/chan/comments/CommentForm";
+import Comments from "@/components/chan/comments";
+import PostAttachmentViewer from "@/components/chan/posts/PostAttachmentViewer";
 import { useParams } from "next/navigation";
 
 export default function PostViewPage() {

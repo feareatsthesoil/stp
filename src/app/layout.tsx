@@ -1,11 +1,11 @@
-import Footer from "@/Components/Footer/Footer";
+import Footer from "@/components/foundation/footer/Footer";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import NavBar from "@/Components/Nav/Nav";
-import { UserProvider } from "@/Components/UserContext";
+import NavBar from "@/components/foundation/nav/Nav";
+import { UserProvider } from "@/components/userContext";
 import { ClerkProvider } from "@clerk/nextjs";
-import { AllClientContexts } from "@/Components/AllClientContexts";
+import { AllClientContexts } from "@/components/AllClientContexts";
 
 export const metadata: Metadata = {
   title: "Serving the People",

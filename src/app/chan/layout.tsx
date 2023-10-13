@@ -1,9 +1,9 @@
 "use client";
 
-import Footer from "@/Components/Footer/Footer";
-import NavBar from "@/Components/Nav/Nav";
-import PostForm from "@/Components/Posts/PostForm";
-import { UserContext } from "@/Components/UserContext";
+import Footer from "@/components/foundation/footer/Footer";
+import NavBar from "@/components/foundation/nav/Nav";
+import PostForm from "@/components/chan/posts/PostForm";
+import { UserContext } from "@/components/userContext";
 import usePageLoader from "@/hooks/usePageLoader";
 import { useParams, useSelectedLayoutSegments } from "next/navigation";
 import { ReactNode, useContext, useEffect, useState } from "react";

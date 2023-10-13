@@ -1,6 +1,6 @@
 import React from "react";
 import { Metadata } from "next";
-import BoardComponent from "../../Components/Boards/BoardComponent";
+import BoardComponent from "../../components/chan/boards/BoardComponent";
 
 export const metadata: Metadata = {
   title: "Serving the People",

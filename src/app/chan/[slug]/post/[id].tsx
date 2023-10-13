@@ -2,13 +2,13 @@ import { Boards } from "@prisma/client";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import Comments from "../../../../Components/Comments";
-import CommentForm from "../../../../Components/Comments/CommentForm";
+import Comments from "../../../../components/chan/comments";
+import CommentForm from "../../../../components/chan/comments/CommentForm";
 import { PostResponse } from "../../../../types";
 import linkify from "../../../../utils/linkify";
 import { getBoard, getPost } from "../../../../utils/services";
-import PostAttachmentViewer from "../../../../Components/Posts/PostAttachmentViewer";
-import { LoadingState } from "../../../../Components/Posts/PostLoadingState";
+import PostAttachmentViewer from "../../../../components/chan/posts/PostAttachmentViewer";
+import { LoadingState } from "../../../../components/chan/posts/PostLoadingState";
 import Head from "next/head";
 import { useParams } from "next/navigation";
 

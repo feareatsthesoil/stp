@@ -1,0 +1,67 @@
+{
+  "items": [
+    {
+      "href": "/philosophy",
+      "name": "Philosophy",
+      "children": []
+    },
+    {
+      "href": "/portfolio",
+      "name": "Portfolio",
+      "children": [
+        {
+          "href": "https://visit.studio/explore",
+          "name": "Try Studio"
+        },
+        {
+          "href": "https://docs.stp.world/seeds",
+          "name": "Seeds"
+        },
+        {
+          "href": "https://vivienramsay.com/",
+          "name": "Vivien Ramsay"
+        }
+      ]
+    },
+    {
+      "href": "/foundation",
+      "name": "Foundation",
+      "children": [
+        {
+          "href": "/mission",
+          "name": "Mission"
+        },
+        {
+          "href": "/calendar",
+          "name": "Calendar"
+        },
+        {
+          "href": "/support",
+          "name": "Support"
+        },
+        {
+          "href": "/forum",
+          "name": "Forum"
+        },
+        {
+          "href": "/shop",
+          "name": "Shop"
+        },
+        {
+          "href": "/chan",
+          "name": "Podcast"
+        }
+      ]
+    },
+    {
+      "href": "/proposals",
+      "name": "Proposals",
+      "children": []
+    },
+    {
+      "href": "/contact",
+      "name": "Contact",
+      "children": []
+    }
+  ]
+}
