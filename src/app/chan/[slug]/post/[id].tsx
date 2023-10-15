@@ -65,7 +65,7 @@ export default function PostViewPage() {
   }
 
   const firstImageUrl = post?.attachments?.find(
-    (attachment) => attachment.isImage
+    (attachment: { isImage: boolean; }) => attachment.isImage
   )?.url;
 
   return (

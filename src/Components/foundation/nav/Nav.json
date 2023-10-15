@@ -2,11 +2,15 @@
   "items": [
     {
       "href": "/",
-      "name": "About"
+      "name": "Portal"
     },
     {
       "href": "/blog",
       "name": "Blog"
+    },
+    {
+      "href": "/calendar",
+      "name": "Calendar"
     },
     {
       "href": "/chan",

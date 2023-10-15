@@ -7,55 +7,38 @@ const Footer = () => {
   const links = [
     {
       href: "https://blog.stp.world",
-      name: "Join Our Mailing List",
-      tag: "join",
+      content: "Join Our Mailing List",
+      className: "hidden lg:block",
     },
     {
       href: "/",
-      name: "©2023 The STP Creative LLC",
-      tag: "name",
+      content: "©2023 The STP Creative LLC",
+      className: "",
     },
     {
       href: "mailto:info@stp.world",
-      name: "contact@stp.world",
-      tag: "contact",
+      content: "contact@stp.world",
+      className: "hidden md:block",
     },
     {
       href: "https://instagram.com/servingthepeople",
-      name: "@SERVINGTHEPEOPLE",
-      tag: "social",
+      content: "@servingthepeople",
+      className: "block mdMobileX:hidden",
     },
   ];
 
-  const getClassNameByTag = (tag: string) => {
-    switch (tag) {
-      case "join":
-        return "md:block";
-      case "name":
-        return "block";
-      case "contact":
-        return "lg:block";
-      case "social":
-        return "xl:block";
-    }
-  };
-
   return (
     <>
-      <div className="mb-5 mt-auto w-full">
-        <div className="mx-10 flex justify-center gap-x-5">
-          {links.map((link) => (
-            <Link href={link.href} key={link.name}>
-              <span
-                className={`uppercase tracking-wide ${
-                  link.tag !== "name" ? "hidden" : ""
-                } ${getClassNameByTag(link.tag)} mx-2 text-white`}
-              >
-                {link.name}
-              </span>
-            </Link>
+      <div className="mt-auto">
+        <ul className="mb-2 mt-10 flex w-[100vw] justify-around font-sans text-sm/4 uppercase tracking-wide text-white">
+          {links.map((link, index) => (
+            <li key={index} className={link.className}>
+              <Link href={link.href} target={index !== 1 ? "_blank" : ""}>
+                {link.content}
+              </Link>
+            </li>
           ))}
-        </div>
+        </ul>
       </div>
     </>
   );

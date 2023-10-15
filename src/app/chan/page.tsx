@@ -11,6 +11,5 @@ export default function BoardsIndexPage({
 }: {
   params: { slug: string };
 }) {
-  console.log("params", params);
   return <BoardComponent />;
 }
