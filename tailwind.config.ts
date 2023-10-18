@@ -1,5 +1,7 @@
 import type { Config } from "tailwindcss";
 
+const defaultTheme = require("tailwindcss/defaultTheme");
+
 const config: Config = {
   content: [
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
@@ -26,6 +28,9 @@ const config: Config = {
         catCol10: { raw: "(min-width: 5600px)" },
         catCol11: { raw: "(min-width: 6200px)" },
         catCol12: { raw: "(min-width: 6800px)" },
+      },
+      fontFamily: {
+        sans: ["Inter var", ...defaultTheme.fontFamily.sans],
       },
     },
   },

@@ -23,6 +23,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
     useState<boolean>(false);
 
   useEffect(() => {
+    console.log("Current Page:", currentPage);
     setLoading(true);
     fetchPosts();
   }, [slug, query, currentPage]);

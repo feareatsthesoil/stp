@@ -1,11 +1,14 @@
+import personnel from "@/data/personnel.json";
 import structureTree from "@/images/structureTree.svg";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
+import { Container } from "@/components/portal/Container";
 
 const Philosophy: React.FC = () => {
   return (
     <>
-      <div className="flex flex-col justify-between [&_div]:mb-4 [&_h1]:mb-2 [&_h1]:text-2xl [&_p]:mb-8 [&_p]:text-base/8">
+      <Container>
         <div>
           <h1>Philosophy</h1>
           <p>
@@ -49,7 +52,14 @@ const Philosophy: React.FC = () => {
         </div>
         <div>
           <h1>The Structure</h1>
-          <Image src={structureTree} alt="STP Structure Tree" />
+          <div className="flex flex-col items-center">
+            <Image
+              src={structureTree}
+              height={1000}
+              alt="STP Structure Tree"
+              className="mb-4"
+            />
+          </div>
         </div>
         <div>
           <h1>The STP Creative Foundation</h1>
@@ -78,25 +88,39 @@ const Philosophy: React.FC = () => {
               {`STP's for-profit projects, ranging from clothing lines to
               cutting-edge software like Studio, aren't just revenue generators.
               They are the lifeblood that fuels our mission, enabling us to
-              invest more into the community. Through the innovative SEEDS
-              project, we embrace the future of decentralized decision-making,
+              invest more into the community. Through the innovative `}
+              <Link href="#" className="underline">
+                SEEDS
+              </Link>
+              {` project, we embrace the future of decentralized decision-making,
               allowing community participation in shaping our creative
               endeavors.`}
             </>
           </p>
         </div>
-        <div>
-          <ul>
-            <li>Board of Directors</li>
-          </ul>
-          <ul>
-            <li>Staff</li>
-          </ul>
-          <ul>
-            <li>Advisory Board</li>
-          </ul>
+        <div className="grid grid-cols-2 justify-between gap-y-10 sm:grid-cols-3">
+          {personnel.items.map((group, index) => (
+            <ul
+              key={group.name}
+              className={
+                index === personnel.items.length - 1 ? "" : "flex-grow"
+              }
+            >
+              <li className="mb-2 text-base/8">{group.name}</li>
+              <ul>
+                {group.children.map((member) => (
+                  <li
+                    key={member.name}
+                    className="text-base/6 font-bold tracking-[0.1px]"
+                  >
+                    {member.name}
+                  </li>
+                ))}
+              </ul>
+            </ul>
+          ))}
         </div>
-      </div>
+      </Container>
     </>
   );
 };

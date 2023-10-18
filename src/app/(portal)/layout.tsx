@@ -14,7 +14,7 @@ export default function RootLayout({
   return (
     <div className="flex min-h-[100svh] flex-col items-center bg-black">
       <Header />
-      <div className="mx-4 sm:mx-10 max-w-[1000px] text-white">{children}</div>
+      <div className="mx-4 max-w-[1000px] text-white sm:mx-10">{children}</div>
       <Footer />
     </div>
   );

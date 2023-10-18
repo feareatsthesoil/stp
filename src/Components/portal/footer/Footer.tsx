@@ -18,19 +18,19 @@ const Footer = () => {
     {
       href: "mailto:info@stp.world",
       content: "contact@stp.world",
-      className: "hidden md:block",
+      className: "hidden sm:block",
     },
     {
       href: "https://instagram.com/servingthepeople",
       content: "@servingthepeople",
-      className: "block mdMobileX:hidden",
+      className: "hidden sm:block",
     },
   ];
 
   return (
     <>
       <div className="mt-auto">
-        <ul className="mb-2 mt-10 flex w-[100vw] justify-around font-sans text-sm/4 uppercase tracking-wide text-white">
+        <ul className="mb-4 mt-10 flex w-[100vw] justify-around font-sans text-sm/4 uppercase tracking-wide text-white">
           {links.map((link, index) => (
             <li key={index} className={link.className}>
               <Link href={link.href} target={index !== 1 ? "_blank" : ""}>

@@ -11,8 +11,13 @@ export const getPosts = (slug: string, q?: string, page: number = 1) => {
     .get<PostResponse[]>(
       `/api/boards/${slug}/posts?page=${page}${q ? `&q=${q}` : ""}`
     )
-    .then((response) => response);
+    .then((response) => response)
+    .catch((error) => {
+      console.error("Error fetching posts:", error);
+      throw error;
+    });
 };
+
 export const getPost = (slug: string, id: number) => {
   return axios
     .get<PostResponse>(`/api/boards/${slug}/posts/${id}`)

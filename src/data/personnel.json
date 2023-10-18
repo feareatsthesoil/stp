@@ -1,0 +1,64 @@
+{
+  "items": [
+    {
+      "name": "Board of Directors",
+      "children": [
+        {
+          "name": "Adam Cohen"
+        },
+        {
+          "name": "Arun Dua"
+        },
+        {
+          "name": "Damany Weir"
+        },
+        {
+          "name": "David Jacobs"
+        },
+        {
+          "name": "Michaela Da Pury"
+        },
+        {
+          "name": "Mo Koyfman"
+        },
+        {
+          "name": "Seth Cameron"
+        }
+      ]
+    },
+    {
+      "name": "Advisory Board",
+      "children": [
+        {
+          "name": "Anastasiya Siro"
+        },
+        {
+          "name": "Rob Cristofaro"
+        },
+        {
+          "name": "Seth Cameron"
+        },
+        {
+          "name": "Tremaine Emory"
+        },
+        {
+          "name": "Leandra Cohen"
+        }
+      ]
+    },
+    {
+      "name": "Staff",
+      "children": [
+        {
+          "name": "Zoey Poole"
+        },
+        {
+          "name": "Santiago"
+        },
+        {
+          "name": "Lucien Smith"
+        }
+      ]
+    }
+  ]
+}
