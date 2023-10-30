@@ -1,6 +1,6 @@
 "use client";
 
-import { UserContext } from "@/components/userContext";
+import { UserContext } from "@/Components/userContext";
 import { useUser } from "@clerk/nextjs";
 import axios from "axios";
 import Link from "next/link";

@@ -1,6 +1,6 @@
 "use client";
 
-import nav from "@/components/portal/nav/Nav.json";
+import nav from "@/Components/portal/nav/Nav.json";
 import { motion } from "framer-motion";
 import React from "react";
 import LinkComponent from "./LinkComponent";

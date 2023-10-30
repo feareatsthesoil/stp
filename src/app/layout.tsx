@@ -1,5 +1,5 @@
-import { AllClientContexts } from "@/components/AllClientContexts";
-import { UserProvider } from "@/components/userContext";
+import { AllClientContexts } from "@/Components/AllClientContexts";
+import { UserProvider } from "@/Components/userContext";
 import { ClerkProvider } from "@clerk/nextjs";
 import type { Metadata } from "next";
 import "./globals.css";

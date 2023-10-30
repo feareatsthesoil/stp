@@ -1,9 +1,9 @@
 "use client";
 
-import PostForm from "@/components/chan/posts/PostForm";
-import Footer from "@/components/foundation/footer/Footer";
-import Header from "@/components/foundation/header/Header";
-import { UserContext } from "@/components/userContext";
+import PostForm from "@/Components/chan/posts/PostForm";
+import Footer from "@/Components/foundation/footer/Footer";
+import Header from "@/Components/foundation/header/Header";
+import { UserContext } from "@/Components/userContext";
 import usePageLoader from "@/hooks/usePageLoader";
 import { useParams, usePathname } from "next/navigation";
 import { ReactNode, useContext } from "react";

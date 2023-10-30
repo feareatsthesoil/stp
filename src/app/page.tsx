@@ -1,7 +1,7 @@
-import ThemeComponent from "@/components/ThemeComponent";
-import FooterMotion from "@/components/portal/hero/FooterMotion";
-import LogoMotion from "@/components/portal/hero/LogoMotion";
-import NavListMotion from "@/components/portal/hero/NavListMotion";
+import ThemeComponent from "@/Components/ThemeComponent";
+import FooterMotion from "@/Components/portal/hero/FooterMotion";
+import LogoMotion from "@/Components/portal/hero/LogoMotion";
+import NavListMotion from "@/Components/portal/hero/NavListMotion";
 import { Metadata } from "next";
 import React from "react";
 

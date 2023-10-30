@@ -1,7 +1,7 @@
 "use client";
 
-import Logo from "@/components/portal/logo/Logo";
-import nav from "@/components/portal/nav/Nav.json";
+import Logo from "@/Components/portal/logo/Logo";
+import nav from "@/Components/portal/nav/Nav.json";
 import ChevronDown from "@/images/icons/chevronDown";
 import ChevronUp from "@/images/icons/chevronUp";
 import LinkIcon from "@/images/icons/linkIcon";

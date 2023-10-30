@@ -3,8 +3,8 @@
 import { Boards } from "@prisma/client";
 import Link from "next/link";
 import { useEffect, useState, useContext } from "react";
-import PostForm from "@/components/chan/posts/PostForm";
-import PostDeleteButton from "@/components/chan/posts/PostDeleteButton";
+import PostForm from "@/Components/chan/posts/PostForm";
+import PostDeleteButton from "@/Components/chan/posts/PostDeleteButton";
 import { getBoard, getPost } from "@/utils/services";
 import { PostResponse } from "@/types";
 import { useParams, useRouter } from "next/navigation";

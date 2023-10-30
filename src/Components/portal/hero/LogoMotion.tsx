@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/components/portal/logo/Logo";
+import Logo from "@/Components/portal/logo/Logo";
 import spotlight from "@/images/spotlight.svg";
 import { motion } from "framer-motion";
 import Image from "next/image";

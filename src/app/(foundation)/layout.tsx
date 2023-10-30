@@ -1,6 +1,6 @@
-import ThemeComponent from "@/components/ThemeComponent";
-import Footer from "@/components/foundation/footer/Footer";
-import Header from "@/components/foundation/header/Header";
+import ThemeComponent from "@/Components/ThemeComponent";
+import Footer from "@/Components/foundation/footer/Footer";
+import Header from "@/Components/foundation/header/Header";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

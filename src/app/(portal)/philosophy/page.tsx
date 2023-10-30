@@ -1,4 +1,4 @@
-import { Container } from "@/components/Container";
+import { Container } from "@/Components/Container";
 import personnel from "@/data/personnel.json";
 import structureTree from "@/images/structureTree.svg";
 import { Metadata } from "next";

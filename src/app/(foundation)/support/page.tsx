@@ -1,4 +1,4 @@
-import { Container } from "@/components/Container";
+import { Container } from "@/Components/Container";
 import LinkIcon from "@/images/icons/linkIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
