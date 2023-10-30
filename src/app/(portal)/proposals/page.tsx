@@ -12,13 +12,9 @@ const Proposals: React.FC = () => {
   return (
     <Container>
       <div>
-        <h1>Proposals</h1>
+        <h1>Proposal Gateway</h1>
         <p>
-          {`As our primary mechanism for proposals and grants, `}
-          <Link href="#" className="underline">
-            Seeds
-          </Link>
-          {` leverages web3 technologies to ensure every stakeholder has the chance to
+          {`The Proposal Gateway is our primary mechanism for proposals and grants, we leverage web3 technology to ensure every stakeholder has the chance to
             shape the trajectory of our initiatives. Here, every idea, big or
             small, has the potential to impact our future directions. This
             platform embodies our commitment to transparent and collective
@@ -26,8 +22,8 @@ const Proposals: React.FC = () => {
         </p>
         <p>
           {`We invite you to engage, propose, debate, vote, and
-            actively contribute to this decentralized narrative where, together,
-            we script our next chapters.`}
+            actively contribute to this narrative where, together,
+            we write our next chapters.`}
         </p>
         <div>
           <Link
@@ -35,7 +31,7 @@ const Proposals: React.FC = () => {
             target="_blank"
             className="group flex items-center underline"
           >
-            Visit Seeds DAO
+            Visit the Proposal Gateway
             <LinkIcon
               className="self-start opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               fill="white"
