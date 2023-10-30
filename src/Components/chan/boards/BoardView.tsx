@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import Posts from "../posts";
-import { UserContext } from "../../userContext";
 
 export default function BoardView({
   slug,
@@ -8,7 +7,7 @@ export default function BoardView({
   query,
   isCatalogView,
 }: {
-  slug?: string;
+  slug: string;
   slugToPost?: string;
   query: string;
   isCatalogView: boolean;
@@ -16,11 +15,7 @@ export default function BoardView({
   return (
     <>
       <div className="w-full">
-        <Posts
-          slug={slug as string}
-          query={query}
-          isCatalogView={isCatalogView}
-        />
+        <Posts slug={slug} query={query} isCatalogView={isCatalogView} />
       </div>
     </>
   );

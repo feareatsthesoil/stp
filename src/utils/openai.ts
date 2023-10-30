@@ -1,4 +1,5 @@
 import axios from "axios";
+
 export function moderate(text: string) {
   return axios
     .post(

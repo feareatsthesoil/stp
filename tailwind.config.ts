@@ -14,6 +14,7 @@ const config: Config = {
         smMobileY: { raw: "(max-height: 600px)" },
         navMobileX: { raw: "(min-width: 368px) and (max-width: 409px)" },
         smMobileX: { raw: "(max-width: 375px)" },
+        chromeMinX: { raw: "(max-width: 512px)"},
         mdMobileX: { raw: "(max-width: 570px)" },
         smMuiMobileX: { raw: "(max-width: 599px)" },
         footerMobileX: { raw: "(max-width: 780px)" },
@@ -31,6 +32,11 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["Inter var", ...defaultTheme.fontFamily.sans],
+      },
+      height: {
+        calcFoundation: "calc(100svh - 7.05rem)",
+        calcFoundation2: "calc(100svh - 5.75rem)",
+        calcFoundation3: "calc(20svh - 5.75rem)",
       },
     },
   },

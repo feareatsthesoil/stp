@@ -1,16 +1,14 @@
 import { Boards } from "@prisma/client";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Comments from "../../../../components/chan/comments";
 import CommentForm from "../../../../components/chan/comments/CommentForm";
+import PostAttachmentViewer from "../../../../components/chan/posts/PostAttachmentViewer";
+import { LoadingState } from "../../../../components/chan/posts/PostLoadingState";
 import { PostResponse } from "../../../../types";
 import linkify from "../../../../utils/linkify";
 import { getBoard, getPost } from "../../../../utils/services";
-import PostAttachmentViewer from "../../../../components/chan/posts/PostAttachmentViewer";
-import { LoadingState } from "../../../../components/chan/posts/PostLoadingState";
-import Head from "next/head";
-import { useParams } from "next/navigation";
 
 export default function PostViewPage() {
   const { id, slug } = useParams();
@@ -65,17 +63,11 @@ export default function PostViewPage() {
   }
 
   const firstImageUrl = post?.attachments?.find(
-    (attachment: { isImage: boolean; }) => attachment.isImage
+    (attachment: { isImage: boolean }) => attachment.isImage
   )?.url;
 
   return (
     <div className="bg-[#F4F4FE]">
-      <Head>
-        <title>${post.title}</title>
-        <meta property="title" content={post?.title} />
-        <meta property="description" content={post?.content || ""} />
-        {firstImageUrl && <meta property="og:image" content={firstImageUrl} />}
-      </Head>
       <>
         <div
           className="sticky top-0 z-50 flex justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-1 text-sm font-bold"
@@ -122,7 +114,7 @@ export default function PostViewPage() {
           className="flex flex-col items-center text-left "
           style={{ width: "calc(100vw - 2rem)" }}
         >
-          <div className="mb-2 max-w-[1000px]">
+          <div className="mb-2 max-w-[800px]">
             <h1 className="mt-4 font-sans text-lg font-bold">
               {post.title}{" "}
               <Link href={`/chan/${postSlug}`} passHref>

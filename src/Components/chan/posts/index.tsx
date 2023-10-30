@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { PostResponse } from "../../../types";
 import linkify from "../../../utils/linkify";
@@ -14,16 +15,20 @@ interface Props {
 }
 
 export default function Posts({ slug, query, isCatalogView }: Props) {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [posts, setPosts] = useState<PostResponse[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<any>(null);
   const [totalPages, setTotalPages] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(
+    Number(searchParams.get("page")) || 1
+  );
   const [showLoaderComponents, setShowLoaderComponents] =
     useState<boolean>(false);
 
   useEffect(() => {
-    console.log("Current Page:", currentPage);
     setLoading(true);
     fetchPosts();
   }, [slug, query, currentPage]);
@@ -50,6 +55,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
         setLoading(false);
       }
     } catch (error) {
+      console.error("Error fetching posts:", error);
       setError(error);
       setLoading(false);
     }
@@ -204,6 +210,7 @@ export default function Posts({ slug, query, isCatalogView }: Props) {
                     </div>
                   </div>
                 </div>
+
                 {isCatalogView ? null : (
                   <div className={`mt-2 w-full`}>
                     <div className={`scrollbar-hide overflow-auto`}>

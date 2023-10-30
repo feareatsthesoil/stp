@@ -44,7 +44,6 @@ export default function PostForm({
   const MAX_UPLOADS = 10;
 
   const listener = (e: any) => {
-    // console.log(e);
     const attachmentsNew = [...formik.values.attachments];
     if (e.detail.ctx === "post-uploader") {
       for (
@@ -62,7 +61,6 @@ export default function PostForm({
           isImage: data.isImage,
           mimeType: data.mimeType,
         });
-        // console.log(data);
       }
       formik.setFieldValue("attachments", attachmentsNew);
       const dataOutput = document.querySelector("lr-data-output");

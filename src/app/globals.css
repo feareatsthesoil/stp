@@ -29,6 +29,23 @@ p {
   font-family: Helvetica;
 }
 
+.cl-formButtonPrimary {
+  background-color: #dcdcdc;
+  color: #000;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: #c8c8c8;
+}
+
+.cl-footerActionLink {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.cl-footerActionLink:hover {
+  color: rgb(0, 0, 0);
+}
+
 /* SnackBar Alert */
 .notistack-MuiContent {
   font-family: "Helvetica" !important;

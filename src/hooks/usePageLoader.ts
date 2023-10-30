@@ -1,4 +1,6 @@
-import { Router, useRouter } from "next/router";
+"use client";
+
+import { Router } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 
 export default function usePageLoader() {

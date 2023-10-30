@@ -28,28 +28,28 @@
       "name": "Foundation",
       "children": [
         {
-          "href": "/mission",
+          "href": "/foundation",
           "name": "Mission"
         },
         {
-          "href": "/calendar",
-          "name": "Calendar"
-        },
-        {
-          "href": "/support",
-          "name": "Support"
+          "href": "/meetings",
+          "name": "Meetings"
         },
         {
           "href": "/chan",
           "name": "Forum"
         },
         {
-          "href": "/store",
-          "name": "Shop"
+          "href": "/podcast",
+          "name": "Podcast"
         },
         {
-          "href": "/chan",
-          "name": "Podcast"
+          "href": "/support",
+          "name": "Support"
+        },
+        {
+          "href": "/store",
+          "name": "Store"
         }
       ]
     },

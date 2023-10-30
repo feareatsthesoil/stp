@@ -1,17 +1,17 @@
-import { Boards, prisma } from "../../../../../utils/prisma";
-import { moderate } from "../../../../../utils/openai";
-import { getUserData } from "../../../../../utils/userData";
-import { NextRequest, NextResponse } from "next/server";
 import { getAuth } from "@clerk/nextjs/server";
+import { NextRequest, NextResponse } from "next/server";
+import { moderate } from "../../../../../utils/openai";
+import { Boards, prisma } from "../../../../../utils/prisma";
+import { getUserData } from "../../../../../utils/userData";
 
 export async function GET(
   req: NextRequest,
   { params: { slug } }: { params: { slug: string } }
 ) {
+  const { searchParams } = new URL(req.url);
   const { userId } = getAuth(req);
-  const search = new URLSearchParams(req.url);
-  const page = search.get("page");
-  const q = search.get("q");
+  const page = searchParams.get("page");
+  const q = searchParams.get("q");
   const pageNum = Number(page) || 1;
 
   const board =
@@ -72,7 +72,6 @@ export async function GET(
       const postUserId = post.userId;
       let board = null;
       try {
-        // const user = await getUserData(postUserId);
         board = await prisma.boards.findFirstOrThrow({
           where: { id: post.boardId },
         });
@@ -97,7 +96,6 @@ export async function GET(
             user: { firstName, lastName, profileImageUrl: imageUrl },
           };
         }
-        console.log("B", board, postData);
         return postData;
       } catch (error) {
         console.error(`Couldn't get user details for user ${userId}: `, error);

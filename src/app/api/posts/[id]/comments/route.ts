@@ -1,12 +1,12 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../../../../utils/prisma";
-import { moderate } from "../../../../../utils/openai";
-import { getUserData } from "../../../../../utils/userData";
 import { getAuth } from "@clerk/nextjs/server";
+import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest } from "next/server";
+import { moderate } from "../../../../../utils/openai";
+import { prisma } from "../../../../../utils/prisma";
+import { getUserData } from "../../../../../utils/userData";
 
 export async function GET(
-  req: NextApiRequest,
-  res: NextApiResponse,
+  req: NextRequest,
   { params }: { params: { id: string } }
 ) {
   try {
@@ -45,30 +45,23 @@ export async function GET(
         };
       })
     );
-
-    return res.status(200).json(dataReturned);
+    return Response.json(dataReturned);
   } catch (error) {
-    return res
-      .status(500)
-      .json({ error: "An error occurred while fetching data." });
+    return new Response("An error occurred while fetching data.", {
+      status: 500,
+    });
   }
 }
-
 export async function POST(
   req: NextApiRequest,
-  res: NextApiResponse,
   { params }: { params: { id: string } }
 ) {
   try {
     const { userId } = getAuth(req);
     const body = req.body;
-    if (!userId) {
-      return res.status(401).json({ message: "Not logged in" });
-    }
 
-    const result = await moderate(body.content);
-    if (result.flagged) {
-      return res.status(422).json({ message: "Inappropriate comment" });
+    if (!userId) {
+      return new Response("Not logged in", { status: 401 });
     }
 
     const commentRow = await prisma.comment.create({
@@ -83,10 +76,13 @@ export async function POST(
       data: { lastCommentedAt: commentRow.createdAt },
     });
 
-    return res.status(201).json({ message: "Created" });
+    return new Response(JSON.stringify({ message: "Created" }), {
+      status: 201,
+    });
   } catch (error) {
-    return res
-      .status(500)
-      .json({ error: "An error occurred while creating the comment." });
+    console.error("Error:", error);
+    return new Response("An error occurred while fetching data.", {
+      status: 500,
+    });
   }
 }

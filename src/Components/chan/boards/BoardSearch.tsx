@@ -50,7 +50,7 @@ const BoardSearch = React.memo(function ({
   return (
     <>
       <div
-        className={`top-0 z-50 w-full ${isRunningInWebView ? "" : "sticky"}`}
+        className={`top-0 z-30 w-full ${isRunningInWebView ? "" : "sticky"}`}
       >
         <div className="z-50 flex justify-between border-[0] border-b border-solid border-slate-300 bg-[#F4F4FE] py-2 text-sm font-bold">
           <div>

@@ -16,11 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="stylesheet" href="https://rsms.me/inter/inter.css"/>
-      </head>
       <body>
-        <div className="">
+        <div>
           <AllClientContexts>
             <ClerkProvider
               publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}

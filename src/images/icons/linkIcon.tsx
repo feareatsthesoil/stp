@@ -1,18 +1,20 @@
 import React from "react";
 
-const LinkIcon = () => (
+interface LinkIconProps {
+  className?: string;
+  fill?: string;
+}
+
+const LinkIcon: React.FC<LinkIconProps> = ({ className, fill }) => (
   <svg
-    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 7 7"
     fill="none"
-    viewBox="0 0 24 24"
-    strokeWidth="1.5"
-    stroke="currentColor"
-    className="ml-1 mt-[-0.05rem] h-[1.2rem] w-[1.2rem]"
+    className={`ml-1 mt-[0.24rem] h-3 w-3 ${className}`}
+    xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"
+      d="M6.5 1C6.5 0.723857 6.27614 0.5 6 0.5L1.5 0.5C1.22386 0.5 1 0.723857 1 1C1 1.27614 1.22386 1.5 1.5 1.5L5.5 1.5L5.5 5.5C5.5 5.77614 5.72386 6 6 6C6.27614 6 6.5 5.77614 6.5 5.5L6.5 1ZM1.35355 6.35355L6.35355 1.35355L5.64645 0.646446L0.646447 5.64645L1.35355 6.35355Z"
+      fill={fill || "#fff"}
     />
   </svg>
 );

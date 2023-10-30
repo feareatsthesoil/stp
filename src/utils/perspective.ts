@@ -1,4 +1,5 @@
 import { google } from "googleapis";
+
 export const checkComment = async (text: string) => {
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const client = await google.discoverAPI(

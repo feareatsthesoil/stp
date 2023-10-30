@@ -3,7 +3,7 @@
 import { store } from "@/redux/store";
 import { ConfirmProvider } from "material-ui-confirm";
 import { SnackbarProvider } from "notistack";
-import { ReactNode, createContext } from "react";
+import { ReactNode } from "react";
 import { Provider } from "react-redux";
 import { WagmiConfig, configureChains, createClient, mainnet } from "wagmi";
 import { CoinbaseWalletConnector } from "wagmi/connectors/coinbaseWallet";

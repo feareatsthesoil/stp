@@ -3,7 +3,7 @@
 import Link from "next/link";
 import React from "react";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   const links = [
     {
       href: "https://blog.stp.world",
@@ -18,7 +18,7 @@ const Footer = () => {
     {
       href: "mailto:info@stp.world",
       content: "contact@stp.world",
-      className: "hidden sm:block",
+      className: "hidden md:block",
     },
     {
       href: "https://instagram.com/servingthepeople",
@@ -28,19 +28,21 @@ const Footer = () => {
   ];
 
   return (
-    <>
-      <div className="mt-auto">
-        <ul className="mb-4 mt-10 flex w-[100vw] justify-around font-sans text-sm/4 uppercase tracking-wide text-white">
-          {links.map((link, index) => (
-            <li key={index} className={link.className}>
-              <Link href={link.href} target={index !== 1 ? "_blank" : ""}>
-                {link.content}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-    </>
+    <div className="mt-auto flex flex-col items-center">
+      <ul className="mb-4 flex w-[calc(100vw-2rem)] justify-center font-sans text-sm/4 uppercase tracking-wide text-white sm:justify-between">
+        {links.map((link, index) => (
+          <li key={index} className={link.className}>
+            <Link
+              href={link.href}
+              target={index !== 1 ? "_blank" : ""}
+              className="rounded-md px-4 py-2 hover:bg-neutral-900"
+            >
+              {link.content}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 

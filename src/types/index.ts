@@ -21,7 +21,6 @@ export type CalendarEventsType = CalendarEventType[];
 export type CalendarPageType = {
   calendarData: CalendarEventType[];
 };
-
 export interface DirectoryRow {
   pronouns: string;
   id?: number;
@@ -40,7 +39,6 @@ export interface DirectoryRow {
 
   userId: string;
 }
-
 export interface CalendarRow {
   id: string;
   timestamp: string;
@@ -56,7 +54,6 @@ export interface CalendarRow {
   email: string;
   description: string;
 }
-
 export interface Resource {
   category: string;
   id: number;

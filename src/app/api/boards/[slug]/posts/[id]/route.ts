@@ -1,4 +1,3 @@
-import { moderate } from "@/utils/openai";
 import { prisma } from "@/utils/prisma";
 import { getUserData } from "@/utils/userData";
 import { getAuth } from "@clerk/nextjs/server";
@@ -69,18 +68,6 @@ export async function PUT(
   }
 
   const { isAuthor, ...body } = req.body;
-
-  let result = await moderate(body.content!);
-
-  if (result.flagged) {
-    return Response.json({ message: "Inappropriate comment" }, { status: 400 });
-  }
-
-  result = await moderate(body.title!);
-
-  if (result.flagged) {
-    return Response.json({ message: "Inappropriate title" }, { status: 400 });
-  }
 
   const dataNew = await prisma.post.update({
     where: { id: data.id },

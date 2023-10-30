@@ -4,9 +4,10 @@ import React from "react";
 
 interface LogoProps {
   width: number;
+  className?: string;
 }
 
-const Logo = ({ width }: LogoProps) => {
+const Logo = ({ width, className }: LogoProps) => {
   return (
     <Image
       src={logo}
@@ -15,6 +16,7 @@ const Logo = ({ width }: LogoProps) => {
       quality={100}
       priority={true}
       draggable={false}
+      className={className}
     />
   );
 };

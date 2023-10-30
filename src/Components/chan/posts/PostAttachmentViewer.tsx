@@ -100,7 +100,6 @@ export default function PostAttachmentViewer({
                       webkit-playsinline
                       playsInline
                       src={attachment.url}
-                      // poster={attachment.thumbnailUrl}
                     />
                   ) : attachment.mimeType?.startsWith("audio") ? (
                     <audio

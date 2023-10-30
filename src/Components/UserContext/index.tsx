@@ -56,7 +56,6 @@ export const UserProvider = (props: { children: ReactNode }) => {
   const refresh = () => {
     return loadData();
   };
-  console.log("loggedIn", loggedIn);
   return (
     <UserContext.Provider
       value={{ ...metadata, initialized, loggedIn, refresh }}

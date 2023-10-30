@@ -1,7 +1,12 @@
-import { Container } from "@/components/portal/Container";
-import ArrowUpRight from "@/images/icons/arrowUpRight";
+import { Container } from "@/components/Container";
+import LinkIcon from "@/images/icons/linkIcon";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+export const metadata: Metadata = {
+  title: "Proposals",
+};
 
 const Proposals: React.FC = () => {
   return (
@@ -24,11 +29,19 @@ const Proposals: React.FC = () => {
             actively contribute to this decentralized narrative where, together,
             we script our next chapters.`}
         </p>
-        <p>
-          <Link href="#" className="flex flex-row underline">
-            Visit Seeds DAO <ArrowUpRight />
+        <div>
+          <Link
+            href="#"
+            target="_blank"
+            className="group flex items-center underline"
+          >
+            Visit Seeds DAO
+            <LinkIcon
+              className="self-start opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              fill="white"
+            />
           </Link>
-        </p>
+        </div>
       </div>
     </Container>
   );

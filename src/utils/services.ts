@@ -64,7 +64,11 @@ export const getBoard = (slug: string) => {
 export const getComments = (postId: number) => {
   return axios
     .get<Comment[]>(`/api/posts/${postId}/comments`)
-    .then((response) => response);
+    .then((response) => response)
+    .catch((error) => {
+      console.error("Error fetching posts:", error);
+      throw error;
+    });
 };
 
 export const deleteComment = (postId: number, commentId: number) => {
