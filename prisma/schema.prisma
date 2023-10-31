@@ -1,0 +1,125 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["jsonProtocol"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Users {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+model Events {
+  id              Int       @id @default(autoincrement())
+  name            String
+  type            String
+  address         String
+  website         String
+  starts_at       DateTime
+  ends_at         DateTime?
+  phone           String
+  email           String
+  description     String?   @db.Text
+  approved        Boolean   @default(true)
+  userId          String?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+  calendarEventId String?
+}
+
+model Contacts {
+  id          Int      @id @default(autoincrement())
+  name        String
+  category    String
+  address     String
+  website     String
+  email       String
+  phone       String
+  twitter     String?
+  instagram   String?
+  description String?  @db.Text
+  approved    Boolean  @default(true)
+  profile     Boolean  @default(false)
+  display     Boolean  @default(true)
+  userId      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  pronouns    String?
+}
+
+model Purchases {
+  id             Int      @id @default(autoincrement())
+  purchasePrice  Decimal
+  stripeIntentId String
+  expiryDate     DateTime
+  userId         String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Resource {
+  id          Int      @id @default(autoincrement())
+  name        String
+  category    String?
+  description String?
+  link        String
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Boards {
+  id          Int      @id @default(autoincrement())
+  name        String
+  slug        String?
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Post {
+  id              Int      @id @default(autoincrement())
+  title           String
+  content         String?  @db.MediumText
+  boardId         Int
+  userId          String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  anon            Boolean  @default(false)
+  lastCommentedAt DateTime @default(now())
+  attachments     Json?
+}
+
+model Comment {
+  id          Int      @id @default(autoincrement())
+  content     String?  @db.MediumText
+  attachment  String?
+  postId      Int
+  userId      String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  anon        Boolean  @default(false)
+  attachments Json?
+}
+
+model Like {
+  id           Int      @id @default(autoincrement())
+  likeableId   Int
+  likeableType String
+  userId       String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model UserDataCache {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  data      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

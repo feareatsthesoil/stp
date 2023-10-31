@@ -1,0 +1,127 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+:root {
+  box-sizing: border-box;
+  letter-spacing: -0.03em;
+}
+
+body {
+  line-height: 1.2em;
+} 
+
+p {
+  line-height: 1.25em;
+}
+
+/* Chan Scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Clerk */
+.cl-modalBackdrop {
+  font-family: Helvetica;
+}
+
+.cl-userButton-popover {
+  font-family: Helvetica;
+}
+
+.cl-formButtonPrimary {
+  background-color: #dcdcdc;
+  color: #000;
+}
+
+.cl-formButtonPrimary:hover {
+  background-color: #c8c8c8;
+}
+
+.cl-footerActionLink {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.cl-footerActionLink:hover {
+  color: rgb(0, 0, 0);
+}
+
+/* SnackBar Alert */
+.notistack-MuiContent {
+  font-family: "Helvetica" !important;
+}
+
+/* MUI MenuItem */
+.MuiList-root {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+.MuiTouchRipple-root {
+  color: #ffffff00;
+}
+
+/* MuiAlert */
+.MuiDialogContent-root p {
+  letter-spacing: -0.03em !important;
+  font-family: "Times New Roman", Times, serif !important;
+  color: #000 !important;
+}
+
+.MuiDialogTitle-root {
+  font-weight: bold !important;
+  letter-spacing: -0.03em !important;
+  font-family: "Times New Roman", Times, serif !important;
+}
+
+.MuiDialogActions-root button {
+  height: 30px;
+  background-color: rgb(239, 239, 239) !important;
+  border-radius: 4px;
+  font-size: 0.8em;
+  border: 1px solid #000 !important;
+  color: #000 !important;
+  text-transform: none;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+.MuiDialogActions-root button:hover {
+  background-color: rgb(220, 220, 220) !important;
+}
+
+.MuiDialogActions-root button:hover {
+  background-color: #00000000;
+}
+
+/* MuiTooltip */
+.MuiTooltip-tooltip {
+  background-color: rgb(220, 220, 220) !important;
+  color: #4a4d50 !important;
+}
+
+.MuiTooltip-arrow {
+  color: rgb(220, 220, 220) !important;
+}
+
+/* UploadCare */
+.my-config {
+  --cfg-pubkey: "298fc65a2986318fd270";
+  --cfg-img-only: 0;
+  --cfg-multiple: 1;
+  --cfg-multiple-max: 10;
+  --cfg-max-local-file-size-bytes: 5000000;
+  --cfg-use-cloud-image-editor: 1;
+  --cfg-source-list: "local, url, camera, gdrive, instagram";
+  --cfg-remove-copyright: 0;
+  --darkmode: 0;
+  --h-accent: 0;
+  --s-accent: 0%;
+  --l-accent: 0%;
+}
+
+/* MEDIA QUERIES */
+@media (prefers-reduced-motion: no-preference) {
+  :root {
+    scroll-behavior: smooth;
+  }
+}
