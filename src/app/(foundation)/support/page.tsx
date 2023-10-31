@@ -12,7 +12,7 @@ const Membership = () => {
   return (
     <Container className="my-6 max-w-[800px]">
       <div>
-        <h1>Welcome!</h1>
+        <h1>We need your support!</h1>
         <p>
           {`Serving the People is a 501(c)(3) non-profit organization that assists
           artists and creators in making meaningful connections both online and
