@@ -1,6 +1,6 @@
 "use client";
 
-import Logo from "@/Components/portal/logo/Logo";
+import Logo from "@/components/portal/logo/Logo";
 import ChevronDown from "@/images/icons/chevronDown";
 import ChevronUp from "@/images/icons/chevronUp";
 import LinkIcon from "@/images/icons/linkIcon";
@@ -66,7 +66,7 @@ function RecursiveLink({
             isOpen ? "block" : "hidden"
           } ${
             level > 0
-              ? "mt-[-0.10rem] sm:mt-[0.2rem] sm:rotate-[270deg] md:rotate-90"
+              ? "mt-[0rem] sm:mt-[0.2rem] sm:rotate-[270deg] md:rotate-90"
               : "rotate-[270deg] md:mt-0  md:rotate-0"
           }`}
         >
@@ -79,7 +79,7 @@ function RecursiveLink({
             static
             className={`flex-end absolute top-0 z-40 flex w-max translate-y-[-0.45rem] flex-col items-end rounded-md bg-slate-200 p-2 text-slate-600 ring-1 ring-black ring-opacity-5 md:left-0 md:right-0 md:items-start ${
               level > 0
-                ? "right-[-0.46rem] translate-y-[120px] sm:right-[9.15rem] sm:translate-y-[-0.45em] md:left-[9.2rem]"
+                ? "right-[-0.46rem] translate-y-[85px] sm:right-[9.15rem] sm:translate-y-[-0.45em] md:left-[9.2rem]"
                 : "right-[7rem] md:mt-12"
             }`}
           >
@@ -145,7 +145,7 @@ function Header({ showLogo }: HeaderProps) {
   return (
     <div className="mx-2 mb-2 flex w-full flex-row-reverse justify-between md:mb-0 md:w-min md:flex-col">
       {user.isSignedIn && (
-        <div className="absolute left-4 top-4 z-50">
+        <div className="absolute left-4 top-4 z-50 md:left-auto md:right-4 md:top-2">
           <UserButton afterSignOutUrl="/login" />
         </div>
       )}
@@ -170,6 +170,8 @@ function Header({ showLogo }: HeaderProps) {
                     ? RecursiveLink({ item, index })
                     : singleLink(item);
                 })}
+                {!user.isSignedIn &&
+                  singleLink({ href: "/login", name: "Login" })}
               </div>
             </Disclosure.Panel>
             <div className="mt-2 hidden content-center justify-between font-sans text-sm/8 uppercase tracking-wide md:flex">

@@ -1,4 +1,4 @@
-import { Container } from "@/Components/Container";
+import { Container } from "@/components/Container";
 import personnel from "@/data/personnel.json";
 import { Metadata } from "next";
 import React from "react";
@@ -20,14 +20,6 @@ export default function Community() {
               person. Established in 2017, STP has launched a number of initiatives
               and developed a platform for connecting creators with audiences, as well
               as finding opportunities for collaboration and support.`}
-            </p>
-            <p>
-              {`We host weekly in-person discussions led by artists, providing a space
-              for creative collaboration and dialogue. These meetings offer members
-              the opportunity to connect and engage in meaningful dialogue about
-              their work, ideas, and projects. They are designed to foster a
-              supportive and inclusive environment where members can share their
-              experiences and learn from one another.`}
             </p>
           </div>
           <div className="grid grid-cols-2 justify-between gap-y-10 text-slate-800 sm:grid-cols-3">

@@ -1,4 +1,4 @@
-import { Container } from "@/Components/Container";
+import { Container } from "@/components/Container";
 import { Metadata } from "next";
 import React from "react";
 

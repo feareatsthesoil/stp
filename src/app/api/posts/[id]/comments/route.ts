@@ -52,16 +52,22 @@ export async function GET(
     });
   }
 }
+
 export async function POST(
   req: NextApiRequest,
+  res: NextApiResponse,
   { params }: { params: { id: string } }
 ) {
   try {
     const { userId } = getAuth(req);
     const body = req.body;
-
     if (!userId) {
-      return new Response("Not logged in", { status: 401 });
+      return res.status(401).json({ message: "Not logged in" });
+    }
+
+    const result = await moderate(body.content);
+    if (result.flagged) {
+      return res.status(422).json({ message: "Inappropriate comment" });
     }
 
     const commentRow = await prisma.comment.create({
@@ -76,13 +82,11 @@ export async function POST(
       data: { lastCommentedAt: commentRow.createdAt },
     });
 
-    return new Response(JSON.stringify({ message: "Created" }), {
-      status: 201,
-    });
+    return res.status(201).json({ message: "Created" });
   } catch (error) {
     console.error("Error:", error);
-    return new Response("An error occurred while fetching data.", {
-      status: 500,
-    });
+    return res
+      .status(500)
+      .json({ error: "An error occurred while fetching data." });
   }
 }

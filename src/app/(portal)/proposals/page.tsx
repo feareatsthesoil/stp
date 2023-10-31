@@ -1,4 +1,4 @@
-import { Container } from "@/Components/Container";
+import { Container } from "@/components/Container";
 import LinkIcon from "@/images/icons/linkIcon";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -27,7 +27,7 @@ const Proposals: React.FC = () => {
         </p>
         <div>
           <Link
-            href="#"
+            href="https://seedsdao.vercel.app/"
             target="_blank"
             className="group flex items-center underline"
           >

@@ -74,23 +74,16 @@ const ShopifyComponent = () => {
                 },
                 "button": {
                   "font-family": "Helvetica",
-                  "letter-spacing": "-0.03em",
-                  "font-size": "13px",
-                  "padding-top": "6.5px",
-                  "padding-bottom": "6.5px",
-                  "border": "1px solid black",
-                  "color": "#000000",
+                  "height": "2.25rem",
+                  "padding" : "0 1rem",
+                  "color": "#4a4d50",
                   ":hover": {
-                    "color": "#000000",
-                    "  background-color": "rgb(199, 199, 199)",
+                    "color": "#4a4d50",
+                    "  background-color": "#e5e6e6",
                   },
-                  ":active": {
-                    "transform": "translateY(4px)",
-                    "transition": "60ms transform ease-in-out",
-                  },
-                  "background-color": "rgb(239, 239, 239)",
+                  "background-color": "#eff0f0",
                   ":focus": {
-                    "background-color": "rgb(239, 239, 239)"
+                    "background-color": "#e5e6e6"
                   },
                   "border-radius": "4px",
                   "padding-left": "10px",
@@ -118,7 +111,7 @@ const ShopifyComponent = () => {
                 }
               },
               "text": {
-                "button": "Add to cart"
+                "button": "Add to Cart"
               }
             },
             "productSet": {

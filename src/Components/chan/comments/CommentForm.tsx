@@ -44,6 +44,7 @@ export default function CommentForm({
     }),
     initialValues: { content: "", anon: false, attachments: [] as any[] },
     onSubmit: async (values, { setSubmitting, resetForm }) => {
+      console.log("^&*@#^$&*^#&$", values);
       if (slug === "all") {
         router.push("/gc");
         return;

@@ -1,8 +1,9 @@
-import { Container } from "@/Components/Container";
+import { Container } from "@/components/Container";
 import LinkIcon from "@/images/icons/linkIcon";
 import type { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+import DonateButton from "./DonateButton";
 
 export const metadata: Metadata = {
   title: "Support",
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 
 const Membership = () => {
   return (
-    <Container className="my-6 max-w-[800px]">
+    <Container className="my-6 max-w-[800px] text-slate-800">
       <div>
         <h1>Welcome!</h1>
         <p>
@@ -39,17 +40,7 @@ const Membership = () => {
         </p>
       </div>
       <div>
-        <Link
-          href="https://donate.stripe.com/test_dR6cNJdBy2vY7kY6oo"
-          target="_blank"
-          className="group flex items-center underline"
-        >
-          Donate
-          <LinkIcon
-            className="opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-            fill="black"
-          />
-        </Link>
+        <DonateButton />
       </div>
     </Container>
   );
